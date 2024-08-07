@@ -2,7 +2,7 @@
 Imports System.Globalization
 
 Public Class frmMain
-    ' เพิ่มตัวเชื่อมต่อฐานข้อมูล
+    ' เพิ่มตัวเชื่อมต่อฐานข้อมูล555
     Dim Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
 
     Public Sub Loadinfo()
