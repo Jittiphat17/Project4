@@ -12,18 +12,16 @@ Public Class frmSearch
         LoadAllContracts()
         Me.ReportViewer1.RefreshReport()
     End Sub
+
     Private Sub FormatDataGridView()
         ' ตั้งค่าการแสดงจำนวนเงินด้วยเครื่องหมายคั่นหลักพัน
         dgvResults.Columns("con_amount").DefaultCellStyle.Format = "N0"
-
         ' ตั้งค่าการจัดชิดด้านขวา
         dgvResults.Columns("con_amount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-
         ' คุณสามารถตั้งค่าการจัดรูปแบบอื่น ๆ ได้ตามต้องการ เช่น:
         dgvResults.Columns("con_interest").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         dgvResults.Columns("con_permonth").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
     End Sub
-
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         If String.IsNullOrWhiteSpace(txtSearch.Text) Then
@@ -43,7 +41,6 @@ Public Class frmSearch
                 Dim table As New DataTable()
                 adapter.Fill(table)
                 dgvResults.DataSource = table
-
                 ' เรียกใช้ฟังก์ชันการจัดรูปแบบ DataGridView
                 FormatDataGridView()
             End Using
@@ -51,7 +48,6 @@ Public Class frmSearch
             MessageBox.Show("เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
 
     Private Sub SearchContracts(keyword As String)
         Try
@@ -91,8 +87,6 @@ Public Class frmSearch
 
         Return bahtText
     End Function
-
-
 
     Private Function ConvertPartToText(ByVal num As Long) As String
         Dim text As String = ""
@@ -205,11 +199,21 @@ Public Class frmSearch
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("AmountText", amountText))
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("AmountWithCommas", amountWithCommas))
 
+
                 ' ส่งข้อมูลวันที่ชำระเงินแรกและสุดท้ายไปยังรายงาน
                 Dim firstPaymentDateThai As String = ConvertToThaiDateString(firstPaymentDate)
                 Dim lastPaymentDateThai As String = ConvertToThaiDateString(lastPaymentDate)
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("FirstPaymentDate", firstPaymentDateThai))
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("LastPaymentDate", lastPaymentDateThai))
+
+                ' ตั้งค่าพารามิเตอร์สำหรับแต่ละหน้า
+                Dim page1Content As String = "เนื้อหาสำหรับหน้าแรก"
+                Dim page2Content As String = "เนื้อหาสำหรับหน้าสอง"
+                Dim page3Content As String = "เนื้อหาสำหรับหน้าสาม"
+
+                Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("Page1Content", page1Content))
+                Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("Page2Content", page2Content))
+                Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("Page3Content", page3Content))
 
                 ' เลือกรายงานตามที่ผู้ใช้เลือก
                 Dim reportPath As String
@@ -230,5 +234,4 @@ Public Class frmSearch
             MessageBox.Show("เกิดข้อผิดพลาดในการสร้างรายงาน: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
 End Class

@@ -364,7 +364,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!amountWithCommas.Value</Value>
+                    <Value>=Parameters!AmountWithCommas.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
@@ -1398,7 +1398,7 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="amountWithCommas">
+    <ReportParameter Name="AmountWithCommas">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -1426,7 +1426,7 @@
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>amountWithCommas</ParameterName>
+          <ParameterName>AmountWithCommas</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
