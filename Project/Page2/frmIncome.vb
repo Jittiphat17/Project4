@@ -183,4 +183,7 @@ Public Class frmIncome
         Return value.ToString("N0") & " บาท"
     End Function
 
+    Private Sub cboDepositType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboDepositType.SelectedIndexChanged
+
+    End Sub
 End Class
