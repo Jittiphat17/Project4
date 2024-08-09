@@ -18,7 +18,6 @@ Public Class frmSearch
         dgvResults.Columns("con_amount").DefaultCellStyle.Format = "N0"
         ' ตั้งค่าการจัดชิดด้านขวา
         dgvResults.Columns("con_amount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        ' คุณสามารถตั้งค่าการจัดรูปแบบอื่น ๆ ได้ตามต้องการ เช่น:
         dgvResults.Columns("con_interest").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         dgvResults.Columns("con_permonth").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
     End Sub
@@ -146,7 +145,7 @@ Public Class frmSearch
                 adapter1.Fill(table1)
 
                 ' ดึงข้อมูลสำหรับ DataSet2 จากตาราง Member
-                Dim query2 As String = "SELECT m_id, m_gender, m_name, m_address, m_tel FROM Member WHERE m_id = @m_id"
+                Dim query2 As String = "SELECT m_id, m_gender,m_national, m_thaiid, m_name, m_address, m_tel FROM Member WHERE m_id = @m_id"
                 Dim cmd2 As New OleDbCommand(query2, conn)
                 cmd2.Parameters.AddWithValue("@m_id", selectedMemberId)
                 Dim adapter2 As New OleDbDataAdapter(cmd2)
@@ -199,7 +198,6 @@ Public Class frmSearch
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("AmountText", amountText))
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("AmountWithCommas", amountWithCommas))
 
-
                 ' ส่งข้อมูลวันที่ชำระเงินแรกและสุดท้ายไปยังรายงาน
                 Dim firstPaymentDateThai As String = ConvertToThaiDateString(firstPaymentDate)
                 Dim lastPaymentDateThai As String = ConvertToThaiDateString(lastPaymentDate)
@@ -211,9 +209,6 @@ Public Class frmSearch
                 Dim page2Content As String = "เนื้อหาสำหรับหน้าสอง"
                 Dim page3Content As String = "เนื้อหาสำหรับหน้าสาม"
 
-                Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("Page1Content", page1Content))
-                Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("Page2Content", page2Content))
-                Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("Page3Content", page3Content))
 
                 ' เลือกรายงานตามที่ผู้ใช้เลือก
                 Dim reportPath As String
