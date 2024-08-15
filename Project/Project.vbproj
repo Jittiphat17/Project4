@@ -288,10 +288,10 @@
     <Compile Include="Page2\frmIncome.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="report\frmReportViewer.Designer.vb">
-      <DependentUpon>frmReportViewer.vb</DependentUpon>
+    <Compile Include="report\frmGuarantorReport.Designer.vb">
+      <DependentUpon>frmGuarantorReport.vb</DependentUpon>
     </Compile>
-    <Compile Include="report\frmReportViewer.vb">
+    <Compile Include="report\frmGuarantorReport.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -350,9 +350,10 @@
     <EmbeddedResource Include="Page2\frmIncome.resx">
       <DependentUpon>frmIncome.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="report\frmReportViewer.resx">
-      <DependentUpon>frmReportViewer.vb</DependentUpon>
+    <EmbeddedResource Include="report\frmGuarantorReport.resx">
+      <DependentUpon>frmGuarantorReport.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="report\GuarantorReport.rdlc" />
     <EmbeddedResource Include="report\LoanReport.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>

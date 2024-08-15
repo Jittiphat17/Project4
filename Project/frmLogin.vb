@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
+
 Public Class Form1
     Dim Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
-
 
     Dim cmd As OleDbCommand
     Dim da As OleDbDataAdapter
@@ -10,6 +10,13 @@ Public Class Form1
 
     Private Sub frmLogin_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txtPass.UseSystemPasswordChar = True
+    End Sub
+
+    Private Sub txtUser_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtUser.KeyPress
+        ' อนุญาตเฉพาะตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น
+        If Not Char.IsLetterOrDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
     End Sub
 
     Private Sub btn_login_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_login.Click
@@ -26,7 +33,7 @@ Public Class Form1
             If dt.Rows.Count > 0 Then
                 User_name = dt.Rows(0)("user_name")
                 User_type = dt.Rows(0)("user_type")
-                Dim frm As New FrmMain
+                Dim frm As New frmMain
                 frm.Show()
                 Me.Hide()
             Else
@@ -51,6 +58,4 @@ Public Class Form1
             Application.Exit()
         End If
     End Sub
-
-
 End Class

@@ -26,8 +26,9 @@ Partial Class frmSearch
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.dgvResults = New System.Windows.Forms.DataGridView()
         Me.btnReport = New System.Windows.Forms.Button()
-        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.cbReportType = New System.Windows.Forms.ComboBox()
+        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.ReportViewer2 = New Microsoft.Reporting.WinForms.ReportViewer()
         CType(Me.dgvResults, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -64,15 +65,6 @@ Partial Class frmSearch
         Me.btnReport.Text = "สร้างรายงาน"
         Me.btnReport.UseVisualStyleBackColor = True
         '
-        'ReportViewer1
-        '
-        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "Project.LoanReport1.rdlc"
-        Me.ReportViewer1.Location = New System.Drawing.Point(12, 246)
-        Me.ReportViewer1.Name = "ReportViewer1"
-        Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(1033, 538)
-        Me.ReportViewer1.TabIndex = 4
-        '
         'cbReportType
         '
         Me.cbReportType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -82,13 +74,32 @@ Partial Class frmSearch
         Me.cbReportType.Size = New System.Drawing.Size(121, 21)
         Me.cbReportType.TabIndex = 5
         '
+        'ReportViewer1
+        '
+        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "Project.LoanReport1.rdlc"
+        Me.ReportViewer1.Location = New System.Drawing.Point(12, 246)
+        Me.ReportViewer1.Name = "ReportViewer1"
+        Me.ReportViewer1.ServerReport.BearerToken = Nothing
+        Me.ReportViewer1.Size = New System.Drawing.Size(507, 538)
+        Me.ReportViewer1.TabIndex = 6
+        '
+        'ReportViewer2
+        '
+        Me.ReportViewer2.LocalReport.ReportEmbeddedResource = "Project.LoanReport1.rdlc"
+        Me.ReportViewer2.Location = New System.Drawing.Point(538, 246)
+        Me.ReportViewer2.Name = "ReportViewer2"
+        Me.ReportViewer2.ServerReport.BearerToken = Nothing
+        Me.ReportViewer2.Size = New System.Drawing.Size(507, 538)
+        Me.ReportViewer2.TabIndex = 7
+        '
         'frmSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1057, 796)
-        Me.Controls.Add(Me.cbReportType)
+        Me.Controls.Add(Me.ReportViewer2)
         Me.Controls.Add(Me.ReportViewer1)
+        Me.Controls.Add(Me.cbReportType)
         Me.Controls.Add(Me.btnReport)
         Me.Controls.Add(Me.dgvResults)
         Me.Controls.Add(Me.btnSearch)
@@ -106,6 +117,7 @@ Partial Class frmSearch
     Friend WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents dgvResults As System.Windows.Forms.DataGridView
     Friend WithEvents btnReport As System.Windows.Forms.Button
-    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
     Friend WithEvents cbReportType As ComboBox
+    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
+    Friend WithEvents ReportViewer2 As Microsoft.Reporting.WinForms.ReportViewer
 End Class

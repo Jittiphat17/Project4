@@ -10,7 +10,14 @@ Public Class frmSearch
         cbReportType.Items.Add("รายงานสัญญาอื่นๆ")
         cbReportType.SelectedIndex = 0 ' ตั้งค่าเริ่มต้น
         LoadAllContracts()
+
+        ' กำหนดค่าของ ReportViewer1 สำหรับรายงานสัญญากู้ยืม
+        Me.ReportViewer1.LocalReport.ReportPath = "D:\Project-2022\Project\Project\report\LoanReport1.rdlc"
         Me.ReportViewer1.RefreshReport()
+
+        ' กำหนดค่าของ ReportViewer2 สำหรับรายงานผู้ค้ำประกัน
+        Me.ReportViewer2.LocalReport.ReportPath = "D:\Project-2022\Project\Project\report\GuarantorReport.rdlc"
+        Me.ReportViewer2.RefreshReport()
     End Sub
 
     Private Sub FormatDataGridView()
@@ -20,6 +27,20 @@ Public Class frmSearch
         dgvResults.Columns("con_amount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         dgvResults.Columns("con_interest").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         dgvResults.Columns("con_permonth").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+        ' ปรับความกว้างของคอลัมน์ con_details
+        dgvResults.Columns("con_details").Width = 400 ' ปรับค่าตามที่ต้องการ
+
+        ' เปลี่ยนชื่อหัวข้อคอลัมน์เป็นภาษาไทย
+        dgvResults.Columns("con_id").HeaderText = "รหัสสัญญา"
+        dgvResults.Columns("m_id").HeaderText = "รหัสสมาชิก"
+        dgvResults.Columns("con_details").HeaderText = "รายละเอียดสัญญา"
+        dgvResults.Columns("con_amount").HeaderText = "จำนวนเงิน"
+        dgvResults.Columns("con_interest").HeaderText = "ดอกเบี้ย"
+        dgvResults.Columns("con_permonth").HeaderText = "จำนวนงวดต่อเดือน"
+        dgvResults.Columns("con_date").HeaderText = "วันที่ทำสัญญา"
+        dgvResults.Columns("acc_id").HeaderText = "บัญชี"
+        dgvResults.Columns("guarantor_names").HeaderText = "ชื่อผู้ค้ำประกัน" ' เพิ่มคอลัมน์ชื่อผู้ค้ำประกัน
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
@@ -39,6 +60,24 @@ Public Class frmSearch
                 Dim adapter As New OleDbDataAdapter(cmd)
                 Dim table As New DataTable()
                 adapter.Fill(table)
+
+                ' เพิ่มการดึงข้อมูลผู้ค้ำประกัน
+                table.Columns.Add("guarantor_names", GetType(String)) ' เพิ่มคอลัมน์ใหม่สำหรับชื่อผู้ค้ำประกัน
+
+                For Each row As DataRow In table.Rows
+                    Dim con_id As Integer = row("con_id")
+                    Dim guarantorQuery As String = "SELECT m.m_name FROM Guarantor g INNER JOIN Member m ON g.m_id = m.m_id WHERE g.con_id = @con_id"
+                    Dim guarantorCmd As New OleDbCommand(guarantorQuery, conn)
+                    guarantorCmd.Parameters.AddWithValue("@con_id", con_id)
+                    Dim guarantorAdapter As New OleDbDataAdapter(guarantorCmd)
+                    Dim guarantorTable As New DataTable()
+                    guarantorAdapter.Fill(guarantorTable)
+
+                    ' รวบรวมชื่อผู้ค้ำประกัน
+                    Dim guarantorNames As String = String.Join(", ", guarantorTable.AsEnumerable().[Select](Function(r) r.Field(Of String)("m_name")).ToArray())
+                    row("guarantor_names") = guarantorNames
+                Next
+
                 dgvResults.DataSource = table
                 ' เรียกใช้ฟังก์ชันการจัดรูปแบบ DataGridView
                 FormatDataGridView()
@@ -58,6 +97,24 @@ Public Class frmSearch
                 Dim adapter As New OleDbDataAdapter(cmd)
                 Dim table As New DataTable()
                 adapter.Fill(table)
+
+                ' เพิ่มการดึงข้อมูลผู้ค้ำประกัน
+                table.Columns.Add("guarantor_names", GetType(String)) ' เพิ่มคอลัมน์ใหม่สำหรับชื่อผู้ค้ำประกัน
+
+                For Each row As DataRow In table.Rows
+                    Dim con_id As Integer = row("con_id")
+                    Dim guarantorQuery As String = "SELECT m.m_name FROM Guarantor g INNER JOIN Member m ON g.m_id = m.m_id WHERE g.con_id = @con_id"
+                    Dim guarantorCmd As New OleDbCommand(guarantorQuery, conn)
+                    guarantorCmd.Parameters.AddWithValue("@con_id", con_id)
+                    Dim guarantorAdapter As New OleDbDataAdapter(guarantorCmd)
+                    Dim guarantorTable As New DataTable()
+                    guarantorAdapter.Fill(guarantorTable)
+
+                    ' รวบรวมชื่อผู้ค้ำประกัน
+                    Dim guarantorNames As String = String.Join(", ", guarantorTable.AsEnumerable().[Select](Function(r) r.Field(Of String)("m_name")).ToArray())
+                    row("guarantor_names") = guarantorNames
+                Next
+
                 dgvResults.DataSource = table
             End Using
         Catch ex As Exception
@@ -106,8 +163,10 @@ Public Class frmSearch
 
         text = text.Replace("หนึ่งสิบ", "สิบ")
         text = text.Replace("สองสิบ", "ยี่สิบ")
-        If text.Length > 1 Then
-            text = text.Substring(0, 1) & text.Substring(1).Replace("หนึ่ง", "เอ็ด")
+
+        ' แก้ไขการแปลงตัวเลข "หนึ่ง" ในหลักสิบหน่วย
+        If text.Length > 1 AndAlso text.Substring(1, 1) = "สิบ" Then
+            text = text.Substring(0, 1) & "เอ็ด" & text.Substring(2)
         End If
 
         Return text
@@ -175,9 +234,6 @@ Public Class frmSearch
                 If table4.Rows.Count > 0 Then
                     firstPaymentDate = Convert.ToDateTime(table4.Rows(0)("payment_date"))
                     lastPaymentDate = Convert.ToDateTime(table4.Rows(table4.Rows.Count - 1)("payment_date"))
-                Else
-                    firstPaymentDate = Date.MinValue 'หรือกำหนดข้อความอื่นๆ
-                    lastPaymentDate = Date.MinValue 'หรือกำหนดข้อความอื่นๆ
                 End If
 
                 ' ชื่อ DataSource ต้องตรงกับชื่อในรายงาน
@@ -185,6 +241,8 @@ Public Class frmSearch
                 Dim rds2 As New ReportDataSource("DataSet2", table2)
                 Dim rds3 As New ReportDataSource("DataSet3", table3)
                 Dim rds4 As New ReportDataSource("DataSet4", table4)
+
+                ' กำหนดข้อมูลสำหรับ ReportViewer1 (รายงานสัญญากู้ยืม)
                 Me.ReportViewer1.LocalReport.DataSources.Clear()
                 Me.ReportViewer1.LocalReport.DataSources.Add(rds1)
                 Me.ReportViewer1.LocalReport.DataSources.Add(rds2)
@@ -204,29 +262,37 @@ Public Class frmSearch
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("FirstPaymentDate", firstPaymentDateThai))
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("LastPaymentDate", lastPaymentDateThai))
 
-                ' ตั้งค่าพารามิเตอร์สำหรับแต่ละหน้า
-                Dim page1Content As String = "เนื้อหาสำหรับหน้าแรก"
-                Dim page2Content As String = "เนื้อหาสำหรับหน้าสอง"
-                Dim page3Content As String = "เนื้อหาสำหรับหน้าสาม"
-
-
-                ' เลือกรายงานตามที่ผู้ใช้เลือก
-                Dim reportPath As String
-                Select Case cbReportType.SelectedItem.ToString()
-                    Case "รายงานสัญญากู้เงิน"
-                        reportPath = "D:\Project-2022\Project\Project\report\LoanReport1.rdlc"
-                    Case "รายงานสัญญาอื่นๆ"
-                        reportPath = "D:\Project-2022\Project\Project\report\OtherLoanReport1.rdlc"
-                    Case Else
-                        MessageBox.Show("ไม่พบรายงานที่ต้องการ", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Return
-                End Select
-
-                Me.ReportViewer1.LocalReport.ReportPath = reportPath ' กำหนดเส้นทางของรายงาน
+                ' รีเฟรชรายงานหลังจากตั้งค่าพารามิเตอร์และ DataSource
                 Me.ReportViewer1.RefreshReport()
+
+                ' ดึงข้อมูลสำหรับรายงานผู้ค้ำประกันจากตาราง Guarantor
+                Dim query5 As String = "SELECT m.m_id, m.m_name, m.m_address, m.m_tel, m.m_national, m.m_thaiid, m.m_gender " &
+                                       "FROM Guarantor g " &
+                                       "INNER JOIN Member m ON g.m_id = m.m_id " &
+                                       "WHERE g.con_id = @con_id"
+
+                Dim cmd5 As New OleDbCommand(query5, conn)
+                cmd5.Parameters.AddWithValue("@con_id", selectedConId)
+                Dim adapter5 As New OleDbDataAdapter(cmd5)
+                Dim table5 As New DataTable()
+                adapter5.Fill(table5)
+                ' กำหนดข้อมูลสำหรับ ReportViewer2 (รายงานผู้ค้ำประกัน)
+                ReportViewer2.LocalReport.DataSources.Clear()
+                ReportViewer2.LocalReport.DataSources.Add(rds1)
+                ReportViewer2.LocalReport.DataSources.Add(rds2)
+                ReportViewer2.LocalReport.DataSources.Add(rds3)
+                ReportViewer2.LocalReport.DataSources.Add(rds4)
+                If table5.Rows.Count > 0 Then
+                    Dim rds5 As New ReportDataSource("DataSet5", table5)
+                    ReportViewer2.LocalReport.DataSources.Add(rds5)
+                End If
+
+                ReportViewer2.RefreshReport()
+
             End Using
         Catch ex As Exception
             MessageBox.Show("เกิดข้อผิดพลาดในการสร้างรายงาน: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 End Class

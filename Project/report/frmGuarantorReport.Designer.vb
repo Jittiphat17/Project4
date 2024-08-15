@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmReportViewer
+Partial Class frmGuarantorReport
     Inherits System.Windows.Forms.Form
 
     Private components As System.ComponentModel.IContainer
@@ -17,30 +17,30 @@ Partial Class frmReportViewer
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.ReportViewerGuarantor = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.SuspendLayout()
         '
-        'ReportViewer1
+        'ReportViewerGuarantor
         '
-        Me.ReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "Project.LoanReport.rdlc"
-        Me.ReportViewer1.Location = New System.Drawing.Point(0, 0)
-        Me.ReportViewer1.Name = "ReportViewer1"
-        Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(800, 450)
-        Me.ReportViewer1.TabIndex = 0
+        Me.ReportViewerGuarantor.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ReportViewerGuarantor.LocalReport.ReportEmbeddedResource = "Project.GuarantorReport.rdlc"
+        Me.ReportViewerGuarantor.Location = New System.Drawing.Point(0, 0)
+        Me.ReportViewerGuarantor.Name = "ReportViewerGuarantor"
+        Me.ReportViewerGuarantor.ServerReport.BearerToken = Nothing
+        Me.ReportViewerGuarantor.Size = New System.Drawing.Size(800, 450)
+        Me.ReportViewerGuarantor.TabIndex = 0
         '
-        'frmReportViewer
+        'frmGuarantorReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.ReportViewer1)
-        Me.Name = "frmReportViewer"
+        Me.Controls.Add(Me.ReportViewerGuarantor)
+        Me.Name = "frmGuarantorReport"
         Me.Text = "frmReportViewer"
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
+    Friend WithEvents ReportViewerGuarantor As Microsoft.Reporting.WinForms.ReportViewer
 End Class
