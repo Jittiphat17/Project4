@@ -219,7 +219,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>สัญญานี้ทำขึ้นระหว่าง กองทุนหมู่บ้าน บ้านใหม่หลังมอ มีที่ทำการตั้งอย่เลขที่ 66/2 หมู่ที่ </Value>
+                    <Value>สัญญานี้ทำขึ้นระหว่าง กองทุนหมู่บ้าน บ้านใหม่หลังมอ มีที่ทำการตั้งอย่เลขที่ 66/2 หมู่ที่14 ตำบลสุเทพ</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -229,14 +229,15 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>14 ตำบลสุเทพ</Value>
+                    <Value>อำเภอเมืองเชียงใหม่ จังหวัดชียงใหม่ ทะเบียนนิติบุคคลเลขที่ 1170 โดยมี 1.)นายดำรงค์ สงแก้ว และ 2.)นางยุพา สงแก้ว</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -246,42 +247,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>อำเภอเมืองเชียงใหม่ จังหวัดชียงใหม่ ทะเบียนนิติบุคคลเลขที่ 1170 โดยมี 1.)นายดำรงค์ สงแก้ว และ 2.)</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>นางยุพา สงแก้ว</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -297,8 +265,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -306,6 +275,7 @@
                   <TextRun>
                     <Value>=First(Fields!m_gender.Value, "DataSet2")</Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
@@ -313,6 +283,7 @@
                   <TextRun>
                     <Value>=First(Fields!m_name.Value, "DataSet2")</Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
@@ -320,6 +291,7 @@
                   <TextRun>
                     <Value> สัญชาติ </Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
@@ -327,6 +299,7 @@
                   <TextRun>
                     <Value>=First(Fields!m_national.Value, "DataSet2")</Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
@@ -334,6 +307,7 @@
                   <TextRun>
                     <Value> ที่อยู่ </Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
@@ -341,6 +315,7 @@
                   <TextRun>
                     <Value>=First(Fields!m_address.Value, "DataSet2")</Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
@@ -348,6 +323,7 @@
                   <TextRun>
                     <Value> เลขบัตรประชาชน </Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
@@ -355,6 +331,7 @@
                   <TextRun>
                     <Value>=First(Fields!m_thaiid.Value, "DataSet2")</Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
@@ -362,6 +339,7 @@
                   <TextRun>
                     <Value> โทรศัพท์ </Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
@@ -369,6 +347,7 @@
                   <TextRun>
                     <Value>=First(Fields!m_tel.Value, "DataSet2")</Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
@@ -376,12 +355,13 @@
                   <TextRun>
                     <Value xml:space="preserve"> </Value>
                     <Style>
+                      <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>เป็นสมาชิกกองทุนฯเลขหมายที่ </Value>
+                    <Value>เป็นสมาชิกกองทุนฯหมายเลขที่ </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -411,14 +391,15 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>  ข้อ 1.) ผู้กู้ตกลงกู้เงินจากผู้ให้กู้และผู้ให้กู้ตกลงให้กู้เงินเป็นจำนวน   </Value>
+                    <Value>          ข้อ 1.) ผู้กู้ตกลงกู้เงินจากผู้ให้กู้และผู้ให้กู้ตกลงให้กู้เงินเป็นจำนวน   </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -438,24 +419,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>   บาท</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>( </Value>
+                    <Value>   บาท( </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -475,7 +439,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>)โดยผู้กู้สัญญาว่าจะนำเงินกู้ดังกล่าวไปใช้เพื่อวัตถุประสงค์</Value>
+                    <Value>)โดยผู้กู้สัญญาว่าจะนำเงินกู้ดังกล่าวไปใช้เพื่อวัตถุประสงค์ใช้จ่ายในครอบครัว    ซึ่งผู้กู้ได้รับเงินกู้จำนวนดังกล่าวไปจากผู้ให้กู้ถูกต้องครบถ้วนแล้ว</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -485,25 +449,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>ใช้จ่ายในครอบครัว    ซึ่งผู้กู้ได้รับเงินกู้จำนวนดังกล่าวไปจากผู้ให้กู้ถูกต้องครบถ้วนแล้ว</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -539,8 +487,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -636,8 +585,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -653,8 +603,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -670,8 +621,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -707,8 +659,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -724,8 +677,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -741,14 +695,15 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>3</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ประสงค์โดยปราศจากเหตุผลอันสมควรผู้ให้กู้มีสิทธิยกเลิกสัญญาและเรียกคืนเงินกู้พร้อมดอกเบี้ยที่ค้างชำระคืนเต็มจำนวนได้โดย</Value>
+                    <Value>ประสงค์โดยปราศจากเหตุผลอันสมควรผู้ให้กู้มีสิทธิยกเลิกสัญญาและเรียกคืนเงินกู้พร้อมดอกเบี้ยที่ค้างชำระคืนเต็มจำนวนได้โดยทันที</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -758,25 +713,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>ทันที</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -792,14 +731,15 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>3</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ทะเบียนหรือให้คนไปส่งเองก็ดีถ้าหากส่งไปยังสถานที่ผู้กู้ระบุไว้ข้างต้นของสัญญานี้แล้ว ให้ถือว่าได้ส่งให้แก่ผู้กู้โดยชอบแล้ว ทั้งนี้</Value>
+                    <Value>ทะเบียนหรือให้คนไปส่งเองก็ดีถ้าหากส่งไปยังสถานที่ผู้กู้ระบุไว้ข้างต้นของสัญญานี้แล้ว ให้ถือว่าได้ส่งให้แก่ผู้กู้โดยชอบแล้ว ทั้งนี้โดยไม่ต้องคำนึงว่าจะมีผู้รับไว้หรือไม่และแม้หากว่าส่งไปให้ไม่ได้ เพราะสถานที่ดังกล่าวได้เปลี่ยนแปลงไป หรือถูกรื้อถอนไปโดยผู้กู้ไม่ได้แจ้งการเปลี่ยนแปลงหรือรื้อถอนนั้นเป็นหนังสือต่อผู้ให้กู้หรือส่งให้ไม่ได้เพราะหาไม่พบสถานที่ที่ระบุไว้ข้างต้นนั้นก็ดีให้ถือว่าผู้กู้ได้ทราบหนังสือติดต่อ ทวงถาม บอกกล่าวหรือหนังสืออื่นใดของผู้ให้กู้โดยชอบแล้ว</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -809,59 +749,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>โดยไม่ต้องคำนึงว่าจะมีผู้รับไว้หรือไม่และแม้หากว่าส่งไปให้ไม่ได้ เพราะสถานที่ดังกล่าวได้เปลี่ยนแปลงไป หรือถูกรื้อถอนไป </Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>โดยผู้กู้ไม่ได้แจ้งการเปลี่ยนแปลงหรือรื้อถอนนั้นเป็นหนังสือต่อผู้ให้กู้หรือส่งให้ไม่ได้เพราะหาไม่พบสถานที่ที่ระบุไว้ข้างต้นนั้น</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>ก็ดีให้ถือว่าผู้กู้ได้ทราบหนังสือติดต่อ ทวงถาม บอกกล่าวหรือหนังสืออื่นใดของผู้ให้กู้โดยชอบแล้ว</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -877,8 +767,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>3</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -894,8 +785,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -911,14 +803,15 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>3</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ในสัญญานี้และยินยอมให้ผู้ให้กู้คิดดอกเบี้ยในระหว่างผิดนัดได้ ในอัตราสูงสุดที่ชอบด้วยกฎหมายนับแต่วันที่ผิดนัดเป็นต้นไป</Value>
+                    <Value>ในสัญญานี้และยินยอมให้ผู้ให้กู้คิดดอกเบี้ยในระหว่างผิดนัดได้ ในอัตราสูงสุดที่ชอบด้วยกฎหมายนับแต่วันที่ผิดนัดเป็นต้นไปจนกว่าผู้กู้จะชำระหนี้คืนให้แก่ผู้ให้กู้ครบถ้วนสิ้นเชิงและผู้กู้ยินยอมชดใช้ค่าเสียหายทั้งปวงที่ผู้ให้กู้ต้องเสียไปในการบังคับให้ผู้กู้ชำระหนี้ตามสัญญานี้ ซึ่งรวมถึงค่าใช้จ่ายในการเตือน เรียกร้อง ทวงถาม การดำเนินคดีและการบังคับคดี</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -928,42 +821,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>จนกว่าผู้กู้จะชำระหนี้คืนให้แก่ผู้ให้กู้ครบถ้วนสิ้นเชิงและผู้กู้ยินยอมชดใช้ค่าเสียหายทั้งปวงที่ผู้ให้กู้ต้องเสียไปในการบังคับให้ผู้กู้</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>ชำระหนี้ตามสัญญานี้ ซึ่งรวมถึงค่าใช้จ่ายในการเตือน เรียกร้อง ทวงถาม การดำเนินคดีและการบังคับคดี</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -979,14 +839,15 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>3</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>เงินฝากสัจจะที่ฝากไว้กับผู้ให้กู้หรือผู้กู้หรือทายาทของผู้กู้ มีสิทธิได้รับผลประโยชน์ตอบแทนใดๆจากผู้ให้กู้ ผู้กู้ตกลงยินยอมให้</Value>
+                    <Value>เงินฝากสัจจะที่ฝากไว้กับผู้ให้กู้หรือผู้กู้หรือทายาทของผู้กู้ มีสิทธิได้รับผลประโยชน์ตอบแทนใดๆจากผู้ให้กู้ ผู้กู้ตกลงยินยอมให้ผู้ให้กู้หักเงินที่มีอยู่หรือที่จะได้รับนั้นเพื่อเป็นการชำระหนี้ผู้กู้ค้างชำระได้ทันทีโดยไม่จำเป็นต้องได้รับความยินยอมจากผู้กู้ก่อนแต่อย่างใด</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -996,42 +857,9 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>ผู้ให้กู้หักเงินที่มีอยู่หรือที่จะได้รับนั้นเพื่อเป็นการชำระหนี้ผู้กู้ค้างชำระได้ทันทีโดยไม่จำเป็นต้องได้รับความยินยอมจากผู้กู้ก่อน</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>แต่อย่างใด</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
@@ -1047,14 +875,15 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>3</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>หรือญาติของผู้กู้หรือบุคคลอื่นเพื่อแจ้งให้ผู้กู้นำเงินมาชำระคืนผู้ให้กู้ได้</Value>
+                    <Value>หรือญาติของผู้กู้หรือบุคคลอื่นเพื่อแจ้งให้ผู้กู้นำเงินมาชำระคืนผู้ให้กู้ได้ผู้กู้และคู่สัญญา ผู้ที่เกี่ยวข้องทุกฝ่าย ได้อ่านข้อความในสัญญากู้ฉบับบนี้โดยตลอดแล้ว เห็นว่าถูกต้องครบถ้วนตามความประสงค์ จึงลงลายมือชื่อไว้เป็นหลักฐาน ณ วัน เดือน ปี ที่ ระบุข้างต้น</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -1064,50 +893,17 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
+                <ListLevel>2</ListLevel>
                 <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>ผู้กู้และคู่สัญญา ผู้ที่เกี่ยวข้องทุกฝ่าย ได้อ่านข้อความในสัญญากู้ฉบับบนี้โดยตลอดแล้ว เห็นว่าถูกต้องครบถ้วนตาม</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>ความประสงค์ จึงลงลายมือชื่อไว้เป็นหลักฐาน ณ วัน เดือน ปี ที่ ระบุข้างต้น</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
-            <Top>2.03125in</Top>
-            <Left>0.50479in</Left>
-            <Height>14.29167in</Height>
-            <Width>7.26042in</Width>
+            <Top>2.33333in</Top>
+            <Left>0.42146in</Left>
+            <Height>11.73959in</Height>
+            <Width>7.25in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1212,7 +1008,7 @@
             <Top>0.18055in</Top>
             <Left>1.95208in</Left>
             <Height>1.63889in</Height>
-            <Width>4.36583in</Width>
+            <Width>3.82416in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1235,7 +1031,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1252,7 +1048,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1262,7 +1058,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1272,7 +1068,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1282,7 +1078,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1292,7 +1088,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1309,7 +1105,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1326,7 +1122,41 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>          ลงชื่อ..................................................................พยาน    ลงชื่อ.............................................................พยาน</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Angsana New</FontFamily>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>                                (                              )                                                    (                          )</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Angsana New</FontFamily>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1338,9 +1168,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>16.77604in</Top>
-            <Left>1.11937in</Left>
-            <Height>1.36458in</Height>
+            <Top>14.14236in</Top>
+            <Left>1.16104in</Left>
+            <Height>1.79166in</Height>
             <Width>6.03125in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -1353,8 +1183,109 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox4">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>สัญญาเลขที่</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Angsana New</FontFamily>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!con_id.Value, "DataSet1")</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Angsana New</FontFamily>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!ConDate.Value</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Angsana New</FontFamily>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!acc_name.Value, "DataSet3")</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Angsana New</FontFamily>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>0.18055in</Top>
+            <Left>5.94229in</Left>
+            <Height>0.70833in</Height>
+            <Width>1.94792in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="con_date">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!con_date.Value, "DataSet1")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>con_date</rd:DefaultName>
+            <Top>2.01389in</Top>
+            <Left>4.01958in</Left>
+            <Height>0.25in</Height>
+            <Width>1in</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>18.73958in</Height>
+        <Height>16.38541in</Height>
         <Style />
       </Body>
       <Width>8.27in</Width>
@@ -1379,6 +1310,14 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="AmountWithCommas">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ConDate">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ConDate1">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -1407,6 +1346,16 @@
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>AmountWithCommas</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>ConDate</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>ConDate1</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

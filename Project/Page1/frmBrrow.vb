@@ -268,6 +268,7 @@ Public Class frmBrrow
                         Return
                     End If
 
+                    ' Insert into Contract table
                     strSQL = "INSERT INTO Contract (m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id) VALUES (@m_id, @con_details, @con_amount, @con_interest, @con_permonth, @con_date, @acc_id)"
                     cmd = New OleDbCommand(strSQL, Conn)
                     cmd.Parameters.AddWithValue("@m_id", borrowerId)
@@ -289,6 +290,7 @@ Public Class frmBrrow
                     End If
                     Dim con_id As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
+                    ' Insert into Guarantor table
                     Dim guarantorNames As String() = {guarantorName1, guarantorName2, guarantorName3}
 
                     For Each guarantorName As String In guarantorNames
@@ -307,6 +309,7 @@ Public Class frmBrrow
                         End If
                     Next
 
+                    ' Insert into Payment table
                     Dim monthlyPayment As Decimal = CalculateMonthlyPayment(loanAmount, interest, period)
 
                     For i As Integer = 1 To period
@@ -321,6 +324,17 @@ Public Class frmBrrow
                         End If
                         cmd.ExecuteNonQuery()
                     Next
+
+                    ' Insert into Account_Details table
+                    strSQL = "INSERT INTO Account_Details (acc_id, m_id) VALUES (@acc_id, @m_id)"
+                    cmd = New OleDbCommand(strSQL, Conn)
+                    cmd.Parameters.AddWithValue("@acc_id", acc_id)
+                    cmd.Parameters.AddWithValue("@m_id", borrowerId)
+                    If Conn.State = ConnectionState.Closed Then
+                        Conn.Open()
+                    End If
+                    cmd.ExecuteNonQuery()
+
                 End If
             Next
 
@@ -334,6 +348,7 @@ Public Class frmBrrow
             If Conn.State = ConnectionState.Open Then Conn.Close()
         End Try
     End Sub
+
 
     Private Function GetMemberIdByName(name As String) As Integer
         strSQL = "SELECT m_id FROM Member WHERE m_name = @m_name"

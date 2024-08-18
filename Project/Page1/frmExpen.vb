@@ -5,10 +5,9 @@ Public Class frmExpen
     Dim cmd As OleDbCommand
     Dim da As OleDbDataAdapter
     Dim dt As DataTable
-    Dim tempTable As DataTable ' ตารางชั่วคราวสำหรับเก็บข้อมูลที่เพิ่มในฟอร์ม
+    Dim tempTable As DataTable
     Dim SQL As String
 
-    ' เหตุการณ์เมื่อฟอร์มโหลด เพื่อตั้งค่าข้อมูลเริ่มต้น
     Private Sub frmExpen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadMemberNames()
         LoadSources()
@@ -17,7 +16,6 @@ Public Class frmExpen
         GenerateNewExId()
     End Sub
 
-    ' เมธอดสำหรับโหลดรายชื่อสมาชิกและตั้งค่า AutoComplete ให้กับ TextBox
     Private Sub LoadMemberNames()
         Try
             Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
@@ -32,7 +30,6 @@ Public Class frmExpen
                 End While
                 reader.Close()
 
-                ' ตั้งค่า AutoComplete ให้กับ TextBox
                 txtRecipient.AutoCompleteMode = AutoCompleteMode.SuggestAppend
                 txtRecipient.AutoCompleteSource = AutoCompleteSource.CustomSource
                 txtRecipient.AutoCompleteCustomSource = autoComplete
@@ -42,19 +39,29 @@ Public Class frmExpen
         End Try
     End Sub
 
-    ' เมธอดสำหรับโหลดแหล่งจ่ายลงใน ComboBox
     Private Sub LoadSources()
-        ' เพิ่มแหล่งจ่ายลงใน ComboBox (สามารถปรับเปลี่ยนให้ดึงจากฐานข้อมูลได้)
-        cmbSources.Items.Add("Source 1")
-        cmbSources.Items.Add("Source 2")
-        cmbSources.Items.Add("Source 3")
-        cmbSources.SelectedIndex = 0 ' เลือกค่าเริ่มต้น
+        Try
+            Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+                Conn.Open()
+                SQL = "SELECT acc_id, acc_name FROM Account"
+                cmd = New OleDbCommand(SQL, Conn)
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+
+                cmbSources.Items.Clear()
+                While reader.Read()
+                    Dim source As String = reader("acc_id").ToString() & " - " & reader("acc_name").ToString()
+                    cmbSources.Items.Add(source)
+                End While
+                reader.Close()
+                cmbSources.SelectedIndex = 0
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาด: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
-    ' เมธอดสำหรับโหลดข้อมูลค่าใช้จ่ายลงใน DataGridView
     Private Sub LoadExpenses()
         Try
-            ' ใช้ Using Statement เพื่อเปิดและปิดการเชื่อมต่อฐานข้อมูลอย่างถูกต้อง
             Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
                 Conn.Open()
                 SQL = "SELECT * FROM Expense"
@@ -64,12 +71,10 @@ Public Class frmExpen
                 DataGridView1.DataSource = dt
             End Using
         Catch ex As Exception
-            ' แสดงข้อความข้อผิดพลาดถ้าเกิดปัญหาในการเชื่อมต่อฐานข้อมูล
             MessageBox.Show("เกิดข้อผิดพลาด: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
-    ' เมธอดสำหรับเริ่มต้น DataGridView
     Private Sub InitializeDataGridView()
         tempTable = New DataTable()
         tempTable.Columns.Add("Recipient", GetType(String))
@@ -82,7 +87,6 @@ Public Class frmExpen
 
         DataGridView1.DataSource = tempTable
 
-        ' ตั้งค่าหัวข้อคอลัมน์ของ DataGridView
         DataGridView1.Columns("Recipient").HeaderText = "ชื่อผู้รับ"
         DataGridView1.Columns("Detail").HeaderText = "รายละเอียด"
         DataGridView1.Columns("Description").HeaderText = "คำอธิบาย"
@@ -91,7 +95,6 @@ Public Class frmExpen
         DataGridView1.Columns("Source").HeaderText = "แหล่งจ่าย"
     End Sub
 
-    ' เมธอดสำหรับสร้าง ex_id ใหม่
     Private Sub GenerateNewExId()
         Try
             Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
@@ -112,25 +115,35 @@ Public Class frmExpen
         End Try
     End Sub
 
-    ' เหตุการณ์เมื่อคลิกปุ่มเพิ่มข้อมูลลงใน DataGridView
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-        ' ตรวจสอบว่าฟิลด์ที่จำเป็นได้รับการกรอกครบถ้วนหรือไม่
         If txtRecipient.Text = "" Or txtAmount.Text = "" Then
             MessageBox.Show("กรุณากรอกข้อมูลให้ครบถ้วน", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
-        ' เพิ่มข้อมูลลงใน DataTable โดยไม่ต้องระบุค่า ID
-        tempTable.Rows.Add(txtRecipient.Text, txtDetail.Text, txtDescription.Text, dtpDate.Value, Convert.ToDecimal(txtAmount.Text), cmbSources.SelectedItem.ToString())
+        Dim totalAmount As Decimal = tempTable.AsEnumerable().Sum(Function(row) Convert.ToDecimal(row("Amount")))
+        Dim inputAmount As Decimal = Convert.ToDecimal(txtAmount.Text)
 
-        ' เคลียร์ข้อมูลในฟิลด์อินพุตหลังการเพิ่มข้อมูล
+        If totalAmount + inputAmount > inputAmount Then
+            MessageBox.Show("จำนวนเงินในรายการเกินจำนวนที่ระบุ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        tempTable.Rows.Add(txtRecipient.Text, txtDetail.Text, txtDescription.Text, dtpDate.Value, inputAmount, cmbSources.SelectedItem.ToString())
+
         ClearFields()
     End Sub
 
-    ' เหตุการณ์เมื่อคลิกปุ่มบันทึกข้อมูลค่าใช้จ่ายลงในฐานข้อมูล
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            ' ใช้ Using Statement เพื่อเปิดและปิดการเชื่อมต่อฐานข้อมูลอย่างถูกต้อง
+            Dim totalAmount As Decimal = tempTable.AsEnumerable().Sum(Function(row) Convert.ToDecimal(row("Amount")))
+            Dim inputAmount As Decimal = Convert.ToDecimal(txtAmount.Text)
+
+            If totalAmount <> inputAmount Then
+                MessageBox.Show("จำนวนเงินในรายการไม่ตรงกับจำนวนที่ระบุ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
             Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
                 Conn.Open()
                 For Each row As DataRow In tempTable.Rows
@@ -144,81 +157,37 @@ Public Class frmExpen
                     cmd.Parameters.AddWithValue("@AccId", row("Source").ToString())
                     cmd.ExecuteNonQuery()
 
-                    ' ดึงค่า ex_id ที่เพิ่มใหม่
                     cmd.CommandText = "SELECT @@IDENTITY"
                     Dim newExId As Integer = Convert.ToInt32(cmd.ExecuteScalar())
-
-                    ' แสดงค่า ex_id ใน TextBox
-                    txtExId.Text = newExId.ToString()
-
-                    ' บันทึกค่า ex_id ลงใน DataTable
                     row("ExId") = newExId
+
+                    SQL = "INSERT INTO Expense_Details (exd_nameacc, con_id, exd_amount, ex_id) VALUES (@exd_nameacc, @con_id, @exd_amount, @ex_id)"
+                    cmd = New OleDbCommand(SQL, Conn)
+                    cmd.Parameters.AddWithValue("@exd_nameacc", row("Source").ToString())
+                    cmd.Parameters.AddWithValue("@con_id", DBNull.Value) ' ใช้ค่า DBNull สำหรับ con_id ที่ยังไม่ได้เชื่อมต่อ
+                    cmd.Parameters.AddWithValue("@exd_amount", row("Amount"))
+                    cmd.Parameters.AddWithValue("@ex_id", newExId)
+                    cmd.ExecuteNonQuery()
                 Next
 
                 MessageBox.Show("บันทึกข้อมูลค่าใช้จ่ายเรียบร้อยแล้ว", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                ' โหลดข้อมูลใหม่ใน DataGridView
                 LoadExpenses()
-
-                ' เคลียร์ DataTable หลังจากบันทึกข้อมูลลงฐานข้อมูลเรียบร้อยแล้ว
                 tempTable.Clear()
-
-                ' สร้าง ex_id ใหม่สำหรับการบันทึกครั้งถัดไป
                 GenerateNewExId()
             End Using
         Catch ex As Exception
-            ' แสดงข้อความข้อผิดพลาดถ้าเกิดปัญหาในการบันทึกข้อมูล
             MessageBox.Show("เกิดข้อผิดพลาด: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
-    ' เมธอดสำหรับเคลียร์ข้อมูลในฟิลด์อินพุต
     Private Sub ClearFields()
         txtRecipient.Clear()
         txtDetail.Clear()
         txtDescrip.Clear()
         txtAmount.Clear()
-        cmbSources.SelectedIndex = 0 ' รีเซ็ตค่าเริ่มต้น
+        cmbSources.SelectedIndex = 0
         dtpDate.Value = DateTime.Now
-    End Sub
-
-    ' เหตุการณ์เมื่อคลิกปุ่มล้างข้อมูล
-    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        ClearFields()
-    End Sub
-
-    ' เหตุการณ์เมื่อคลิกปุ่มพิมพ์เอกสาร (ยังไม่ได้ implement)
-    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
-        ' แสดงข้อความแจ้งว่าฟังก์ชันการพิมพ์ยังไม่ได้ implement
-        MessageBox.Show("ฟังก์ชันการพิมพ์ยังไม่ได้ implement", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
-    End Sub
-
-    ' เหตุการณ์เมื่อเปลี่ยนข้อความใน TextBox txtRecipient
-    Private Sub txtRecipient_TextChanged(sender As Object, e As EventArgs) Handles txtRecipient.TextChanged
-        LoadMemberDetails(txtRecipient.Text)
-    End Sub
-
-    ' เมธอดสำหรับโหลดรายละเอียดสมาชิกลงใน txtDetail
-    Private Sub LoadMemberDetails(memberName As String)
-        Try
-            Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
-                Conn.Open()
-                SQL = "SELECT m_id, m_name, m_address FROM Member WHERE m_name = @Name"
-                cmd = New OleDbCommand(SQL, Conn)
-                cmd.Parameters.AddWithValue("@Name", memberName)
-                Dim reader As OleDbDataReader = cmd.ExecuteReader()
-
-                If reader.Read() Then
-                    ' แสดงข้อมูลใน txtDetail
-                    txtDetail.Text = $"รหัสสมาชิก: {reader("m_id").ToString()}, ชื่อ: {reader("m_name").ToString()}, ที่อยู่: {reader("m_address").ToString()}"
-                Else
-                    txtDetail.Clear() ' เคลียร์ข้อมูลถ้าไม่พบสมาชิก
-                End If
-                reader.Close()
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("เกิดข้อผิดพลาด: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
     End Sub
 
 End Class

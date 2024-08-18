@@ -174,12 +174,19 @@ Public Class frmSearch
 
     Private Function ConvertToThaiDateString(ByVal dateValue As Date) As String
         Dim thaiMonths As String() = {"มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"}
-        Dim day As Integer = dateValue.Day
         Dim month As Integer = dateValue.Month
         Dim year As Integer = dateValue.Year + 543 ' เพิ่ม 543 เพื่อแปลงเป็นปีพุทธศักราช (พ.ศ.)
 
-        Return String.Format("{0} {1} พ.ศ. {2}", day, thaiMonths(month - 1), year)
+        Return String.Format("{0} พ.ศ. {1}", thaiMonths(month - 1), year)
     End Function
+    Private Function ConvertToMonthYear(ByVal dateValue As DateTime) As String
+        Dim month As Integer = dateValue.Month
+        Dim year As Integer = dateValue.Year + 543 ' แปลงเป็นปีพุทธศักราช (พ.ศ.)
+
+        ' ส่งคืนค่าที่เป็น /เดือน/ปี เช่น /08/2566
+        Return String.Format("/{0:D2}/{1}", month, year)
+    End Function
+
 
     Private Sub btnReport_Click(sender As Object, e As EventArgs) Handles btnReport.Click
         If dgvResults.SelectedRows.Count = 0 Then
@@ -261,6 +268,16 @@ Public Class frmSearch
                 Dim lastPaymentDateThai As String = ConvertToThaiDateString(lastPaymentDate)
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("FirstPaymentDate", firstPaymentDateThai))
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("LastPaymentDate", lastPaymentDateThai))
+
+                ' ส่งข้อมูลวันที่ทำรายการไปยังรายงาน
+                Dim conDate As DateTime = Convert.ToDateTime(table1.Rows(0)("con_date"))
+                Dim conDateMonthYear As String = ConvertToMonthYear(conDate)
+                Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("ConDate", conDateMonthYear))
+
+                Dim conDate1 As DateTime = Convert.ToDateTime(table1.Rows(0)("con_date"))
+                Dim conDateMonthYear1 As String = ConvertToThaiDateString(conDate)
+                Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("ConDate1", conDateMonthYear1))
+
 
                 ' รีเฟรชรายงานหลังจากตั้งค่าพารามิเตอร์และ DataSource
                 Me.ReportViewer1.RefreshReport()

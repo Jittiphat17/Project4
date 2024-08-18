@@ -52,7 +52,7 @@ Partial Class frmExpen
         Me.btnClear.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClear.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnClear.Location = New System.Drawing.Point(511, 430)
+        Me.btnClear.Location = New System.Drawing.Point(507, 515)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(122, 58)
         Me.btnClear.TabIndex = 7
@@ -64,7 +64,7 @@ Partial Class frmExpen
         Me.btnPrint.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnPrint.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnPrint.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnPrint.Location = New System.Drawing.Point(383, 430)
+        Me.btnPrint.Location = New System.Drawing.Point(379, 515)
         Me.btnPrint.Name = "btnPrint"
         Me.btnPrint.Size = New System.Drawing.Size(122, 58)
         Me.btnPrint.TabIndex = 8
@@ -76,7 +76,7 @@ Partial Class frmExpen
         Me.btnSave.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnSave.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnSave.Location = New System.Drawing.Point(127, 430)
+        Me.btnSave.Location = New System.Drawing.Point(123, 515)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(122, 58)
         Me.btnSave.TabIndex = 9
@@ -88,7 +88,7 @@ Partial Class frmExpen
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(12, 274)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(725, 150)
+        Me.DataGridView1.Size = New System.Drawing.Size(725, 235)
         Me.DataGridView1.TabIndex = 6
         '
         'Label1
@@ -245,7 +245,7 @@ Partial Class frmExpen
         Me.btnAdd.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnAdd.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnAdd.Location = New System.Drawing.Point(255, 430)
+        Me.btnAdd.Location = New System.Drawing.Point(251, 515)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(122, 56)
         Me.btnAdd.TabIndex = 10
@@ -276,7 +276,7 @@ Partial Class frmExpen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(749, 498)
+        Me.ClientSize = New System.Drawing.Size(749, 594)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtExId)
         Me.Controls.Add(Me.btnAdd)

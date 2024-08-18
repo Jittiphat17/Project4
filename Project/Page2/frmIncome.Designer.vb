@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmIncome
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,12 +20,12 @@ Partial Class frmIncome
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnPrint = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
-        Me.dgvIncome = New System.Windows.Forms.DataGridView()
+        Me.dgvIncomeDetails = New System.Windows.Forms.DataGridView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.dtpBirth = New System.Windows.Forms.DateTimePicker()
@@ -40,17 +40,20 @@ Partial Class frmIncome
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnDelete = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
-        CType(Me.dgvIncome, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.lblTotalAmount = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        CType(Me.dgvIncomeDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnClear
         '
         Me.btnClear.BackColor = System.Drawing.SystemColors.Highlight
-        Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClear.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.btnClear.Location = New System.Drawing.Point(726, 442)
         Me.btnClear.Name = "btnClear"
@@ -83,14 +86,13 @@ Partial Class frmIncome
         Me.btnSave.Text = "บันทึก"
         Me.btnSave.UseVisualStyleBackColor = False
         '
-        'dgvIncome
+        'dgvIncomeDetails
         '
-        Me.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvIncome.Location = New System.Drawing.Point(566, 82)
-        Me.dgvIncome.Name = "dgvIncome"
-        Me.dgvIncome.ReadOnly = True
-        Me.dgvIncome.Size = New System.Drawing.Size(548, 354)
-        Me.dgvIncome.TabIndex = 4
+        Me.dgvIncomeDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvIncomeDetails.Location = New System.Drawing.Point(566, 82)
+        Me.dgvIncomeDetails.Name = "dgvIncomeDetails"
+        Me.dgvIncomeDetails.Size = New System.Drawing.Size(548, 301)
+        Me.dgvIncomeDetails.TabIndex = 4
         '
         'GroupBox1
         '
@@ -239,17 +241,17 @@ Partial Class frmIncome
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "สมาชิก :"
         '
-        'btnAdd
+        'btnDelete
         '
-        Me.btnAdd.BackColor = System.Drawing.SystemColors.Highlight
-        Me.btnAdd.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnAdd.Location = New System.Drawing.Point(414, 442)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(150, 75)
-        Me.btnAdd.TabIndex = 8
-        Me.btnAdd.Text = "เพิ่ม"
-        Me.btnAdd.UseVisualStyleBackColor = False
+        Me.btnDelete.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnDelete.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnDelete.Location = New System.Drawing.Point(410, 442)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(150, 75)
+        Me.btnDelete.TabIndex = 8
+        Me.btnDelete.Text = "ลบ"
+        Me.btnDelete.UseVisualStyleBackColor = False
         '
         'Label6
         '
@@ -261,26 +263,49 @@ Partial Class frmIncome
         Me.Label6.TabIndex = 9
         Me.Label6.Text = "รายรับ"
         '
+        'lblTotalAmount
+        '
+        Me.lblTotalAmount.AutoSize = True
+        Me.lblTotalAmount.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotalAmount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblTotalAmount.Location = New System.Drawing.Point(3, 7)
+        Me.lblTotalAmount.Name = "lblTotalAmount"
+        Me.lblTotalAmount.Size = New System.Drawing.Size(84, 39)
+        Me.lblTotalAmount.TabIndex = 10
+        Me.lblTotalAmount.Text = "0.00"
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Panel1.Controls.Add(Me.lblTotalAmount)
+        Me.Panel1.Location = New System.Drawing.Point(914, 389)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(200, 47)
+        Me.Panel1.TabIndex = 11
+        '
         'frmIncome
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1126, 535)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.btnAdd)
+        Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnPrint)
         Me.Controls.Add(Me.btnSave)
-        Me.Controls.Add(Me.dgvIncome)
+        Me.Controls.Add(Me.dgvIncomeDetails)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.Panel1)
         Me.Name = "frmIncome"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "รายรับ"
-        CType(Me.dgvIncome, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvIncomeDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -289,7 +314,7 @@ Partial Class frmIncome
     Friend WithEvents btnClear As Button
     Friend WithEvents btnPrint As Button
     Friend WithEvents btnSave As Button
-    Friend WithEvents dgvIncome As DataGridView
+    Friend WithEvents dgvIncomeDetails As DataGridView
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents cboDepositType As ComboBox
     Friend WithEvents GroupBox3 As GroupBox
@@ -302,8 +327,10 @@ Partial Class frmIncome
     Friend WithEvents Label1 As Label
     Friend WithEvents txtDescrip As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents btnAdd As Button
+    Friend WithEvents btnDelete As Button
     Friend WithEvents dtpBirth As DateTimePicker
     Friend WithEvents Label13 As Label
     Friend WithEvents Label6 As Label
+    Friend WithEvents lblTotalAmount As Label
+    Friend WithEvents Panel1 As Panel
 End Class
