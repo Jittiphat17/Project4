@@ -109,7 +109,9 @@
     <Reference Include="PCSC.Iso7816, Version=6.2.0.0, Culture=neutral, PublicKeyToken=13b76e54a2ee80a7, processorArchitecture=MSIL">
       <HintPath>..\packages\PCSC.Iso7816.6.2.0\lib\netstandard2.0\PCSC.Iso7816.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -240,6 +242,12 @@
     <Compile Include="Other\frmManage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Other\frmMemberResign.Designer.vb">
+      <DependentUpon>frmMemberResign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Other\frmMemberResign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Other\frmmm.Designer.vb">
       <DependentUpon>frmmm.vb</DependentUpon>
     </Compile>
@@ -264,10 +272,10 @@
     <Compile Include="Page1\frmCon.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Page1\frmExpen.Designer.vb">
-      <DependentUpon>frmExpen.vb</DependentUpon>
+    <Compile Include="Page1\frmExpense.Designer.vb">
+      <DependentUpon>frmExpense.vb</DependentUpon>
     </Compile>
-    <Compile Include="Page1\frmExpen.vb">
+    <Compile Include="Page1\frmExpense.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Page1\frmSearch.Designer.vb">
@@ -326,6 +334,9 @@
     <EmbeddedResource Include="Other\frmManage.resx">
       <DependentUpon>frmManage.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Other\frmMemberResign.resx">
+      <DependentUpon>frmMemberResign.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Other\frmmm.resx">
       <DependentUpon>frmmm.vb</DependentUpon>
     </EmbeddedResource>
@@ -338,8 +349,8 @@
     <EmbeddedResource Include="Page1\frmCon.resx">
       <DependentUpon>frmCon.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Page1\frmExpen.resx">
-      <DependentUpon>frmExpen.vb</DependentUpon>
+    <EmbeddedResource Include="Page1\frmExpense.resx">
+      <DependentUpon>frmExpense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Page1\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>

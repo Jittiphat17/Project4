@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmIncome
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmExpense
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,12 +20,8 @@ Partial Class frmIncome
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnCalculate = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
-        Me.dgvIncomeDetails = New System.Windows.Forms.DataGridView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.dtpBirth = New System.Windows.Forms.DateTimePicker()
@@ -40,61 +36,21 @@ Partial Class frmIncome
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.btnDelete = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.lblTotalAmount = New System.Windows.Forms.Label()
+        Me.dgvExpenseDetails = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.txtInid = New System.Windows.Forms.TextBox()
+        Me.lblTotalAmount = New System.Windows.Forms.Label()
+        Me.btnDelete = New System.Windows.Forms.Button()
+        Me.btnClear = New System.Windows.Forms.Button()
+        Me.btnCalculate = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
-        CType(Me.dgvIncomeDetails, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.txtExpId = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.dgvExpenseDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'btnClear
-        '
-        Me.btnClear.BackColor = System.Drawing.SystemColors.Highlight
-        Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClear.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnClear.Location = New System.Drawing.Point(726, 442)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(150, 75)
-        Me.btnClear.TabIndex = 5
-        Me.btnClear.Text = "ล้างข้อมูล"
-        Me.btnClear.UseVisualStyleBackColor = False
-        '
-        'btnCalculate
-        '
-        Me.btnCalculate.BackColor = System.Drawing.SystemColors.Highlight
-        Me.btnCalculate.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCalculate.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnCalculate.Location = New System.Drawing.Point(570, 442)
-        Me.btnCalculate.Name = "btnCalculate"
-        Me.btnCalculate.Size = New System.Drawing.Size(150, 75)
-        Me.btnCalculate.TabIndex = 6
-        Me.btnCalculate.Text = "คำนวณ"
-        Me.btnCalculate.UseVisualStyleBackColor = False
-        '
-        'btnSave
-        '
-        Me.btnSave.BackColor = System.Drawing.SystemColors.Highlight
-        Me.btnSave.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnSave.Location = New System.Drawing.Point(258, 442)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(150, 75)
-        Me.btnSave.TabIndex = 7
-        Me.btnSave.Text = "บันทึก"
-        Me.btnSave.UseVisualStyleBackColor = False
-        '
-        'dgvIncomeDetails
-        '
-        Me.dgvIncomeDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvIncomeDetails.Location = New System.Drawing.Point(566, 82)
-        Me.dgvIncomeDetails.Name = "dgvIncomeDetails"
-        Me.dgvIncomeDetails.Size = New System.Drawing.Size(548, 301)
-        Me.dgvIncomeDetails.TabIndex = 4
         '
         'GroupBox1
         '
@@ -111,12 +67,12 @@ Partial Class frmIncome
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 68)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 58)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(548, 368)
-        Me.GroupBox1.TabIndex = 3
+        Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "สมาชิก"
+        Me.GroupBox1.Text = "ผู้รับ"
         '
         'Label13
         '
@@ -227,43 +183,38 @@ Partial Class frmIncome
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(28, 252)
+        Me.Label2.Location = New System.Drawing.Point(62, 254)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(82, 24)
+        Me.Label2.Size = New System.Drawing.Size(48, 24)
         Me.Label2.TabIndex = 0
-        Me.Label2.Text = "เงินฝากเข้า :"
+        Me.Label2.Text = "บัญชี :"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(50, 40)
+        Me.Label1.Location = New System.Drawing.Point(67, 37)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(60, 24)
+        Me.Label1.Size = New System.Drawing.Size(43, 24)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "สมาชิก :"
+        Me.Label1.Text = "ผู้รับ :"
         '
-        'btnDelete
+        'dgvExpenseDetails
         '
-        Me.btnDelete.BackColor = System.Drawing.SystemColors.Highlight
-        Me.btnDelete.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnDelete.Location = New System.Drawing.Point(410, 442)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(150, 75)
-        Me.btnDelete.TabIndex = 8
-        Me.btnDelete.Text = "ลบ"
-        Me.btnDelete.UseVisualStyleBackColor = False
+        Me.dgvExpenseDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvExpenseDetails.Location = New System.Drawing.Point(566, 74)
+        Me.dgvExpenseDetails.Name = "dgvExpenseDetails"
+        Me.dgvExpenseDetails.Size = New System.Drawing.Size(548, 301)
+        Me.dgvExpenseDetails.TabIndex = 5
         '
-        'Label6
+        'Panel1
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("TH SarabunPSK", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(483, 8)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(147, 71)
-        Me.Label6.TabIndex = 9
-        Me.Label6.Text = "รายรับ"
+        Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Panel1.Controls.Add(Me.lblTotalAmount)
+        Me.Panel1.Location = New System.Drawing.Point(938, 386)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(176, 47)
+        Me.Panel1.TabIndex = 12
         '
         'lblTotalAmount
         '
@@ -276,59 +227,107 @@ Partial Class frmIncome
         Me.lblTotalAmount.TabIndex = 10
         Me.lblTotalAmount.Text = "0.00"
         '
-        'Panel1
+        'btnDelete
         '
-        Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Panel1.Controls.Add(Me.lblTotalAmount)
-        Me.Panel1.Location = New System.Drawing.Point(914, 389)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(200, 47)
-        Me.Panel1.TabIndex = 11
+        Me.btnDelete.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnDelete.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnDelete.Location = New System.Drawing.Point(421, 448)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(150, 75)
+        Me.btnDelete.TabIndex = 16
+        Me.btnDelete.Text = "ลบ"
+        Me.btnDelete.UseVisualStyleBackColor = False
         '
-        'txtInid
+        'btnClear
         '
-        Me.txtInid.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.txtInid.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtInid.Location = New System.Drawing.Point(972, 36)
-        Me.txtInid.Multiline = True
-        Me.txtInid.Name = "txtInid"
-        Me.txtInid.ReadOnly = True
-        Me.txtInid.Size = New System.Drawing.Size(139, 40)
-        Me.txtInid.TabIndex = 12
+        Me.btnClear.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnClear.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnClear.Location = New System.Drawing.Point(737, 448)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(150, 75)
+        Me.btnClear.TabIndex = 13
+        Me.btnClear.Text = "ล้างข้อมูล"
+        Me.btnClear.UseVisualStyleBackColor = False
+        '
+        'btnCalculate
+        '
+        Me.btnCalculate.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnCalculate.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCalculate.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnCalculate.Location = New System.Drawing.Point(581, 448)
+        Me.btnCalculate.Name = "btnCalculate"
+        Me.btnCalculate.Size = New System.Drawing.Size(150, 75)
+        Me.btnCalculate.TabIndex = 14
+        Me.btnCalculate.Text = "คำนวณ"
+        Me.btnCalculate.UseVisualStyleBackColor = False
+        '
+        'btnSave
+        '
+        Me.btnSave.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnSave.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnSave.Location = New System.Drawing.Point(269, 448)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(150, 75)
+        Me.btnSave.TabIndex = 15
+        Me.btnSave.Text = "บันทึก"
+        Me.btnSave.UseVisualStyleBackColor = False
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(891, 45)
+        Me.Label7.Location = New System.Drawing.Point(887, 36)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(78, 24)
-        Me.Label7.TabIndex = 13
-        Me.Label7.Text = "เลขที่รายรับ"
+        Me.Label7.Size = New System.Drawing.Size(82, 24)
+        Me.Label7.TabIndex = 18
+        Me.Label7.Text = "เลขที่ใบเสร็จ"
         '
-        'frmIncome
+        'txtExpId
+        '
+        Me.txtExpId.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.txtExpId.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtExpId.Location = New System.Drawing.Point(975, 28)
+        Me.txtExpId.Multiline = True
+        Me.txtExpId.Name = "txtExpId"
+        Me.txtExpId.ReadOnly = True
+        Me.txtExpId.Size = New System.Drawing.Size(139, 40)
+        Me.txtExpId.TabIndex = 17
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("TH SarabunPSK", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(494, 13)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(128, 53)
+        Me.Label6.TabIndex = 19
+        Me.Label6.Text = "รายจ่าย"
+        '
+        'frmExpense
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1126, 535)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.txtInid)
         Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.txtExpId)
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnCalculate)
         Me.Controls.Add(Me.btnSave)
-        Me.Controls.Add(Me.dgvIncomeDetails)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Panel1)
-        Me.Name = "frmIncome"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "รายรับ"
-        CType(Me.dgvIncomeDetails, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Controls.Add(Me.dgvExpenseDetails)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Name = "frmExpense"
+        Me.Text = "frmExpense"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.dgvExpenseDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
@@ -336,28 +335,28 @@ Partial Class frmIncome
 
     End Sub
 
-    Friend WithEvents btnClear As Button
-    Friend WithEvents btnCalculate As Button
-    Friend WithEvents btnSave As Button
-    Friend WithEvents dgvIncomeDetails As DataGridView
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents dtpBirth As DateTimePicker
     Friend WithEvents cboDepositType As ComboBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents txtDetails As TextBox
+    Friend WithEvents txtDescrip As TextBox
     Friend WithEvents txtAmount As TextBox
     Friend WithEvents txtMemberID As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents Label5 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents txtDescrip As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents btnDelete As Button
-    Friend WithEvents dtpBirth As DateTimePicker
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label6 As Label
-    Friend WithEvents lblTotalAmount As Label
+    Friend WithEvents dgvExpenseDetails As DataGridView
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents txtInid As TextBox
+    Friend WithEvents lblTotalAmount As Label
+    Friend WithEvents btnDelete As Button
+    Friend WithEvents btnClear As Button
+    Friend WithEvents btnCalculate As Button
+    Friend WithEvents btnSave As Button
     Friend WithEvents Label7 As Label
+    Friend WithEvents txtExpId As TextBox
+    Friend WithEvents Label6 As Label
 End Class

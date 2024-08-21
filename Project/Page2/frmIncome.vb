@@ -5,10 +5,30 @@ Public Class frmIncome
     Private Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
 
     Private Sub frmIncome_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' ตั้งค่า DataGridView
         SetupDataGridView()
         LoadIncomeTypes()
-        LoadContractNumbers() ' โหลดเลขที่สัญญา
+        LoadMemberData()
+        LoadAccountData()
+        GenerateNextIncomeId() ' เรียกฟังก์ชันนี้เมื่อฟอร์มโหลด
+    End Sub
+
+    Private Sub GenerateNextIncomeId()
+        Try
+            Conn.Open()
+            Dim query As String = "SELECT MAX(inc_id) FROM Income"
+            Dim cmd As New OleDbCommand(query, Conn)
+            Dim result As Object = cmd.ExecuteScalar()
+
+            If IsDBNull(result) Then
+                txtInid.Text = "1" ' ถ้าไม่มีข้อมูลในตาราง Income เลย ให้เริ่มต้นจาก 1
+            Else
+                txtInid.Text = (Convert.ToInt32(result) + 1).ToString() ' ถ้ามีข้อมูลอยู่แล้ว เพิ่มจากค่าที่มากที่สุด
+            End If
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาดในการสร้างเลขที่รายรับใหม่: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Conn.Close()
+        End Try
     End Sub
 
     Private Sub SetupDataGridView()
@@ -28,12 +48,14 @@ Public Class frmIncome
         colAmount.ValueType = GetType(Decimal)
         dgvIncomeDetails.Columns.Add(colAmount)
 
-        ' เพิ่มคอลัมน์สำหรับหมายเหตุ
-        Dim colRemarks As New DataGridViewTextBoxColumn()
-        colRemarks.HeaderText = "หมายเหตุ"
-        colRemarks.Name = "Remarks"
-        colRemarks.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-        dgvIncomeDetails.Columns.Add(colRemarks)
+        ' เพิ่มคอลัมน์สำหรับยอดเงินคงเหลือ
+        Dim colBalance As New DataGridViewTextBoxColumn()
+        colBalance.HeaderText = "ยอดเงินคงเหลือ"
+        colBalance.Name = "Balance"
+        colBalance.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        colBalance.DefaultCellStyle.Format = "N2"
+        colBalance.ValueType = GetType(Decimal)
+        dgvIncomeDetails.Columns.Add(colBalance)
 
         ' เพิ่มคอลัมน์ ComboBox สำหรับเลขที่สัญญา
         Dim colContractNumber As New DataGridViewComboBoxColumn()
@@ -49,12 +71,35 @@ Public Class frmIncome
         dgvIncomeDetails.AllowUserToAddRows = True
     End Sub
 
+    Private Sub LoadAccountData()
+        Try
+            Conn.Open()
+            Dim query As String = "SELECT acc_id, acc_name FROM Account"
+            Dim cmd As New OleDbCommand(query, Conn)
+            Dim reader As OleDbDataReader = cmd.ExecuteReader()
+
+            cboDepositType.Items.Clear()
+            Dim dt As New DataTable()
+            dt.Load(reader)
+
+            cboDepositType.DataSource = dt
+            cboDepositType.DisplayMember = "acc_name"   ' ชื่อคอลัมน์ที่ต้องการแสดงใน ComboBox
+            cboDepositType.ValueMember = "acc_id"       ' คอลัมน์ที่ต้องการใช้เป็นค่า (id)
+            cboDepositType.SelectedIndex = -1           ' ทำให้ ComboBox ว่างเปล่าในตอนเริ่มต้น
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาดในการโหลดข้อมูลบัญชี: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Conn.Close()
+        End Try
+    End Sub
+
     Private Sub LoadIncomeTypes()
         Try
             Conn.Open()
             Dim incomeTypeColumn As DataGridViewComboBoxColumn = CType(dgvIncomeDetails.Columns("IncomeType"), DataGridViewComboBoxColumn)
+            incomeTypeColumn.Items.Clear() ' ล้างรายการเก่า
 
-            ' เพิ่มรายการใน ComboBox สำหรับประเภทของรายรับ
+            ' เพิ่มรายการใหม่
             incomeTypeColumn.Items.Add("เงินต้น")
             incomeTypeColumn.Items.Add("ดอกเบี้ย")
             incomeTypeColumn.Items.Add("เงินสำรอง")
@@ -65,7 +110,6 @@ Public Class frmIncome
             incomeTypeColumn.Items.Add("เงินกู้")
             incomeTypeColumn.Items.Add("ค่าธรรมเนียมแรกเข้า")
             incomeTypeColumn.Items.Add("อื่น ๆ")
-
         Catch ex As Exception
             MessageBox.Show("เกิดข้อผิดพลาดในการโหลดข้อมูลประเภทเงินฝาก: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
@@ -73,25 +117,84 @@ Public Class frmIncome
         End Try
     End Sub
 
-    Private Sub LoadContractNumbers()
+
+    Private Sub LoadMemberData()
         Try
             Conn.Open()
-            Dim query As String = "SELECT con_id FROM Contract"
+            Dim query As String = "SELECT m_id, m_name FROM Member"
             Dim cmd As New OleDbCommand(query, Conn)
             Dim reader As OleDbDataReader = cmd.ExecuteReader()
 
-            Dim contractNumberColumn As DataGridViewComboBoxColumn = CType(dgvIncomeDetails.Columns("ContractNumber"), DataGridViewComboBoxColumn)
+            Dim autoComplete As New AutoCompleteStringCollection()
 
             While reader.Read()
-                contractNumberColumn.Items.Add(reader("con_id").ToString())
+                ' เพิ่มชื่อสมาชิกลงใน AutoCompleteStringCollection
+                autoComplete.Add(reader("m_name").ToString())
             End While
+
+            ' ตั้งค่า AutoComplete ให้กับ TextBox txtMemberID
+            txtMemberID.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+            txtMemberID.AutoCompleteSource = AutoCompleteSource.CustomSource
+            txtMemberID.AutoCompleteCustomSource = autoComplete
         Catch ex As Exception
-            MessageBox.Show("เกิดข้อผิดพลาดในการโหลดข้อมูลเลขที่สัญญา: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("เกิดข้อผิดพลาดในการโหลดข้อมูลสมาชิก: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Conn.Close()
         End Try
     End Sub
 
+    Private Sub LoadContractNumbersForMember(memberName As String)
+        Try
+            Conn.Open()
+            Dim contractNumberColumn As DataGridViewComboBoxColumn = CType(dgvIncomeDetails.Columns("ContractNumber"), DataGridViewComboBoxColumn)
+            contractNumberColumn.Items.Clear()
+
+            If Not String.IsNullOrEmpty(memberName) Then
+                Dim query As String = "SELECT Contract.con_id FROM Contract INNER JOIN Member ON Contract.m_id = Member.m_id WHERE Member.m_name = @memberName"
+                Dim cmd As New OleDbCommand(query, Conn)
+                cmd.Parameters.AddWithValue("@memberName", memberName)
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+
+                While reader.Read()
+                    contractNumberColumn.Items.Add(reader("con_id").ToString())
+                End While
+            End If
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาดในการโหลดเลขที่สัญญาของสมาชิก: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Conn.Close()
+        End Try
+    End Sub
+
+
+    Private Sub DisplayMemberDetails(memberName As String)
+        If String.IsNullOrEmpty(memberName) Then
+            txtDetails.Clear()
+            Return
+        End If
+
+        Try
+            Conn.Open()
+            Dim query As String = "SELECT * FROM Member WHERE m_name = @memberName"
+            Dim cmd As New OleDbCommand(query, Conn)
+            cmd.Parameters.AddWithValue("@memberName", memberName)
+            Dim reader As OleDbDataReader = cmd.ExecuteReader()
+
+            If reader.Read() Then
+                ' แสดงรายละเอียดใน txtDetails
+                txtDetails.Text = "รหัสสมาชิก: " & reader("m_id").ToString() & vbCrLf &
+                                  "ชื่อ: " & reader("m_name").ToString() & vbCrLf &
+                                  "ที่อยู่: " & reader("m_address").ToString() & vbCrLf &
+                                  "เบอร์โทร: " & reader("m_tel").ToString()
+            Else
+                txtDetails.Clear()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาดในการดึงข้อมูลสมาชิก: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Conn.Close()
+        End Try
+    End Sub
 
     Private Sub CalculateTotalAmount()
         Dim totalAmount As Decimal = 0
@@ -110,42 +213,7 @@ Public Class frmIncome
         lblTotalAmount.Text = totalAmount.ToString("N2")
     End Sub
 
-    ' เรียกคำนวณผลรวมเมื่อมีการเปลี่ยนแปลงข้อมูลใน DataGridView
-    Private Sub dgvIncomeDetails_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvIncomeDetails.CellValueChanged
-        CalculateTotalAmount()
-    End Sub
-
-    ' เรียกคำนวณผลรวมเมื่อมีการลบแถวใน DataGridView
-    Private Sub dgvIncomeDetails_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles dgvIncomeDetails.RowsRemoved
-        CalculateTotalAmount()
-    End Sub
-
-    ' จัดการข้อผิดพลาดใน DataGridView เมื่อมีการกรอกข้อมูลที่ไม่ถูกต้องหรือมีปัญหาในการฟอร์แมต
-    Private Sub dgvIncomeDetails_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles dgvIncomeDetails.DataError
-        If e.Context = DataGridViewDataErrorContexts.Formatting Or e.Context = DataGridViewDataErrorContexts.Display Then
-            MessageBox.Show("เกิดข้อผิดพลาดในการฟอร์แมตข้อมูลหรือการแสดงผล: " & e.Exception.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Else
-            MessageBox.Show("เกิดข้อผิดพลาด: " & e.Exception.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
-        e.ThrowException = False ' หยุดการขว้างข้อผิดพลาดเพิ่มเติม
-    End Sub
-
-    ' ฟังก์ชันสำหรับลบแถวที่เลือกใน DataGridView
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        ' ตรวจสอบว่ามีแถวที่ถูกเลือกหรือไม่
-        If dgvIncomeDetails.SelectedRows.Count > 0 Then
-            ' ลบแถวที่ถูกเลือก
-            For Each row As DataGridViewRow In dgvIncomeDetails.SelectedRows
-                If Not row.IsNewRow Then
-                    dgvIncomeDetails.Rows.Remove(row)
-                End If
-            Next
-        Else
-            MessageBox.Show("กรุณาเลือกแถวที่ต้องการลบ", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
-    End Sub
-
-    ' ฟังก์ชันสำหรับบันทึกข้อมูลเมื่อค่าของ lblTotalAmount และ txtAmount เท่ากัน
+    ' ฟังก์ชันสำหรับบันทึกข้อมูลและทำการหักยอดเมื่อค่าของ lblTotalAmount และ txtAmount เท่ากัน
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         ' แปลงค่าใน lblTotalAmount และ txtAmount ให้เป็น Decimal ก่อนเปรียบเทียบ
         Dim totalAmount As Decimal
@@ -155,8 +223,11 @@ Public Class frmIncome
         If Decimal.TryParse(lblTotalAmount.Text, totalAmount) AndAlso Decimal.TryParse(txtAmount.Text, inputAmount) Then
             ' ตรวจสอบว่าค่าทั้งสองเท่ากันหรือไม่
             If totalAmount = inputAmount Then
-                ' สามารถบันทึกข้อมูลได้
+                ' บันทึกข้อมูล
                 SaveData() ' ฟังก์ชันสำหรับการบันทึกข้อมูล
+
+                ' ปิดการใช้งานปุ่ม "บันทึก" จนกว่าจะมีการเพิ่มรายการใหม่
+                btnSave.Enabled = False
             Else
                 ' แสดงข้อความแจ้งเตือนว่าค่าไม่เท่ากัน
                 MessageBox.Show("จำนวนเงินรวมไม่ตรงกับจำนวนเงินที่ระบุ", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -167,10 +238,158 @@ Public Class frmIncome
         End If
     End Sub
 
-    ' ฟังก์ชันสำหรับการบันทึกข้อมูล
     Private Sub SaveData()
-        ' โค้ดสำหรับการบันทึกข้อมูลลงฐานข้อมูลหรืออื่น ๆ
-        MessageBox.Show("บันทึกข้อมูลสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Try
+            If cboDepositType.SelectedValue Is Nothing Then
+                MessageBox.Show("กรุณาเลือกบัญชีเงินฝาก", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+                Conn.Open()
+
+                ' บันทึกข้อมูลลงในตาราง Income
+                Dim queryIncome As String = "INSERT INTO Income (inc_name, inc_detail, inc_description, inc_date, inc_amount, acc_id) VALUES (@inc_name, @inc_detail, @inc_description, @inc_date, @inc_amount, @acc_id)"
+                Using cmdIncome As New OleDbCommand(queryIncome, Conn)
+                    cmdIncome.Parameters.AddWithValue("@inc_name", txtMemberID.Text)
+                    cmdIncome.Parameters.AddWithValue("@inc_detail", txtDetails.Text)
+                    cmdIncome.Parameters.AddWithValue("@inc_description", txtDescrip.Text)
+                    cmdIncome.Parameters.AddWithValue("@inc_date", dtpBirth.Value)
+                    cmdIncome.Parameters.AddWithValue("@inc_amount", Decimal.Parse(lblTotalAmount.Text))
+                    cmdIncome.Parameters.AddWithValue("@acc_id", cboDepositType.SelectedValue)
+
+                    cmdIncome.ExecuteNonQuery()
+
+                    ' ดึง inc_id ล่าสุด
+                    cmdIncome.CommandText = "SELECT @@IDENTITY"
+                    Dim incId As Integer = CInt(cmdIncome.ExecuteScalar())
+
+                    ' บันทึกข้อมูลลงในตาราง IncomeDetails และหักยอดเงินคงเหลือ
+                    For Each row As DataGridViewRow In dgvIncomeDetails.Rows
+                        If Not row.IsNewRow Then
+                            Dim incomeType As String = If(row.Cells("IncomeType").Value, "").ToString()
+                            Dim contractNumber As String = If(row.Cells("ContractNumber").Value, "").ToString()
+                            Dim amount As Decimal = Decimal.Parse(If(row.Cells("Amount").Value, 0).ToString())
+
+                            If Not String.IsNullOrEmpty(incomeType) AndAlso Not String.IsNullOrEmpty(contractNumber) Then
+                                ' หักยอดเงินคงเหลือก่อน
+                                DeductBalance(contractNumber, amount)
+
+                                ' บันทึกข้อมูลลงในตาราง Income_Details
+                                Dim queryDetails As String = "INSERT INTO Income_Details (ind_accname, con_id, ind_amount, inc_id) VALUES (@ind_accname, @con_id, @ind_amount, @inc_id)"
+                                Using cmdDetails As New OleDbCommand(queryDetails, Conn)
+                                    cmdDetails.Parameters.AddWithValue("@ind_accname", incomeType)
+                                    cmdDetails.Parameters.AddWithValue("@con_id", contractNumber)
+                                    cmdDetails.Parameters.AddWithValue("@ind_amount", amount)
+                                    cmdDetails.Parameters.AddWithValue("@inc_id", incId)
+                                    cmdDetails.ExecuteNonQuery()
+                                End Using
+                            End If
+                        End If
+                    Next
+                End Using
+            End Using
+
+            MessageBox.Show("บันทึกข้อมูลสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ' รีเซ็ตฟอร์มเพื่อเตรียมทำรายการใหม่
+            ClearAll()
+
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาดในการบันทึกข้อมูล: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
+
+
+    Private Sub DeductBalance(contractNumber As String, amount As Decimal)
+        Try
+            Conn.Open()
+
+            ' ดึงจำนวนเงินที่มีอยู่ในสัญญาปัจจุบัน
+            Dim queryAmount As String = "SELECT con_amount FROM Contract WHERE con_id = @contractNumber"
+            Dim cmdAmount As New OleDbCommand(queryAmount, Conn)
+            cmdAmount.Parameters.AddWithValue("@contractNumber", contractNumber)
+            Dim currentAmount As Decimal = Convert.ToDecimal(cmdAmount.ExecuteScalar())
+
+            ' คำนวณจำนวนเงินใหม่หลังจากหักออก
+            Dim newAmount As Decimal = currentAmount - amount
+
+            ' ตรวจสอบว่าจำนวนเงินหลังหักไม่ติดลบ
+            If newAmount < 0 Then
+                MessageBox.Show("ไม่สามารถหักยอดเงินได้เนื่องจากยอดเงินคงเหลือติดลบ", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Conn.Close()
+                Return
+            End If
+
+            ' อัปเดตจำนวนเงินในสัญญา
+            Dim queryUpdate As String = "UPDATE Contract SET con_amount = @newAmount WHERE con_id = @contractNumber"
+            Dim cmdUpdate As New OleDbCommand(queryUpdate, Conn)
+            cmdUpdate.Parameters.AddWithValue("@newAmount", newAmount)
+            cmdUpdate.Parameters.AddWithValue("@contractNumber", contractNumber)
+            cmdUpdate.ExecuteNonQuery()
+
+            MessageBox.Show("อัปเดตจำนวนเงินในสัญญาเรียบร้อยแล้ว", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาดในการอัปเดตจำนวนเงิน: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Conn.Close()
+        End Try
+    End Sub
+
+    Private Sub ClearAll()
+        ' ล้างข้อมูลในฟอร์ม
+        txtMemberID.Clear()
+        txtDetails.Clear()
+        txtAmount.Clear()
+        cboDepositType.SelectedIndex = -1
+        lblTotalAmount.Text = "0.00"
+
+        ' ล้างข้อมูลใน DataGridView
+        dgvIncomeDetails.Rows.Clear()
+
+        ' โหลดข้อมูลใหม่สำหรับ ComboBox ใน DataGridView
+        LoadIncomeTypes()
+        LoadContractNumbersForMember(txtMemberID.Text)
+
+        ' สร้างเลขที่รายรับใหม่
+        GenerateNextIncomeId()
+    End Sub
+
+
+    ' ฟังก์ชันที่เรียกเมื่อมีการพิมพ์หรือเลือกชื่อสมาชิก
+    Private Sub txtMemberID_TextChanged(sender As Object, e As EventArgs) Handles txtMemberID.TextChanged
+        ' เรียกฟังก์ชันเพื่อแสดงรายละเอียดของสมาชิกเมื่อผู้ใช้พิมพ์หรือเลือกชื่อสมาชิก
+        DisplayMemberDetails(txtMemberID.Text)
+
+        ' โหลดเลขที่สัญญาที่เกี่ยวข้องกับสมาชิกที่ถูกเลือก
+        LoadContractNumbersForMember(txtMemberID.Text)
+    End Sub
+
+    ' ฟังก์ชันสำหรับการคำนวณยอดรวมโดยไม่หักยอด
+    Private Sub btnCalculate_Click(sender As Object, e As EventArgs) Handles btnCalculate.Click
+        CalculateTotalAmount()
+    End Sub
+    Private Sub dgvIncomeDetails_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles dgvIncomeDetails.DataError
+        ' แสดงข้อความแจ้งข้อผิดพลาดที่เข้าใจง่ายขึ้น
+        MessageBox.Show("มีข้อผิดพลาดในการกรอกข้อมูลในเซลล์ กรุณาตรวจสอบค่าที่คุณกรอกให้ตรงกับรายการที่มีใน ComboBox", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        e.ThrowException = False ' ป้องกันไม่ให้แอปพลิเคชันหยุดทำงาน
+
+    End Sub
+
+    Private Sub dgvIncomeDetails_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles dgvIncomeDetails.CellValidating
+        If dgvIncomeDetails.Columns(e.ColumnIndex).Name = "IncomeType" Then
+            Dim comboBoxColumn As DataGridViewComboBoxColumn = CType(dgvIncomeDetails.Columns("IncomeType"), DataGridViewComboBoxColumn)
+            If Not comboBoxColumn.Items.Contains(e.FormattedValue.ToString()) Then
+                MessageBox.Show("กรุณาเลือกประเภทของรายรับที่ถูกต้อง", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                e.Cancel = True
+            End If
+        End If
+    End Sub
+
+
+    Private Sub dgvIncomeDetails_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles dgvIncomeDetails.RowsAdded
+        btnSave.Enabled = True ' เปิดการใช้งานปุ่ม "บันทึก" เมื่อมีการเพิ่มรายการใหม่
+        btnCalculate.Enabled = True ' เปิดการใช้งานปุ่ม "คำนวณ" เมื่อมีการเพิ่มรายการใหม่
+    End Sub
 End Class

@@ -100,7 +100,7 @@ Public Class frmMain
     End Sub
 
     Private Sub คาใชจายToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles คาใชจายToolStripMenuItem.Click
-        Dim frm As New frmExpen()
+        Dim frm As New frmExpense()
         frm.ShowDialog()
     End Sub
 
@@ -161,6 +161,11 @@ Public Class frmMain
 
     Private Sub สญญาเงนกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles สญญาเงนกToolStripMenuItem.Click
         Dim frm As New frmSearch
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub สมาชกลาออกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles สมาชกลาออกToolStripMenuItem.Click
+        Dim frm As New frmMemberResign
         frm.ShowDialog()
     End Sub
 End Class
