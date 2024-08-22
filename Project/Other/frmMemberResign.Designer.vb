@@ -86,6 +86,7 @@ Partial Class frmMemberResign
         Me.txtTotalSaving.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalSaving.Location = New System.Drawing.Point(557, 124)
         Me.txtTotalSaving.Name = "txtTotalSaving"
+        Me.txtTotalSaving.ReadOnly = True
         Me.txtTotalSaving.Size = New System.Drawing.Size(166, 31)
         Me.txtTotalSaving.TabIndex = 8
         '
@@ -124,6 +125,7 @@ Partial Class frmMemberResign
         Me.txtBeforeTotalSaving.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBeforeTotalSaving.Location = New System.Drawing.Point(126, 67)
         Me.txtBeforeTotalSaving.Name = "txtBeforeTotalSaving"
+        Me.txtBeforeTotalSaving.ReadOnly = True
         Me.txtBeforeTotalSaving.Size = New System.Drawing.Size(204, 31)
         Me.txtBeforeTotalSaving.TabIndex = 4
         '
@@ -163,6 +165,7 @@ Partial Class frmMemberResign
         Me.txtTotalLoan.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotalLoan.Location = New System.Drawing.Point(557, 120)
         Me.txtTotalLoan.Name = "txtTotalLoan"
+        Me.txtTotalLoan.ReadOnly = True
         Me.txtTotalLoan.Size = New System.Drawing.Size(166, 31)
         Me.txtTotalLoan.TabIndex = 9
         '
@@ -241,6 +244,7 @@ Partial Class frmMemberResign
         Me.txtLoanPublic.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLoanPublic.Location = New System.Drawing.Point(126, 105)
         Me.txtLoanPublic.Name = "txtLoanPublic"
+        Me.txtLoanPublic.ReadOnly = True
         Me.txtLoanPublic.Size = New System.Drawing.Size(204, 31)
         Me.txtLoanPublic.TabIndex = 1
         '
@@ -249,6 +253,7 @@ Partial Class frmMemberResign
         Me.txtLoanSaving.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLoanSaving.Location = New System.Drawing.Point(126, 68)
         Me.txtLoanSaving.Name = "txtLoanSaving"
+        Me.txtLoanSaving.ReadOnly = True
         Me.txtLoanSaving.Size = New System.Drawing.Size(204, 31)
         Me.txtLoanSaving.TabIndex = 1
         '
@@ -257,6 +262,7 @@ Partial Class frmMemberResign
         Me.txtLoanAccount1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLoanAccount1.Location = New System.Drawing.Point(126, 31)
         Me.txtLoanAccount1.Name = "txtLoanAccount1"
+        Me.txtLoanAccount1.ReadOnly = True
         Me.txtLoanAccount1.Size = New System.Drawing.Size(204, 31)
         Me.txtLoanAccount1.TabIndex = 1
         '

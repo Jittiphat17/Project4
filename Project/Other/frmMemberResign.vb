@@ -4,8 +4,17 @@ Public Class frmMemberResign
     Private Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
 
     Private Sub frmMemberResign_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' ตั้งค่า TextAlign ให้กับ TextBox ที่ต้องการ
+        txtBeforeTotalSaving.TextAlign = HorizontalAlignment.Right
+        txtTotalSaving.TextAlign = HorizontalAlignment.Right
+        txtLoanAccount1.TextAlign = HorizontalAlignment.Right
+        txtLoanSaving.TextAlign = HorizontalAlignment.Right
+        txtLoanPublic.TextAlign = HorizontalAlignment.Right
+        txtTotalLoan.TextAlign = HorizontalAlignment.Right
+
         LoadMemberData() ' โหลดข้อมูลสมาชิกเพื่อทำ AutoComplete
     End Sub
+
 
     Private Sub LoadMemberData()
         Try

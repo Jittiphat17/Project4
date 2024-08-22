@@ -419,7 +419,25 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>   บาท( </Value>
+                    <Value>   บาท</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>angsana New</FontFamily>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <ListLevel>2</ListLevel>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>( </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -439,7 +457,25 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>)โดยผู้กู้สัญญาว่าจะนำเงินกู้ดังกล่าวไปใช้เพื่อวัตถุประสงค์ใช้จ่ายในครอบครัว    ซึ่งผู้กู้ได้รับเงินกู้จำนวนดังกล่าวไปจากผู้ให้กู้ถูกต้องครบถ้วนแล้ว</Value>
+                    <Value>)โดยผู้กู้สัญญาว่าจะนำเงินกู้ดังกล่าวไปใช้เพื่อวัตถุประสงค์ใช้จ่ายในครอบครัว    ซึ่งผู้กู้ได้รับเงินกู้</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>angsana New</FontFamily>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <ListLevel>2</ListLevel>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>จำนวนดังกล่าวไปจากผู้ให้กู้ถูกต้องครบถ้วนแล้ว</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -667,11 +703,39 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>          1.)</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=Parameters!GuarantorDetails.Value</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>angsana New</FontFamily>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <ListLevel>2</ListLevel>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>เป็นผู้ค้ำประกันในการทำสัญญากู้ยืมครั้งนี้</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Angsana New</FontFamily>
+                      <FontSize>16pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1317,8 +1381,10 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="ConDate1">
+    <ReportParameter Name="GuarantorDetails">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
@@ -1355,7 +1421,7 @@
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>ConDate1</ParameterName>
+          <ParameterName>GuarantorDetails</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

@@ -187,7 +187,6 @@ Public Class frmSearch
         Return String.Format("/{0:D2}/{1}", month, year)
     End Function
 
-
     Private Sub btnReport_Click(sender As Object, e As EventArgs) Handles btnReport.Click
         If dgvResults.SelectedRows.Count = 0 Then
             MessageBox.Show("กรุณาเลือกสัญญาที่ต้องการสร้างรายงาน", "คำเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -211,7 +210,7 @@ Public Class frmSearch
                 adapter1.Fill(table1)
 
                 ' ดึงข้อมูลสำหรับ DataSet2 จากตาราง Member
-                Dim query2 As String = "SELECT m_id, m_gender,m_national, m_thaiid, m_name, m_address, m_tel FROM Member WHERE m_id = @m_id"
+                Dim query2 As String = "SELECT m_id, m_gender, m_national, m_thaiid, m_name, m_address, m_tel FROM Member WHERE m_id = @m_id"
                 Dim cmd2 As New OleDbCommand(query2, conn)
                 cmd2.Parameters.AddWithValue("@m_id", selectedMemberId)
                 Dim adapter2 As New OleDbDataAdapter(cmd2)
@@ -234,14 +233,13 @@ Public Class frmSearch
                 Dim table4 As New DataTable()
                 adapter4.Fill(table4)
 
-                ' หาและแสดงวันที่ชำระเงินที่เร็วที่สุดและช้าที่สุด
-                Dim firstPaymentDate As Date = Date.MinValue
-                Dim lastPaymentDate As Date = Date.MinValue
-
-                If table4.Rows.Count > 0 Then
-                    firstPaymentDate = Convert.ToDateTime(table4.Rows(0)("payment_date"))
-                    lastPaymentDate = Convert.ToDateTime(table4.Rows(table4.Rows.Count - 1)("payment_date"))
-                End If
+                ' ดึงข้อมูลผู้ค้ำประกันจากตาราง Guarantor และรวมกับข้อมูลในตาราง Member
+                Dim query5 As String = "SELECT m.m_gender, m.m_name, m.m_address FROM Guarantor g INNER JOIN Member m ON g.m_id = m.m_id WHERE g.con_id = @con_id"
+                Dim cmd5 As New OleDbCommand(query5, conn)
+                cmd5.Parameters.AddWithValue("@con_id", selectedConId)
+                Dim adapter5 As New OleDbDataAdapter(cmd5)
+                Dim table5 As New DataTable()
+                adapter5.Fill(table5)
 
                 ' ชื่อ DataSource ต้องตรงกับชื่อในรายงาน
                 Dim rds1 As New ReportDataSource("DataSet1", table1)
@@ -257,13 +255,26 @@ Public Class frmSearch
                 Me.ReportViewer1.LocalReport.DataSources.Add(rds4)
 
                 ' ส่งข้อมูลจำนวนเงินเป็นคำอ่านไปยังรายงาน
-                Dim amountText As String = ConvertNumberToText(Convert.ToDecimal(table1.Rows(0)("con_amount")))
-                Dim amountWithCommas As String = Convert.ToDecimal(table1.Rows(0)("con_amount")).ToString("N0")
+                Dim conAmount As Decimal = 0
+                If Not IsDBNull(table1.Rows(0)("con_amount")) Then
+                    conAmount = Convert.ToDecimal(table1.Rows(0)("con_amount"))
+                End If
+
+                Dim amountText As String = ConvertNumberToText(conAmount)
+                Dim amountWithCommas As String = conAmount.ToString("N0")
 
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("AmountText", amountText))
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("AmountWithCommas", amountWithCommas))
 
                 ' ส่งข้อมูลวันที่ชำระเงินแรกและสุดท้ายไปยังรายงาน
+                Dim firstPaymentDate As Date = Date.MinValue
+                Dim lastPaymentDate As Date = Date.MinValue
+
+                If table4.Rows.Count > 0 Then
+                    firstPaymentDate = Convert.ToDateTime(table4.Rows(0)("payment_date"))
+                    lastPaymentDate = Convert.ToDateTime(table4.Rows(table4.Rows.Count - 1)("payment_date"))
+                End If
+
                 Dim firstPaymentDateThai As String = ConvertToThaiDateString(firstPaymentDate)
                 Dim lastPaymentDateThai As String = ConvertToThaiDateString(lastPaymentDate)
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("FirstPaymentDate", firstPaymentDateThai))
@@ -274,42 +285,39 @@ Public Class frmSearch
                 Dim conDateMonthYear As String = ConvertToMonthYear(conDate)
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("ConDate", conDateMonthYear))
 
-                Dim conDate1 As DateTime = Convert.ToDateTime(table1.Rows(0)("con_date"))
-                Dim conDateMonthYear1 As String = ConvertToThaiDateString(conDate)
-                Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("ConDate1", conDateMonthYear1))
-
-
-                ' รีเฟรชรายงานหลังจากตั้งค่าพารามิเตอร์และ DataSource
-                Me.ReportViewer1.RefreshReport()
-
-                ' ดึงข้อมูลสำหรับรายงานผู้ค้ำประกันจากตาราง Guarantor
-                Dim query5 As String = "SELECT m.m_id, m.m_name, m.m_address, m.m_tel, m.m_national, m.m_thaiid, m.m_gender " &
-                                       "FROM Guarantor g " &
-                                       "INNER JOIN Member m ON g.m_id = m.m_id " &
-                                       "WHERE g.con_id = @con_id"
-
-                Dim cmd5 As New OleDbCommand(query5, conn)
-                cmd5.Parameters.AddWithValue("@con_id", selectedConId)
-                Dim adapter5 As New OleDbDataAdapter(cmd5)
-                Dim table5 As New DataTable()
-                adapter5.Fill(table5)
-                ' กำหนดข้อมูลสำหรับ ReportViewer2 (รายงานผู้ค้ำประกัน)
-                ReportViewer2.LocalReport.DataSources.Clear()
-                ReportViewer2.LocalReport.DataSources.Add(rds1)
-                ReportViewer2.LocalReport.DataSources.Add(rds2)
-                ReportViewer2.LocalReport.DataSources.Add(rds3)
-                ReportViewer2.LocalReport.DataSources.Add(rds4)
+                ' ตรวจสอบว่ามีผู้ค้ำประกันหรือไม่
                 If table5.Rows.Count > 0 Then
-                    Dim rds5 As New ReportDataSource("DataSet5", table5)
-                    ReportViewer2.LocalReport.DataSources.Add(rds5)
+                    ' สร้างชื่อผู้ค้ำประกันเป็น String
+                    Dim guarantorDetails As String = String.Join(", ", table5.AsEnumerable().Select(Function(r) r.Field(Of String)("m_gender") & " " & r.Field(Of String)("m_name") & " ที่อยู่: " & r.Field(Of String)("m_address")).ToArray())
+
+
+                    ' ตั้งค่า Parameter สำหรับชื่อผู้ค้ำประกันใน ReportViewer1
+                    Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("GuarantorDetails", guarantorDetails))
+
+                Else
+                    ' ไม่ตั้งค่า `GuarantorName` parameter ถ้าไม่มีผู้ค้ำประกัน
+                    Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("GuarantorDetails", String.Empty))
                 End If
 
-                ReportViewer2.RefreshReport()
+                ' รีเฟรชรายงานหลังจากตั้งค่าพารามิเตอร์และ DataSource สำหรับ ReportViewer1
+                Me.ReportViewer1.RefreshReport()
+
+                ' กำหนดข้อมูลสำหรับ ReportViewer2 (รายงานผู้ค้ำประกัน)
+                If table5.Rows.Count > 0 Then
+                    Dim rds5 As New ReportDataSource("DataSet5", table5)
+                    Me.ReportViewer2.LocalReport.DataSources.Clear()
+                    Me.ReportViewer2.LocalReport.DataSources.Add(rds5)
+                    Me.ReportViewer2.RefreshReport()
+                Else
+                    ' ซ่อน ReportViewer2 ถ้าไม่มีผู้ค้ำประกัน
+                    Me.ReportViewer2.Visible = False
+                End If
 
             End Using
         Catch ex As Exception
             MessageBox.Show("เกิดข้อผิดพลาดในการสร้างรายงาน: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 
 End Class
