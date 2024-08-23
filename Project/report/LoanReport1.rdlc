@@ -391,7 +391,7 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <ListLevel>2</ListLevel>
+                <ListLevel>3</ListLevel>
                 <Style>
                   <TextAlign>Left</TextAlign>
                 </Style>
@@ -703,7 +703,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>          1.)</Value>
+                    <Value xml:space="preserve">          </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -735,7 +735,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1232,7 +1232,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>14.14236in</Top>
+            <Top>14.12848in</Top>
             <Left>1.16104in</Left>
             <Height>1.79166in</Height>
             <Width>6.03125in</Width>
@@ -1318,25 +1318,28 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="con_date">
+          <Textbox Name="conDate1">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!con_date.Value, "DataSet1")</Value>
-                    <Style />
+                    <Value>=Parameters!conDate1.Value</Value>
+                    <Style>
+                      <FontFamily>Angsana New</FontFamily>
+                      <FontSize>14pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>con_date</rd:DefaultName>
-            <Top>2.01389in</Top>
-            <Left>4.01958in</Left>
-            <Height>0.25in</Height>
-            <Width>1in</Width>
+            <rd:DefaultName>conDate1</rd:DefaultName>
+            <Top>1.95958in</Top>
+            <Left>3.69667in</Left>
+            <Height>0.3182in</Height>
+            <Width>2.07957in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1387,6 +1390,10 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="conDate1">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1422,6 +1429,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>GuarantorDetails</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>conDate1</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

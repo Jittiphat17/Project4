@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+Imports System.Text
 Imports Microsoft.Reporting.WinForms
 
 Public Class frmSearch
@@ -186,6 +187,15 @@ Public Class frmSearch
         ' ส่งคืนค่าที่เป็น /เดือน/ปี เช่น /08/2566
         Return String.Format("/{0:D2}/{1}", month, year)
     End Function
+    Private Function ConvertToThaiMonthYear(ByVal dateValue As DateTime) As String
+        Dim thaiMonths As String() = {"มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"}
+        Dim month As Integer = dateValue.Month
+        Dim year As Integer = dateValue.Year + 543 ' แปลงเป็นปีพุทธศักราช (พ.ศ.)
+
+        ' ส่งคืนค่าที่เป็น เดือน พ.ศ. เช่น เมษายน พ.ศ. 2567
+        Return String.Format("{0} พ.ศ. {1}", thaiMonths(month - 1), year)
+    End Function
+
 
     Private Sub btnReport_Click(sender As Object, e As EventArgs) Handles btnReport.Click
         If dgvResults.SelectedRows.Count = 0 Then
@@ -233,13 +243,14 @@ Public Class frmSearch
                 Dim table4 As New DataTable()
                 adapter4.Fill(table4)
 
-                ' ดึงข้อมูลผู้ค้ำประกันจากตาราง Guarantor และรวมกับข้อมูลในตาราง Member
-                Dim query5 As String = "SELECT m.m_gender, m.m_name, m.m_address FROM Guarantor g INNER JOIN Member m ON g.m_id = m.m_id WHERE g.con_id = @con_id"
+                ' ดึงข้อมูลผู้ค้ำประกันจากตาราง Guarantor และ Member
+                Dim query5 As String = "SELECT m.m_gender, m.m_name, m.m_national, m.m_address, m.m_tel, m.m_thaiid FROM Guarantor g INNER JOIN Member m ON g.m_id = m.m_id WHERE g.con_id = @con_id"
                 Dim cmd5 As New OleDbCommand(query5, conn)
                 cmd5.Parameters.AddWithValue("@con_id", selectedConId)
                 Dim adapter5 As New OleDbDataAdapter(cmd5)
                 Dim table5 As New DataTable()
                 adapter5.Fill(table5)
+
 
                 ' ชื่อ DataSource ต้องตรงกับชื่อในรายงาน
                 Dim rds1 As New ReportDataSource("DataSet1", table1)
@@ -265,6 +276,8 @@ Public Class frmSearch
 
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("AmountText", amountText))
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("AmountWithCommas", amountWithCommas))
+                Me.ReportViewer2.LocalReport.SetParameters(New ReportParameter("AmountText", amountText))
+                Me.ReportViewer2.LocalReport.SetParameters(New ReportParameter("AmountWithCommas", amountWithCommas))
 
                 ' ส่งข้อมูลวันที่ชำระเงินแรกและสุดท้ายไปยังรายงาน
                 Dim firstPaymentDate As Date = Date.MinValue
@@ -284,19 +297,52 @@ Public Class frmSearch
                 Dim conDate As DateTime = Convert.ToDateTime(table1.Rows(0)("con_date"))
                 Dim conDateMonthYear As String = ConvertToMonthYear(conDate)
                 Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("ConDate", conDateMonthYear))
+                Me.ReportViewer2.LocalReport.SetParameters(New ReportParameter("ConDate", conDateMonthYear))
+
+                ' ส่งข้อมูลเดือนและปีไปยังรายงานโดยใช้พารามิเตอร์ conDate1
+                Dim conDate1 As DateTime = Convert.ToDateTime(table1.Rows(0)("con_date"))
+                Dim conDateMonthYear1 As String = ConvertToThaiMonthYear(conDate)
+                Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("conDate1", conDateMonthYear1))
+                Me.ReportViewer2.LocalReport.SetParameters(New ReportParameter("conDate1", conDateMonthYear1))
+
 
                 ' ตรวจสอบว่ามีผู้ค้ำประกันหรือไม่
                 If table5.Rows.Count > 0 Then
-                    ' สร้างชื่อผู้ค้ำประกันเป็น String
-                    Dim guarantorDetails As String = String.Join(", ", table5.AsEnumerable().Select(Function(r) r.Field(Of String)("m_gender") & " " & r.Field(Of String)("m_name") & " ที่อยู่: " & r.Field(Of String)("m_address")).ToArray())
+                    ' ใช้ StringBuilder เพื่อรวมข้อมูลผู้ค้ำประกัน
+                    Dim sb As New StringBuilder()
 
+                    ' สร้างลำดับข้อมูลผู้ค้ำประกัน
+                    For i As Integer = 0 To table5.Rows.Count - 1
+                        Dim row = table5.Rows(i)
 
-                    ' ตั้งค่า Parameter สำหรับชื่อผู้ค้ำประกันใน ReportViewer1
-                    Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("GuarantorDetails", guarantorDetails))
+                        ' ตรวจสอบและเพิ่มข้อมูลใน StringBuilder
+                        sb.Append((i + 1).ToString() & ".) " &
+                  If(Not IsDBNull(row("m_gender")), row.Field(Of String)("m_gender"), "") & " " &
+                  If(Not IsDBNull(row("m_name")), row.Field(Of String)("m_name"), "") & " สัญชาติ: " &
+                  If(Not IsDBNull(row("m_national")), row.Field(Of String)("m_national"), "") & " ที่อยู่: " &
+                  If(Not IsDBNull(row("m_address")), row.Field(Of String)("m_address"), "") & " โทรศัพท์: " &
+                  If(Not IsDBNull(row("m_tel")), row.Field(Of String)("m_tel"), "") & " เลขบัตรประชาชน: " &
+                  If(Not IsDBNull(row("m_thaiid")), row.Field(Of String)("m_thaiid"), ""))
 
+                        ' เพิ่มการเว้นบรรทัดเล็กน้อยหลังจากข้อมูลของผู้ค้ำแต่ละคน ยกเว้นคนสุดท้าย
+                        If i < table5.Rows.Count - 1 Then
+                            sb.Append(Environment.NewLine) ' เว้นบรรทัดหนึ่งบรรทัด
+                        End If
+                    Next
+
+                    ' ตั้งค่า Parameter สำหรับข้อมูลผู้ค้ำใน ReportViewer1
+                    Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("GuarantorDetails", sb.ToString()))
+                    Me.ReportViewer2.LocalReport.SetParameters(New ReportParameter("GuarantorDetails", sb.ToString()))
+
+                    ' ตั้งค่าชื่อผู้ค้ำประกันแยกกัน
+                    Me.ReportViewer2.LocalReport.SetParameters(New ReportParameter("GuarantorName1", If(table5.Rows.Count > 0, table5.Rows(0)("m_name").ToString(), String.Empty)))
+                    Me.ReportViewer2.LocalReport.SetParameters(New ReportParameter("GuarantorName2", If(table5.Rows.Count > 1, table5.Rows(1)("m_name").ToString(), String.Empty)))
                 Else
-                    ' ไม่ตั้งค่า `GuarantorName` parameter ถ้าไม่มีผู้ค้ำประกัน
+                    ' ไม่ส่ง 'GuarantorDetails' parameter ถ้าไม่มีผู้ค้ำประกัน
                     Me.ReportViewer1.LocalReport.SetParameters(New ReportParameter("GuarantorDetails", String.Empty))
+                    Me.ReportViewer2.LocalReport.SetParameters(New ReportParameter("GuarantorDetails", String.Empty))
+                    Me.ReportViewer2.LocalReport.SetParameters(New ReportParameter("GuarantorName1", String.Empty))
+                    Me.ReportViewer2.LocalReport.SetParameters(New ReportParameter("GuarantorName2", String.Empty))
                 End If
 
                 ' รีเฟรชรายงานหลังจากตั้งค่าพารามิเตอร์และ DataSource สำหรับ ReportViewer1
@@ -306,6 +352,10 @@ Public Class frmSearch
                 If table5.Rows.Count > 0 Then
                     Dim rds5 As New ReportDataSource("DataSet5", table5)
                     Me.ReportViewer2.LocalReport.DataSources.Clear()
+                    Me.ReportViewer2.LocalReport.DataSources.Add(rds1)
+                    Me.ReportViewer2.LocalReport.DataSources.Add(rds2)
+                    Me.ReportViewer2.LocalReport.DataSources.Add(rds3)
+                    Me.ReportViewer2.LocalReport.DataSources.Add(rds4)
                     Me.ReportViewer2.LocalReport.DataSources.Add(rds5)
                     Me.ReportViewer2.RefreshReport()
                 Else

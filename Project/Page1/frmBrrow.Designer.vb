@@ -37,7 +37,6 @@ Partial Class frmBrrow
         Me.txtSearch2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtSearch3 = New System.Windows.Forms.TextBox()
-        Me.btnPrint = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.txtCid = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -244,24 +243,12 @@ Partial Class frmBrrow
         Me.txtSearch3.Size = New System.Drawing.Size(235, 31)
         Me.txtSearch3.TabIndex = 1
         '
-        'btnPrint
-        '
-        Me.btnPrint.BackColor = System.Drawing.SystemColors.Highlight
-        Me.btnPrint.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnPrint.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnPrint.Location = New System.Drawing.Point(579, 738)
-        Me.btnPrint.Name = "btnPrint"
-        Me.btnPrint.Size = New System.Drawing.Size(170, 65)
-        Me.btnPrint.TabIndex = 2
-        Me.btnPrint.Text = "พิมพ์เอกสาร"
-        Me.btnPrint.UseVisualStyleBackColor = False
-        '
         'btnSave
         '
         Me.btnSave.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnSave.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnSave.Location = New System.Drawing.Point(227, 738)
+        Me.btnSave.Location = New System.Drawing.Point(314, 741)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(170, 65)
         Me.btnSave.TabIndex = 2
@@ -488,7 +475,7 @@ Partial Class frmBrrow
         Me.btnClear.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClear.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnClear.Location = New System.Drawing.Point(755, 738)
+        Me.btnClear.Location = New System.Drawing.Point(668, 741)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(170, 65)
         Me.btnClear.TabIndex = 2
@@ -577,7 +564,7 @@ Partial Class frmBrrow
         Me.btnAdd.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnAdd.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnAdd.Location = New System.Drawing.Point(403, 738)
+        Me.btnAdd.Location = New System.Drawing.Point(490, 741)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(170, 65)
         Me.btnAdd.TabIndex = 2
@@ -594,7 +581,6 @@ Partial Class frmBrrow
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.btnClear)
-        Me.Controls.Add(Me.btnPrint)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.btnSave)
@@ -623,7 +609,6 @@ Partial Class frmBrrow
 
     Friend WithEvents Label5 As Label
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents btnPrint As Button
     Friend WithEvents Label3 As Label
     Friend WithEvents btnSave As Button
     Friend WithEvents Label2 As Label
