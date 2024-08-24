@@ -85,7 +85,7 @@ Partial Class frmSearch
         '
         'ReportViewer2
         '
-        Me.ReportViewer2.LocalReport.ReportEmbeddedResource = "Project.GuarantorReport.rdlc"
+        Me.ReportViewer2.LocalReport.ReportEmbeddedResource = "Project.GuarantorReport1.rdlc"
         Me.ReportViewer2.Location = New System.Drawing.Point(538, 246)
         Me.ReportViewer2.Name = "ReportViewer2"
         Me.ReportViewer2.ServerReport.BearerToken = Nothing

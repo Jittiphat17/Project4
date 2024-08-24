@@ -19,6 +19,7 @@ Public Class frmSearch
         ' กำหนดค่าของ ReportViewer2 สำหรับรายงานผู้ค้ำประกัน
         Me.ReportViewer2.LocalReport.ReportPath = "D:\Project-2022\Project\Project\report\GuarantorReport.rdlc"
         Me.ReportViewer2.RefreshReport()
+
     End Sub
 
     Private Sub FormatDataGridView()

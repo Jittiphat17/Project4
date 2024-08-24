@@ -457,25 +457,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>)โดยผู้กู้สัญญาว่าจะนำเงินกู้ดังกล่าวไปใช้เพื่อวัตถุประสงค์ใช้จ่ายในครอบครัว    ซึ่งผู้กู้ได้รับเงินกู้</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <ListLevel>2</ListLevel>
-                <Style>
-                  <TextAlign>Left</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>จำนวนดังกล่าวไปจากผู้ให้กู้ถูกต้องครบถ้วนแล้ว</Value>
+                    <Value>)โดยผู้กู้สัญญาว่าจะนำเงินกู้ดังกล่าวไปใช้เพื่อวัตถุประสงค์ใช้จ่ายในครอบครัว ซึ่งผู้กู้ได้รับเงินกู้จำนวนดังกล่าวไปจากผู้ให้กู้ถูกต้องครบถ้วนแล้ว</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>angsana New</FontFamily>
@@ -964,10 +946,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
-            <Top>2.33333in</Top>
-            <Left>0.42146in</Left>
+            <Top>2.34722in</Top>
             <Height>11.73959in</Height>
-            <Width>7.25in</Width>
+            <Width>7.9575in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1070,7 +1051,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.18055in</Top>
-            <Left>1.95208in</Left>
+            <Left>2.26458in</Left>
             <Height>1.63889in</Height>
             <Width>3.82416in</Width>
             <ZIndex>1</ZIndex>
@@ -1233,7 +1214,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>14.12848in</Top>
-            <Left>1.16104in</Left>
+            <Left>1.47354in</Left>
             <Height>1.79166in</Height>
             <Width>6.03125in</Width>
             <ZIndex>2</ZIndex>
@@ -1304,7 +1285,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>0.18055in</Top>
-            <Left>5.94229in</Left>
+            <Left>6.25479in</Left>
             <Height>0.70833in</Height>
             <Width>1.94792in</Width>
             <ZIndex>3</ZIndex>
@@ -1337,7 +1318,7 @@
             </Paragraphs>
             <rd:DefaultName>conDate1</rd:DefaultName>
             <Top>1.95958in</Top>
-            <Left>3.69667in</Left>
+            <Left>4.00917in</Left>
             <Height>0.3182in</Height>
             <Width>2.07957in</Width>
             <ZIndex>4</ZIndex>
@@ -1355,10 +1336,12 @@
         <Height>16.38541in</Height>
         <Style />
       </Body>
-      <Width>8.27in</Width>
+      <Width>8.5825in</Width>
       <Page>
         <PageHeight>11.69in</PageHeight>
         <PageWidth>8.27in</PageWidth>
+        <TopMargin>0.5in</TopMargin>
+        <BottomMargin>0.5in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>

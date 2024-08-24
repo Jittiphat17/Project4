@@ -356,9 +356,7 @@
       <DependentUpon>frmIncome.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="report\GuarantorReport.rdlc" />
-    <EmbeddedResource Include="report\LoanReport.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="report\GuarantorReport1.rdlc" />
     <EmbeddedResource Include="report\LoanReport1.rdlc" />
   </ItemGroup>
   <ItemGroup>

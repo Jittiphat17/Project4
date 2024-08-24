@@ -26,11 +26,12 @@ Partial Class frmMain
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.tsm_exp = New System.Windows.Forms.ToolStripMenuItem()
         Me.ทำสญญาToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ทำสญญาToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.แกไขสญญาToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.คาใชจายToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.บนทกคาใชจายToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.แกไขคาใชจายToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ตารางเงนกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.สญญาเงนกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_rev = New System.Windows.Forms.ToolStripMenuItem()
         Me.รบเงนToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_report = New System.Windows.Forms.ToolStripMenuItem()
@@ -40,6 +41,7 @@ Partial Class frmMain
         Me.งบทดลองToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.งบกำไรขาดทนToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.งดแสดงฐานะทางการเงนToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.รายงานสญญาเงนกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_other = New System.Windows.Forms.ToolStripMenuItem()
         Me.จดการสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.เพมสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -59,7 +61,6 @@ Partial Class frmMain
         Me.lblDateTime = New System.Windows.Forms.Label()
         Me.lblUserInfo = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.btnRefresh = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -71,67 +72,78 @@ Partial Class frmMain
         'MenuStrip1
         '
         Me.MenuStrip1.BackColor = System.Drawing.Color.White
+        Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.Left
         Me.MenuStrip1.Font = New System.Drawing.Font("TH SarabunPSK", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsm_exp, Me.tsm_rev, Me.tsm_report, Me.tsm_other, Me.ออกจากระบบToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(784, 38)
+        Me.MenuStrip1.Size = New System.Drawing.Size(156, 461)
         Me.MenuStrip1.TabIndex = 10
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'tsm_exp
         '
-        Me.tsm_exp.BackColor = System.Drawing.Color.Transparent
-        Me.tsm_exp.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ทำสญญาToolStripMenuItem, Me.คาใชจายToolStripMenuItem, Me.ตารางเงนกToolStripMenuItem, Me.สญญาเงนกToolStripMenuItem})
+        Me.tsm_exp.AutoSize = False
+        Me.tsm_exp.BackColor = System.Drawing.Color.White
+        Me.tsm_exp.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ทำสญญาToolStripMenuItem, Me.คาใชจายToolStripMenuItem, Me.ตารางเงนกToolStripMenuItem})
         Me.tsm_exp.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tsm_exp.ForeColor = System.Drawing.SystemColors.ControlText
         Me.tsm_exp.Name = "tsm_exp"
-        Me.tsm_exp.Size = New System.Drawing.Size(83, 34)
+        Me.tsm_exp.Size = New System.Drawing.Size(150, 50)
         Me.tsm_exp.Text = "รายจ่าย"
+        Me.tsm_exp.ToolTipText = "บันทึกรายจ่ายต่างๆ"
         '
         'ทำสญญาToolStripMenuItem
         '
-        Me.ทำสญญาToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.แกไขสญญาToolStripMenuItem})
+        Me.ทำสญญาToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ทำสญญาToolStripMenuItem1, Me.แกไขสญญาToolStripMenuItem})
         Me.ทำสญญาToolStripMenuItem.Name = "ทำสญญาToolStripMenuItem"
-        Me.ทำสญญาToolStripMenuItem.Size = New System.Drawing.Size(174, 34)
-        Me.ทำสญญาToolStripMenuItem.Text = "ทำสัญญา"
+        Me.ทำสญญาToolStripMenuItem.Size = New System.Drawing.Size(180, 34)
+        Me.ทำสญญาToolStripMenuItem.Text = "สัญญา"
+        '
+        'ทำสญญาToolStripMenuItem1
+        '
+        Me.ทำสญญาToolStripMenuItem1.Name = "ทำสญญาToolStripMenuItem1"
+        Me.ทำสญญาToolStripMenuItem1.Size = New System.Drawing.Size(180, 34)
+        Me.ทำสญญาToolStripMenuItem1.Text = "ทำสัญญา"
         '
         'แกไขสญญาToolStripMenuItem
         '
         Me.แกไขสญญาToolStripMenuItem.Name = "แกไขสญญาToolStripMenuItem"
-        Me.แกไขสญญาToolStripMenuItem.Size = New System.Drawing.Size(176, 34)
+        Me.แกไขสญญาToolStripMenuItem.Size = New System.Drawing.Size(180, 34)
         Me.แกไขสญญาToolStripMenuItem.Text = "แก้ไขสัญญา"
         '
         'คาใชจายToolStripMenuItem
         '
-        Me.คาใชจายToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.แกไขคาใชจายToolStripMenuItem})
+        Me.คาใชจายToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.บนทกคาใชจายToolStripMenuItem, Me.แกไขคาใชจายToolStripMenuItem})
         Me.คาใชจายToolStripMenuItem.Name = "คาใชจายToolStripMenuItem"
-        Me.คาใชจายToolStripMenuItem.Size = New System.Drawing.Size(174, 34)
+        Me.คาใชจายToolStripMenuItem.Size = New System.Drawing.Size(180, 34)
         Me.คาใชจายToolStripMenuItem.Text = "ค่าใช้จ่าย"
+        '
+        'บนทกคาใชจายToolStripMenuItem
+        '
+        Me.บนทกคาใชจายToolStripMenuItem.Name = "บนทกคาใชจายToolStripMenuItem"
+        Me.บนทกคาใชจายToolStripMenuItem.Size = New System.Drawing.Size(201, 34)
+        Me.บนทกคาใชจายToolStripMenuItem.Text = "บันทึกค่าใช้จ่าย"
         '
         'แกไขคาใชจายToolStripMenuItem
         '
         Me.แกไขคาใชจายToolStripMenuItem.Name = "แกไขคาใชจายToolStripMenuItem"
-        Me.แกไขคาใชจายToolStripMenuItem.Size = New System.Drawing.Size(194, 34)
+        Me.แกไขคาใชจายToolStripMenuItem.Size = New System.Drawing.Size(201, 34)
         Me.แกไขคาใชจายToolStripMenuItem.Text = "แก้ไขค่าใช้จ่าย"
         '
         'ตารางเงนกToolStripMenuItem
         '
         Me.ตารางเงนกToolStripMenuItem.Name = "ตารางเงนกToolStripMenuItem"
-        Me.ตารางเงนกToolStripMenuItem.Size = New System.Drawing.Size(174, 34)
+        Me.ตารางเงนกToolStripMenuItem.Size = New System.Drawing.Size(180, 34)
         Me.ตารางเงนกToolStripMenuItem.Text = "ตารางเงินกู้"
-        '
-        'สญญาเงนกToolStripMenuItem
-        '
-        Me.สญญาเงนกToolStripMenuItem.Name = "สญญาเงนกToolStripMenuItem"
-        Me.สญญาเงนกToolStripMenuItem.Size = New System.Drawing.Size(174, 34)
-        Me.สญญาเงนกToolStripMenuItem.Text = "สัญญาเงินกู้"
         '
         'tsm_rev
         '
+        Me.tsm_rev.AutoSize = False
         Me.tsm_rev.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.รบเงนToolStripMenuItem})
         Me.tsm_rev.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tsm_rev.Name = "tsm_rev"
-        Me.tsm_rev.Size = New System.Drawing.Size(74, 34)
+        Me.tsm_rev.Size = New System.Drawing.Size(150, 50)
         Me.tsm_rev.Text = "รายรับ"
         '
         'รบเงนToolStripMenuItem
@@ -142,10 +154,11 @@ Partial Class frmMain
         '
         'tsm_report
         '
-        Me.tsm_report.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.รายงานลกหนรายตวToolStripMenuItem, Me.รายงานเงนฝากสมาชกToolStripMenuItem, Me.รายงานบญชToolStripMenuItem})
+        Me.tsm_report.AutoSize = False
+        Me.tsm_report.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.รายงานลกหนรายตวToolStripMenuItem, Me.รายงานเงนฝากสมาชกToolStripMenuItem, Me.รายงานบญชToolStripMenuItem, Me.รายงานสญญาเงนกToolStripMenuItem})
         Me.tsm_report.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tsm_report.Name = "tsm_report"
-        Me.tsm_report.Size = New System.Drawing.Size(83, 34)
+        Me.tsm_report.Size = New System.Drawing.Size(150, 50)
         Me.tsm_report.Text = "รายงาน"
         '
         'รายงานลกหนรายตวToolStripMenuItem
@@ -185,12 +198,19 @@ Partial Class frmMain
         Me.งดแสดงฐานะทางการเงนToolStripMenuItem.Size = New System.Drawing.Size(276, 34)
         Me.งดแสดงฐานะทางการเงนToolStripMenuItem.Text = "งบแสดงฐานะทางการเงิน"
         '
+        'รายงานสญญาเงนกToolStripMenuItem
+        '
+        Me.รายงานสญญาเงนกToolStripMenuItem.Name = "รายงานสญญาเงนกToolStripMenuItem"
+        Me.รายงานสญญาเงนกToolStripMenuItem.Size = New System.Drawing.Size(255, 34)
+        Me.รายงานสญญาเงนกToolStripMenuItem.Text = "รายงานสัญญาเงินกู้"
+        '
         'tsm_other
         '
-        Me.tsm_other.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.จดการสมาชกToolStripMenuItem, Me.จดการสทธToolStripMenuItem, Me.สำรองขอมลToolStripMenuItem, Me.อานบตรToolStripMenuItem, Me.สมาชกลาออกToolStripMenuItem})
+        Me.tsm_other.AutoSize = False
+        Me.tsm_other.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.จดการสมาชกToolStripMenuItem, Me.สำรองขอมลToolStripMenuItem, Me.จดการสทธToolStripMenuItem, Me.อานบตรToolStripMenuItem, Me.สมาชกลาออกToolStripMenuItem})
         Me.tsm_other.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tsm_other.Name = "tsm_other"
-        Me.tsm_other.Size = New System.Drawing.Size(60, 34)
+        Me.tsm_other.Size = New System.Drawing.Size(150, 50)
         Me.tsm_other.Text = "อื่นๆ"
         '
         'จดการสมาชกToolStripMenuItem
@@ -228,13 +248,13 @@ Partial Class frmMain
         'สำรองขอมลToolStripMenuItem1
         '
         Me.สำรองขอมลToolStripMenuItem1.Name = "สำรองขอมลToolStripMenuItem1"
-        Me.สำรองขอมลToolStripMenuItem1.Size = New System.Drawing.Size(179, 34)
+        Me.สำรองขอมลToolStripMenuItem1.Size = New System.Drawing.Size(180, 34)
         Me.สำรองขอมลToolStripMenuItem1.Text = "สำรองข้อมูล"
         '
         'นำเขาขอมลToolStripMenuItem1
         '
         Me.นำเขาขอมลToolStripMenuItem1.Name = "นำเขาขอมลToolStripMenuItem1"
-        Me.นำเขาขอมลToolStripMenuItem1.Size = New System.Drawing.Size(179, 34)
+        Me.นำเขาขอมลToolStripMenuItem1.Size = New System.Drawing.Size(180, 34)
         Me.นำเขาขอมลToolStripMenuItem1.Text = "นำเข้าข้อมูล"
         '
         'อานบตรToolStripMenuItem
@@ -251,11 +271,12 @@ Partial Class frmMain
         '
         'ออกจากระบบToolStripMenuItem
         '
+        Me.ออกจากระบบToolStripMenuItem.AutoSize = False
         Me.ออกจากระบบToolStripMenuItem.BackColor = System.Drawing.Color.Red
         Me.ออกจากระบบToolStripMenuItem.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ออกจากระบบToolStripMenuItem.ForeColor = System.Drawing.Color.White
         Me.ออกจากระบบToolStripMenuItem.Name = "ออกจากระบบToolStripMenuItem"
-        Me.ออกจากระบบToolStripMenuItem.Size = New System.Drawing.Size(131, 34)
+        Me.ออกจากระบบToolStripMenuItem.Size = New System.Drawing.Size(150, 50)
         Me.ออกจากระบบToolStripMenuItem.Text = "ออกจากระบบ"
         '
         'GroupBox1
@@ -265,7 +286,7 @@ Partial Class frmMain
         Me.GroupBox1.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(9, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(236, 75)
+        Me.GroupBox1.Size = New System.Drawing.Size(555, 75)
         Me.GroupBox1.TabIndex = 12
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "สมาชิกทั้งหมด"
@@ -288,7 +309,7 @@ Partial Class frmMain
         Me.GroupBox2.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(9, 84)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(236, 75)
+        Me.GroupBox2.Size = New System.Drawing.Size(555, 75)
         Me.GroupBox2.TabIndex = 13
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "จำนวนการทำสัญญา"
@@ -310,9 +331,9 @@ Partial Class frmMain
         Me.panelHeader.Controls.Add(Me.lblDateTime)
         Me.panelHeader.Controls.Add(Me.lblUserInfo)
         Me.panelHeader.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.panelHeader.Location = New System.Drawing.Point(0, 423)
+        Me.panelHeader.Location = New System.Drawing.Point(156, 423)
         Me.panelHeader.Name = "panelHeader"
-        Me.panelHeader.Size = New System.Drawing.Size(784, 38)
+        Me.panelHeader.Size = New System.Drawing.Size(628, 38)
         Me.panelHeader.TabIndex = 14
         '
         'lblDateTime
@@ -320,7 +341,7 @@ Partial Class frmMain
         Me.lblDateTime.AutoSize = True
         Me.lblDateTime.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDateTime.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblDateTime.Location = New System.Drawing.Point(542, 9)
+        Me.lblDateTime.Location = New System.Drawing.Point(393, 9)
         Me.lblDateTime.Name = "lblDateTime"
         Me.lblDateTime.Size = New System.Drawing.Size(37, 24)
         Me.lblDateTime.TabIndex = 15
@@ -341,33 +362,23 @@ Partial Class frmMain
         '
         Me.Timer1.Interval = 1000
         '
-        'btnRefresh
-        '
-        Me.btnRefresh.Location = New System.Drawing.Point(756, 41)
-        Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(28, 23)
-        Me.btnRefresh.TabIndex = 15
-        Me.btnRefresh.Text = "Button1"
-        Me.btnRefresh.UseVisualStyleBackColor = True
-        '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.GroupBox2)
-        Me.Panel1.Location = New System.Drawing.Point(22, 60)
+        Me.Panel1.Location = New System.Drawing.Point(179, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(255, 169)
+        Me.Panel1.Size = New System.Drawing.Size(571, 169)
         Me.Panel1.TabIndex = 16
         '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.BackColor = System.Drawing.SystemColors.GrayText
         Me.ClientSize = New System.Drawing.Size(784, 461)
-        Me.Controls.Add(Me.btnRefresh)
         Me.Controls.Add(Me.panelHeader)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.Panel1)
@@ -420,9 +431,10 @@ Partial Class frmMain
     Friend WithEvents lblUserInfo As Label
     Friend WithEvents lblDateTime As Label
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents btnRefresh As Button
     Friend WithEvents ตารางเงนกToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents สญญาเงนกToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents สมาชกลาออกToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ทำสญญาToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents บนทกคาใชจายToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents รายงานสญญาเงนกToolStripMenuItem As ToolStripMenuItem
 End Class
