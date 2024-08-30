@@ -34,6 +34,8 @@ Partial Class frmAddmember
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -48,6 +50,7 @@ Partial Class frmAddmember
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtJob = New System.Windows.Forms.TextBox()
+        Me.txtAge = New System.Windows.Forms.TextBox()
         Me.txtnick = New System.Windows.Forms.TextBox()
         Me.txtOutstanding = New System.Windows.Forms.TextBox()
         Me.txtBeginning = New System.Windows.Forms.TextBox()
@@ -75,9 +78,6 @@ Partial Class frmAddmember
         Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.txtAge = New System.Windows.Forms.TextBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvConn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -150,7 +150,7 @@ Partial Class frmAddmember
         '
         Me.txtAccountnum.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAccountnum.Location = New System.Drawing.Point(895, 237)
-        Me.txtAccountnum.Mask = "000-0-00000-0"
+        Me.txtAccountnum.Mask = "000-000-000-000"
         Me.txtAccountnum.Name = "txtAccountnum"
         Me.txtAccountnum.Size = New System.Drawing.Size(169, 31)
         Me.txtAccountnum.TabIndex = 5
@@ -232,6 +232,26 @@ Partial Class frmAddmember
         Me.Label11.Size = New System.Drawing.Size(72, 27)
         Me.Label11.TabIndex = 1
         Me.Label11.Text = "สัญชาติ :"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(447, 202)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(22, 27)
+        Me.Label20.TabIndex = 1
+        Me.Label20.Text = "ปี"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(333, 202)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(47, 27)
+        Me.Label19.TabIndex = 1
+        Me.Label19.Text = "อายุ :"
         '
         'Label5
         '
@@ -370,6 +390,15 @@ Partial Class frmAddmember
         Me.txtJob.Name = "txtJob"
         Me.txtJob.Size = New System.Drawing.Size(111, 31)
         Me.txtJob.TabIndex = 0
+        '
+        'txtAge
+        '
+        Me.txtAge.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtAge.Location = New System.Drawing.Point(386, 200)
+        Me.txtAge.Name = "txtAge"
+        Me.txtAge.ReadOnly = True
+        Me.txtAge.Size = New System.Drawing.Size(55, 31)
+        Me.txtAge.TabIndex = 0
         '
         'txtnick
         '
@@ -565,35 +594,6 @@ Partial Class frmAddmember
         Me.Column7.HeaderText = "สัญชาติ"
         Me.Column7.Name = "Column7"
         Me.Column7.ReadOnly = True
-        '
-        'txtAge
-        '
-        Me.txtAge.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAge.Location = New System.Drawing.Point(386, 200)
-        Me.txtAge.Name = "txtAge"
-        Me.txtAge.ReadOnly = True
-        Me.txtAge.Size = New System.Drawing.Size(55, 31)
-        Me.txtAge.TabIndex = 0
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(333, 202)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(47, 27)
-        Me.Label19.TabIndex = 1
-        Me.Label19.Text = "อายุ :"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(447, 202)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(22, 27)
-        Me.Label20.TabIndex = 1
-        Me.Label20.Text = "ปี"
         '
         'frmAddmember
         '

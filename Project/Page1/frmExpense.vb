@@ -84,12 +84,15 @@ Public Class frmExpense
             expenseTypeColumn.Items.Clear() ' ล้างรายการเก่า
 
             ' เพิ่มรายการใหม่
-            expenseTypeColumn.Items.Add("ค่าสินค้า")
-            expenseTypeColumn.Items.Add("ค่าบริการ")
-            expenseTypeColumn.Items.Add("ค่าเช่า")
-            expenseTypeColumn.Items.Add("ค่าเดินทาง")
-            expenseTypeColumn.Items.Add("ค่าซ่อมบำรุง")
-            expenseTypeColumn.Items.Add("ค่าใช้จ่ายอื่น ๆ")
+            expenseTypeColumn.Items.Add("ค่าเช่าสำนักงาน")
+            expenseTypeColumn.Items.Add("เงินสมทบ")
+            expenseTypeColumn.Items.Add("เงินประกันความเสี่ยง")
+            expenseTypeColumn.Items.Add("ค่าตอบแทน")
+            expenseTypeColumn.Items.Add("ค่าจ้าง")
+            expenseTypeColumn.Items.Add("เงินกู้")
+            expenseTypeColumn.Items.Add("สมาชิกลาออก")
+            expenseTypeColumn.Items.Add("ดอกเบี้ยสัจจะ")
+            expenseTypeColumn.Items.Add("อื่นๆ")
         Catch ex As Exception
             MessageBox.Show("เกิดข้อผิดพลาดในการโหลดข้อมูลประเภทรายจ่าย: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally

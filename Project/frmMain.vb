@@ -119,7 +119,8 @@ Public Class frmMain
     End Sub
 
     Private Sub แกไขคาใชจายToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles แกไขคาใชจายToolStripMenuItem.Click
-        Dim frm As New frmUpdatee()
+        Dim frm As New frmEditExpense
+
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub
@@ -178,6 +179,12 @@ Public Class frmMain
         frm.ShowDialog()
     End Sub
 
+    Private Sub แกไขสญญาToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles แกไขสญญาToolStripMenuItem.Click
+        Dim frm As New frmEditContract
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
     ' ฟังก์ชันเพื่อรีเฟรชข้อมูลในหน้าหลักเมื่อปิดฟอร์มอื่นๆ
     Private Sub RefreshMainForm(ByVal sender As Object, ByVal e As FormClosedEventArgs)
         ' เรียกใช้ฟังก์ชันเพื่อรีเฟรชข้อมูลในหน้าหลัก
@@ -185,4 +192,6 @@ Public Class frmMain
         UpdateContractCount()
         UpdateDateTime() ' อัปเดตวันที่และเวลาหากต้องการ
     End Sub
+
+
 End Class

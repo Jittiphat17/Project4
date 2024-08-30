@@ -35,21 +35,21 @@ Partial Class frmMain
         Me.tsm_rev = New System.Windows.Forms.ToolStripMenuItem()
         Me.รบเงนToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_report = New System.Windows.Forms.ToolStripMenuItem()
-        Me.รายงานลกหนรายตวToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.รายงานเงนฝากสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.รายงานสญญาเงนกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.รายงานบญชToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.งบทดลองToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.งบกำไรขาดทนToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.งดแสดงฐานะทางการเงนToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.รายงานสญญาเงนกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.รายงานลกหนรายตวToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.รายงานเงนฝากสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_other = New System.Windows.Forms.ToolStripMenuItem()
         Me.จดการสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.เพมสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.เรยกดสมาชกฃToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.จดการสทธToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.สำรองขอมลToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.สำรองขอมลToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.นำเขาขอมลToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.จดการสทธToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.อานบตรToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.สมาชกลาออกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ออกจากระบบToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -97,26 +97,26 @@ Partial Class frmMain
         '
         Me.ทำสญญาToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ทำสญญาToolStripMenuItem1, Me.แกไขสญญาToolStripMenuItem})
         Me.ทำสญญาToolStripMenuItem.Name = "ทำสญญาToolStripMenuItem"
-        Me.ทำสญญาToolStripMenuItem.Size = New System.Drawing.Size(180, 34)
+        Me.ทำสญญาToolStripMenuItem.Size = New System.Drawing.Size(171, 34)
         Me.ทำสญญาToolStripMenuItem.Text = "สัญญา"
         '
         'ทำสญญาToolStripMenuItem1
         '
         Me.ทำสญญาToolStripMenuItem1.Name = "ทำสญญาToolStripMenuItem1"
-        Me.ทำสญญาToolStripMenuItem1.Size = New System.Drawing.Size(180, 34)
+        Me.ทำสญญาToolStripMenuItem1.Size = New System.Drawing.Size(176, 34)
         Me.ทำสญญาToolStripMenuItem1.Text = "ทำสัญญา"
         '
         'แกไขสญญาToolStripMenuItem
         '
         Me.แกไขสญญาToolStripMenuItem.Name = "แกไขสญญาToolStripMenuItem"
-        Me.แกไขสญญาToolStripMenuItem.Size = New System.Drawing.Size(180, 34)
+        Me.แกไขสญญาToolStripMenuItem.Size = New System.Drawing.Size(176, 34)
         Me.แกไขสญญาToolStripMenuItem.Text = "แก้ไขสัญญา"
         '
         'คาใชจายToolStripMenuItem
         '
         Me.คาใชจายToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.บนทกคาใชจายToolStripMenuItem, Me.แกไขคาใชจายToolStripMenuItem})
         Me.คาใชจายToolStripMenuItem.Name = "คาใชจายToolStripMenuItem"
-        Me.คาใชจายToolStripMenuItem.Size = New System.Drawing.Size(180, 34)
+        Me.คาใชจายToolStripMenuItem.Size = New System.Drawing.Size(171, 34)
         Me.คาใชจายToolStripMenuItem.Text = "ค่าใช้จ่าย"
         '
         'บนทกคาใชจายToolStripMenuItem
@@ -134,7 +134,7 @@ Partial Class frmMain
         'ตารางเงนกToolStripMenuItem
         '
         Me.ตารางเงนกToolStripMenuItem.Name = "ตารางเงนกToolStripMenuItem"
-        Me.ตารางเงนกToolStripMenuItem.Size = New System.Drawing.Size(180, 34)
+        Me.ตารางเงนกToolStripMenuItem.Size = New System.Drawing.Size(171, 34)
         Me.ตารางเงนกToolStripMenuItem.Text = "ตารางเงินกู้"
         '
         'tsm_rev
@@ -155,23 +155,17 @@ Partial Class frmMain
         'tsm_report
         '
         Me.tsm_report.AutoSize = False
-        Me.tsm_report.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.รายงานลกหนรายตวToolStripMenuItem, Me.รายงานเงนฝากสมาชกToolStripMenuItem, Me.รายงานบญชToolStripMenuItem, Me.รายงานสญญาเงนกToolStripMenuItem})
+        Me.tsm_report.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.รายงานสญญาเงนกToolStripMenuItem, Me.รายงานบญชToolStripMenuItem, Me.รายงานลกหนรายตวToolStripMenuItem, Me.รายงานเงนฝากสมาชกToolStripMenuItem})
         Me.tsm_report.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tsm_report.Name = "tsm_report"
         Me.tsm_report.Size = New System.Drawing.Size(150, 50)
         Me.tsm_report.Text = "รายงาน"
         '
-        'รายงานลกหนรายตวToolStripMenuItem
+        'รายงานสญญาเงนกToolStripMenuItem
         '
-        Me.รายงานลกหนรายตวToolStripMenuItem.Name = "รายงานลกหนรายตวToolStripMenuItem"
-        Me.รายงานลกหนรายตวToolStripMenuItem.Size = New System.Drawing.Size(255, 34)
-        Me.รายงานลกหนรายตวToolStripMenuItem.Text = "รายงานลูกหนี้รายตัว"
-        '
-        'รายงานเงนฝากสมาชกToolStripMenuItem
-        '
-        Me.รายงานเงนฝากสมาชกToolStripMenuItem.Name = "รายงานเงนฝากสมาชกToolStripMenuItem"
-        Me.รายงานเงนฝากสมาชกToolStripMenuItem.Size = New System.Drawing.Size(255, 34)
-        Me.รายงานเงนฝากสมาชกToolStripMenuItem.Text = "รายงานเงินฝากสมาชิก"
+        Me.รายงานสญญาเงนกToolStripMenuItem.Name = "รายงานสญญาเงนกToolStripMenuItem"
+        Me.รายงานสญญาเงนกToolStripMenuItem.Size = New System.Drawing.Size(255, 34)
+        Me.รายงานสญญาเงนกToolStripMenuItem.Text = "รายงานสัญญาเงินกู้"
         '
         'รายงานบญชToolStripMenuItem
         '
@@ -198,11 +192,17 @@ Partial Class frmMain
         Me.งดแสดงฐานะทางการเงนToolStripMenuItem.Size = New System.Drawing.Size(276, 34)
         Me.งดแสดงฐานะทางการเงนToolStripMenuItem.Text = "งบแสดงฐานะทางการเงิน"
         '
-        'รายงานสญญาเงนกToolStripMenuItem
+        'รายงานลกหนรายตวToolStripMenuItem
         '
-        Me.รายงานสญญาเงนกToolStripMenuItem.Name = "รายงานสญญาเงนกToolStripMenuItem"
-        Me.รายงานสญญาเงนกToolStripMenuItem.Size = New System.Drawing.Size(255, 34)
-        Me.รายงานสญญาเงนกToolStripMenuItem.Text = "รายงานสัญญาเงินกู้"
+        Me.รายงานลกหนรายตวToolStripMenuItem.Name = "รายงานลกหนรายตวToolStripMenuItem"
+        Me.รายงานลกหนรายตวToolStripMenuItem.Size = New System.Drawing.Size(255, 34)
+        Me.รายงานลกหนรายตวToolStripMenuItem.Text = "รายงานลูกหนี้รายตัว"
+        '
+        'รายงานเงนฝากสมาชกToolStripMenuItem
+        '
+        Me.รายงานเงนฝากสมาชกToolStripMenuItem.Name = "รายงานเงนฝากสมาชกToolStripMenuItem"
+        Me.รายงานเงนฝากสมาชกToolStripMenuItem.Size = New System.Drawing.Size(255, 34)
+        Me.รายงานเงนฝากสมาชกToolStripMenuItem.Text = "รายงานเงินฝากสมาชิก"
         '
         'tsm_other
         '
@@ -232,12 +232,6 @@ Partial Class frmMain
         Me.เรยกดสมาชกฃToolStripMenuItem.Size = New System.Drawing.Size(186, 34)
         Me.เรยกดสมาชกฃToolStripMenuItem.Text = "เรียกดูสมาชิก"
         '
-        'จดการสทธToolStripMenuItem
-        '
-        Me.จดการสทธToolStripMenuItem.Name = "จดการสทธToolStripMenuItem"
-        Me.จดการสทธToolStripMenuItem.Size = New System.Drawing.Size(192, 34)
-        Me.จดการสทธToolStripMenuItem.Text = "จัดการสิทธิ"
-        '
         'สำรองขอมลToolStripMenuItem
         '
         Me.สำรองขอมลToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.สำรองขอมลToolStripMenuItem1, Me.นำเขาขอมลToolStripMenuItem1})
@@ -248,14 +242,20 @@ Partial Class frmMain
         'สำรองขอมลToolStripMenuItem1
         '
         Me.สำรองขอมลToolStripMenuItem1.Name = "สำรองขอมลToolStripMenuItem1"
-        Me.สำรองขอมลToolStripMenuItem1.Size = New System.Drawing.Size(180, 34)
+        Me.สำรองขอมลToolStripMenuItem1.Size = New System.Drawing.Size(179, 34)
         Me.สำรองขอมลToolStripMenuItem1.Text = "สำรองข้อมูล"
         '
         'นำเขาขอมลToolStripMenuItem1
         '
         Me.นำเขาขอมลToolStripMenuItem1.Name = "นำเขาขอมลToolStripMenuItem1"
-        Me.นำเขาขอมลToolStripMenuItem1.Size = New System.Drawing.Size(180, 34)
+        Me.นำเขาขอมลToolStripMenuItem1.Size = New System.Drawing.Size(179, 34)
         Me.นำเขาขอมลToolStripMenuItem1.Text = "นำเข้าข้อมูล"
+        '
+        'จดการสทธToolStripMenuItem
+        '
+        Me.จดการสทธToolStripMenuItem.Name = "จดการสทธToolStripMenuItem"
+        Me.จดการสทธToolStripMenuItem.Size = New System.Drawing.Size(192, 34)
+        Me.จดการสทธToolStripMenuItem.Text = "จัดการสิทธิ"
         '
         'อานบตรToolStripMenuItem
         '
@@ -328,12 +328,13 @@ Partial Class frmMain
         'panelHeader
         '
         Me.panelHeader.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.panelHeader.Controls.Add(Me.lblDateTime)
         Me.panelHeader.Controls.Add(Me.lblUserInfo)
         Me.panelHeader.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.panelHeader.Location = New System.Drawing.Point(156, 423)
         Me.panelHeader.Name = "panelHeader"
-        Me.panelHeader.Size = New System.Drawing.Size(628, 38)
+        Me.panelHeader.Size = New System.Drawing.Size(610, 38)
         Me.panelHeader.TabIndex = 14
         '
         'lblDateTime
@@ -341,7 +342,7 @@ Partial Class frmMain
         Me.lblDateTime.AutoSize = True
         Me.lblDateTime.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDateTime.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblDateTime.Location = New System.Drawing.Point(393, 9)
+        Me.lblDateTime.Location = New System.Drawing.Point(363, 9)
         Me.lblDateTime.Name = "lblDateTime"
         Me.lblDateTime.Size = New System.Drawing.Size(37, 24)
         Me.lblDateTime.TabIndex = 15
@@ -377,8 +378,8 @@ Partial Class frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.SystemColors.GrayText
-        Me.ClientSize = New System.Drawing.Size(784, 461)
+        Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.ClientSize = New System.Drawing.Size(766, 461)
         Me.Controls.Add(Me.panelHeader)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.Panel1)

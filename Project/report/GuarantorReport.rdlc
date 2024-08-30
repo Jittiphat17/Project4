@@ -457,7 +457,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -474,7 +474,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -492,17 +492,17 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Parameters!GuarantorDetails.Value</Value>
+                    <Value>=Parameters!GuarantorName1.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -512,7 +512,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -522,7 +522,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -532,7 +532,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -549,7 +549,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -566,7 +566,7 @@
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Angsana New</FontFamily>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
                     </Style>
@@ -1419,7 +1419,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>15.34375in</Height>
+        <Height>14.51041in</Height>
         <Style />
       </Body>
       <Width>8.27in</Width>

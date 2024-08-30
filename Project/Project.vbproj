@@ -272,6 +272,18 @@
     <Compile Include="Page1\frmCon.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Page1\frmEditContract.Designer.vb">
+      <DependentUpon>frmEditContract.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Page1\frmEditContract.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Page1\frmEditExpense.Designer.vb">
+      <DependentUpon>frmEditExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Page1\frmEditExpense.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Page1\frmExpense.Designer.vb">
       <DependentUpon>frmExpense.vb</DependentUpon>
     </Compile>
@@ -282,12 +294,6 @@
       <DependentUpon>frmSearch.vb</DependentUpon>
     </Compile>
     <Compile Include="Page1\frmSearch.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Page1\frmUpdatee.Designer.vb">
-      <DependentUpon>frmUpdatee.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Page1\frmUpdatee.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Page2\frmIncome.Designer.vb">
@@ -343,14 +349,17 @@
     <EmbeddedResource Include="Page1\frmCon.resx">
       <DependentUpon>frmCon.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Page1\frmEditContract.resx">
+      <DependentUpon>frmEditContract.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page1\frmEditExpense.resx">
+      <DependentUpon>frmEditExpense.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Page1\frmExpense.resx">
       <DependentUpon>frmExpense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Page1\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Page1\frmUpdatee.resx">
-      <DependentUpon>frmUpdatee.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Page2\frmIncome.resx">
       <DependentUpon>frmIncome.vb</DependentUpon>

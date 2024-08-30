@@ -222,7 +222,7 @@
                     <Value>สัญญานี้ทำขึ้นระหว่าง กองทุนหมู่บ้าน บ้านใหม่หลังมอ มีที่ทำการตั้งอย่เลขที่ 66/2 หมู่ที่14 ตำบลสุเทพ</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -240,7 +240,7 @@
                     <Value>อำเภอเมืองเชียงใหม่ จังหวัดชียงใหม่ ทะเบียนนิติบุคคลเลขที่ 1170 โดยมี 1.)นายดำรงค์ สงแก้ว และ 2.)นางยุพา สงแก้ว</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -258,7 +258,7 @@
                     <Value>เป็นผู้แทนกองทุนหมู่บ้านฯในการทำสัญญากู้ครั้งนี้ ซึ่งต่อไปในสัญญาเรียกว่า "ผู้ให้กู้" ฝ่ายหนึ่ง กับ</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -276,7 +276,7 @@
                     <Value>=First(Fields!m_gender.Value, "DataSet2")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -284,7 +284,7 @@
                     <Value>=First(Fields!m_name.Value, "DataSet2")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -292,7 +292,7 @@
                     <Value> สัญชาติ </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -300,7 +300,7 @@
                     <Value>=First(Fields!m_national.Value, "DataSet2")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -308,7 +308,7 @@
                     <Value> ที่อยู่ </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -316,7 +316,7 @@
                     <Value>=First(Fields!m_address.Value, "DataSet2")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -324,7 +324,7 @@
                     <Value> เลขบัตรประชาชน </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -332,7 +332,7 @@
                     <Value>=First(Fields!m_thaiid.Value, "DataSet2")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -340,7 +340,7 @@
                     <Value> โทรศัพท์ </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -348,7 +348,7 @@
                     <Value>=First(Fields!m_tel.Value, "DataSet2")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -356,7 +356,7 @@
                     <Value xml:space="preserve"> </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -364,7 +364,7 @@
                     <Value>เป็นสมาชิกกองทุนฯหมายเลขที่ </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -374,7 +374,7 @@
                     <Value>=First(Fields!m_id.Value, "DataSet2")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -384,7 +384,7 @@
                     <Value> ซึ่งต่อไปนี้ในสัญญาเรียกว่า "ผู้กู้" ฝ่ายหนึ่งโดยทั้งสองฝ่ายได้ตกลงกันมีข้อความดังต่อไปนี้คือ</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -402,7 +402,7 @@
                     <Value>          ข้อ 1.) ผู้กู้ตกลงกู้เงินจากผู้ให้กู้และผู้ให้กู้ตกลงให้กู้เงินเป็นจำนวน   </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -412,7 +412,7 @@
                     <Value>=Parameters!AmountWithCommas.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -422,7 +422,7 @@
                     <Value>   บาท</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -440,7 +440,7 @@
                     <Value>( </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -450,7 +450,7 @@
                     <Value>=Parameters!AmountText.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -460,7 +460,7 @@
                     <Value>)โดยผู้กู้สัญญาว่าจะนำเงินกู้ดังกล่าวไปใช้เพื่อวัตถุประสงค์ใช้จ่ายในครอบครัว ซึ่งผู้กู้ได้รับเงินกู้จำนวนดังกล่าวไปจากผู้ให้กู้ถูกต้องครบถ้วนแล้ว</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -478,7 +478,7 @@
                     <Value>          ข้อ 2.) ผู้กู้ตกลงให้ดอกเบี้ยแก่ผู้ให้กู้ในอัตราร้อยละ     </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -488,7 +488,7 @@
                     <Value>=First(Fields!con_interest.Value, "DataSet1")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -498,7 +498,7 @@
                     <Value>     บาทต่อเดือน ของเงินต้นจำนวนดังกล่าวในข้อ 1.)</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -516,7 +516,7 @@
                     <Value>          ข้อ 3.) ผู้กู้ตกลงชำระเงินต้นพร้อมดอกเบี้ยในข้อ 1.)และข้อ 2.) ให้แก่ผู้ให้กู้ โดยจะผ่อนชำระให้เป็นงวดรายเดือน เป็นจำนวน   </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -526,7 +526,7 @@
                     <Value>=First(Fields!con_permonth.Value, "DataSet1")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -536,7 +536,7 @@
                     <Value> งวด/เดือน โดยจะชำระงวดละไม่น้อยกว่า   </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -546,7 +546,7 @@
                     <Value>=Avg(Fields!payment_amount.Value, "DataSet4")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -556,7 +556,7 @@
                     <Value>  บาท และจะชำระเงินต้นพร้อมดอกเบี้ยงวดแรกวันที่     </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -566,7 +566,7 @@
                     <Value>=Parameters!FirstPaymentDate.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -576,7 +576,7 @@
                     <Value>   จะชำระงวดต่อไปทุกวันที่กองทุนฯประกาศ ไว้ของทุกเดือนจนกว่าจะครบยอดหนี้ดังกล่าวแต่ทั้งนี้จะต้องไม่เกินกำหนด   </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -586,7 +586,7 @@
                     <Value>=Parameters!LastPaymentDate.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -596,7 +596,7 @@
                     <Value>  นับแต่วันทำสัญญานี้</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -614,7 +614,7 @@
                     <Value>          ข้อ 4.) ในกรณีที่ผู้กู้ผิดสัญญาไม่ชำระคืนเงินต้นพร้อมดอกเบี้ย ผู้กู้ยอมชำระค่าปรับให้แก่ผู้ให้กู้ในอัตราร้อยละ 0.5 ต่อวัน สำหรับจำนวนที่ขาดหรือหรือค้างชำระ เว้นแต่ผู้กู้ได้รับอนุญาตให้ผ่อนผันการชำระหนี้</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -632,7 +632,7 @@
                     <Value>          ข้อ 5.) ในการชำระเงินต้นพร้อมดอกเบี้ยดังกล่าวข้างต้น ผู้กู้จะนำเงินจำนวนดังกล่าวชำระโดยคืนต่อคณะกรรมการกองทุนหมู่บ้าน ณ ที่ทำการของผู้ให้กู้หรือตามวิธีการที่กองทุนฯกำหนด</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -650,7 +650,7 @@
                     <Value>          ข้อ 6.) เพื่อเป็นประกันการกู้ยืมเงินตามสัญญานี้ผู้กู้ยินยอมมอบ  </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -660,7 +660,7 @@
                     <Value>=First(Fields!acc_name.Value, "DataSet3")</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -670,7 +670,7 @@
                     <Value>  ให้แก่ผู้ให้กู้ไว้เป็นหลักประกันในการชำระหนี้เงินกู้ตามสัญญานี้ และในการทำสัญญากู้ครั้งนี้มี</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -688,7 +688,7 @@
                     <Value xml:space="preserve">          </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -698,7 +698,7 @@
                     <Value>=Parameters!GuarantorDetails.Value</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -734,7 +734,7 @@
                     <Value>ข้อ 7.) ในกรณีที่ผู้กู้มิได้เริ่มดำเนินการตามวัตถุประสงค์ในการขอกู้ยืมเงิน หรือผู้กู้นำเงินไปใช้นอกกรอบวัตถุ </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -752,7 +752,7 @@
                     <Value>ประสงค์โดยปราศจากเหตุผลอันสมควรผู้ให้กู้มีสิทธิยกเลิกสัญญาและเรียกคืนเงินกู้พร้อมดอกเบี้ยที่ค้างชำระคืนเต็มจำนวนได้โดยทันที</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -770,7 +770,7 @@
                     <Value>ข้อ 8.)บรรดาหนังสือติดต่อ ทวงถาม บอกกล่าว หรือหนังสืออื่นใดที่จะส่งให้แก่ผู้กู้นั้น ไม่ว่าจะส่งทางไปรษณีย์ลง</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -788,7 +788,7 @@
                     <Value>ทะเบียนหรือให้คนไปส่งเองก็ดีถ้าหากส่งไปยังสถานที่ผู้กู้ระบุไว้ข้างต้นของสัญญานี้แล้ว ให้ถือว่าได้ส่งให้แก่ผู้กู้โดยชอบแล้ว ทั้งนี้โดยไม่ต้องคำนึงว่าจะมีผู้รับไว้หรือไม่และแม้หากว่าส่งไปให้ไม่ได้ เพราะสถานที่ดังกล่าวได้เปลี่ยนแปลงไป หรือถูกรื้อถอนไปโดยผู้กู้ไม่ได้แจ้งการเปลี่ยนแปลงหรือรื้อถอนนั้นเป็นหนังสือต่อผู้ให้กู้หรือส่งให้ไม่ได้เพราะหาไม่พบสถานที่ที่ระบุไว้ข้างต้นนั้นก็ดีให้ถือว่าผู้กู้ได้ทราบหนังสือติดต่อ ทวงถาม บอกกล่าวหรือหนังสืออื่นใดของผู้ให้กู้โดยชอบแล้ว</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -806,7 +806,7 @@
                     <Value>ข้อ 9.) ในกรณีที่ผู้กู้เปลี่ยนชื่อตัว ชื่อสกุล หรือเปลี่ยนแปลงที่อยู่ หรือย้ายทะเบียนบ้าน ผู้กู้จะต้องแจ้งให้คณะกรรมการ</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -824,7 +824,7 @@
                     <Value>กองทุนฯทราบโดยเร็ว</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -842,7 +842,7 @@
                     <Value>ข้อ 10.) หากผู้กู้ผิดนัดงวดใดงวดหนึ่งหรือผิดสัญญาข้อหนึ่งข้อใดแห่งสัญญานี้ ผู้กู้ยินยอมให้ถือว่าผู้กู้ผิดนัดทั้งหมด</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -860,7 +860,7 @@
                     <Value>ในสัญญานี้และยินยอมให้ผู้ให้กู้คิดดอกเบี้ยในระหว่างผิดนัดได้ ในอัตราสูงสุดที่ชอบด้วยกฎหมายนับแต่วันที่ผิดนัดเป็นต้นไปจนกว่าผู้กู้จะชำระหนี้คืนให้แก่ผู้ให้กู้ครบถ้วนสิ้นเชิงและผู้กู้ยินยอมชดใช้ค่าเสียหายทั้งปวงที่ผู้ให้กู้ต้องเสียไปในการบังคับให้ผู้กู้ชำระหนี้ตามสัญญานี้ ซึ่งรวมถึงค่าใช้จ่ายในการเตือน เรียกร้อง ทวงถาม การดำเนินคดีและการบังคับคดี</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -878,7 +878,7 @@
                     <Value>ข้อ 11.) ในกรณีที่ผู้กู้ผิดนัดชำระหนี้หรือผู้กู้เสียชีวิตและยังคงมีหนี้ค้างชำระกับทางผู้ให้กู้ หากผู้กู้มีเงินออม เงินหุ้น </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -896,7 +896,7 @@
                     <Value>เงินฝากสัจจะที่ฝากไว้กับผู้ให้กู้หรือผู้กู้หรือทายาทของผู้กู้ มีสิทธิได้รับผลประโยชน์ตอบแทนใดๆจากผู้ให้กู้ ผู้กู้ตกลงยินยอมให้ผู้ให้กู้หักเงินที่มีอยู่หรือที่จะได้รับนั้นเพื่อเป็นการชำระหนี้ผู้กู้ค้างชำระได้ทันทีโดยไม่จำเป็นต้องได้รับความยินยอมจากผู้กู้ก่อนแต่อย่างใด</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -914,7 +914,7 @@
                     <Value>ข้อ 12.) ในกรณีที่ผู้ให้กู้ติดต่อผู้กู้ไม่ได้ ไม่ว่าด้วยเหตุใดๆก็ตาม ผู้กู้ยินยอมให้ผู้ให้กู้ติดต่อกับบุคคลในครอบครัว</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -932,7 +932,7 @@
                     <Value>หรือญาติของผู้กู้หรือบุคคลอื่นเพื่อแจ้งให้ผู้กู้นำเงินมาชำระคืนผู้ให้กู้ได้ผู้กู้และคู่สัญญา ผู้ที่เกี่ยวข้องทุกฝ่าย ได้อ่านข้อความในสัญญากู้ฉบับบนี้โดยตลอดแล้ว เห็นว่าถูกต้องครบถ้วนตามความประสงค์ จึงลงลายมือชื่อไว้เป็นหลักฐาน ณ วัน เดือน ปี ที่ ระบุข้างต้น</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
-                      <FontFamily>angsana New</FontFamily>
+                      <FontFamily>Angsana New</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                       <TextDecoration>None</TextDecoration>
@@ -947,7 +947,8 @@
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
             <Top>2.34722in</Top>
-            <Height>11.73959in</Height>
+            <Left>0.24521in</Left>
+            <Height>11.18751in</Height>
             <Width>7.9575in</Width>
             <Style>
               <Border>
@@ -1180,6 +1181,23 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
+                    <Value />
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Angsana New</FontFamily>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
                     <Value>          ลงชื่อ..................................................................พยาน    ลงชื่อ.............................................................พยาน</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
@@ -1213,7 +1231,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>14.12848in</Top>
+            <Top>13.74306in</Top>
             <Left>1.47354in</Left>
             <Height>1.79166in</Height>
             <Width>6.03125in</Width>
@@ -1333,10 +1351,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>16.38541in</Height>
+        <Height>15.92014in</Height>
         <Style />
       </Body>
-      <Width>8.5825in</Width>
+      <Width>8.27in</Width>
       <Page>
         <PageHeight>11.69in</PageHeight>
         <PageWidth>8.27in</PageWidth>
