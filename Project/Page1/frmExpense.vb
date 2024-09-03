@@ -2,7 +2,7 @@
 
 Public Class frmExpense
     ' เชื่อมต่อกับฐานข้อมูล Access
-    Private Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Private Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
 
     Private Sub frmExpense_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetupDataGridView()
@@ -200,7 +200,7 @@ Public Class frmExpense
                 Return
             End If
 
-            Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+            Using Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 Conn.Open()
 
                 ' บันทึกข้อมูลลงในตาราง Expense

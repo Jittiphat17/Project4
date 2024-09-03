@@ -2,7 +2,7 @@
 
 Public Class frmCon
     ' เพิ่มตัวเชื่อมต่อฐานข้อมูล
-    Private Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Private Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
     ' Dictionary สำหรับเก็บการเปลี่ยนแปลงสถานะการชำระ
     Private statusChanges As New Dictionary(Of Integer, Integer)
 

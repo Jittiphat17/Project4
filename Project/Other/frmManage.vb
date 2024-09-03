@@ -2,7 +2,7 @@
 
 Public Class frmManage
     ' Database connection string
-    Dim Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Dim Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
     Dim cmd As OleDbCommand
     Dim da As OleDbDataAdapter
     Dim dt As DataTable
@@ -24,7 +24,7 @@ Public Class frmManage
     ' Method to load users into the DataGridView
     Private Sub LoadUsers()
         Try
-            Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+            Using Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 Conn.Open()
                 SQL = "SELECT * FROM Users"
                 da = New OleDbDataAdapter(SQL, Conn)
@@ -119,7 +119,7 @@ Public Class frmManage
     ' Method to delete user data
     Private Sub DeleteUser(username As String)
         Try
-            Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+            Using Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 Conn.Open()
                 SQL = "DELETE FROM Users WHERE user_name = @Username"
                 cmd = New OleDbCommand(SQL, Conn)

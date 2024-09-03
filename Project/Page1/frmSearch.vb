@@ -3,7 +3,7 @@ Imports System.Text
 Imports Microsoft.Reporting.WinForms
 
 Public Class frmSearch
-    Private Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Private Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
 
     Private Sub frmSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' เพิ่มตัวเลือกสำหรับประเภทของรายงาน
@@ -55,7 +55,7 @@ Public Class frmSearch
 
     Private Sub LoadAllContracts()
         Try
-            Using conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 conn.Open()
                 Dim query As String = "SELECT con_id, m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id FROM Contract"
                 Dim cmd As New OleDbCommand(query, conn)
@@ -91,7 +91,7 @@ Public Class frmSearch
 
     Private Sub SearchContracts(keyword As String)
         Try
-            Using conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 conn.Open()
                 Dim query As String = "SELECT con_id, m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id FROM Contract WHERE con_id LIKE @keyword OR m_id IN (SELECT m_id FROM Member WHERE m_name LIKE @keyword)"
                 Dim cmd As New OleDbCommand(query, conn)
@@ -209,7 +209,7 @@ Public Class frmSearch
         Dim selectedAccId As String = dgvResults.SelectedRows(0).Cells("acc_id").Value.ToString()
 
         Try
-            Using conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 conn.Open()
 
                 ' ดึงข้อมูลสำหรับ DataSet1 จากตาราง Contract

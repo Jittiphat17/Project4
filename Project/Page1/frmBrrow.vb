@@ -3,7 +3,7 @@ Imports System.Globalization
 Imports Microsoft.Reporting.WinForms
 
 Public Class frmBrrow
-    Private Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Private Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
     Private cmd As OleDbCommand
     Private strSQL As String
 
@@ -18,7 +18,6 @@ Public Class frmBrrow
         LoadPerMData()
         LoadPercenData()
     End Sub
-
 
     Private Sub SetupDataGridView()
         dgvConn.Columns.Clear()
@@ -39,27 +38,28 @@ Public Class frmBrrow
     End Sub
 
     Private Sub LoadAccountData()
-        Using conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
             conn.Open()
-            Dim cmd As New OleDbCommand("SELECT acc_id, acc_name FROM Account", conn)
-            Dim reader As OleDbDataReader = cmd.ExecuteReader()
-            Dim accountDict As New Dictionary(Of String, String)()
+            Using cmd As New OleDbCommand("SELECT acc_id, acc_name FROM Account", conn)
+                Using reader As OleDbDataReader = cmd.ExecuteReader()
+                    Dim accountDict As New Dictionary(Of String, String)()
 
-            If cbAccount.Items.Count = 0 Then
-                cbAccount.Items.Add("เลือกบัญชี")
-            End If
+                    If cbAccount.Items.Count = 0 Then
+                        cbAccount.Items.Add("เลือกบัญชี")
+                    End If
 
-            While reader.Read()
-                Dim accId As String = reader("acc_id").ToString()
-                Dim accName As String = reader("acc_name").ToString()
-                If Not accountDict.ContainsKey(accId) Then
-                    accountDict.Add(accId, accName)
-                    cbAccount.Items.Add(accName)
-                End If
-            End While
-            reader.Close()
+                    While reader.Read()
+                        Dim accId As String = reader("acc_id").ToString()
+                        Dim accName As String = reader("acc_name").ToString()
+                        If Not accountDict.ContainsKey(accId) Then
+                            accountDict.Add(accId, accName)
+                            cbAccount.Items.Add(accName)
+                        End If
+                    End While
 
-            cbAccount.Tag = accountDict
+                    cbAccount.Tag = accountDict
+                End Using
+            End Using
         End Using
     End Sub
 
@@ -76,22 +76,23 @@ Public Class frmBrrow
     End Sub
 
     Private Sub LoadAutoCompleteData()
-        Using conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
             conn.Open()
-            Dim cmd As New OleDbCommand("SELECT m_name FROM Member", conn)
-            Dim reader As OleDbDataReader = cmd.ExecuteReader()
-            Dim autoComplete As New AutoCompleteStringCollection()
-            While reader.Read()
-                autoComplete.Add(reader("m_name").ToString())
-            End While
-            reader.Close()
+            Using cmd As New OleDbCommand("SELECT m_name FROM Member", conn)
+                Using reader As OleDbDataReader = cmd.ExecuteReader()
+                    Dim autoComplete As New AutoCompleteStringCollection()
+                    While reader.Read()
+                        autoComplete.Add(reader("m_name").ToString())
+                    End While
 
-            Dim textBoxes As TextBox() = {txtSearch, txtSearch1, txtSearch2, txtSearch3}
-            For Each tb As TextBox In textBoxes
-                tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend
-                tb.AutoCompleteSource = AutoCompleteSource.CustomSource
-                tb.AutoCompleteCustomSource = autoComplete
-            Next
+                    Dim textBoxes As TextBox() = {txtSearch, txtSearch1, txtSearch2, txtSearch3}
+                    For Each tb As TextBox In textBoxes
+                        tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+                        tb.AutoCompleteSource = AutoCompleteSource.CustomSource
+                        tb.AutoCompleteCustomSource = autoComplete
+                    Next
+                End Using
+            End Using
         End Using
     End Sub
 
@@ -99,21 +100,22 @@ Public Class frmBrrow
         Dim tb As TextBox = CType(sender, TextBox)
         If String.IsNullOrWhiteSpace(tb.Text) Then Exit Sub
 
-        Using conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
             conn.Open()
-            Dim cmd As New OleDbCommand("SELECT m_id, m_name, m_address, m_tel FROM Member WHERE m_name LIKE @m_name", conn)
-            cmd.Parameters.AddWithValue("@m_name", "%" & tb.Text & "%")
-            Dim reader As OleDbDataReader = cmd.ExecuteReader()
-            If reader.Read() Then
-                Dim detail As String = String.Format("รหัสสมาชิก: {0}, ชื่อ-นามสกุล: {1}, ที่อยู่: {2}, เบอร์โทรติดต่อ: {3}",
-                                                     reader("m_id"), reader("m_name"), reader("m_address"), reader("m_tel"))
-                Dim detailTextBox As TextBox = FindDetailTextBoxForSearchBox(tb)
-                If detailTextBox IsNot Nothing Then detailTextBox.Text = detail
-            Else
-                Dim detailTextBox As TextBox = FindDetailTextBoxForSearchBox(tb)
-                If detailTextBox IsNot Nothing Then detailTextBox.Text = String.Empty
-            End If
-            reader.Close()
+            Using cmd As New OleDbCommand("SELECT m_id, m_name, m_address, m_tel FROM Member WHERE m_name LIKE @m_name", conn)
+                cmd.Parameters.AddWithValue("@m_name", "%" & tb.Text & "%")
+                Using reader As OleDbDataReader = cmd.ExecuteReader()
+                    If reader.Read() Then
+                        Dim detail As String = String.Format("รหัสสมาชิก: {0}, ชื่อ-นามสกุล: {1}, ที่อยู่: {2}, เบอร์โทรติดต่อ: {3}",
+                                                             reader("m_id"), reader("m_name"), reader("m_address"), reader("m_tel"))
+                        Dim detailTextBox As TextBox = FindDetailTextBoxForSearchBox(tb)
+                        If detailTextBox IsNot Nothing Then detailTextBox.Text = detail
+                    Else
+                        Dim detailTextBox As TextBox = FindDetailTextBoxForSearchBox(tb)
+                        If detailTextBox IsNot Nothing Then detailTextBox.Text = String.Empty
+                    End If
+                End Using
+            End Using
         End Using
     End Sub
 
@@ -133,12 +135,13 @@ Public Class frmBrrow
     End Function
 
     Private Sub Auto_id()
-        Using conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
             conn.Open()
-            Dim cmd As New OleDbCommand("SELECT MAX(con_id) FROM Contract", conn)
-            Dim result As Object = cmd.ExecuteScalar()
-            Dim newId As Integer = If(IsDBNull(result), 1, Convert.ToInt32(result) + 1)
-            txtCid.Text = newId.ToString("D4")
+            Using cmd As New OleDbCommand("SELECT MAX(con_id) FROM Contract", conn)
+                Dim result As Object = cmd.ExecuteScalar()
+                Dim newId As Integer = If(IsDBNull(result), 1, Convert.ToInt32(result) + 1)
+                txtCid.Text = newId.ToString("D4")
+            End Using
         End Using
     End Sub
 
@@ -212,7 +215,6 @@ Public Class frmBrrow
         Auto_id()
     End Sub
 
-
     Private Function IsDataComplete() As Boolean
         Return Not String.IsNullOrWhiteSpace(txtCid.Text) AndAlso
                Not String.IsNullOrWhiteSpace(txtSearch.Text) AndAlso
@@ -237,136 +239,127 @@ Public Class frmBrrow
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            If Conn.State = ConnectionState.Closed Then
-                Conn.Open()
-            End If
+            ' ใช้การเชื่อมต่อใหม่และใช้ Using statement เพื่อจัดการการเชื่อมต่อ
+            Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
+                conn.Open()
 
-            For Each row As DataGridViewRow In dgvConn.Rows
-                If Not row.IsNewRow Then
-                    Dim borrowerName As String = row.Cells("ผู้กู้").Value.ToString()
-                    Dim loanAmount As Decimal = Decimal.Parse(row.Cells("จำนวนเงินกู้").Value.ToString().Replace(" บาท", "").Replace(",", ""))
-                    Dim accountDict As Dictionary(Of String, String) = CType(cbAccount.Tag, Dictionary(Of String, String))
-                    Dim acc_id As String = accountDict.FirstOrDefault(Function(x) x.Value = row.Cells("แหล่งจ่าย").Value.ToString()).Key
-                    Dim periodText As String = row.Cells("จำนวนเดือน").Value.ToString()
-                    Dim interest As Decimal = Decimal.Parse(row.Cells("ดอกเบี้ย").Value.ToString())
-                    Dim transactionDateStr As String = row.Cells("วันที่ทำรายการ").Value.ToString()
-                    Dim guarantorName1 As String = row.Cells("ผู้ค้ำที่ 1").Value.ToString()
-                    Dim guarantorName2 As String = row.Cells("ผู้ค้ำที่ 2").Value.ToString()
-                    Dim guarantorName3 As String = row.Cells("ผู้ค้ำที่ 3").Value.ToString()
+                For Each row As DataGridViewRow In dgvConn.Rows
+                    If Not row.IsNewRow Then
+                        Dim borrowerName As String = row.Cells("ผู้กู้").Value.ToString()
+                        Dim loanAmount As Decimal = Decimal.Parse(row.Cells("จำนวนเงินกู้").Value.ToString().Replace(" บาท", "").Replace(",", ""))
+                        Dim accountDict As Dictionary(Of String, String) = CType(cbAccount.Tag, Dictionary(Of String, String))
+                        Dim acc_id As String = accountDict.FirstOrDefault(Function(x) x.Value = row.Cells("แหล่งจ่าย").Value.ToString()).Key
+                        Dim periodText As String = row.Cells("จำนวนเดือน").Value.ToString()
+                        Dim interest As Decimal = Decimal.Parse(row.Cells("ดอกเบี้ย").Value.ToString())
+                        Dim transactionDateStr As String = row.Cells("วันที่ทำรายการ").Value.ToString()
+                        Dim guarantorName1 As String = row.Cells("ผู้ค้ำที่ 1").Value.ToString()
+                        Dim guarantorName2 As String = row.Cells("ผู้ค้ำที่ 2").Value.ToString()
+                        Dim guarantorName3 As String = row.Cells("ผู้ค้ำที่ 3").Value.ToString()
 
-                    Dim period As Integer = Integer.Parse(periodText.Replace("เดือน", ""))
+                        Dim period As Integer = Integer.Parse(periodText.Replace("เดือน", ""))
 
-                    Dim transactionDate As DateTime
-                    If Not DateTime.TryParseExact(transactionDateStr, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, transactionDate) Then
-                        MessageBox.Show("รูปแบบวันที่ไม่ถูกต้อง: " & transactionDateStr, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Return
-                    End If
+                        Dim transactionDate As DateTime
+                        If Not DateTime.TryParseExact(transactionDateStr, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, transactionDate) Then
+                            MessageBox.Show("รูปแบบวันที่ไม่ถูกต้อง: " & transactionDateStr, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return
+                        End If
 
-                    Dim borrowerId As Integer = GetMemberIdByName(borrowerName)
-                    If borrowerId = -1 Then
-                        MessageBox.Show("ไม่พบข้อมูลผู้กู้", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Return
-                    End If
+                        Dim borrowerId As Integer = GetMemberIdByName(borrowerName)
+                        If borrowerId = -1 Then
+                            MessageBox.Show("ไม่พบข้อมูลผู้กู้", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return
+                        End If
 
-                    ' Insert into Contract table
-                    strSQL = "INSERT INTO Contract (m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id) VALUES (@m_id, @con_details, @con_amount, @con_interest, @con_permonth, @con_date, @acc_id)"
-                    cmd = New OleDbCommand(strSQL, Conn)
-                    cmd.Parameters.AddWithValue("@m_id", borrowerId)
-                    cmd.Parameters.AddWithValue("@con_details", row.Cells("รายละเอียดผู้กู้").Value.ToString())
-                    cmd.Parameters.AddWithValue("@con_amount", loanAmount)
-                    cmd.Parameters.AddWithValue("@con_interest", interest)
-                    cmd.Parameters.AddWithValue("@con_permonth", period)
-                    cmd.Parameters.AddWithValue("@con_date", transactionDate)
-                    cmd.Parameters.AddWithValue("@acc_id", acc_id)
+                        ' Insert into Contract table
+                        strSQL = "INSERT INTO Contract (m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id) VALUES (@m_id, @con_details, @con_amount, @con_interest, @con_permonth, @con_date, @acc_id)"
+                        Using cmd As New OleDbCommand(strSQL, conn)
+                            cmd.Parameters.AddWithValue("@m_id", borrowerId)
+                            cmd.Parameters.AddWithValue("@con_details", row.Cells("รายละเอียดผู้กู้").Value.ToString())
+                            cmd.Parameters.AddWithValue("@con_amount", loanAmount)
+                            cmd.Parameters.AddWithValue("@con_interest", interest)
+                            cmd.Parameters.AddWithValue("@con_permonth", period)
+                            cmd.Parameters.AddWithValue("@con_date", transactionDate)
+                            cmd.Parameters.AddWithValue("@acc_id", acc_id)
 
-                    If Conn.State = ConnectionState.Closed Then
-                        Conn.Open()
-                    End If
-                    cmd.ExecuteNonQuery()
+                            cmd.ExecuteNonQuery()
 
-                    cmd.CommandText = "SELECT @@IDENTITY"
-                    If Conn.State = ConnectionState.Closed Then
-                        Conn.Open()
-                    End If
-                    Dim con_id As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                            cmd.CommandText = "SELECT @@IDENTITY"
+                            Dim con_id As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
-                    ' Insert into Guarantor table
-                    Dim guarantorNames As String() = {guarantorName1, guarantorName2, guarantorName3}
+                            ' Insert into Guarantor table
+                            Dim guarantorNames As String() = {guarantorName1, guarantorName2, guarantorName3}
 
-                    For Each guarantorName As String In guarantorNames
-                        If Not String.IsNullOrEmpty(guarantorName) Then
-                            Dim guarantorId As Integer = GetMemberIdByName(guarantorName)
-                            If guarantorId <> -1 Then
-                                strSQL = "INSERT INTO Guarantor (con_id, m_id) VALUES (@con_id, @m_id)"
-                                cmd = New OleDbCommand(strSQL, Conn)
-                                cmd.Parameters.AddWithValue("@con_id", con_id)
-                                cmd.Parameters.AddWithValue("@m_id", guarantorId)
-                                If Conn.State = ConnectionState.Closed Then
-                                    Conn.Open()
+                            For Each guarantorName As String In guarantorNames
+                                If Not String.IsNullOrEmpty(guarantorName) Then
+                                    Dim guarantorId As Integer = GetMemberIdByName(guarantorName)
+                                    If guarantorId <> -1 Then
+                                        strSQL = "INSERT INTO Guarantor (con_id, m_id) VALUES (@con_id, @m_id)"
+                                        Using guarantorCmd As New OleDbCommand(strSQL, conn)
+                                            guarantorCmd.Parameters.AddWithValue("@con_id", con_id)
+                                            guarantorCmd.Parameters.AddWithValue("@m_id", guarantorId)
+                                            guarantorCmd.ExecuteNonQuery()
+                                        End Using
+                                    End If
                                 End If
-                                cmd.ExecuteNonQuery()
-                            End If
-                        End If
-                    Next
+                            Next
 
-                    ' Insert into Payment table
-                    Dim monthlyPayment As Decimal = CalculateMonthlyPayment(loanAmount, interest, period)
+                            ' Insert into Payment table
+                            Dim monthlyPayment As Decimal = CalculateMonthlyPayment(loanAmount, interest, period)
 
-                    For i As Integer = 1 To period
-                        Dim paymentDate As DateTime = transactionDate.AddMonths(i)
-                        strSQL = "INSERT INTO Payment (con_id, payment_date, payment_amount, status_id) VALUES (@con_id, @payment_date, @payment_amount, 1)"
-                        cmd = New OleDbCommand(strSQL, Conn)
-                        cmd.Parameters.AddWithValue("@con_id", con_id)
-                        cmd.Parameters.AddWithValue("@payment_date", paymentDate)
-                        cmd.Parameters.AddWithValue("@payment_amount", monthlyPayment)
-                        If Conn.State = ConnectionState.Closed Then
-                            Conn.Open()
-                        End If
-                        cmd.ExecuteNonQuery()
-                    Next
+                            For i As Integer = 1 To period
+                                Dim paymentDate As DateTime = transactionDate.AddMonths(i)
+                                strSQL = "INSERT INTO Payment (con_id, payment_date, payment_amount, status_id) VALUES (@con_id, @payment_date, @payment_amount, 1)"
+                                Using paymentCmd As New OleDbCommand(strSQL, conn)
+                                    paymentCmd.Parameters.AddWithValue("@con_id", con_id)
+                                    paymentCmd.Parameters.AddWithValue("@payment_date", paymentDate)
+                                    paymentCmd.Parameters.AddWithValue("@payment_amount", monthlyPayment)
+                                    paymentCmd.ExecuteNonQuery()
+                                End Using
+                            Next
 
-                    ' Insert into Account_Details table
-                    strSQL = "INSERT INTO Account_Details (acc_id, m_id) VALUES (@acc_id, @m_id)"
-                    cmd = New OleDbCommand(strSQL, Conn)
-                    cmd.Parameters.AddWithValue("@acc_id", acc_id)
-                    cmd.Parameters.AddWithValue("@m_id", borrowerId)
-                    If Conn.State = ConnectionState.Closed Then
-                        Conn.Open()
+                            ' Insert into Account_Details table
+                            strSQL = "INSERT INTO Account_Details (acc_id, m_id) VALUES (@acc_id, @m_id)"
+                            Using accountDetailsCmd As New OleDbCommand(strSQL, conn)
+                                accountDetailsCmd.Parameters.AddWithValue("@acc_id", acc_id)
+                                accountDetailsCmd.Parameters.AddWithValue("@m_id", borrowerId)
+                                accountDetailsCmd.ExecuteNonQuery()
+                            End Using
+                        End Using
                     End If
-                    cmd.ExecuteNonQuery()
+                Next
 
-                End If
-            Next
+                MessageBox.Show("บันทึกข้อมูลสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            MessageBox.Show("บันทึกข้อมูลสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                dgvConn.Rows.Clear()
 
-            dgvConn.Rows.Clear()
+            End Using
 
         Catch ex As Exception
             MessageBox.Show(ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            If Conn.State = ConnectionState.Open Then Conn.Close()
         End Try
     End Sub
 
 
+
     Private Function GetMemberIdByName(name As String) As Integer
         strSQL = "SELECT m_id FROM Member WHERE m_name = @m_name"
-        cmd = New OleDbCommand(strSQL, Conn)
-        cmd.Parameters.AddWithValue("@m_name", name)
+        Using cmd As New OleDbCommand(strSQL, Conn)
+            cmd.Parameters.AddWithValue("@m_name", name)
 
-        Try
-            If Conn.State = ConnectionState.Open Then Conn.Close()
-            Conn.Open()
-            Dim reader As OleDbDataReader = cmd.ExecuteReader()
-            If reader.Read() Then
-                Return Integer.Parse(reader("m_id").ToString())
-            End If
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            Conn.Close()
-        End Try
+            Try
+                If Conn.State = ConnectionState.Open Then Conn.Close()
+                Conn.Open()
+                Using reader As OleDbDataReader = cmd.ExecuteReader()
+                    If reader.Read() Then
+                        Return Integer.Parse(reader("m_id").ToString())
+                    End If
+                End Using
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                Conn.Close()
+            End Try
+        End Using
 
         Return -1
     End Function
@@ -379,7 +372,4 @@ Public Class frmBrrow
         Return monthlyPayment
     End Function
 
-
 End Class
-
-

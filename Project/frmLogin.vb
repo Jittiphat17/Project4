@@ -1,7 +1,10 @@
 ﻿Imports System.Data.OleDb
 
 Public Class Form1
-    Dim Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Dim Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
+
+
+
 
     Dim cmd As OleDbCommand
     Dim da As OleDbDataAdapter

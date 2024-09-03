@@ -62,6 +62,7 @@ Partial Class frmMain
         Me.lblUserInfo = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.จดการสมาชกToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -215,7 +216,7 @@ Partial Class frmMain
         '
         'จดการสมาชกToolStripMenuItem
         '
-        Me.จดการสมาชกToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.เพมสมาชกToolStripMenuItem, Me.เรยกดสมาชกฃToolStripMenuItem})
+        Me.จดการสมาชกToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.เพมสมาชกToolStripMenuItem, Me.เรยกดสมาชกฃToolStripMenuItem, Me.จดการสมาชกToolStripMenuItem1})
         Me.จดการสมาชกToolStripMenuItem.Name = "จดการสมาชกToolStripMenuItem"
         Me.จดการสมาชกToolStripMenuItem.Size = New System.Drawing.Size(192, 34)
         Me.จดการสมาชกToolStripMenuItem.Text = "จัดการสมาชิก"
@@ -223,13 +224,13 @@ Partial Class frmMain
         'เพมสมาชกToolStripMenuItem
         '
         Me.เพมสมาชกToolStripMenuItem.Name = "เพมสมาชกToolStripMenuItem"
-        Me.เพมสมาชกToolStripMenuItem.Size = New System.Drawing.Size(186, 34)
+        Me.เพมสมาชกToolStripMenuItem.Size = New System.Drawing.Size(190, 34)
         Me.เพมสมาชกToolStripMenuItem.Text = "เพิ่มสมาชิก"
         '
         'เรยกดสมาชกฃToolStripMenuItem
         '
         Me.เรยกดสมาชกฃToolStripMenuItem.Name = "เรยกดสมาชกฃToolStripMenuItem"
-        Me.เรยกดสมาชกฃToolStripMenuItem.Size = New System.Drawing.Size(186, 34)
+        Me.เรยกดสมาชกฃToolStripMenuItem.Size = New System.Drawing.Size(190, 34)
         Me.เรยกดสมาชกฃToolStripMenuItem.Text = "เรียกดูสมาชิก"
         '
         'สำรองขอมลToolStripMenuItem
@@ -374,6 +375,12 @@ Partial Class frmMain
         Me.Panel1.Size = New System.Drawing.Size(571, 169)
         Me.Panel1.TabIndex = 16
         '
+        'จดการสมาชกToolStripMenuItem1
+        '
+        Me.จดการสมาชกToolStripMenuItem1.Name = "จดการสมาชกToolStripMenuItem1"
+        Me.จดการสมาชกToolStripMenuItem1.Size = New System.Drawing.Size(190, 34)
+        Me.จดการสมาชกToolStripMenuItem1.Text = "จัดการสมาชิก"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -438,4 +445,5 @@ Partial Class frmMain
     Friend WithEvents ทำสญญาToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents บนทกคาใชจายToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents รายงานสญญาเงนกToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents จดการสมาชกToolStripMenuItem1 As ToolStripMenuItem
 End Class

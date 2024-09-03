@@ -3,7 +3,7 @@ Imports System.Globalization
 
 Public Class frmMain
     ' เพิ่มตัวเชื่อมต่อฐานข้อมูล
-    Dim Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Dim Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
 
     Public Sub Loadinfo()
         If User_type = "Admin" Then
@@ -181,6 +181,12 @@ Public Class frmMain
 
     Private Sub แกไขสญญาToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles แกไขสญญาToolStripMenuItem.Click
         Dim frm As New frmEditContract
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub จดการสมาชกToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles จดการสมาชกToolStripMenuItem1.Click
+        Dim frm As New frmManageMembers
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub

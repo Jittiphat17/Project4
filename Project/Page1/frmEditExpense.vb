@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
 
 Public Class frmEditExpense
-    Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Dim conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
     Private expenseID As String = "" ' เก็บค่า ex_id ของรายจ่ายที่ถูกเลือก
 
     Private Sub frmEditExpense_Load(sender As Object, e As EventArgs) Handles MyBase.Load

@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
 
 Public Class frmEditUser
-    Dim Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Dim Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
     Dim cmd As OleDbCommand
     Dim SQL As String
     Public Username As String
@@ -20,7 +20,7 @@ Public Class frmEditUser
     ' Load user data to be edited
     Private Sub LoadUserData()
         Try
-            Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+            Using Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 Conn.Open()
                 SQL = "SELECT * FROM Users WHERE user_name = @Username"
                 cmd = New OleDbCommand(SQL, Conn)
@@ -48,7 +48,7 @@ Public Class frmEditUser
         End If
 
         Try
-            Using Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+            Using Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 Conn.Open()
                 SQL = "UPDATE Users SET user_pass = @Password, user_type = @UserType, user_fname = @FullName, user_tel = @PhoneNumber WHERE user_name = @Username"
                 cmd = New OleDbCommand(SQL, Conn)

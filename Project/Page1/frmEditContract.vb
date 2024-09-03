@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
 
 Public Class frmEditContract
-    Dim conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Dim conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
     Private contractID As String = "" ' เก็บค่า con_id ของสัญญาที่ถูกเลือก
 
     Private Sub frmEditContract_Load(sender As Object, e As EventArgs) Handles MyBase.Load

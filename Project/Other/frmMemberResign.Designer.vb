@@ -44,6 +44,8 @@ Partial Class frmMemberResign
         Me.txtLoanSaving = New System.Windows.Forms.TextBox()
         Me.txtLoanAccount1 = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -276,11 +278,21 @@ Partial Class frmMemberResign
         Me.Label13.TabIndex = 10
         Me.Label13.Text = "ค้นหาด้วยชื่อสมาชิก :"
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.Location = New System.Drawing.Point(12, 386)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(776, 100)
+        Me.GroupBox3.TabIndex = 11
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "ภาระค้ำประกัน"
+        '
         'frmMemberResign
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 407)
+        Me.ClientSize = New System.Drawing.Size(800, 506)
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.txtSearchMember)
         Me.Controls.Add(Me.GroupBox2)
@@ -317,4 +329,6 @@ Partial Class frmMemberResign
     Friend WithEvents txtTotalLoan As TextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents Label13 As Label
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class

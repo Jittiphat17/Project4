@@ -72,6 +72,46 @@
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>Project.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>Project.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>Project.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>Project.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
@@ -161,21 +201,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="db_testDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>db_testDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="db_testDataSet1.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>db_testDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="db_testDataSet2.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>db_testDataSet2.xsd</DependentUpon>
-    </Compile>
     <Compile Include="frmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -242,16 +267,16 @@
     <Compile Include="Other\frmManage.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Other\frmManageMembers.Designer.vb">
+      <DependentUpon>frmManageMembers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Other\frmManageMembers.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Other\frmMemberResign.Designer.vb">
       <DependentUpon>frmMemberResign.vb</DependentUpon>
     </Compile>
     <Compile Include="Other\frmMemberResign.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Other\frmmm.Designer.vb">
-      <DependentUpon>frmmm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Other\frmmm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Other\frmViewmember.Designer.vb">
@@ -334,11 +359,11 @@
     <EmbeddedResource Include="Other\frmManage.resx">
       <DependentUpon>frmManage.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Other\frmManageMembers.resx">
+      <DependentUpon>frmManageMembers.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Other\frmMemberResign.resx">
       <DependentUpon>frmMemberResign.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Other\frmmm.resx">
-      <DependentUpon>frmmm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Other\frmViewmember.resx">
       <DependentUpon>frmViewmember.vb</DependentUpon>
@@ -369,39 +394,6 @@
     <EmbeddedResource Include="report\LoanReport1.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="db_testDataSet.xsc">
-      <DependentUpon>db_testDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="db_testDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>db_testDataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="db_testDataSet.xss">
-      <DependentUpon>db_testDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="db_testDataSet1.xsc">
-      <DependentUpon>db_testDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="db_testDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>db_testDataSet1.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="db_testDataSet1.xss">
-      <DependentUpon>db_testDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="db_testDataSet2.xsc">
-      <DependentUpon>db_testDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="db_testDataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>db_testDataSet2.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="db_testDataSet2.xss">
-      <DependentUpon>db_testDataSet2.xsd</DependentUpon>
-    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -426,11 +418,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="db_test.mdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

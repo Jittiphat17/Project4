@@ -1,7 +1,7 @@
 ﻿Imports System.Data.OleDb
 
 Public Class frmMemberResign
-    Private Conn As New OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Application.StartupPath & "\db_test.mdb")
+    Private Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
 
     Private Sub frmMemberResign_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' ตั้งค่า TextAlign ให้กับ TextBox ที่ต้องการ
