@@ -22,7 +22,6 @@ Partial Class frmManageMembers
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.dgvMembers = New System.Windows.Forms.DataGridView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtPost = New System.Windows.Forms.MaskedTextBox()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -62,17 +61,10 @@ Partial Class frmManageMembers
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
-        CType(Me.dgvMembers, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.dgvMembers = New System.Windows.Forms.DataGridView()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.dgvMembers, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'dgvMembers
-        '
-        Me.dgvMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvMembers.Location = New System.Drawing.Point(12, 8)
-        Me.dgvMembers.Name = "dgvMembers"
-        Me.dgvMembers.Size = New System.Drawing.Size(901, 292)
-        Me.dgvMembers.TabIndex = 0
         '
         'GroupBox1
         '
@@ -486,27 +478,33 @@ Partial Class frmManageMembers
         Me.btnDelete.Text = "ลบ"
         Me.btnDelete.UseVisualStyleBackColor = False
         '
+        'dgvMembers
+        '
+        Me.dgvMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvMembers.Location = New System.Drawing.Point(12, 12)
+        Me.dgvMembers.Name = "dgvMembers"
+        Me.dgvMembers.Size = New System.Drawing.Size(899, 288)
+        Me.dgvMembers.TabIndex = 6
+        '
         'frmManageMembers
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(925, 780)
+        Me.Controls.Add(Me.dgvMembers)
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.dgvMembers)
         Me.Name = "frmManageMembers"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmManageMembers"
-        CType(Me.dgvMembers, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.dgvMembers, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents dgvMembers As DataGridView
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents txtPost As MaskedTextBox
     Friend WithEvents dtpBirth As DateTimePicker
@@ -546,4 +544,5 @@ Partial Class frmManageMembers
     Friend WithEvents btnSave As Button
     Friend WithEvents btnClear As Button
     Friend WithEvents btnDelete As Button
+    Friend WithEvents dgvMembers As DataGridView
 End Class

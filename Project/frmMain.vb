@@ -8,7 +8,7 @@ Public Class frmMain
     Public Sub Loadinfo()
         If User_type = "Admin" Then
             tsm_exp.Enabled = True
-            tsm_rev.Enabled = True
+            tsm_inc.Enabled = True
             tsm_report.Enabled = True
             tsm_other.Enabled = True
         Else
@@ -136,14 +136,14 @@ Public Class frmMain
 
 
     ' เมนู
-    Private Sub รบเงนToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles รบเงนToolStripMenuItem.Click
+    Private Sub รบเงนToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim frm As New frmIncome()
         ' เพิ่มการเชื่อมต่อ FormClosed event เพื่อรีเฟรชหน้าหลักเมื่อปิดฟอร์ม
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub
 
-    Private Sub ออกจากระบบToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ออกจากระบบToolStripMenuItem.Click
+    Private Sub ออกจากระบบToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         ' ตรวจสอบว่าผู้ใช้คลิก Yes หรือไม่
@@ -153,69 +153,17 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub เรยกดสมาชกฃToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles เรยกดสมาชกฃToolStripMenuItem.Click
-        Dim frm As New frmViewmember()
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
+
+    ' ฟังก์ชันเพื่อรีเฟรชข้อมูลในหน้าหลักเมื่อปิดฟอร์มอื่นๆ
+    Private Sub RefreshMainForm(ByVal sender As Object, ByVal e As FormClosedEventArgs)
+        ' เรียกใช้ฟังก์ชันเพื่อรีเฟรชข้อมูลในหน้าหลัก
+        UpdateMemberCount()
+        UpdateContractCount()
+        UpdateDateTime() ' อัปเดตวันที่และเวลาหากต้องการ
     End Sub
 
-    Private Sub แกไขคาใชจายToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles แกไขคาใชจายToolStripMenuItem.Click
-        Dim frm As New frmEditExpense
-
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
-
-    Private Sub จดการสทธToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles จดการสทธToolStripMenuItem.Click
-        Dim frm As New frmManage()
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
-
-    Private Sub สำรองขอมลToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles สำรองขอมลToolStripMenuItem1.Click
-        Dim frm As New frmBackup
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
-
-    Private Sub นำเขาขอมลToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles นำเขาขอมลToolStripMenuItem1.Click
-        Dim frm As New frmImport
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
-
-    Private Sub อานบตรToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles อานบตรToolStripMenuItem.Click
-        Dim frm As New frmCard
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
-
-    Private Sub ตารางเงนกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ตารางเงนกToolStripMenuItem.Click
-        Dim frm As New frmCon
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
-
-    Private Sub สมาชกลาออกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles สมาชกลาออกToolStripMenuItem.Click
-        Dim frm As New frmMemberResign
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
-
-    Private Sub ทำสญญาToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ทำสญญาToolStripMenuItem1.Click
-        Dim frm As New frmBrrow()
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
-
-    Private Sub บนทกคาใชจายToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles บนทกคาใชจายToolStripMenuItem.Click
-        Dim frm As New frmExpense()
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
-
-    Private Sub รายงานสญญาเงนกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles รายงานสญญาเงนกToolStripMenuItem.Click
-        Dim frm As New frmSearch
+    Private Sub ทำสญญาToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ทำสญญาToolStripMenuItem.Click
+        Dim frm As New Form2
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub
@@ -226,19 +174,87 @@ Public Class frmMain
         frm.ShowDialog()
     End Sub
 
-    Private Sub จดการสมาชกToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles จดการสมาชกToolStripMenuItem1.Click
+    Private Sub บนทกคาใชจายToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles บนทกคาใชจายToolStripMenuItem.Click
+        Dim frm As New frmExpense()
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub แกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles แกToolStripMenuItem.Click
+        Dim frm As New frmEditExpense
+
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub ตารางเงนกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ตารางเงนกToolStripMenuItem.Click
+        Dim frm As New frmCon
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub บนทกรายรบToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles บนทกรายรบToolStripMenuItem.Click
+        Dim frm As New frmIncome()
+        ' เพิ่มการเชื่อมต่อ FormClosed event เพื่อรีเฟรชหน้าหลักเมื่อปิดฟอร์ม
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub รายงานสญญาเงนกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles รายงานสญญาเงนกToolStripMenuItem.Click
+        Dim frm As New frmSearch
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub จดการสมาชกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles จดการสมาชกToolStripMenuItem.Click
         Dim frm As New frmManageMembers
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub
 
-    ' ฟังก์ชันเพื่อรีเฟรชข้อมูลในหน้าหลักเมื่อปิดฟอร์มอื่นๆ
-    Private Sub RefreshMainForm(ByVal sender As Object, ByVal e As FormClosedEventArgs)
-        ' เรียกใช้ฟังก์ชันเพื่อรีเฟรชข้อมูลในหน้าหลัก
-        UpdateMemberCount()
-        UpdateContractCount()
-        UpdateDateTime() ' อัปเดตวันที่และเวลาหากต้องการ
+    Private Sub ดสมาชกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ดสมาชกToolStripMenuItem.Click
+        Dim frm As New frmViewmember()
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
     End Sub
 
+    Private Sub สมาชกลาออกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles สมาชกลาออกToolStripMenuItem.Click
+        Dim frm As New frmMemberResign
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
 
+    Private Sub อานบตรToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles อานบตรToolStripMenuItem.Click
+        Dim frm As New frmCard
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub สำรองขอมลToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles สำรองขอมลToolStripMenuItem.Click
+        Dim frm As New frmBackup
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub นำเขาขอมลToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles นำเขาขอมลToolStripMenuItem.Click
+        Dim frm As New frmImport
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub จดการสทธToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles จดการสทธToolStripMenuItem.Click
+        Dim frm As New frmManage()
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub ออกจากระบบToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles ออกจากระบบToolStripMenuItem.Click
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        ' ตรวจสอบว่าผู้ใช้คลิก Yes หรือไม่
+        If result = DialogResult.Yes Then
+            ' ออกจากแอปพลิเคชัน
+            Application.Exit()
+        End If
+    End Sub
 End Class
