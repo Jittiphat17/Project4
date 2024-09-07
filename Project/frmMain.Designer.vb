@@ -44,8 +44,8 @@ Partial Class frmMain
         Me.รายงานเงนฝากสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_other = New System.Windows.Forms.ToolStripMenuItem()
         Me.จดการสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.เพมสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.เรยกดสมาชกฃToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.จดการสมาชกToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.สำรองขอมลToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.สำรองขอมลToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.นำเขาขอมลToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -62,12 +62,22 @@ Partial Class frmMain
         Me.lblUserInfo = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.จดการสมาชกToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.lblTotalSaving = New System.Windows.Forms.Label()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.lblTotalLoan = New System.Windows.Forms.Label()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.lblTotalPublicLoan = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.panelHeader.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -78,7 +88,7 @@ Partial Class frmMain
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsm_exp, Me.tsm_rev, Me.tsm_report, Me.tsm_other, Me.ออกจากระบบToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(156, 461)
+        Me.MenuStrip1.Size = New System.Drawing.Size(156, 488)
         Me.MenuStrip1.TabIndex = 10
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -216,22 +226,22 @@ Partial Class frmMain
         '
         'จดการสมาชกToolStripMenuItem
         '
-        Me.จดการสมาชกToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.เพมสมาชกToolStripMenuItem, Me.เรยกดสมาชกฃToolStripMenuItem, Me.จดการสมาชกToolStripMenuItem1})
+        Me.จดการสมาชกToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.เรยกดสมาชกฃToolStripMenuItem, Me.จดการสมาชกToolStripMenuItem1})
         Me.จดการสมาชกToolStripMenuItem.Name = "จดการสมาชกToolStripMenuItem"
         Me.จดการสมาชกToolStripMenuItem.Size = New System.Drawing.Size(192, 34)
         Me.จดการสมาชกToolStripMenuItem.Text = "จัดการสมาชิก"
-        '
-        'เพมสมาชกToolStripMenuItem
-        '
-        Me.เพมสมาชกToolStripMenuItem.Name = "เพมสมาชกToolStripMenuItem"
-        Me.เพมสมาชกToolStripMenuItem.Size = New System.Drawing.Size(190, 34)
-        Me.เพมสมาชกToolStripMenuItem.Text = "เพิ่มสมาชิก"
         '
         'เรยกดสมาชกฃToolStripMenuItem
         '
         Me.เรยกดสมาชกฃToolStripMenuItem.Name = "เรยกดสมาชกฃToolStripMenuItem"
         Me.เรยกดสมาชกฃToolStripMenuItem.Size = New System.Drawing.Size(190, 34)
         Me.เรยกดสมาชกฃToolStripMenuItem.Text = "เรียกดูสมาชิก"
+        '
+        'จดการสมาชกToolStripMenuItem1
+        '
+        Me.จดการสมาชกToolStripMenuItem1.Name = "จดการสมาชกToolStripMenuItem1"
+        Me.จดการสมาชกToolStripMenuItem1.Size = New System.Drawing.Size(190, 34)
+        Me.จดการสมาชกToolStripMenuItem1.Text = "จัดการสมาชิก"
         '
         'สำรองขอมลToolStripMenuItem
         '
@@ -333,9 +343,9 @@ Partial Class frmMain
         Me.panelHeader.Controls.Add(Me.lblDateTime)
         Me.panelHeader.Controls.Add(Me.lblUserInfo)
         Me.panelHeader.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.panelHeader.Location = New System.Drawing.Point(156, 423)
+        Me.panelHeader.Location = New System.Drawing.Point(156, 450)
         Me.panelHeader.Name = "panelHeader"
-        Me.panelHeader.Size = New System.Drawing.Size(610, 38)
+        Me.panelHeader.Size = New System.Drawing.Size(685, 38)
         Me.panelHeader.TabIndex = 14
         '
         'lblDateTime
@@ -343,7 +353,7 @@ Partial Class frmMain
         Me.lblDateTime.AutoSize = True
         Me.lblDateTime.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDateTime.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblDateTime.Location = New System.Drawing.Point(363, 9)
+        Me.lblDateTime.Location = New System.Drawing.Point(345, 9)
         Me.lblDateTime.Name = "lblDateTime"
         Me.lblDateTime.Size = New System.Drawing.Size(37, 24)
         Me.lblDateTime.TabIndex = 15
@@ -375,18 +385,94 @@ Partial Class frmMain
         Me.Panel1.Size = New System.Drawing.Size(571, 169)
         Me.Panel1.TabIndex = 16
         '
-        'จดการสมาชกToolStripMenuItem1
+        'Panel2
         '
-        Me.จดการสมาชกToolStripMenuItem1.Name = "จดการสมาชกToolStripMenuItem1"
-        Me.จดการสมาชกToolStripMenuItem1.Size = New System.Drawing.Size(190, 34)
-        Me.จดการสมาชกToolStripMenuItem1.Text = "จัดการสมาชิก"
+        Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel2.Controls.Add(Me.GroupBox5)
+        Me.Panel2.Controls.Add(Me.GroupBox3)
+        Me.Panel2.Controls.Add(Me.GroupBox4)
+        Me.Panel2.Location = New System.Drawing.Point(179, 187)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(571, 257)
+        Me.Panel2.TabIndex = 17
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox3.Controls.Add(Me.lblTotalSaving)
+        Me.GroupBox3.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox3.Location = New System.Drawing.Point(9, 3)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(555, 75)
+        Me.GroupBox3.TabIndex = 12
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "ยอดรวมบัญชีสัจจะ"
+        '
+        'lblTotalSaving
+        '
+        Me.lblTotalSaving.AutoSize = True
+        Me.lblTotalSaving.BackColor = System.Drawing.SystemColors.Control
+        Me.lblTotalSaving.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblTotalSaving.Location = New System.Drawing.Point(6, 34)
+        Me.lblTotalSaving.Name = "lblTotalSaving"
+        Me.lblTotalSaving.Size = New System.Drawing.Size(117, 30)
+        Me.lblTotalSaving.TabIndex = 1
+        Me.lblTotalSaving.Text = "แสดงยอดรวม"
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox4.Controls.Add(Me.lblTotalLoan)
+        Me.GroupBox4.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox4.Location = New System.Drawing.Point(9, 84)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(555, 75)
+        Me.GroupBox4.TabIndex = 13
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "ยอดรวมบัญชี1"
+        '
+        'lblTotalLoan
+        '
+        Me.lblTotalLoan.AutoSize = True
+        Me.lblTotalLoan.BackColor = System.Drawing.SystemColors.Control
+        Me.lblTotalLoan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblTotalLoan.Location = New System.Drawing.Point(6, 34)
+        Me.lblTotalLoan.Name = "lblTotalLoan"
+        Me.lblTotalLoan.Size = New System.Drawing.Size(117, 30)
+        Me.lblTotalLoan.TabIndex = 2
+        Me.lblTotalLoan.Text = "แสดงยอดรวม"
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox5.Controls.Add(Me.lblTotalPublicLoan)
+        Me.GroupBox5.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox5.Location = New System.Drawing.Point(9, 166)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(555, 75)
+        Me.GroupBox5.TabIndex = 14
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "ยอดรวมบัญชีประชารัฐ"
+        '
+        'lblTotalPublicLoan
+        '
+        Me.lblTotalPublicLoan.AutoSize = True
+        Me.lblTotalPublicLoan.BackColor = System.Drawing.SystemColors.Control
+        Me.lblTotalPublicLoan.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblTotalPublicLoan.Location = New System.Drawing.Point(6, 34)
+        Me.lblTotalPublicLoan.Name = "lblTotalPublicLoan"
+        Me.lblTotalPublicLoan.Size = New System.Drawing.Size(117, 30)
+        Me.lblTotalPublicLoan.TabIndex = 2
+        Me.lblTotalPublicLoan.Text = "แดสงยอดรวม"
         '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.ClientSize = New System.Drawing.Size(766, 461)
+        Me.ClientSize = New System.Drawing.Size(841, 488)
+        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.panelHeader)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.Panel1)
@@ -402,6 +488,13 @@ Partial Class frmMain
         Me.panelHeader.ResumeLayout(False)
         Me.panelHeader.PerformLayout()
         Me.Panel1.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -423,7 +516,6 @@ Partial Class frmMain
     Friend WithEvents งดแสดงฐานะทางการเงนToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents tsm_other As ToolStripMenuItem
     Friend WithEvents จดการสมาชกToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents เพมสมาชกToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents เรยกดสมาชกฃToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents จดการสทธToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents สำรองขอมลToolStripMenuItem As ToolStripMenuItem
@@ -446,4 +538,11 @@ Partial Class frmMain
     Friend WithEvents บนทกคาใชจายToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents รายงานสญญาเงนกToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents จดการสมาชกToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents lblTotalPublicLoan As Label
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents lblTotalSaving As Label
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents lblTotalLoan As Label
 End Class

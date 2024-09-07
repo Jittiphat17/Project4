@@ -26,9 +26,9 @@ Partial Class Form1
         Me.btn_login = New System.Windows.Forms.Button()
         Me.btn_exit = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtPass = New System.Windows.Forms.TextBox()
-        Me.txtUser = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.txtUser = New MaterialSkin.Controls.MaterialTextBox2()
+        Me.txtPass = New MaterialSkin.Controls.MaterialTextBox2()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -69,22 +69,6 @@ Partial Class Form1
         Me.Label3.TabIndex = 7
         Me.Label3.Text = "Sign In"
         '
-        'txtPass
-        '
-        Me.txtPass.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPass.Location = New System.Drawing.Point(38, 260)
-        Me.txtPass.Name = "txtPass"
-        Me.txtPass.Size = New System.Drawing.Size(269, 38)
-        Me.txtPass.TabIndex = 4
-        '
-        'txtUser
-        '
-        Me.txtUser.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUser.Location = New System.Drawing.Point(38, 216)
-        Me.txtUser.Name = "txtUser"
-        Me.txtUser.Size = New System.Drawing.Size(269, 38)
-        Me.txtUser.TabIndex = 5
-        '
         'PictureBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
@@ -94,6 +78,64 @@ Partial Class Form1
         Me.PictureBox1.TabIndex = 11
         Me.PictureBox1.TabStop = False
         '
+        'txtUser
+        '
+        Me.txtUser.AnimateReadOnly = False
+        Me.txtUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.txtUser.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.txtUser.Depth = 0
+        Me.txtUser.Font = New System.Drawing.Font("Roboto", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtUser.HideSelection = True
+        Me.txtUser.LeadingIcon = Nothing
+        Me.txtUser.Location = New System.Drawing.Point(38, 206)
+        Me.txtUser.MaxLength = 32767
+        Me.txtUser.MouseState = MaterialSkin.MouseState.OUT
+        Me.txtUser.Name = "txtUser"
+        Me.txtUser.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.txtUser.PrefixSuffixText = Nothing
+        Me.txtUser.ReadOnly = False
+        Me.txtUser.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.txtUser.SelectedText = ""
+        Me.txtUser.SelectionLength = 0
+        Me.txtUser.SelectionStart = 0
+        Me.txtUser.ShortcutsEnabled = True
+        Me.txtUser.Size = New System.Drawing.Size(269, 48)
+        Me.txtUser.TabIndex = 12
+        Me.txtUser.TabStop = False
+        Me.txtUser.Text = "MaterialTextBox21"
+        Me.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txtUser.TrailingIcon = Nothing
+        Me.txtUser.UseSystemPasswordChar = False
+        '
+        'txtPass
+        '
+        Me.txtPass.AnimateReadOnly = False
+        Me.txtPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.txtPass.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.txtPass.Depth = 0
+        Me.txtPass.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel)
+        Me.txtPass.HideSelection = True
+        Me.txtPass.LeadingIcon = Nothing
+        Me.txtPass.Location = New System.Drawing.Point(38, 261)
+        Me.txtPass.MaxLength = 32767
+        Me.txtPass.MouseState = MaterialSkin.MouseState.OUT
+        Me.txtPass.Name = "txtPass"
+        Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.txtPass.PrefixSuffixText = Nothing
+        Me.txtPass.ReadOnly = False
+        Me.txtPass.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.txtPass.SelectedText = ""
+        Me.txtPass.SelectionLength = 0
+        Me.txtPass.SelectionStart = 0
+        Me.txtPass.ShortcutsEnabled = True
+        Me.txtPass.Size = New System.Drawing.Size(269, 48)
+        Me.txtPass.TabIndex = 12
+        Me.txtPass.TabStop = False
+        Me.txtPass.Text = "MaterialTextBox21"
+        Me.txtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txtPass.TrailingIcon = Nothing
+        Me.txtPass.UseSystemPasswordChar = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -101,12 +143,12 @@ Partial Class Form1
         Me.AutoScroll = True
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(343, 438)
+        Me.Controls.Add(Me.txtPass)
+        Me.Controls.Add(Me.txtUser)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.btn_login)
         Me.Controls.Add(Me.btn_exit)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.txtPass)
-        Me.Controls.Add(Me.txtUser)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -122,7 +164,7 @@ Partial Class Form1
     Friend WithEvents btn_login As Button
     Friend WithEvents btn_exit As Button
     Friend WithEvents Label3 As Label
-    Friend WithEvents txtPass As TextBox
-    Friend WithEvents txtUser As TextBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents txtUser As MaterialSkin.Controls.MaterialTextBox2
+    Friend WithEvents txtPass As MaterialSkin.Controls.MaterialTextBox2
 End Class

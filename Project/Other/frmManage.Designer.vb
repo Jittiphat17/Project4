@@ -54,6 +54,7 @@ Partial Class frmManage
         'btnCancel
         '
         Me.btnCancel.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnCancel.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.btnCancel.Location = New System.Drawing.Point(110, 238)
         Me.btnCancel.Name = "btnCancel"
@@ -65,6 +66,7 @@ Partial Class frmManage
         'btnSave
         '
         Me.btnSave.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnSave.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.btnSave.Location = New System.Drawing.Point(12, 238)
         Me.btnSave.Name = "btnSave"
@@ -177,6 +179,7 @@ Partial Class frmManage
         'btnDelete
         '
         Me.btnDelete.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnDelete.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.btnDelete.Location = New System.Drawing.Point(208, 238)
         Me.btnDelete.Name = "btnDelete"
@@ -188,6 +191,7 @@ Partial Class frmManage
         'btnEdit
         '
         Me.btnEdit.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnEdit.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEdit.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.btnEdit.Location = New System.Drawing.Point(306, 238)
         Me.btnEdit.Name = "btnEdit"

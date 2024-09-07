@@ -34,9 +34,13 @@ Public Class frmMain
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Loadinfo()
 
-        ' เรียกใช้ฟังก์ชันอัปเดตจำนวนสมาชิกและจำนวนสัญญา
+        ' เรียกใช้ฟังก์ชันอัปเดตข้อมูลสมาชิกและสัญญา
         UpdateMemberCount()
         UpdateContractCount()
+
+        ' เรียกใช้ฟังก์ชันแสดงยอดเงินรวมของแต่ละบัญชี
+        UpdateAccountBalances()
+
         ' ตั้งค่าเบื้องต้น
         UpdateUserInfo()
         UpdateDateTime()
@@ -44,6 +48,7 @@ Public Class frmMain
         ' เริ่ม Timer
         Timer1.Start()
     End Sub
+
 
     Private Sub UpdateMemberCount()
         Try
@@ -86,6 +91,48 @@ Public Class frmMain
             Conn.Close()
         End Try
     End Sub
+    Private Sub UpdateAccountBalances()
+        Try
+            ' เปิดการเชื่อมต่อฐานข้อมูลหากยังไม่เปิด
+            If Conn.State = ConnectionState.Open Then Conn.Close()
+            Conn.Open()
+
+            ' คิวรีเพื่อดึงยอดเงินรวมจากบัญชีเงินฝาก
+            Dim querySaving As String = "SELECT SUM(inc_amount) FROM Income WHERE acc_id = 'ACC002'"
+            Dim cmdSaving As New OleDbCommand(querySaving, Conn)
+            Dim totalSaving As Object = cmdSaving.ExecuteScalar()
+            If IsDBNull(totalSaving) OrElse totalSaving Is Nothing Then
+                totalSaving = 0
+            End If
+
+            ' คิวรีเพื่อดึงยอดเงินรวมจากบัญชีกู้เงิน
+            Dim queryLoan As String = "SELECT SUM(con_amount) FROM Contract WHERE acc_id = 'ACC001'"
+            Dim cmdLoan As New OleDbCommand(queryLoan, Conn)
+            Dim totalLoan As Object = cmdLoan.ExecuteScalar()
+            If IsDBNull(totalLoan) OrElse totalLoan Is Nothing Then
+                totalLoan = 0
+            End If
+
+            ' คิวรีเพื่อดึงยอดเงินรวมจากบัญชีกู้เงินสาธารณะ
+            Dim queryPublicLoan As String = "SELECT SUM(con_amount) FROM Contract WHERE acc_id = 'ACC003'"
+            Dim cmdPublicLoan As New OleDbCommand(queryPublicLoan, Conn)
+            Dim totalPublicLoan As Object = cmdPublicLoan.ExecuteScalar()
+            If IsDBNull(totalPublicLoan) OrElse totalPublicLoan Is Nothing Then
+                totalPublicLoan = 0
+            End If
+
+            ' แสดงยอดเงินใน Label หรือ TextBox
+            lblTotalSaving.Text = "ยอดเงินสัจจะ: " & Convert.ToDecimal(totalSaving).ToString("N2") & " บาท"
+            lblTotalLoan.Text = "ยอดเงินกู้: " & Convert.ToDecimal(totalLoan).ToString("N2") & " บาท"
+            lblTotalPublicLoan.Text = "ยอดเงินกู้สาธารณะ: " & Convert.ToDecimal(totalPublicLoan).ToString("N2") & " บาท"
+
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาดในการดึงข้อมูลยอดเงิน: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            ' ปิดการเชื่อมต่อฐานข้อมูล
+            Conn.Close()
+        End Try
+    End Sub
 
 
     ' เมนู
@@ -104,12 +151,6 @@ Public Class frmMain
             ' ออกจากแอปพลิเคชัน
             Application.Exit()
         End If
-    End Sub
-
-    Private Sub เพมสมาชกToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles เพมสมาชกToolStripMenuItem.Click
-        Dim frm As New frmAddmember()
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
     End Sub
 
     Private Sub เรยกดสมาชกฃToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles เรยกดสมาชกฃToolStripMenuItem.Click

@@ -2,10 +2,6 @@
 
 Public Class Form1
     Dim Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
-
-
-
-
     Dim cmd As OleDbCommand
     Dim da As OleDbDataAdapter
     Dim dt As DataTable
@@ -15,7 +11,7 @@ Public Class Form1
         txtPass.UseSystemPasswordChar = True
     End Sub
 
-    Private Sub txtUser_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtUser.KeyPress
+    Private Sub txtUser_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) 
         ' อนุญาตเฉพาะตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้น
         If Not Char.IsLetterOrDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
@@ -23,32 +19,36 @@ Public Class Form1
     End Sub
 
     Private Sub btn_login_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_login.Click
-        SQL = "SELECT * FROM Users WHERE user_name= '" & txtUser.Text.Trim & "' AND user_pass='" & txtPass.Text.Trim & "'"
-        da = New OleDbDataAdapter(SQL, Conn)
+        SQL = "SELECT * FROM Users WHERE user_name= @userName AND user_pass= @userPass"
 
         Try
             If Conn.State = ConnectionState.Open Then Conn.Close()
             Conn.Open()
 
-            dt = New DataTable
-            da.Fill(dt)
+            Using cmd As New OleDbCommand(SQL, Conn)
+                cmd.Parameters.AddWithValue("@userName", txtUser.Text.Trim())
+                cmd.Parameters.AddWithValue("@userPass", txtPass.Text.Trim())
 
-            If dt.Rows.Count > 0 Then
-                User_name = dt.Rows(0)("user_name")
-                User_type = dt.Rows(0)("user_type")
-                Dim frm As New frmMain
-                frm.Show()
-                Me.Hide()
-            Else
-                MessageBox.Show("ชื่อผู้ใช้งาน หรือ รหัสผ่าน ผิด", "ข้อความจากระบบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                da.Dispose()
-                txtUser.Focus()
-                Conn.Close()
-            End If
-            da.Dispose()
-            Conn.Close()
+                da = New OleDbDataAdapter(cmd)
+                dt = New DataTable
+                da.Fill(dt)
+
+                If dt.Rows.Count > 0 Then
+                    User_name = dt.Rows(0)("user_name")
+                    User_type = dt.Rows(0)("user_type")
+                    Dim frm As New frmMain
+                    frm.Show()
+                    Me.Hide()
+                Else
+                    MessageBox.Show("ชื่อผู้ใช้งาน หรือ รหัสผ่าน ผิด", "ข้อความจากระบบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    txtUser.Focus()
+                End If
+            End Using
+
         Catch ex As Exception
             MessageBox.Show(ex.Message, "ข้อความจากระบบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Finally
+            If Conn.State = ConnectionState.Open Then Conn.Close()
         End Try
     End Sub
 

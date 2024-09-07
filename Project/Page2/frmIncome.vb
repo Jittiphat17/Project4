@@ -69,7 +69,32 @@ Public Class frmIncome
         dgvIncomeDetails.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         dgvIncomeDetails.RowTemplate.Height = 30
         dgvIncomeDetails.AllowUserToAddRows = True
+
+        ' ตกแต่ง DataGridView
+        DecorateDataGridView()
     End Sub
+
+    Private Sub DecorateDataGridView()
+        ' สีพื้นหลังสำหรับแถวสลับสี
+        dgvIncomeDetails.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray
+        ' สีพื้นหลังสำหรับแถวที่เลือก
+        dgvIncomeDetails.DefaultCellStyle.SelectionBackColor = Color.LightBlue
+        ' สีข้อความสำหรับแถวที่เลือก
+        dgvIncomeDetails.DefaultCellStyle.SelectionForeColor = Color.Black
+        ' สีพื้นหลังและสีข้อความสำหรับหัวตาราง
+        dgvIncomeDetails.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy
+        dgvIncomeDetails.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
+        ' ตั้งค่าฟอนต์สำหรับหัวตาราง
+        dgvIncomeDetails.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+        ' การจัดแนวสำหรับหัวตาราง
+        dgvIncomeDetails.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        ' การจัดแนวข้อความในเซลล์
+        dgvIncomeDetails.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+        ' การจัดการขอบของเซลล์
+        dgvIncomeDetails.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+        dgvIncomeDetails.RowHeadersVisible = False ' ซ่อนหัวตารางทางซ้าย
+    End Sub
+
 
     Private Sub LoadAccountData()
         Try

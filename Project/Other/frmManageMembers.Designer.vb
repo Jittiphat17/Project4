@@ -452,30 +452,39 @@ Partial Class frmManageMembers
         '
         'btnSave
         '
+        Me.btnSave.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnSave.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSave.ForeColor = System.Drawing.SystemColors.ControlLight
         Me.btnSave.Location = New System.Drawing.Point(152, 691)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(200, 55)
         Me.btnSave.TabIndex = 5
         Me.btnSave.Text = "บันทึก"
-        Me.btnSave.UseVisualStyleBackColor = True
+        Me.btnSave.UseVisualStyleBackColor = False
         '
         'btnClear
         '
+        Me.btnClear.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnClear.ForeColor = System.Drawing.SystemColors.ControlLight
         Me.btnClear.Location = New System.Drawing.Point(358, 691)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(200, 55)
         Me.btnClear.TabIndex = 5
         Me.btnClear.Text = "ล้างข้อมูล"
-        Me.btnClear.UseVisualStyleBackColor = True
+        Me.btnClear.UseVisualStyleBackColor = False
         '
         'btnDelete
         '
+        Me.btnDelete.BackColor = System.Drawing.SystemColors.Highlight
+        Me.btnDelete.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDelete.ForeColor = System.Drawing.SystemColors.ControlLight
         Me.btnDelete.Location = New System.Drawing.Point(564, 691)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(200, 55)
         Me.btnDelete.TabIndex = 5
         Me.btnDelete.Text = "ลบ"
-        Me.btnDelete.UseVisualStyleBackColor = True
+        Me.btnDelete.UseVisualStyleBackColor = False
         '
         'frmManageMembers
         '

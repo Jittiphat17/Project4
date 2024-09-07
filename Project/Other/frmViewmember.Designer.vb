@@ -24,11 +24,10 @@ Partial Class frmViewmember
     Private Sub InitializeComponent()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.btnSearchByName = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.cboAccountType = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dgvConn = New System.Windows.Forms.DataGridView()
@@ -49,6 +48,7 @@ Partial Class frmViewmember
         Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnSearchByAccount = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvConn, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,7 +57,7 @@ Partial Class frmViewmember
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Label3)
-        Me.GroupBox2.Controls.Add(Me.btnSearch)
+        Me.GroupBox2.Controls.Add(Me.btnSearchByName)
         Me.GroupBox2.Controls.Add(Me.txtSearch)
         Me.GroupBox2.Location = New System.Drawing.Point(799, 72)
         Me.GroupBox2.Name = "GroupBox2"
@@ -76,15 +76,15 @@ Partial Class frmViewmember
         Me.Label3.TabIndex = 1
         Me.Label3.Text = "ค้นหารายชื่อ :"
         '
-        'btnSearch
+        'btnSearchByName
         '
-        Me.btnSearch.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(356, 16)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(92, 33)
-        Me.btnSearch.TabIndex = 3
-        Me.btnSearch.Text = "ค้นหา"
-        Me.btnSearch.UseVisualStyleBackColor = True
+        Me.btnSearchByName.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearchByName.Location = New System.Drawing.Point(356, 16)
+        Me.btnSearchByName.Name = "btnSearchByName"
+        Me.btnSearchByName.Size = New System.Drawing.Size(92, 33)
+        Me.btnSearchByName.TabIndex = 3
+        Me.btnSearchByName.Text = "ค้นหา"
+        Me.btnSearchByName.UseVisualStyleBackColor = True
         '
         'txtSearch
         '
@@ -96,8 +96,8 @@ Partial Class frmViewmember
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.cboAccountType)
+        Me.GroupBox1.Controls.Add(Me.btnSearchByAccount)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 72)
         Me.GroupBox1.Name = "GroupBox1"
@@ -106,25 +106,15 @@ Partial Class frmViewmember
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ค้นหาตามประเภทบัญชี"
         '
-        'ComboBox1
+        'cboAccountType
         '
-        Me.ComboBox1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"บัญชีเงินสัญจะ", "บัญชีเงินล้าน", "บัญชีเงินนภาประชารัฐ"})
-        Me.ComboBox1.Location = New System.Drawing.Point(118, 19)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(244, 32)
-        Me.ComboBox1.TabIndex = 5
-        '
-        'Button1
-        '
-        Me.Button1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(368, 20)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(60, 31)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "ค้นหา"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.cboAccountType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboAccountType.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboAccountType.FormattingEnabled = True
+        Me.cboAccountType.Location = New System.Drawing.Point(118, 19)
+        Me.cboAccountType.Name = "cboAccountType"
+        Me.cboAccountType.Size = New System.Drawing.Size(244, 32)
+        Me.cboAccountType.TabIndex = 5
         '
         'Label1
         '
@@ -258,6 +248,16 @@ Partial Class frmViewmember
         Me.Column17.Name = "Column17"
         Me.Column17.ReadOnly = True
         '
+        'btnSearchByAccount
+        '
+        Me.btnSearchByAccount.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearchByAccount.Location = New System.Drawing.Point(368, 19)
+        Me.btnSearchByAccount.Name = "btnSearchByAccount"
+        Me.btnSearchByAccount.Size = New System.Drawing.Size(64, 33)
+        Me.btnSearchByAccount.TabIndex = 3
+        Me.btnSearchByAccount.Text = "ค้นหา"
+        Me.btnSearchByAccount.UseVisualStyleBackColor = True
+        '
         'frmViewmember
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -284,11 +284,10 @@ Partial Class frmViewmember
     Friend WithEvents Label3 As Label
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents cboAccountType As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents btnSearch As Button
+    Friend WithEvents btnSearchByName As Button
     Friend WithEvents dgvConn As DataGridView
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
@@ -307,4 +306,5 @@ Partial Class frmViewmember
     Friend WithEvents Column16 As DataGridViewTextBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents Column17 As DataGridViewTextBoxColumn
+    Friend WithEvents btnSearchByAccount As Button
 End Class

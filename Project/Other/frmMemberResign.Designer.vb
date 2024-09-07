@@ -46,8 +46,11 @@ Partial Class frmMemberResign
         Me.Label13 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.txtGuarantor = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtSearchMember
@@ -280,12 +283,33 @@ Partial Class frmMemberResign
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.Label14)
+        Me.GroupBox3.Controls.Add(Me.txtGuarantor)
         Me.GroupBox3.Location = New System.Drawing.Point(12, 386)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(776, 100)
         Me.GroupBox3.TabIndex = 11
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "ภาระค้ำประกัน"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(16, 41)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(104, 24)
+        Me.Label14.TabIndex = 0
+        Me.Label14.Text = "ภาระค้ำประกัน :"
+        '
+        'txtGuarantor
+        '
+        Me.txtGuarantor.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtGuarantor.Location = New System.Drawing.Point(126, 38)
+        Me.txtGuarantor.Name = "txtGuarantor"
+        Me.txtGuarantor.ReadOnly = True
+        Me.txtGuarantor.Size = New System.Drawing.Size(204, 31)
+        Me.txtGuarantor.TabIndex = 1
         '
         'frmMemberResign
         '
@@ -303,6 +327,8 @@ Partial Class frmMemberResign
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -331,4 +357,6 @@ Partial Class frmMemberResign
     Friend WithEvents Label13 As Label
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Label14 As Label
+    Friend WithEvents txtGuarantor As TextBox
 End Class
