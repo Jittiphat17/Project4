@@ -39,6 +39,9 @@ Public Class frmEditExpense
     End Sub
 
     Private Sub ConfigureDataGridView()
+        ' ใช้ Guna2DataGridView พร้อมตั้งค่าธีม
+        dgvExpenses.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Dark
+
         ' ตั้งค่าฟอนต์และสีของ DataGridView
         dgvExpenses.DefaultCellStyle.Font = New Font("Tahoma", 10)
         dgvExpenses.DefaultCellStyle.BackColor = Color.White
@@ -48,6 +51,12 @@ Public Class frmEditExpense
         dgvExpenses.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy
         dgvExpenses.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
         dgvExpenses.EnableHeadersVisualStyles = False
+
+        ' เปิดการใช้งาน ScrollBars
+        dgvExpenses.ScrollBars = ScrollBars.Both
+
+        ' ปิดการตั้งค่า AutoSizeColumnMode
+        dgvExpenses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
 
         ' ตั้งชื่อหัวตารางเป็นภาษาไทย
         If dgvExpenses.Columns.Contains("ex_id") Then
@@ -71,6 +80,9 @@ Public Class frmEditExpense
     End Sub
 
     Private Sub ConfigureDetailsDataGridView()
+        ' ใช้ Guna2DataGridView สำหรับรายละเอียดรายจ่าย
+        dgvExpenseDetails.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Dark
+
         ' ตั้งค่าฟอนต์และสีของ DataGridView สำหรับรายละเอียดรายจ่าย
         dgvExpenseDetails.DefaultCellStyle.Font = New Font("Tahoma", 10)
         dgvExpenseDetails.DefaultCellStyle.BackColor = Color.White
@@ -80,6 +92,9 @@ Public Class frmEditExpense
         dgvExpenseDetails.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy
         dgvExpenseDetails.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
         dgvExpenseDetails.EnableHeadersVisualStyles = False
+
+        ' เปิดการใช้งาน ScrollBars
+        dgvExpenseDetails.ScrollBars = ScrollBars.Both
 
         ' อนุญาตให้แก้ไขข้อมูลใน DataGridView
         dgvExpenseDetails.ReadOnly = False
@@ -100,6 +115,7 @@ Public Class frmEditExpense
             dgvExpenseDetails.Columns("exd_amount").ReadOnly = False
         End If
     End Sub
+
 
     Private Sub LoadExpenses()
         Try

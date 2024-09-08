@@ -8,67 +8,96 @@ Public Class frmEditContract
         SetupAutoComplete() ' ตั้งค่า Autocomplete สำหรับฟิลด์ค้นหา
         LoadAccounts() ' โหลดข้อมูลบัญชีใน ComboBox แต่ไม่เลือกค่าใดๆ
         LoadGuarantorList() ' โหลดข้อมูลผู้ค้ำประกันใน ComboBox
-        ConfigureDataGridView() ' เรียกใช้ฟังก์ชันเพื่อตั้งค่าการแสดงผลของ DataGridView
+        ConfigureDataGridView() ' เรียกใช้ฟังก์ชันเพื่อตั้งค่าการแสดงผลของ Guna2DataGridView
         cmbAccount.SelectedIndex = -1 ' ตั้งค่า ComboBox ให้ไม่เลือกค่าใด ๆ เริ่มต้น
-        ' ตั้งค่า ComboBox ผู้ค้ำให้ไม่เลือกค่าใด ๆ เริ่มต้น
         cmbGuarantor1.SelectedIndex = -1
         cmbGuarantor2.SelectedIndex = -1
         cmbGuarantor3.SelectedIndex = -1
-        ' ตั้งค่าฟิลด์ที่ไม่ต้องการให้แก้ไขเป็น ReadOnly
         txtContractID.ReadOnly = True
         txtContractInterest.ReadOnly = True
-        ' ฟิลด์ที่อนุญาตให้แก้ไขได้
         txtContractAmount.ReadOnly = False
         dtpContractDate.Enabled = True
         cmbAccount.Enabled = True
     End Sub
 
-
     Private Sub ConfigureDataGridView()
-        ' ตั้งค่าฟอนต์และสีของ DataGridView
-        dgvContracts.DefaultCellStyle.Font = New Font("Tahoma", 10)
+        ' ใช้ Guna2DataGridView พร้อมตั้งค่า Theme
+        dgvContracts.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Dark
+
+        ' เปิดการใช้งาน ScrollBars
+        dgvContracts.ScrollBars = ScrollBars.Both ' ทั้งแนวนอนและแนวตั้ง
+
+        ' ปิดการตั้งค่า AutoSizeColumnMode
+        dgvContracts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None
+
+        ' ตั้งค่าฟอนต์และสีสำหรับ DefaultCellStyle
+        dgvContracts.DefaultCellStyle.Font = New Font("Fc minimal", 15)
         dgvContracts.DefaultCellStyle.BackColor = Color.White
         dgvContracts.DefaultCellStyle.ForeColor = Color.Black
         dgvContracts.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray
-        dgvContracts.ColumnHeadersDefaultCellStyle.Font = New Font("Tahoma", 10, FontStyle.Bold)
+        dgvContracts.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black
+
+        ' ตั้งค่าฟอนต์และสีสำหรับ ColumnHeaders
+        dgvContracts.ColumnHeadersDefaultCellStyle.Font = New Font("Fc minimal", 10, FontStyle.Bold)
         dgvContracts.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy
         dgvContracts.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
-        dgvContracts.EnableHeadersVisualStyles = False
 
-        ' แสดงหัวตาราง
+        ' เปิดใช้หัวตาราง
+        dgvContracts.EnableHeadersVisualStyles = False
         dgvContracts.ColumnHeadersVisible = True
 
-        ' ตั้งชื่อหัวตารางเป็นภาษาไทย
+        ' ตั้งชื่อหัวตารางและกำหนดรูปแบบ
         If dgvContracts.Columns.Contains("con_id") Then
             dgvContracts.Columns("con_id").HeaderText = "รหัสสัญญา"
+            dgvContracts.Columns("con_id").Width = 50 ' กำหนดความกว้างคอลัมน์
         End If
+
         If dgvContracts.Columns.Contains("m_id") Then
             dgvContracts.Columns("m_id").HeaderText = "รหัสสมาชิก"
+            dgvContracts.Columns("m_id").Width = 50
         End If
+
         If dgvContracts.Columns.Contains("con_details") Then
             dgvContracts.Columns("con_details").HeaderText = "รายละเอียดผู้ทำสัญญา"
+            dgvContracts.Columns("con_details").Width = 200
         End If
+
         If dgvContracts.Columns.Contains("con_amount") Then
             dgvContracts.Columns("con_amount").HeaderText = "จำนวนเงิน"
-            dgvContracts.Columns("con_amount").DefaultCellStyle.Format = "N0"
+            dgvContracts.Columns("con_amount").DefaultCellStyle.Format = "N0" ' กำหนดรูปแบบตัวเลข
             dgvContracts.Columns("con_amount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         End If
+
         If dgvContracts.Columns.Contains("con_interest") Then
             dgvContracts.Columns("con_interest").HeaderText = "ดอกเบี้ย"
-            dgvContracts.Columns("con_interest").DefaultCellStyle.Format = "N2"
+            dgvContracts.Columns("con_interest").DefaultCellStyle.Format = "N2" ' รูปแบบทศนิยม 2 ตำแหน่ง
             dgvContracts.Columns("con_interest").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         End If
+
         If dgvContracts.Columns.Contains("con_permonth") Then
             dgvContracts.Columns("con_permonth").HeaderText = "จำนวนต่อเดือน"
         End If
+
         If dgvContracts.Columns.Contains("con_date") Then
             dgvContracts.Columns("con_date").HeaderText = "วันที่ทำรายการ"
-            dgvContracts.Columns("con_date").DefaultCellStyle.Format = "dd/MM/yyyy"
+            dgvContracts.Columns("con_date").DefaultCellStyle.Format = "dd/MM/yyyy" ' รูปแบบวันที่
         End If
+
         If dgvContracts.Columns.Contains("acc_name") Then
             dgvContracts.Columns("acc_name").HeaderText = "ชื่อบัญชี"
         End If
+
+        ' ตั้งชื่อหัวตารางสำหรับ GuarantorNames เป็นภาษาไทย
+        If dgvContracts.Columns.Contains("GuarantorNames") Then
+            dgvContracts.Columns("GuarantorNames").HeaderText = "ชื่อผู้ค้ำประกัน"
+            dgvContracts.Columns("GuarantorNames").Width = 150 ' ตั้งค่าความกว้างคอลัมน์
+        End If
+
+        ' เปิดการเลื่อนแถบ (ScrollBars)
+        dgvContracts.ScrollBars = ScrollBars.Both ' เปิดทั้งแถบเลื่อนแนวนอนและแนวตั้ง
     End Sub
+
+
 
     Private Sub SetupAutoComplete()
         txtSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend
@@ -95,11 +124,11 @@ Public Class frmEditContract
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         SearchContracts()
     End Sub
+
     Private Sub SearchContracts()
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
-            ' คำสั่ง SQL JOIN เพื่อดึงข้อมูลสัญญาและบัญชี
             Dim searchQuery As String = "SELECT c.con_id, c.m_id, c.con_details, c.con_amount, c.con_interest, " &
                                     "c.con_permonth, c.con_date, a.acc_name " &
                                     "FROM (Contract c " &
@@ -112,10 +141,8 @@ Public Class frmEditContract
             Dim table As New DataTable()
             adapter.Fill(table)
 
-            ' เพิ่มคอลัมน์สำหรับชื่อผู้ค้ำประกัน
             table.Columns.Add("GuarantorNames", GetType(String))
 
-            ' ดึงชื่อผู้ค้ำประกันจากฐานข้อมูลและรวมชื่อ
             For Each row As DataRow In table.Rows
                 Dim conId As String = row("con_id").ToString()
                 Dim guarantorNames As String = GetGuarantorNames(conId)
@@ -124,40 +151,6 @@ Public Class frmEditContract
 
             dgvContracts.DataSource = table
 
-            ' ตั้งชื่อหัวตารางเป็นภาษาไทย
-            If dgvContracts.Columns.Contains("con_id") Then
-                dgvContracts.Columns("con_id").HeaderText = "รหัสสัญญา"
-            End If
-            If dgvContracts.Columns.Contains("m_id") Then
-                dgvContracts.Columns("m_id").HeaderText = "รหัสสมาชิก"
-            End If
-            If dgvContracts.Columns.Contains("con_details") Then
-                dgvContracts.Columns("con_details").HeaderText = "รายละเอียดผู้ทำสัญญา"
-            End If
-            If dgvContracts.Columns.Contains("con_amount") Then
-                dgvContracts.Columns("con_amount").HeaderText = "จำนวนเงิน"
-                dgvContracts.Columns("con_amount").DefaultCellStyle.Format = "N0"
-                dgvContracts.Columns("con_amount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            End If
-            If dgvContracts.Columns.Contains("con_interest") Then
-                dgvContracts.Columns("con_interest").HeaderText = "ดอกเบี้ย"
-                dgvContracts.Columns("con_interest").DefaultCellStyle.Format = "N2"
-                dgvContracts.Columns("con_interest").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            End If
-            If dgvContracts.Columns.Contains("con_permonth") Then
-                dgvContracts.Columns("con_permonth").HeaderText = "จำนวนต่อเดือน"
-            End If
-            If dgvContracts.Columns.Contains("con_date") Then
-                dgvContracts.Columns("con_date").HeaderText = "วันที่ทำรายการ"
-                dgvContracts.Columns("con_date").DefaultCellStyle.Format = "dd/MM/yyyy"
-            End If
-            If dgvContracts.Columns.Contains("acc_name") Then
-                dgvContracts.Columns("acc_name").HeaderText = "ชื่อบัญชี"
-            End If
-            If dgvContracts.Columns.Contains("GuarantorNames") Then
-                dgvContracts.Columns("GuarantorNames").HeaderText = "ชื่อผู้ค้ำประกัน"
-            End If
-
         Catch ex As Exception
             MessageBox.Show("Error searching contracts: " & ex.Message)
         Finally
@@ -165,7 +158,6 @@ Public Class frmEditContract
         End Try
     End Sub
 
-    ' ฟังก์ชันเพื่อดึงชื่อผู้ค้ำประกันและรวมชื่อเป็นสตริง
     Private Function GetGuarantorNames(conId As String) As String
         Dim guarantorNames As New List(Of String)
 
@@ -193,14 +185,12 @@ Public Class frmEditContract
         Return String.Join(", ", guarantorNames)
     End Function
 
-
-
     Private Sub dgvContracts_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvContracts.CellDoubleClick
         If e.RowIndex >= 0 Then
             Dim selectedContractID As String = dgvContracts.Rows(e.RowIndex).Cells("con_id").Value.ToString()
             contractID = selectedContractID
             LoadContractDetails()
-            LoadGuarantorDetails() ' โหลดข้อมูลผู้ค้ำประกันด้วย
+            LoadGuarantorDetails()
         End If
     End Sub
 
@@ -215,22 +205,17 @@ Public Class frmEditContract
 
             If reader.HasRows Then
                 reader.Read()
-                txtContractID.Text = If(reader.IsDBNull(reader.GetOrdinal("con_id")), String.Empty, reader("con_id").ToString())
-                txtContractAmount.Text = If(reader.IsDBNull(reader.GetOrdinal("con_amount")), String.Empty, reader("con_amount").ToString())
-                txtContractInterest.Text = If(reader.IsDBNull(reader.GetOrdinal("con_interest")), String.Empty, reader("con_interest").ToString())
-                dtpContractDate.Value = If(reader.IsDBNull(reader.GetOrdinal("con_date")), DateTime.Now, Convert.ToDateTime(reader("con_date")))
+                txtContractID.Text = reader("con_id").ToString()
+                txtContractAmount.Text = reader("con_amount").ToString()
+                txtContractInterest.Text = reader("con_interest").ToString()
+                dtpContractDate.Value = Convert.ToDateTime(reader("con_date"))
 
-                ' ตรวจสอบและตั้งค่า acc_id ใน ComboBox
                 If Not reader.IsDBNull(reader.GetOrdinal("acc_id")) Then
                     Dim accountId As String = reader("acc_id").ToString()
                     If cmbAccount.Items.Cast(Of DataRowView)().Any(Function(item) item("acc_id").ToString() = accountId) Then
                         cmbAccount.SelectedValue = accountId
-                    Else
-                        MessageBox.Show("The account ID is not found in the available accounts.")
                     End If
                 End If
-            Else
-                MessageBox.Show("No contract details found for the given ID.")
             End If
 
             reader.Close()
@@ -255,20 +240,18 @@ Public Class frmEditContract
             Dim guarantorCount As Integer = 0
 
             While reader.Read()
-                Dim guarantorName As String = reader("m_name").ToString()
-                Dim guarantorID As String = reader("m_id").ToString()
                 guarantorCount += 1
 
                 Select Case guarantorCount
                     Case 1
-                        cmbGuarantor1.Text = guarantorName
-                        cmbGuarantor1.Tag = guarantorID ' เก็บ ID ไว้ใน Tag ของ ComboBox
+                        cmbGuarantor1.Text = reader("m_name").ToString()
+                        cmbGuarantor1.Tag = reader("m_id").ToString()
                     Case 2
-                        cmbGuarantor2.Text = guarantorName
-                        cmbGuarantor2.Tag = guarantorID
+                        cmbGuarantor2.Text = reader("m_name").ToString()
+                        cmbGuarantor2.Tag = reader("m_id").ToString()
                     Case 3
-                        cmbGuarantor3.Text = guarantorName
-                        cmbGuarantor3.Tag = guarantorID
+                        cmbGuarantor3.Text = reader("m_name").ToString()
+                        cmbGuarantor3.Tag = reader("m_id").ToString()
                 End Select
             End While
 
@@ -280,8 +263,6 @@ Public Class frmEditContract
             conn.Close()
         End Try
     End Sub
-
-
 
     Private Sub LoadAccounts()
         Try
@@ -295,7 +276,7 @@ Public Class frmEditContract
                 cmbAccount.DataSource = table
                 cmbAccount.DisplayMember = "acc_name"
                 cmbAccount.ValueMember = "acc_id"
-                cmbAccount.SelectedIndex = -1 ' ไม่มีการเลือกค่าใด ๆ เริ่มต้น
+                cmbAccount.SelectedIndex = -1
             Else
                 MessageBox.Show("No data available in Account table.")
             End If
@@ -315,11 +296,10 @@ Public Class frmEditContract
             Dim table As New DataTable()
             adapter.Fill(table)
 
-            ' Bind data to ComboBox
             cmbGuarantor1.DataSource = table.Copy()
             cmbGuarantor1.DisplayMember = "m_name"
             cmbGuarantor1.ValueMember = "m_id"
-            cmbGuarantor1.SelectedIndex = -1 ' ตั้งค่าให้ไม่เลือกค่าเริ่มต้น
+            cmbGuarantor1.SelectedIndex = -1
 
             cmbGuarantor2.DataSource = table.Copy()
             cmbGuarantor2.DisplayMember = "m_name"
@@ -337,10 +317,6 @@ Public Class frmEditContract
             conn.Close()
         End Try
     End Sub
-
-
-
-
     ' ฟังก์ชันสำหรับคำนวณยอดชำระรายเดือน
     Private Function CalculateMonthlyPayment(principal As Decimal, annualInterestRate As Decimal, totalPayments As Integer) As Decimal
         Dim monthlyInterestRate As Decimal = annualInterestRate / 12 / 100
@@ -407,11 +383,33 @@ Public Class frmEditContract
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
+            ' ดึง m_id ของผู้กู้จากตาราง Contract
+            Dim borrowerMID As String = ""
+            Dim selectBorrowerQuery As String = "SELECT m_id FROM Contract WHERE con_id = @con_id"
+            Using selectCmd As New OleDbCommand(selectBorrowerQuery, conn)
+                selectCmd.Parameters.AddWithValue("@con_id", contractID)
+                borrowerMID = Convert.ToString(selectCmd.ExecuteScalar())
+            End Using
+
             ' ลบข้อมูลผู้ค้ำประกันที่มีอยู่ทั้งหมดก่อน
             Dim deleteGuarantorQuery As String = "DELETE FROM Guarantor WHERE con_id = @con_id"
             Dim cmdDeleteGuarantor As New OleDbCommand(deleteGuarantorQuery, conn)
             cmdDeleteGuarantor.Parameters.AddWithValue("@con_id", contractID)
             cmdDeleteGuarantor.ExecuteNonQuery()
+
+            ' ตรวจสอบว่ามีผู้ค้ำประกันซ้ำกับผู้กู้หรือไม่
+            If cmbGuarantor1.SelectedIndex <> -1 AndAlso cmbGuarantor1.SelectedValue.ToString() = borrowerMID Then
+                MessageBox.Show("ผู้ค้ำประกันไม่สามารถเป็นผู้กู้ได้.")
+                Return ' หยุดการทำงาน
+            End If
+            If cmbGuarantor2.SelectedIndex <> -1 AndAlso cmbGuarantor2.SelectedValue.ToString() = borrowerMID Then
+                MessageBox.Show("ผู้ค้ำประกันไม่สามารถเป็นผู้กู้ได้.")
+                Return ' หยุดการทำงาน
+            End If
+            If cmbGuarantor3.SelectedIndex <> -1 AndAlso cmbGuarantor3.SelectedValue.ToString() = borrowerMID Then
+                MessageBox.Show("ผู้ค้ำประกันไม่สามารถเป็นผู้กู้ได้.")
+                Return ' หยุดการทำงาน
+            End If
 
             ' เพิ่มข้อมูลผู้ค้ำประกันใหม่จาก ComboBox
             If cmbGuarantor1.SelectedIndex <> -1 Then
@@ -432,6 +430,7 @@ Public Class frmEditContract
             conn.Close()
         End Try
     End Sub
+
 
     Private Sub InsertGuarantor(guarantorID As String)
         Dim insertGuarantorQuery As String = "INSERT INTO Guarantor (con_id, m_id) VALUES (@con_id, @m_id)"

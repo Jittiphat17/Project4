@@ -2,7 +2,7 @@
 Imports System.Globalization
 Imports Guna.UI2.WinForms
 Imports Microsoft.Reporting.WinForms
-Public Class Form2
+Public Class frmBrrow
     Private Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
     Private cmd As OleDbCommand
     Private strSQL As String

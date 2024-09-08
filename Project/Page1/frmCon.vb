@@ -59,9 +59,9 @@ Public Class frmCon
         Try
             ' นิยามคำสั่ง SQL เพื่อค้นหาข้อมูลการชำระเงินที่เกี่ยวข้องกับสัญญา
             Dim strSQL As String = "SELECT p.payment_id, p.con_id, p.payment_date, p.payment_amount, s.status_name " &
-                                   "FROM Payment p " &
-                                   "INNER JOIN Status s ON p.status_id = s.status_id " &
-                                   "WHERE p.con_id = @contractNumber"
+                               "FROM Payment p " &
+                               "INNER JOIN Status s ON p.status_id = s.status_id " &
+                               "WHERE p.con_id = @contractNumber"
             Dim cmd As New OleDbCommand(strSQL, Conn)
             cmd.Parameters.AddWithValue("@contractNumber", contractNumber)
 
@@ -74,15 +74,20 @@ Public Class frmCon
             Dim adapter As New OleDbDataAdapter(cmd)
             adapter.Fill(dt)
 
-            ' แสดงข้อมูลการชำระเงินใน DataGridView
+            ' แสดงข้อมูลการชำระเงินใน Guna2DataGridView
             dgvPayments.DataSource = dt
 
-            ' ตั้งค่า ComboBoxColumn สำหรับสถานะการชำระเงิน
+            ' ลบคอลัมน์สถานะเดิมหากมีอยู่แล้ว
+            If dgvPayments.Columns.Contains("สถานะการชำระ") Then
+                dgvPayments.Columns.Remove("สถานะการชำระ")
+            End If
+
+            ' สร้าง Guna2ComboBoxColumn สำหรับสถานะการชำระเงิน
             Dim statusColumn As New DataGridViewComboBoxColumn()
             statusColumn.Name = "สถานะการชำระ"
             statusColumn.HeaderText = "สถานะการชำระ"
             statusColumn.DataPropertyName = "status_name"
-            statusColumn.DataSource = GetStatusList()
+            statusColumn.DataSource = GetStatusList() ' ฟังก์ชันที่คืนค่า DataTable หรือ List ของสถานะการชำระเงิน
             statusColumn.DisplayMember = "status_name"
             statusColumn.ValueMember = "status_name"
             dgvPayments.Columns.Add(statusColumn)
@@ -96,6 +101,14 @@ Public Class frmCon
             dgvPayments.Columns("payment_date").HeaderText = "วันที่ต้องชำระ"
             dgvPayments.Columns("payment_amount").HeaderText = "จำนวนเงิน"
             dgvPayments.Columns("สถานะการชำระ").HeaderText = "สถานะการชำระ"
+
+            ' ตั้งค่าเพิ่มเติมสำหรับ Guna2DataGridView เช่น สีตัวอักษร สีพื้นหลัง ฯลฯ
+            dgvPayments.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Dark
+            dgvPayments.DefaultCellStyle.Font = New Font("Fc minimal", 15)
+            dgvPayments.DefaultCellStyle.BackColor = Color.White
+            dgvPayments.DefaultCellStyle.ForeColor = Color.Black
+            dgvPayments.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray
+            dgvPayments.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black
 
         Catch ex As Exception
             MessageBox.Show("เกิดข้อผิดพลาด: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)

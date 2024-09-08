@@ -163,7 +163,7 @@ Public Class frmMain
     End Sub
 
     Private Sub ทำสญญาToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ทำสญญาToolStripMenuItem.Click
-        Dim frm As New Form2
+        Dim frm As New frmBrrow
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub
