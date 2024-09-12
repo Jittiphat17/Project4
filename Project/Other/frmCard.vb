@@ -1,5 +1,6 @@
 ﻿Imports ThaiNationalIDCard
 Imports System.ComponentModel
+Imports System.Globalization
 Public Class frmCard
     Dim bgWorker As New BackgroundWorker
 
@@ -49,19 +50,26 @@ Public Class frmCard
         Call SetupScreen()
         If Not GetReader() Then Return
         btnRead.Enabled = False
-        '/
-        ProgressBar1.Style = ProgressBarStyle.Marquee
-        ProgressBar1.Visible = True
-        '// BackGroundWorker
-        bgWorker.RunWorkerAsync()
+
+        If Not bgWorker.IsBusy Then
+            ProgressBar1.Style = ProgressBarStyle.Marquee
+            ProgressBar1.Visible = True
+            bgWorker.RunWorkerAsync()
+        Else
+            MessageBox.Show("Process is already running. Please wait for it to complete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 
     Private Sub bgWorker_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs)
         Try
-            '// -------------------------------------------
+            '// ตรวจสอบการยกเลิก
+            If bgWorker.CancellationPending Then
+                e.Cancel = True
+                Return
+            End If
+
             '// โค้ดส่วนของการอ่านข้อมูลบัตรประชาชน
             Dim ID As New ThaiIDCard
-            Refresh()
             Dim Personal As Personal = ID.readAllPhoto
             If Not IsNothing(Personal) Then
                 With Personal
@@ -69,16 +77,67 @@ Public Class frmCard
                     txtPreFixThai.Text = .Th_Prefix
                     txtPrefixEng.Text = .En_Prefix
                     txtFirstNameThai.Text = .Th_Firstname
-                    txtLastnameThai.Text = .Th_Lastname
+                    txtLastNameThai.Text = .Th_Lastname
                     txtFirstNameEng.Text = .En_Firstname
                     txtLastNameEng.Text = .En_Lastname
-                    txtBirthDate.Text = Format(CDate(.Birthday.ToString), "dd/MM/yyyy")
+                    Try
+                        If Not String.IsNullOrWhiteSpace(.Birthday.ToString()) Then
+                            Dim birthDateString As String = .Birthday.ToString()
+
+                            ' แสดงข้อมูลวันเกิดดิบ (Raw) จากบัตร เพื่อดูรูปแบบที่แท้จริง
+                            MessageBox.Show("Raw birthday data: " & birthDateString)
+
+                            ' เพิ่มรูปแบบวันที่ใหม่สำหรับการตรวจสอบ
+                            Dim formats() As String = {"d MMM yyyy", "d MMMM yyyy", "dd/MM/yyyy", "dd-MM-yyyy", "yyyy-MM-dd", "yyyy/MM/dd", "yyyyMMdd", "dd MMM yyyy h:mm:ss tt"}
+
+                            Dim birthDate As DateTime
+                            ' ตรวจสอบหลายรูปแบบของวันที่ และลองแปลง
+                            If DateTime.TryParseExact(birthDateString, formats, New System.Globalization.CultureInfo("th-TH"), DateTimeStyles.None, birthDate) Then
+                                ' ถ้าเป็นปีพุทธศักราช ให้ลบ 543
+                                If birthDate.Year > 2500 Then
+                                    birthDate = birthDate.AddYears(-543)
+                                End If
+                                txtBirthDate.Text = birthDate.ToString("dd/MM/yyyy")
+                            Else
+                                MessageBox.Show("Birthday format is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            End If
+                        Else
+                            txtBirthDate.Text = "N/A"
+                        End If
+                    Catch ex As Exception
+                        MessageBox.Show("Invalid date format. Please check the date format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+
+
                     '// คำนวณอายุ
-                    If Not IsNothing(txtBirthDate.Text) Then lblAge.Text = CalcDate(txtBirthDate.Text, Now())
-                    '// 1 = ชาย, 2 = หญิง (นำไปแปลงค่าเพศในฟังค์ชั่นก่อน)
+                    If Not String.IsNullOrWhiteSpace(txtBirthDate.Text) AndAlso txtBirthDate.Text <> "N/A" Then
+                        lblAge.Text = CalcDate(Convert.ToDateTime(txtBirthDate.Text), Now())
+                    End If
+
+                    '// 1 = ชาย, 2 = หญิง
                     txtSex.Text = CheckSex(.Sex, txtSex).ToString
-                    txtIssueDate.Text = Format(CDate(.Issue.ToString), "dd/MM/yyyy")
-                    txtExpireDate.Text = Format(CDate(.Expire.ToString), "dd/MM/yyyy")
+
+                    ' แก้ไขปีพุทธศักราชเป็นคริสต์ศักราชในวันออกบัตรและวันหมดอายุ
+                    Try
+                        If Not String.IsNullOrWhiteSpace(.Issue.ToString()) Then
+                            ' ใช้ DateTime แปลงวันที่เป็น string ก่อนทำการแยก
+                            Dim issueDate As DateTime = .Issue
+                            txtIssueDate.Text = issueDate.ToString("dd/MM/yyyy")
+                        Else
+                            txtIssueDate.Text = "N/A"
+                        End If
+
+                        If Not String.IsNullOrWhiteSpace(.Expire.ToString()) Then
+                            ' ใช้ DateTime แปลงวันที่เป็น string ก่อนทำการแยก
+                            Dim expireDate As DateTime = .Expire
+                            txtExpireDate.Text = expireDate.ToString("dd/MM/yyyy")
+                        Else
+                            txtExpireDate.Text = "N/A"
+                        End If
+                    Catch ex As Exception
+                        MessageBox.Show("Invalid issue or expire date format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End Try
+
                     '// ที่อยู่
                     txtHouseNo.Text = .addrHouseNo
                     txtVillageNo.Text = .addrVillageNo
@@ -90,8 +149,6 @@ Public Class frmCard
                     '// รูปภาพ
                     picData.Image = .PhotoBitmap
                 End With
-                '// -------------------------------------------
-                '//
             ElseIf (ID.ErrorCode() > 0) Then
                 MessageBox.Show(ID.Error)
             Else
@@ -103,25 +160,27 @@ Public Class frmCard
         btnRead.Enabled = True
     End Sub
 
-    '// Reading complete.
+
     Private Sub bgWorker_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs)
         ProgressBar1.Visible = False
-        'MessageBox.Show("Done Complete.", "Report Status", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs) Handles btnExit.Click
+        If bgWorker.IsBusy Then
+            bgWorker.CancelAsync()
+        End If
     End Sub
 
     Function CheckSex(ByVal sex As Byte, ByRef txt As TextBox) As String
-        '// เก็บค่าตัวเลขไว้ใน Tag เผื่อไว้ตอนไปเก็บลงในฐานข้อมูล [กำหนดให้ ชาย=1 หญิง=2]
         txt.Tag = sex
         If sex = 1 Then
-            CheckSex = "ชาย"
+            Return "ชาย"
         Else
-            CheckSex = "หญิง"
+            Return "หญิง"
         End If
     End Function
 
-    '// เคลียร์หน้าจอทั้งหมด
     Sub SetupScreen()
-        '// หรือสั่งลูปเคลียร์ TextBox Control ทั้งหมดที่มีอยู่บนฟอร์ม
         For Each tb As TextBox In Me.GroupBox1.Controls.OfType(Of TextBox)()
             tb.Clear()
         Next
@@ -134,34 +193,22 @@ Public Class frmCard
 
     Private Sub frmSmartCard_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         Me.Dispose()
-        GC.SuppressFinalize(Me)
-        Application.Exit()
     End Sub
 
-    ' / --------------------------------------------------------------------------------
-    ' / ฟังค์ชั่นในการคำนวณหาความแตกต่างระหว่างวันเดือนปี (คำนวณหาอายุ)
-    ' / คัดลอกโค้ดทั้งหมดมาจาก VB6
+    ' / คำนวณหาอายุ
     Public Function CalcDate(sDate As Date, eDate As Date) As String
         Dim vDays As Integer
         Dim vMonths As Integer
         Dim vYears As Integer
-        '/ Parameters:
-        '/    sDate - ค่าวันเดือนปีเกิด (หรือวันเดือนปีที่ต้องการคำนวณหา)
-        '/    eDate - คำนวณเทียบกับวันเดือนปีปัจจุบัน (Now())
-        '/ Results:
-        '/    vYears - เก็บค่าความแตกต่างของจำนวนปี
-        '/    vMonths - เก็บค่าความแตกต่างของจำนวนเดือน
-        '/    vDays - เก็บค่าความแตกต่างของจำนวนวัน
 
-        '/ หาความแตกต่างของจำนวนเดือน
         vMonths = DateDiff("m", sDate, eDate)
         vDays = DateDiff("d", DateAdd("m", vMonths, sDate), eDate)
         If vDays < 0 Then
             vMonths = vMonths - 1
             vDays = DateDiff("d", DateAdd("m", vMonths, sDate), eDate)
         End If
-        vYears = vMonths \ 12 ' หารตัดเศษก็จะได้จำนวนปี
-        vMonths = vMonths Mod 12 ' การหารเอาเศษ โดยจะมีค่าระหว่าง 0, 1, 2, ... 11 ไม่มีทางเท่ากับ หรือ มากกว่า 12
-        CalcDate = "อายุ: " & vYears & " ปี " & vMonths & " เดือน " & vDays & " วัน."
+        vYears = vMonths \ 12
+        vMonths = vMonths Mod 12
+        Return "อายุ: " & vYears & " ปี " & vMonths & " เดือน " & vDays & " วัน."
     End Function
 End Class

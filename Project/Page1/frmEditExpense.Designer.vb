@@ -112,7 +112,7 @@ Partial Class frmEditExpense
         Me.Guna2GroupBox2.Name = "Guna2GroupBox2"
         Me.Guna2GroupBox2.Size = New System.Drawing.Size(1110, 157)
         Me.Guna2GroupBox2.TabIndex = 27
-        Me.Guna2GroupBox2.Text = "Guna2GroupBox1"
+        Me.Guna2GroupBox2.Text = "รายละเอียดรายจ่าย"
         '
         'Label13
         '
@@ -301,7 +301,7 @@ Partial Class frmEditExpense
         Me.Guna2GroupBox1.Name = "Guna2GroupBox1"
         Me.Guna2GroupBox1.Size = New System.Drawing.Size(1110, 157)
         Me.Guna2GroupBox1.TabIndex = 28
-        Me.Guna2GroupBox1.Text = "Guna2GroupBox1"
+        Me.Guna2GroupBox1.Text = "รายจ่าย"
         '
         'Label12
         '

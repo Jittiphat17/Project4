@@ -2,10 +2,10 @@
 
 Public Class frmImport
     Private Sub btnImport_Click(sender As Object, e As EventArgs) Handles btnImport.Click
-        Dim RestoreLocation As String = Application.StartupPath & "\db_test.mdb"
+        Dim RestoreLocation As String = Application.StartupPath & "\db_banmai1.accdb"
 
         Dim OFD As New OpenFileDialog
-        OFD.Filter = "Access Files|*.mdb"
+        OFD.Filter = "Access Files|*.accdb"
 
         ' ตรวจสอบว่าผู้ใช้เลือกไฟล์หรือไม่
         If OFD.ShowDialog() = Windows.Forms.DialogResult.OK Then

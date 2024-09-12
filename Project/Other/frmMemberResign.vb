@@ -1,10 +1,11 @@
 ﻿Imports System.Data.OleDb
+Imports Guna.UI2.WinForms
 
 Public Class frmMemberResign
     Private Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
 
     Private Sub frmMemberResign_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' ตั้งค่า TextAlign ให้กับ TextBox ที่ต้องการ
+        ' ตั้งค่า TextAlign ให้กับ Guna2TextBox ที่ต้องการ
         txtBeforeTotalSaving.TextAlign = HorizontalAlignment.Right
         txtTotalSaving.TextAlign = HorizontalAlignment.Right
         txtLoanAccount1.TextAlign = HorizontalAlignment.Right
@@ -15,7 +16,7 @@ Public Class frmMemberResign
         LoadMemberData() ' โหลดข้อมูลสมาชิกเพื่อทำ AutoComplete
     End Sub
 
-
+    ' Method to load member data for AutoComplete in Guna2TextBox
     Private Sub LoadMemberData()
         Try
             Conn.Open()
@@ -45,6 +46,7 @@ Public Class frmMemberResign
         End If
     End Sub
 
+    ' Method to search for member details and display them in Guna2TextBoxes
     Private Sub SearchMemberDetails(memberName As String)
         Try
             Conn.Open()
@@ -110,7 +112,7 @@ Public Class frmMemberResign
             End While
             contractReader.Close()
 
-            ' แสดงยอดเงินกู้ใน TextBox ที่เกี่ยวข้อง
+            ' แสดงยอดเงินกู้ใน Guna2TextBox ที่เกี่ยวข้อง
             txtLoanAccount1.Text = totalLoanAccount1.ToString("N2")
             txtLoanSaving.Text = totalLoanSaving.ToString("N2")
             txtLoanPublic.Text = totalLoanPublic.ToString("N2")
@@ -125,8 +127,4 @@ Public Class frmMemberResign
             Conn.Close()
         End Try
     End Sub
-
-
-
-
 End Class

@@ -39,6 +39,7 @@ Partial Class frmMain
         Me.ตารางเงนกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_inc = New System.Windows.Forms.ToolStripMenuItem()
         Me.บนทกรายรบToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.แกไขรายรบToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_report = New System.Windows.Forms.ToolStripMenuItem()
         Me.รายงานสญญาเงนกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_other = New System.Windows.Forms.ToolStripMenuItem()
@@ -181,7 +182,7 @@ Partial Class frmMain
         'tsm_inc
         '
         Me.tsm_inc.AutoSize = False
-        Me.tsm_inc.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.บนทกรายรบToolStripMenuItem})
+        Me.tsm_inc.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.บนทกรายรบToolStripMenuItem, Me.แกไขรายรบToolStripMenuItem})
         Me.tsm_inc.Name = "tsm_inc"
         Me.tsm_inc.Size = New System.Drawing.Size(150, 50)
         Me.tsm_inc.Text = "รายรับ"
@@ -191,6 +192,12 @@ Partial Class frmMain
         Me.บนทกรายรบToolStripMenuItem.Name = "บนทกรายรบToolStripMenuItem"
         Me.บนทกรายรบToolStripMenuItem.Size = New System.Drawing.Size(192, 32)
         Me.บนทกรายรบToolStripMenuItem.Text = "บันทึกรายรับ"
+        '
+        'แกไขรายรบToolStripMenuItem
+        '
+        Me.แกไขรายรบToolStripMenuItem.Name = "แกไขรายรบToolStripMenuItem"
+        Me.แกไขรายรบToolStripMenuItem.Size = New System.Drawing.Size(192, 32)
+        Me.แกไขรายรบToolStripMenuItem.Text = "แก้ไขรายรับ"
         '
         'tsm_report
         '
@@ -431,7 +438,7 @@ Partial Class frmMain
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "หนักหลัก"
+        Me.Text = "y"
         Me.Guna2Panel1.ResumeLayout(False)
         Me.Guna2Panel1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
@@ -491,4 +498,5 @@ Partial Class frmMain
     Friend WithEvents Guna2GroupBox1 As Guna.UI2.WinForms.Guna2GroupBox
     Friend WithEvents lbCount As Label
     Friend WithEvents Guna2ControlBox1 As Guna.UI2.WinForms.Guna2ControlBox
+    Friend WithEvents แกไขรายรบToolStripMenuItem As ToolStripMenuItem
 End Class

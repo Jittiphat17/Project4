@@ -135,13 +135,7 @@ Public Class frmMain
     End Sub
 
 
-    ' เมนู
-    Private Sub รบเงนToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim frm As New frmIncome()
-        ' เพิ่มการเชื่อมต่อ FormClosed event เพื่อรีเฟรชหน้าหลักเมื่อปิดฟอร์ม
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
+
 
     Private Sub ออกจากระบบToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -174,11 +168,6 @@ Public Class frmMain
         frm.ShowDialog()
     End Sub
 
-    Private Sub บนทกคาใชจายToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles บนทกคาใชจายToolStripMenuItem.Click
-        Dim frm As New frmExpense()
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
 
     Private Sub แกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles แกToolStripMenuItem.Click
         Dim frm As New frmEditExpense
@@ -193,12 +182,7 @@ Public Class frmMain
         frm.ShowDialog()
     End Sub
 
-    Private Sub บนทกรายรบToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles บนทกรายรบToolStripMenuItem.Click
-        Dim frm As New frmIncome()
-        ' เพิ่มการเชื่อมต่อ FormClosed event เพื่อรีเฟรชหน้าหลักเมื่อปิดฟอร์ม
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
+
 
     Private Sub รายงานสญญาเงนกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles รายงานสญญาเงนกToolStripMenuItem.Click
         Dim frm As New frmSearch
@@ -243,18 +227,37 @@ Public Class frmMain
     End Sub
 
     Private Sub จดการสทธToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles จดการสทธToolStripMenuItem.Click
-        Dim frm As New frmManage()
+        Dim frm As New frmManageUser
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub
 
+
+    Private Sub แกไขรายรบToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles แกไขรายรบToolStripMenuItem.Click
+        Dim frm As New frmEditIncome
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+
+
     Private Sub ออกจากระบบToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles ออกจากระบบToolStripMenuItem.Click
-        Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to log out?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         ' ตรวจสอบว่าผู้ใช้คลิก Yes หรือไม่
         If result = DialogResult.Yes Then
-            ' ออกจากแอปพลิเคชัน
-            Application.Exit()
+            ' ซ่อนฟอร์มปัจจุบัน
+            Me.Hide()
+
+            ' แสดง Form1 (หน้าล็อกอินหรือหน้าแรก)
+            Dim form1 As New Form1()
+            form1.Show()
         End If
+    End Sub
+
+    Private Sub บนทกรายรบToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles บนทกรายรบToolStripMenuItem.Click
+        Dim frm As New frmIncomePayment
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
     End Sub
 End Class

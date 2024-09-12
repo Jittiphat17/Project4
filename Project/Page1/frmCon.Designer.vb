@@ -258,6 +258,7 @@ Partial Class frmCon
         Me.txtAmount.SelectedText = ""
         Me.txtAmount.Size = New System.Drawing.Size(200, 36)
         Me.txtAmount.TabIndex = 0
+        Me.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtDetails
         '

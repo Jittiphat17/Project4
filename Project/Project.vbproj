@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\BlazorColorPicker.3.1.1\build\BlazorColorPicker.props" Condition="Exists('..\packages\BlazorColorPicker.3.1.1\build\BlazorColorPicker.props')" />
   <Import Project="..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props" Condition="Exists('..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -274,28 +273,22 @@
     <Compile Include="Other\frmCard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Other\frmEditUser.Designer.vb">
-      <DependentUpon>frmEditUser.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Other\frmEditUser.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Other\frmImport.Designer.vb">
       <DependentUpon>frmImport.vb</DependentUpon>
     </Compile>
     <Compile Include="Other\frmImport.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Other\frmManage.Designer.vb">
-      <DependentUpon>frmManage.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Other\frmManage.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Other\frmManageMembers.Designer.vb">
       <DependentUpon>frmManageMembers.vb</DependentUpon>
     </Compile>
     <Compile Include="Other\frmManageMembers.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Other\frmManageUser.Designer.vb">
+      <DependentUpon>frmManageUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Other\frmManageUser.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Other\frmMemberResign.Designer.vb">
@@ -334,22 +327,22 @@
     <Compile Include="Page1\frmEditExpense.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Page1\frmExpense.Designer.vb">
-      <DependentUpon>frmExpense.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Page1\frmExpense.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Page1\frmSearch.Designer.vb">
       <DependentUpon>frmSearch.vb</DependentUpon>
     </Compile>
     <Compile Include="Page1\frmSearch.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Page2\frmIncome.Designer.vb">
-      <DependentUpon>frmIncome.vb</DependentUpon>
+    <Compile Include="Page2\frmEditIncome.Designer.vb">
+      <DependentUpon>frmEditIncome.vb</DependentUpon>
     </Compile>
-    <Compile Include="Page2\frmIncome.vb">
+    <Compile Include="Page2\frmEditIncome.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Page2\frmIncomePayment.Designer.vb">
+      <DependentUpon>frmIncomePayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Page2\frmIncomePayment.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -372,17 +365,14 @@
     <EmbeddedResource Include="Other\frmCard.resx">
       <DependentUpon>frmCard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Other\frmEditUser.resx">
-      <DependentUpon>frmEditUser.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Other\frmImport.resx">
       <DependentUpon>frmImport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Other\frmManage.resx">
-      <DependentUpon>frmManage.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Other\frmManageMembers.resx">
       <DependentUpon>frmManageMembers.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Other\frmManageUser.resx">
+      <DependentUpon>frmManageUser.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Other\frmMemberResign.resx">
       <DependentUpon>frmMemberResign.vb</DependentUpon>
@@ -402,14 +392,14 @@
     <EmbeddedResource Include="Page1\frmEditExpense.resx">
       <DependentUpon>frmEditExpense.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Page1\frmExpense.resx">
-      <DependentUpon>frmExpense.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Page1\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Page2\frmIncome.resx">
-      <DependentUpon>frmIncome.vb</DependentUpon>
+    <EmbeddedResource Include="Page2\frmEditIncome.resx">
+      <DependentUpon>frmEditIncome.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page2\frmIncomePayment.resx">
+      <DependentUpon>frmIncomePayment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="report\GuarantorReport.rdlc" />
     <EmbeddedResource Include="report\GuarantorReport1.rdlc" />
@@ -447,6 +437,5 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props'))" />
-    <Error Condition="!Exists('..\packages\BlazorColorPicker.3.1.1\build\BlazorColorPicker.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BlazorColorPicker.3.1.1\build\BlazorColorPicker.props'))" />
   </Target>
 </Project>

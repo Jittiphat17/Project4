@@ -327,6 +327,37 @@ Public Class frmBrrow
                                 accountDetailsCmd.Parameters.AddWithValue("@m_id", borrowerId)
                                 accountDetailsCmd.ExecuteNonQuery()
                             End Using
+
+                            ' Insert into Expense table
+                            strSQL = "INSERT INTO Expense (ex_name, ex_detail, ex_description, ex_date, ex_amount, acc_id) VALUES (@ex_name, @ex_detail, @ex_description, @ex_date, @ex_amount, @acc_id)"
+                            Using cmdExpense As New OleDbCommand(strSQL, conn)
+                                cmdExpense.Parameters.AddWithValue("@ex_name", borrowerName)  ' ชื่อผู้กู้
+                                cmdExpense.Parameters.AddWithValue("@ex_detail", row.Cells("รายละเอียดผู้กู้").Value.ToString())  ' รายละเอียดผู้กู้
+                                cmdExpense.Parameters.AddWithValue("@ex_description", "เงินกู้ยืมสำหรับ " & borrowerName)  ' คำอธิบาย
+                                cmdExpense.Parameters.AddWithValue("@ex_date", transactionDate)  ' วันที่ทำรายการ
+                                cmdExpense.Parameters.AddWithValue("@ex_amount", loanAmount)  ' จำนวนเงินที่กู้
+                                cmdExpense.Parameters.AddWithValue("@acc_id", acc_id)  ' รหัสบัญชี
+
+                                cmdExpense.ExecuteNonQuery()
+
+                                ' ดึง ex_id จากตาราง Expense
+                                cmdExpense.CommandText = "SELECT @@IDENTITY"
+                                Dim ex_id As Integer = Convert.ToInt32(cmdExpense.ExecuteScalar())
+
+                                ' ดึงชื่อบัญชีจาก DataGridView แทน ComboBox
+                                Dim accountNameFromGrid As String = row.Cells("แหล่งจ่าย").Value.ToString() ' ดึงค่าชื่อบัญชีจาก DataGridView
+
+                                ' Insert into Expense_Details table
+                                strSQL = "INSERT INTO Expense_Details (exd_nameacc, exd_amount, ex_id) VALUES (@exd_nameacc, @exd_amount, @ex_id)"
+                                Using cmdExpenseDetails As New OleDbCommand(strSQL, conn)
+                                    cmdExpenseDetails.Parameters.AddWithValue("@exd_nameacc", accountNameFromGrid)  ' ชื่อบัญชีจาก DataGridView
+                                    cmdExpenseDetails.Parameters.AddWithValue("@exd_amount", loanAmount)  ' จำนวนเงิน
+                                    cmdExpenseDetails.Parameters.AddWithValue("@ex_id", ex_id)  ' รหัส ex_id จากตาราง Expense
+
+                                    cmdExpenseDetails.ExecuteNonQuery()
+                                End Using
+                            End Using
+
                         End Using
                     End If
                 Next
@@ -341,6 +372,7 @@ Public Class frmBrrow
             MessageBox.Show(ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 
 
 

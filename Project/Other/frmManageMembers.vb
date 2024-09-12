@@ -91,7 +91,7 @@ Public Class frmManageMembers
         txtBeginning.Clear()
         txtAccountname.Clear()
         txtAccountnum.Clear()
-        txtAge.Clear()
+
 
         cmbGender.Items.Clear()
         cmbGender.Items.Add("เลือกคำนำหน้า")
@@ -219,7 +219,7 @@ Public Class frmManageMembers
                 dtpBirth.Value = DateTime.Now
             End If
 
-            txtAge.Text = If(row.Cells("m_age").Value IsNot Nothing, row.Cells("m_age").Value.ToString(), String.Empty)
+
             txtThaiid.Text = If(row.Cells("m_thaiid").Value IsNot Nothing, row.Cells("m_thaiid").Value.ToString(), String.Empty)
             txtJob.Text = If(row.Cells("m_job").Value IsNot Nothing, row.Cells("m_job").Value.ToString(), String.Empty)
             txtAddress.Text = If(row.Cells("m_address").Value IsNot Nothing, row.Cells("m_address").Value.ToString(), String.Empty)
@@ -237,14 +237,18 @@ Public Class frmManageMembers
 
     Private Function CalculateAge(birthDate As String) As Integer
         Dim birthDateObj As Date
-        If DateTime.TryParseExact(birthDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, birthDateObj) Then
+        ' ตรวจสอบการแปลงวันที่โดยเพิ่มรูปแบบหลายแบบ
+        Dim formats() As String = {"dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd"}
+
+        If DateTime.TryParseExact(birthDate, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, birthDateObj) Then
             Dim age As Integer = DateTime.Now.Year - birthDateObj.Year
             If DateTime.Now < birthDateObj.AddYears(age) Then age -= 1
             Return age
         Else
-            Return 0
+            Return 0 ' หากไม่สามารถแปลงวันเกิดได้ คืนค่า 0
         End If
     End Function
+
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         ClearAllData()

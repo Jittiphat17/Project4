@@ -41,9 +41,9 @@ Partial Class frmCard
         Me.txtAmphur = New System.Windows.Forms.TextBox()
         Me.txtProvince = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblAge = New System.Windows.Forms.Label()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.picData = New System.Windows.Forms.PictureBox()
-        Me.lblAge = New System.Windows.Forms.Label()
         Me.btnRead = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
@@ -55,6 +55,7 @@ Partial Class frmCard
         Me.txtIDCard.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIDCard.Location = New System.Drawing.Point(137, 42)
         Me.txtIDCard.Name = "txtIDCard"
+        Me.txtIDCard.ReadOnly = True
         Me.txtIDCard.Size = New System.Drawing.Size(234, 29)
         Me.txtIDCard.TabIndex = 0
         '
@@ -63,6 +64,7 @@ Partial Class frmCard
         Me.txtPreFixThai.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPreFixThai.Location = New System.Drawing.Point(137, 77)
         Me.txtPreFixThai.Name = "txtPreFixThai"
+        Me.txtPreFixThai.ReadOnly = True
         Me.txtPreFixThai.Size = New System.Drawing.Size(103, 29)
         Me.txtPreFixThai.TabIndex = 0
         '
@@ -71,6 +73,7 @@ Partial Class frmCard
         Me.txtPrefixEng.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrefixEng.Location = New System.Drawing.Point(369, 77)
         Me.txtPrefixEng.Name = "txtPrefixEng"
+        Me.txtPrefixEng.ReadOnly = True
         Me.txtPrefixEng.Size = New System.Drawing.Size(103, 29)
         Me.txtPrefixEng.TabIndex = 0
         '
@@ -79,6 +82,7 @@ Partial Class frmCard
         Me.txtFirstNameThai.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFirstNameThai.Location = New System.Drawing.Point(137, 113)
         Me.txtFirstNameThai.Name = "txtFirstNameThai"
+        Me.txtFirstNameThai.ReadOnly = True
         Me.txtFirstNameThai.Size = New System.Drawing.Size(335, 29)
         Me.txtFirstNameThai.TabIndex = 0
         '
@@ -87,6 +91,7 @@ Partial Class frmCard
         Me.txtLastNameThai.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLastNameThai.Location = New System.Drawing.Point(137, 148)
         Me.txtLastNameThai.Name = "txtLastNameThai"
+        Me.txtLastNameThai.ReadOnly = True
         Me.txtLastNameThai.Size = New System.Drawing.Size(335, 29)
         Me.txtLastNameThai.TabIndex = 0
         '
@@ -95,6 +100,7 @@ Partial Class frmCard
         Me.txtFirstNameEng.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFirstNameEng.Location = New System.Drawing.Point(137, 183)
         Me.txtFirstNameEng.Name = "txtFirstNameEng"
+        Me.txtFirstNameEng.ReadOnly = True
         Me.txtFirstNameEng.Size = New System.Drawing.Size(335, 29)
         Me.txtFirstNameEng.TabIndex = 0
         '
@@ -103,6 +109,7 @@ Partial Class frmCard
         Me.txtLastNameEng.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLastNameEng.Location = New System.Drawing.Point(137, 218)
         Me.txtLastNameEng.Name = "txtLastNameEng"
+        Me.txtLastNameEng.ReadOnly = True
         Me.txtLastNameEng.Size = New System.Drawing.Size(335, 29)
         Me.txtLastNameEng.TabIndex = 0
         '
@@ -111,6 +118,7 @@ Partial Class frmCard
         Me.txtBirthDate.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBirthDate.Location = New System.Drawing.Point(137, 253)
         Me.txtBirthDate.Name = "txtBirthDate"
+        Me.txtBirthDate.ReadOnly = True
         Me.txtBirthDate.Size = New System.Drawing.Size(164, 29)
         Me.txtBirthDate.TabIndex = 0
         '
@@ -119,6 +127,7 @@ Partial Class frmCard
         Me.txtSex.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSex.Location = New System.Drawing.Point(369, 253)
         Me.txtSex.Name = "txtSex"
+        Me.txtSex.ReadOnly = True
         Me.txtSex.Size = New System.Drawing.Size(103, 29)
         Me.txtSex.TabIndex = 0
         '
@@ -127,6 +136,7 @@ Partial Class frmCard
         Me.txtIssueDate.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIssueDate.Location = New System.Drawing.Point(137, 374)
         Me.txtIssueDate.Name = "txtIssueDate"
+        Me.txtIssueDate.ReadOnly = True
         Me.txtIssueDate.Size = New System.Drawing.Size(164, 29)
         Me.txtIssueDate.TabIndex = 0
         '
@@ -135,6 +145,7 @@ Partial Class frmCard
         Me.txtExpireDate.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtExpireDate.Location = New System.Drawing.Point(137, 409)
         Me.txtExpireDate.Name = "txtExpireDate"
+        Me.txtExpireDate.ReadOnly = True
         Me.txtExpireDate.Size = New System.Drawing.Size(164, 29)
         Me.txtExpireDate.TabIndex = 0
         '
@@ -143,6 +154,7 @@ Partial Class frmCard
         Me.txtHouseNo.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtHouseNo.Location = New System.Drawing.Point(137, 444)
         Me.txtHouseNo.Name = "txtHouseNo"
+        Me.txtHouseNo.ReadOnly = True
         Me.txtHouseNo.Size = New System.Drawing.Size(103, 29)
         Me.txtHouseNo.TabIndex = 0
         '
@@ -151,6 +163,7 @@ Partial Class frmCard
         Me.txtVillageNo.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtVillageNo.Location = New System.Drawing.Point(302, 444)
         Me.txtVillageNo.Name = "txtVillageNo"
+        Me.txtVillageNo.ReadOnly = True
         Me.txtVillageNo.Size = New System.Drawing.Size(103, 29)
         Me.txtVillageNo.TabIndex = 0
         '
@@ -159,6 +172,7 @@ Partial Class frmCard
         Me.txtLane.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLane.Location = New System.Drawing.Point(484, 444)
         Me.txtLane.Name = "txtLane"
+        Me.txtLane.ReadOnly = True
         Me.txtLane.Size = New System.Drawing.Size(103, 29)
         Me.txtLane.TabIndex = 0
         '
@@ -167,6 +181,7 @@ Partial Class frmCard
         Me.txtRoad.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtRoad.Location = New System.Drawing.Point(646, 444)
         Me.txtRoad.Name = "txtRoad"
+        Me.txtRoad.ReadOnly = True
         Me.txtRoad.Size = New System.Drawing.Size(103, 29)
         Me.txtRoad.TabIndex = 0
         '
@@ -175,6 +190,7 @@ Partial Class frmCard
         Me.txtTambol.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTambol.Location = New System.Drawing.Point(137, 479)
         Me.txtTambol.Name = "txtTambol"
+        Me.txtTambol.ReadOnly = True
         Me.txtTambol.Size = New System.Drawing.Size(164, 29)
         Me.txtTambol.TabIndex = 0
         '
@@ -183,6 +199,7 @@ Partial Class frmCard
         Me.txtAmphur.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAmphur.Location = New System.Drawing.Point(137, 514)
         Me.txtAmphur.Name = "txtAmphur"
+        Me.txtAmphur.ReadOnly = True
         Me.txtAmphur.Size = New System.Drawing.Size(164, 29)
         Me.txtAmphur.TabIndex = 0
         '
@@ -191,6 +208,7 @@ Partial Class frmCard
         Me.txtProvince.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtProvince.Location = New System.Drawing.Point(369, 514)
         Me.txtProvince.Name = "txtProvince"
+        Me.txtProvince.ReadOnly = True
         Me.txtProvince.Size = New System.Drawing.Size(164, 29)
         Me.txtProvince.TabIndex = 0
         '
@@ -225,6 +243,16 @@ Partial Class frmCard
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ข้อมูลบัตรประชาชน"
         '
+        'lblAge
+        '
+        Me.lblAge.AutoSize = True
+        Me.lblAge.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAge.Location = New System.Drawing.Point(133, 337)
+        Me.lblAge.Name = "lblAge"
+        Me.lblAge.Size = New System.Drawing.Size(55, 24)
+        Me.lblAge.TabIndex = 3
+        Me.lblAge.Text = "Label1"
+        '
         'ProgressBar1
         '
         Me.ProgressBar1.Location = New System.Drawing.Point(484, 42)
@@ -239,16 +267,6 @@ Partial Class frmCard
         Me.picData.Size = New System.Drawing.Size(307, 252)
         Me.picData.TabIndex = 1
         Me.picData.TabStop = False
-        '
-        'lblAge
-        '
-        Me.lblAge.AutoSize = True
-        Me.lblAge.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAge.Location = New System.Drawing.Point(133, 337)
-        Me.lblAge.Name = "lblAge"
-        Me.lblAge.Size = New System.Drawing.Size(55, 24)
-        Me.lblAge.TabIndex = 3
-        Me.lblAge.Text = "Label1"
         '
         'btnRead
         '

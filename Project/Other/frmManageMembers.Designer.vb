@@ -40,8 +40,6 @@ Partial Class frmManageMembers
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -50,7 +48,6 @@ Partial Class frmManageMembers
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtJob = New System.Windows.Forms.TextBox()
-        Me.txtAge = New System.Windows.Forms.TextBox()
         Me.txtnick = New System.Windows.Forms.TextBox()
         Me.txtOutstanding = New System.Windows.Forms.TextBox()
         Me.txtBeginning = New System.Windows.Forms.TextBox()
@@ -85,8 +82,6 @@ Partial Class frmManageMembers
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.Label11)
-        Me.GroupBox1.Controls.Add(Me.Label20)
-        Me.GroupBox1.Controls.Add(Me.Label19)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label3)
@@ -95,7 +90,6 @@ Partial Class frmManageMembers
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.txtJob)
-        Me.GroupBox1.Controls.Add(Me.txtAge)
         Me.GroupBox1.Controls.Add(Me.txtnick)
         Me.GroupBox1.Controls.Add(Me.txtOutstanding)
         Me.GroupBox1.Controls.Add(Me.txtBeginning)
@@ -277,26 +271,6 @@ Partial Class frmManageMembers
         Me.Label11.TabIndex = 1
         Me.Label11.Text = "สัญชาติ :"
         '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(447, 202)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(19, 24)
-        Me.Label20.TabIndex = 1
-        Me.Label20.Text = "ปี"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(333, 202)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(41, 24)
-        Me.Label19.TabIndex = 1
-        Me.Label19.Text = "อายุ :"
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -374,15 +348,6 @@ Partial Class frmManageMembers
         Me.txtJob.Name = "txtJob"
         Me.txtJob.Size = New System.Drawing.Size(111, 31)
         Me.txtJob.TabIndex = 0
-        '
-        'txtAge
-        '
-        Me.txtAge.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAge.Location = New System.Drawing.Point(386, 200)
-        Me.txtAge.Name = "txtAge"
-        Me.txtAge.ReadOnly = True
-        Me.txtAge.Size = New System.Drawing.Size(55, 31)
-        Me.txtAge.TabIndex = 0
         '
         'txtnick
         '
@@ -517,8 +482,6 @@ Partial Class frmManageMembers
     Friend WithEvents Label8 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Label19 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
@@ -533,7 +496,6 @@ Partial Class frmManageMembers
     Friend WithEvents Label9 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents txtJob As TextBox
-    Friend WithEvents txtAge As TextBox
     Friend WithEvents txtnick As TextBox
     Friend WithEvents txtOutstanding As TextBox
     Friend WithEvents txtBeginning As TextBox

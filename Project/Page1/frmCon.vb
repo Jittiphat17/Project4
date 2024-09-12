@@ -35,11 +35,11 @@ Public Class frmCon
             ' อ่านข้อมูลสัญญา
             Dim reader As OleDbDataReader = cmd.ExecuteReader()
             If reader.Read() Then
-                ' แสดงข้อมูลใน TextBox ต่าง ๆ
+                ' แสดงข้อมูลใน TextBox ต่าง ๆ และเพิ่มจุดทศนิยมสองตำแหน่งในจำนวนเงิน
                 txtContractNumber.Text = reader("con_id").ToString()
                 txtBorrowerName.Text = reader("m_name").ToString() ' ชื่อผู้กู้จากตาราง Member
                 txtDetails.Text = reader("con_details").ToString()
-                txtAmount.Text = reader("con_amount").ToString()
+                txtAmount.Text = Decimal.Parse(reader("con_amount").ToString()).ToString("N2") ' เพิ่มจุดทศนิยมสองตำแหน่ง
                 txtMonths.Text = reader("con_permonth").ToString()
                 txtTransactionDate.Text = DateTime.Parse(reader("con_date").ToString()).ToString("dd/MM/yyyy")
             Else
@@ -59,9 +59,9 @@ Public Class frmCon
         Try
             ' นิยามคำสั่ง SQL เพื่อค้นหาข้อมูลการชำระเงินที่เกี่ยวข้องกับสัญญา
             Dim strSQL As String = "SELECT p.payment_id, p.con_id, p.payment_date, p.payment_amount, s.status_name " &
-                               "FROM Payment p " &
-                               "INNER JOIN Status s ON p.status_id = s.status_id " &
-                               "WHERE p.con_id = @contractNumber"
+                           "FROM Payment p " &
+                           "INNER JOIN Status s ON p.status_id = s.status_id " &
+                           "WHERE p.con_id = @contractNumber"
             Dim cmd As New OleDbCommand(strSQL, Conn)
             cmd.Parameters.AddWithValue("@contractNumber", contractNumber)
 
@@ -102,6 +102,9 @@ Public Class frmCon
             dgvPayments.Columns("payment_amount").HeaderText = "จำนวนเงิน"
             dgvPayments.Columns("สถานะการชำระ").HeaderText = "สถานะการชำระ"
 
+            ' เพิ่มจุดทศนิยมสองตำแหน่งในคอลัมน์ "payment_amount"
+            dgvPayments.Columns("payment_amount").DefaultCellStyle.Format = "N2"
+
             ' ตั้งค่าเพิ่มเติมสำหรับ Guna2DataGridView เช่น สีตัวอักษร สีพื้นหลัง ฯลฯ
             dgvPayments.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Dark
             dgvPayments.DefaultCellStyle.Font = New Font("Fc minimal", 15)
@@ -117,6 +120,7 @@ Public Class frmCon
             Conn.Close()
         End Try
     End Sub
+
 
     ' ฟังก์ชันสำหรับดึงรายการสถานะการชำระจากฐานข้อมูล
     Private Function GetStatusList() As DataTable
