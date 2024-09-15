@@ -2,6 +2,7 @@
 Imports System.Globalization
 Imports Guna.UI2.WinForms
 Imports Microsoft.Reporting.WinForms
+
 Public Class frmBrrow
     Private Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
     Private cmd As OleDbCommand
@@ -16,7 +17,16 @@ Public Class frmBrrow
         LoadAutoCompleteData()
         LoadAccountData()
         LoadPerMData()
-        LoadPercenData()
+        LoadGuaranteeTypes() ' โหลดตัวเลือกการค้ำประกัน
+    End Sub
+    Private Sub LoadGuaranteeTypes()
+        ' เพิ่มตัวเลือกลงใน ComboBox สำหรับการค้ำประกัน
+        cbGuaranteeType.Items.Clear()
+        cbGuaranteeType.Items.Add("เลือกการค้ำประกัน")
+        cbGuaranteeType.Items.Add("ผู้ค้ำประกัน")
+        cbGuaranteeType.Items.Add("เงินในบัญชี")
+        cbGuaranteeType.Items.Add("อื่น ๆ")
+        cbGuaranteeType.SelectedIndex = 0 ' ตั้งค่าเป็นค่าเริ่มต้น
     End Sub
 
     Private Sub SetupDataGridView()
@@ -69,12 +79,6 @@ Public Class frmBrrow
         cbPerM.SelectedIndex = 0
     End Sub
 
-    Private Sub LoadPercenData()
-        cbPercen.Items.Clear()
-        cbPercen.Items.Add("0.9")
-        cbPercen.SelectedIndex = 0
-    End Sub
-
     Private Sub LoadAutoCompleteData()
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
             conn.Open()
@@ -96,7 +100,6 @@ Public Class frmBrrow
             End Using
         End Using
     End Sub
-
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs)
         Dim tb As Guna2TextBox = CType(sender, Guna2TextBox)
@@ -136,7 +139,6 @@ Public Class frmBrrow
         End Select
     End Function
 
-
     Private Sub Auto_id()
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
             conn.Open()
@@ -161,7 +163,6 @@ Public Class frmBrrow
 
         If cbAccount.Items.Count > 0 Then cbAccount.SelectedIndex = 0
         LoadPerMData()
-        LoadPercenData()
 
         dtpBirth.Value = DateTime.Today
         chkGuarantor.Checked = False
@@ -182,8 +183,20 @@ Public Class frmBrrow
 
         ' รับข้อมูลจากฟอร์ม
         Dim principal As Decimal = Decimal.Parse(txtMoney.Text)  ' จำนวนเงินกู้
-        Dim interestRate As Decimal = Decimal.Parse(cbPercen.SelectedItem.ToString())  ' อัตราดอกเบี้ยต่อปี
+        Dim interestRate As Decimal = Decimal.Parse(txtPercen.Text)  ' อัตราดอกเบี้ยต่อปี
         Dim totalPayments As Integer = Integer.Parse(cbPerM.SelectedItem.ToString().Replace("เดือน", "").Trim())  ' จำนวนเดือน
+
+        ' ตรวจสอบว่าเลือกประเภทการค้ำประกันอะไร
+        If cbGuaranteeType.SelectedItem.ToString() = "เงินในบัญชี" Then
+            ' ตรวจสอบเงินในบัญชีสัจจะของผู้กู้
+            Dim savingsBalance As Decimal = GetSavingsBalance(txtSearch.Text) ' ดึงข้อมูลเงินจากฐานข้อมูล
+            If savingsBalance >= principal Then
+                MessageBox.Show("สามารถใช้เงินในบัญชีค้ำประกันได้", "การค้ำประกัน", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("เงินในบัญชีไม่เพียงพอ ต้องใช้ผู้ค้ำ", "การค้ำประกัน", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+        End If
 
         ' คำนวณการชำระเงินรายเดือน
         Dim monthlyPayment As Decimal = CalculateMonthlyPayment(principal, interestRate, totalPayments)
@@ -200,7 +213,7 @@ Public Class frmBrrow
         String.Format("{0:n0} บาท", principal),   ' จำนวนเงินกู้
         cbAccount.SelectedItem.ToString(),  ' แหล่งจ่าย
         cbPerM.SelectedItem.ToString(),     ' จำนวนเดือน
-        cbPercen.SelectedItem.ToString(),   ' ดอกเบี้ย
+        txtPercen.Text,   ' ดอกเบี้ย
         dtpBirth.Value.ToString("dd/MM/yyyy"),  ' วันที่ทำรายการ
         If(chkGuarantor.Checked, txtSearch1.Text, ""), ' ผู้ค้ำที่ 1
         If(chkGuarantor.Checked, txtSearch2.Text, ""), ' ผู้ค้ำที่ 2
@@ -218,6 +231,23 @@ Public Class frmBrrow
         Auto_id()
     End Sub
 
+    Private Function GetSavingsBalance(borrowerAccountID As String) As Decimal
+        ' ฟังก์ชันดึงข้อมูลยอดเงินจากตารางรายรับ (Income)
+        Dim savingsBalance As Decimal = 0
+        Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
+            conn.Open()
+            strSQL = "SELECT SUM(inc_amount) FROM Income WHERE acc_id = @acc_id"
+            Using cmd As New OleDbCommand(strSQL, conn)
+                cmd.Parameters.AddWithValue("@acc_id", borrowerAccountID)
+                Dim result As Object = cmd.ExecuteScalar()
+                If result IsNot DBNull.Value Then
+                    savingsBalance = Convert.ToDecimal(result)
+                End If
+            End Using
+        End Using
+        Return savingsBalance
+    End Function
+
     Private Function IsDataComplete() As Boolean
         Return Not String.IsNullOrWhiteSpace(txtCid.Text) AndAlso
                Not String.IsNullOrWhiteSpace(txtSearch.Text) AndAlso
@@ -225,7 +255,7 @@ Public Class frmBrrow
                Not String.IsNullOrWhiteSpace(txtMoney.Text) AndAlso
                cbAccount.SelectedIndex > 0 AndAlso
                cbPerM.SelectedIndex > 0 AndAlso
-               cbPercen.SelectedIndex >= 0 AndAlso
+               Not String.IsNullOrWhiteSpace(txtPercen.Text) AndAlso
                (Not chkGuarantor.Checked OrElse
                 (Not String.IsNullOrWhiteSpace(txtSearch1.Text) AndAlso
                  Not String.IsNullOrWhiteSpace(txtDetail1.Text)))
@@ -373,9 +403,6 @@ Public Class frmBrrow
         End Try
     End Sub
 
-
-
-
     Private Function GetMemberIdByName(name As String) As Integer
         strSQL = "SELECT m_id FROM Member WHERE m_name = @m_name"
         Using cmd As New OleDbCommand(strSQL, Conn)
@@ -399,11 +426,14 @@ Public Class frmBrrow
         Return -1
     End Function
 
-    Private Function CalculateMonthlyPayment(principal As Decimal, annualInterestRate As Decimal, totalPayments As Integer) As Decimal
-        Dim monthlyInterestRate As Decimal = annualInterestRate / 12 / 100
-        Dim numerator As Decimal = principal * monthlyInterestRate
-        Dim denominator As Decimal = 1 - Math.Pow(1 + monthlyInterestRate, -totalPayments)
-        Dim monthlyPayment As Decimal = numerator / denominator
+    Private Function CalculateMonthlyPayment(principal As Decimal, monthlyInterestRate As Decimal, totalPayments As Integer) As Decimal
+        ' ดอกเบี้ยทั้งหมดที่ต้องจ่าย
+        Dim totalInterest As Decimal = principal * (monthlyInterestRate / 100) * totalPayments
+        ' เงินต้นรวมดอกเบี้ยทั้งหมด
+        Dim totalAmount As Decimal = principal + totalInterest
+        ' ผ่อนชำระต่อเดือน
+        Dim monthlyPayment As Decimal = totalAmount / totalPayments
         Return monthlyPayment
     End Function
+
 End Class

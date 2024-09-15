@@ -260,4 +260,17 @@ Public Class frmMain
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub
+
+    Private Sub รายรบToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles รายรบToolStripMenuItem.Click
+        Dim frm As New frmIncome
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub บนทกคาใชจายToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles บนทกคาใชจายToolStripMenuItem.Click
+        Dim frm As New frmExpense
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
 End Class

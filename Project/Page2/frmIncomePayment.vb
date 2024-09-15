@@ -197,70 +197,78 @@ Public Class frmIncomePayment
         End Using
     End Sub
 
-    Private Sub UpdateContractBalance(connection As OleDbConnection, transaction As OleDbTransaction, contractId As String, paymentAmount As Decimal)
-        If String.IsNullOrEmpty(contractId) Then
-            Throw New Exception("ไม่พบรหัสสัญญา") ' Contract ID not found
-        End If
-
-        Dim contractAmount As Decimal = 0
+    Private Sub UpdateContractBalance(connection As OleDbConnection, transaction As OleDbTransaction, memberId As Integer, paymentAmount As Decimal)
+        Dim beginningBalance As Decimal = 0
+        Dim outstandingBalance As Decimal = 0
         Dim totalPaid As Decimal = 0
 
-        ' Retrieve the contract amount
-        Dim getContractAmountSQL As String = "SELECT con_amount FROM Contract WHERE con_id = @con_id"
-        Using cmdGetContractAmount As New OleDbCommand(getContractAmountSQL, connection, transaction)
-            cmdGetContractAmount.Parameters.AddWithValue("@con_id", contractId)
-            Dim result = cmdGetContractAmount.ExecuteScalar()
-            If result IsNot Nothing AndAlso Not DBNull.Value.Equals(result) Then
-                contractAmount = Convert.ToDecimal(result)
+        Try
+            ' ดึงข้อมูลยอดยกมาและยอดค้างชำระจากตาราง Member
+            Dim getBalanceSQL As String = "SELECT m_beginning, m_outstanding FROM Member WHERE m_id = @m_id"
+            Using cmdGetBalance As New OleDbCommand(getBalanceSQL, connection, transaction)
+                cmdGetBalance.Parameters.AddWithValue("@m_id", memberId)
+                Using reader As OleDbDataReader = cmdGetBalance.ExecuteReader()
+                    If reader.Read() Then
+                        beginningBalance = If(reader("m_beginning") IsNot DBNull.Value, Convert.ToDecimal(reader("m_beginning")), 0)
+                        outstandingBalance = If(reader("m_outstanding") IsNot DBNull.Value, Convert.ToDecimal(reader("m_outstanding")), 0)
+                    End If
+                End Using
+            End Using
+
+            ' ยอดชำระใหม่ = ยอดชำระจากผู้ใช้ + ยอดค้างชำระ (ถ้ามี)
+            Dim newTotalPaid As Decimal = paymentAmount + outstandingBalance
+
+            ' คำนวณยอดชำระเกินหรือยอดขาด
+            If newTotalPaid > beginningBalance Then
+                ' ชำระเกิน
+                Dim overpaidAmount As Decimal = newTotalPaid - beginningBalance
+                MessageBox.Show($"ยอดชำระเกินจำนวน {overpaidAmount:N2} บาท จะถูกบันทึกเป็นยอดล่วงหน้า", "ข้อมูลถูกต้อง", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ' บันทึกยอดล่วงหน้า (เก็บใน m_beginning)
+                Dim updatePrepaidSQL As String = "UPDATE Member SET m_beginning = @m_beginning, m_outstanding = 0 WHERE m_id = @m_id"
+                Using cmdUpdatePrepaid As New OleDbCommand(updatePrepaidSQL, connection, transaction)
+                    cmdUpdatePrepaid.Parameters.AddWithValue("@m_beginning", overpaidAmount)
+                    cmdUpdatePrepaid.Parameters.AddWithValue("@m_id", memberId)
+                    cmdUpdatePrepaid.ExecuteNonQuery()
+                End Using
+
+            ElseIf newTotalPaid < beginningBalance Then
+                ' ชำระขาด
+                Dim underpaidAmount As Decimal = beginningBalance - newTotalPaid
+                MessageBox.Show($"ยอดชำระขาดจำนวน {underpaidAmount:N2} บาท จะถูกบันทึกเป็นยอดค้างชำระ", "ข้อมูลถูกต้อง", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+                ' บันทึกยอดค้างชำระ (เก็บใน m_outstanding)
+                Dim updateOutstandingSQL As String = "UPDATE Member SET m_outstanding = @m_outstanding WHERE m_id = @m_id"
+                Using cmdUpdateOutstanding As New OleDbCommand(updateOutstandingSQL, connection, transaction)
+                    cmdUpdateOutstanding.Parameters.AddWithValue("@m_outstanding", underpaidAmount)
+                    cmdUpdateOutstanding.Parameters.AddWithValue("@m_id", memberId)
+                    cmdUpdateOutstanding.ExecuteNonQuery()
+                End Using
+
             Else
-                Throw New Exception("ไม่พบข้อมูลสัญญา") ' Contract data not found
+                ' ชำระครบพอดี
+                MessageBox.Show("ยอดชำระครบพอดี", "ข้อมูลถูกต้อง", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ' บันทึกว่ามียอดค้างชำระเป็นศูนย์และยอดยกมาเป็นศูนย์
+                Dim resetBalanceSQL As String = "UPDATE Member SET m_beginning = 0, m_outstanding = 0 WHERE m_id = @m_id"
+                Using cmdResetBalance As New OleDbCommand(resetBalanceSQL, connection, transaction)
+                    cmdResetBalance.Parameters.AddWithValue("@m_id", memberId)
+                    cmdResetBalance.ExecuteNonQuery()
+                End Using
             End If
-        End Using
 
-        ' Retrieve the total amount paid
-        Dim getTotalPaidSQL As String = "SELECT IIf(SUM(payment_amount) Is Null, 0, SUM(payment_amount)) AS total_paid FROM Payment WHERE con_id = @con_id"
-        Using cmdGetTotalPaid As New OleDbCommand(getTotalPaidSQL, connection, transaction)
-            cmdGetTotalPaid.Parameters.AddWithValue("@con_id", contractId)
-            Dim result = cmdGetTotalPaid.ExecuteScalar()
-            If result IsNot Nothing AndAlso Not DBNull.Value.Equals(result) Then
-                totalPaid = Convert.ToDecimal(result)
-            End If
-        End Using
+            ' Commit Transaction หลังจากทุกอย่างอัปเดตเรียบร้อยแล้ว
+            transaction.Commit()
+            MessageBox.Show("Transaction บันทึกข้อมูลสำเร็จ")
 
-        ' Calculate the new total paid and remaining balance
-        Dim newTotalPaid As Decimal = totalPaid + paymentAmount
-        Dim remainingBalance As Decimal = contractAmount - newTotalPaid
-
-        If remainingBalance < 0 Then
-            Throw New Exception($"ยอดชำระเกินยอดตามสัญญา ยอดคงเหลือตามสัญญา: {(contractAmount - totalPaid):N2} บาท")
-        End If
-
-        ' Check if PaymentId is selected
-        Dim selectedInstallment = CType(cbInstallment.SelectedItem, InstallmentItem)
-        If selectedInstallment Is Nothing Then
-            Throw New Exception("ไม่พบการเลือกงวดการชำระเงิน") ' No installment selected
-        End If
-
-        ' Update payment details
-        Dim updatePaymentSQL As String = "UPDATE Payment SET payment_amount = @payment_amount WHERE payment_id = @payment_id"
-        Using cmdUpdatePayment As New OleDbCommand(updatePaymentSQL, connection, transaction)
-            cmdUpdatePayment.Parameters.AddWithValue("@payment_amount", paymentAmount)
-            cmdUpdatePayment.Parameters.AddWithValue("@payment_id", selectedInstallment.PaymentId)
-            Try
-                Dim rowsAffected = cmdUpdatePayment.ExecuteNonQuery()
-                If rowsAffected = 0 Then
-                    Throw New Exception("ไม่มีข้อมูลการชำระเงินที่ตรงกับ PaymentId") ' No matching payment data
-                End If
-            Catch ex As OleDbException
-                Throw New Exception("เกิดข้อผิดพลาดในการอัพเดทข้อมูลการชำระเงิน: " & ex.Message) ' Error updating payment info
-            End Try
-        End Using
-
-        ' Display payment summary
-        MessageBox.Show($"ชำระเงินแล้ว: {paymentAmount:N2} บาท" & vbNewLine &
-                    $"ยอดคงเหลือ: {remainingBalance:N2} บาท",
-                    "สรุปการชำระเงิน", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            ' Rollback ถ้ามีข้อผิดพลาด
+            transaction.Rollback()
+            MessageBox.Show("Transaction ล้มเหลว: " & ex.Message)
+        End Try
     End Sub
+
+
 
     Private Sub SavePayment(connection As OleDbConnection, transaction As OleDbTransaction)
         If cbInstallment.SelectedItem Is Nothing Then
@@ -315,10 +323,10 @@ Public Class frmIncomePayment
 
     Private Function ValidateInput() As Boolean
         If String.IsNullOrEmpty(txtContractId.Text) OrElse
-           String.IsNullOrEmpty(txtPaymentAmount.Text) OrElse
-           cbInstallment.SelectedIndex = -1 OrElse
-           cbPaymentStatus.SelectedIndex = -1 OrElse
-           cbAccount.SelectedIndex = -1 Then
+       String.IsNullOrEmpty(txtPaymentAmount.Text) OrElse
+       cbInstallment.SelectedIndex = -1 OrElse
+       cbPaymentStatus.SelectedIndex = -1 OrElse
+       cbAccount.SelectedIndex = -1 Then
             MessageBox.Show("กรุณากรอกข้อมูลให้ครบถ้วน", "ข้อมูลไม่ครบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return False
         End If
@@ -331,8 +339,9 @@ Public Class frmIncomePayment
                     Try
                         Dim remainingBalance = GetRemainingBalance(connection, transaction, txtContractId.Text)
                         If paymentAmount > remainingBalance Then
-                            MessageBox.Show($"ยอดชำระเกินยอดคงเหลือตามสัญญา ยอดคงเหลือ: {remainingBalance:N2} บาท", "ข้อมูลไม่ถูกต้อง", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                            Return False
+                            ' ยอดเกิน ให้อนุญาตและบันทึกเป็นยอดล่วงหน้า
+                            MessageBox.Show($"ยอดชำระเกิน: {paymentAmount - remainingBalance:N2} บาท จะถูกบันทึกเป็นยอดล่วงหน้า", "ข้อมูลถูกต้อง", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            ' อนุญาตให้ดำเนินการต่อ
                         End If
                     Catch ex As Exception
                         MessageBox.Show("เกิดข้อผิดพลาดในการตรวจสอบยอดคงเหลือ: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -349,6 +358,7 @@ Public Class frmIncomePayment
 
         Return True
     End Function
+
 
     Private Sub ClearForm()
         txtContractId.Clear()

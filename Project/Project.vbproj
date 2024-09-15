@@ -327,6 +327,12 @@
     <Compile Include="Page1\frmEditExpense.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Page1\frmExpense.Designer.vb">
+      <DependentUpon>frmExpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Page1\frmExpense.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Page1\frmSearch.Designer.vb">
       <DependentUpon>frmSearch.vb</DependentUpon>
     </Compile>
@@ -337,6 +343,12 @@
       <DependentUpon>frmEditIncome.vb</DependentUpon>
     </Compile>
     <Compile Include="Page2\frmEditIncome.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Page2\frmIncome.Designer.vb">
+      <DependentUpon>frmIncome.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Page2\frmIncome.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Page2\frmIncomePayment.Designer.vb">
@@ -391,6 +403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Page1\frmEditExpense.resx">
       <DependentUpon>frmEditExpense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page1\frmExpense.resx">
+      <DependentUpon>frmExpense.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Page1\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>
