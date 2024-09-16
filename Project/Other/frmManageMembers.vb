@@ -255,7 +255,7 @@ Public Class frmManageMembers
         Auto_id() ' Set new ID for new entry
     End Sub
 
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click, Button1.Click
         If String.IsNullOrEmpty(txtID.Text) Then
             MessageBox.Show("Please select a member to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return

@@ -286,7 +286,7 @@ Public Class frmIncomePayment
         End If
         statusId = CInt(cbPaymentStatus.SelectedValue)
 
-        ' อัพเดทข้อมูลการชำระเงิน
+        ' Update payment information
         Dim updatePaymentSQL As String = "UPDATE Payment SET payment_date = @payment_date, status_id = @status_id WHERE payment_id = @payment_id"
         Using cmdUpdatePayment As New OleDbCommand(updatePaymentSQL, connection, transaction)
             cmdUpdatePayment.Parameters.AddWithValue("@payment_date", paymentDate)
@@ -300,11 +300,12 @@ Public Class frmIncomePayment
             End Try
         End Using
 
-        ' ถ้าสถานะเป็น "ชำระแล้ว" ให้อัพเดทยอดการชำระเงิน
-        If statusId = 2 Then ' สมมติว่า status_id 2 คือ "ชำระแล้ว"
-            UpdateContractBalance(connection, transaction, txtContractId.Text, paymentAmount)
+        ' If payment status is "Paid", update the contract balance
+        If statusId = 2 Then ' Assume status_id 2 means "Paid"
+            UpdateContractBalance(connection, transaction, CInt(txtContractId.Text), paymentAmount)
         End If
     End Sub
+
 
     Private Function GetRemainingBalance(connection As OleDbConnection, transaction As OleDbTransaction, contractId As String) As Decimal
         Dim strSQL As String = "SELECT con_amount - IIf(SUM(payment_amount) Is Null, 0, SUM(payment_amount)) AS remaining_balance " &

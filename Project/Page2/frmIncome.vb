@@ -49,15 +49,6 @@ Public Class frmIncome
         colAmount.ValueType = GetType(Decimal)
         dgvIncomeDetails.Columns.Add(colAmount)
 
-        ' เพิ่มคอลัมน์สำหรับยอดเงินคงเหลือ
-        Dim colBalance As New DataGridViewTextBoxColumn()
-        colBalance.HeaderText = "ยอดเงินคงเหลือ"
-        colBalance.Name = "Balance"
-        colBalance.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        colBalance.DefaultCellStyle.Format = "N2"
-        colBalance.ValueType = GetType(Decimal)
-        dgvIncomeDetails.Columns.Add(colBalance)
-
         ' เพิ่มคอลัมน์ ComboBox สำหรับเลขที่สัญญา
         Dim colContractNumber As New DataGridViewComboBoxColumn()
         colContractNumber.HeaderText = "เลขที่สัญญา"
@@ -262,24 +253,23 @@ Public Class frmIncome
                     ' ดึง inc_id ล่าสุด
                     cmdIncome.CommandText = "SELECT @@IDENTITY"
                     Dim incId As Integer = CInt(cmdIncome.ExecuteScalar())
-                    ' บันทึกข้อมูลลงในตาราง Income_Details และหักยอดเงินคงเหลือ
+
+                    ' บันทึกข้อมูลลงในตาราง IncomeDetails และหักยอดเงินคงเหลือ
                     For Each row As DataGridViewRow In dgvIncomeDetails.Rows
                         If Not row.IsNewRow Then
                             Dim incomeType As String = If(row.Cells("IncomeType").Value, "").ToString()
-                            Dim contractNumber As String = If(row.Cells("ContractNumber").Value, DBNull.Value).ToString() ' เปลี่ยนจาก String.Empty เป็น DBNull.Value เพื่อให้สามารถว่างได้
+                            Dim contractNumber As String = If(row.Cells("ContractNumber").Value, "").ToString()
                             Dim amount As Decimal = Decimal.Parse(If(row.Cells("Amount").Value, 0).ToString())
 
-                            If Not String.IsNullOrEmpty(incomeType) Then ' ตรวจสอบแค่ประเภทของรายรับ
-                                ' หักยอดเงินคงเหลือก่อนถ้ามี contractNumber
-                                If Not String.IsNullOrEmpty(contractNumber) Then
-                                    DeductBalance(contractNumber, amount)
-                                End If
+                            If Not String.IsNullOrEmpty(incomeType) AndAlso Not String.IsNullOrEmpty(contractNumber) Then
+                                ' หักยอดเงินคงเหลือก่อน
+                                DeductBalance(contractNumber, amount)
 
                                 ' บันทึกข้อมูลลงในตาราง Income_Details
                                 Dim queryDetails As String = "INSERT INTO Income_Details (ind_accname, con_id, ind_amount, inc_id) VALUES (@ind_accname, @con_id, @ind_amount, @inc_id)"
                                 Using cmdDetails As New OleDbCommand(queryDetails, Conn)
                                     cmdDetails.Parameters.AddWithValue("@ind_accname", incomeType)
-                                    cmdDetails.Parameters.AddWithValue("@con_id", If(String.IsNullOrEmpty(contractNumber), DBNull.Value, contractNumber)) ' กำหนดให้ con_id เป็น DBNull.Value ถ้าไม่มีค่า
+                                    cmdDetails.Parameters.AddWithValue("@con_id", contractNumber)
                                     cmdDetails.Parameters.AddWithValue("@ind_amount", amount)
                                     cmdDetails.Parameters.AddWithValue("@inc_id", incId)
                                     cmdDetails.ExecuteNonQuery()
@@ -287,8 +277,6 @@ Public Class frmIncome
                             End If
                         End If
                     Next
-
-
                 End Using
             End Using
 
@@ -389,4 +377,52 @@ Public Class frmIncome
         btnSave.Enabled = True ' เปิดการใช้งานปุ่ม "บันทึก" เมื่อมีการเพิ่มรายการใหม่
         btnCalculate.Enabled = True ' เปิดการใช้งานปุ่ม "คำนวณ" เมื่อมีการเพิ่มรายการใหม่
     End Sub
+    Private Function SearchContractDetails(contractNumber As String) As String
+        Dim result As String = ""
+        Try
+            Using Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
+                Conn.Open()
+                Dim query As String = "SELECT c.con_id, c.con_amount, c.con_installment, " &
+                                      "(SELECT COUNT(*) FROM Income_Details WHERE con_id = c.con_id) AS payments_made, " &
+                                      "(SELECT SUM(ind_amount) FROM Income_Details WHERE con_id = c.con_id) AS total_paid " &
+                                      "FROM Contract c WHERE c.con_id = @contractNumber"
+                Dim cmd As New OleDbCommand(query, Conn)
+                cmd.Parameters.AddWithValue("@contractNumber", contractNumber)
+
+                Dim reader As OleDbDataReader = cmd.ExecuteReader()
+
+                If reader.Read() Then
+                    Dim contractAmount As Decimal = Convert.ToDecimal(reader("con_amount"))
+                    Dim installments As Integer = Convert.ToInt32(reader("con_installment"))
+                    Dim paymentsMade As Integer = Convert.ToInt32(reader("payments_made"))
+                    Dim totalPaid As Decimal = If(reader("total_paid") IsNot DBNull.Value, Convert.ToDecimal(reader("total_paid")), 0)
+                    Dim remainingBalance As Decimal = contractAmount - totalPaid
+                    Dim nextPayment As Decimal = If(remainingBalance > 0, Math.Min(remainingBalance, contractAmount / installments), 0)
+
+                    result = $"สัญญาเลขที่: {contractNumber}" & vbCrLf &
+                             $"จำนวนเงินทั้งหมด: {contractAmount:N2} บาท" & vbCrLf &
+                             $"จำนวนงวด: {paymentsMade}/{installments}" & vbCrLf &
+                             $"ยอดชำระแล้ว: {totalPaid:N2} บาท" & vbCrLf &
+                             $"ยอดคงเหลือ: {remainingBalance:N2} บาท" & vbCrLf &
+                             $"ยอดชำระงวดถัดไป: {nextPayment:N2} บาท"
+                Else
+                    result = "ไม่พบข้อมูลสัญญา"
+                End If
+            End Using
+        Catch ex As Exception
+            result = "เกิดข้อผิดพลาดในการค้นหาข้อมูลสัญญา: " & ex.Message
+        End Try
+        Return result
+    End Function
+    Private Sub btnSearchContract_Click(sender As Object, e As EventArgs) Handles btnSearchContract.Click
+        Dim contractNumber As String = btnSearchContract.Text.Trim()
+        If String.IsNullOrEmpty(contractNumber) Then
+            MessageBox.Show("กรุณากรอกเลขที่สัญญา", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim result As String = SearchContractDetails(contractNumber)
+        MessageBox.Show(result, "ข้อมูลสัญญา", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
 End Class

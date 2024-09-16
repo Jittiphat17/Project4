@@ -310,56 +310,96 @@ Public Class frmExpense
         printPreview.ShowDialog()
     End Sub
 
-    ' กำหนดการพิมพ์หน้าใบเสร็จ
     Private Sub printDoc_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printDoc.PrintPage
         Dim font As New Font("Arial", 10)
         Dim boldFont As New Font("Arial", 12, FontStyle.Bold)
-        Dim startX As Integer = 10
+        Dim headerFont As New Font("Arial", 14, FontStyle.Bold)
+        Dim startX As Integer
         Dim startY As Integer = 10
         Dim offset As Integer = 40
+        Dim lineHeight As Integer = 25 ' Standard line height for rows
 
-        ' ข้อมูลบริษัท
-        e.Graphics.DrawString("บริษัท อินเทลลิเจนท์ ดี.จี. จำกัด", boldFont, Brushes.Black, startX, startY)
-        offset += 20
-        e.Graphics.DrawString("เลขที่ 20/63 ถนนเจริญราษฎร์ ตำบล...", font, Brushes.Black, startX, startY + offset)
-        offset += 20
-        e.Graphics.DrawString("โทรศัพท์: 053-219535", font, Brushes.Black, startX, startY + offset)
+        ' Get the page width
+        Dim pageWidth As Integer = e.PageBounds.Width
 
-        ' ข้อมูลใบเสร็จ
+        ' ส่วนหัว (Header Section)
+        Dim headerText As String = "กองทุนหมู่บ้าน บ้านใหม่หลังมอ"
+        startX = (pageWidth - e.Graphics.MeasureString(headerText, headerFont).Width) / 2 ' Center the header text
+        e.Graphics.DrawString(headerText, headerFont, Brushes.Black, startX, startY)
+        offset += 30
+
+        Dim addressLine1 As String = "หมู่ที่ 14 ตำบลสุเทพ อำเภอเมืองเชียงใหม่ จังหวัดเชียงใหม่"
+        startX = (pageWidth - e.Graphics.MeasureString(addressLine1, font).Width) / 2 ' Center the address line
+        e.Graphics.DrawString(addressLine1, font, Brushes.Black, startX, startY + offset)
+        offset += 20
+
+        Dim phoneText As String = "โทรศัพท์: 053-219535"
+        startX = (pageWidth - e.Graphics.MeasureString(phoneText, font).Width) / 2 ' Center the phone number
+        e.Graphics.DrawString(phoneText, font, Brushes.Black, startX, startY + offset)
+        offset += 20
+
+        Dim addressLine2 As String = "66/2 หมู่ 14 ต.สุเทพ อ.เมืองเชียงใหม่ จ.เชียงใหม่ 50200"
+        startX = (pageWidth - e.Graphics.MeasureString(addressLine2, font).Width) / 2 ' Center the second address line
+        e.Graphics.DrawString(addressLine2, font, Brushes.Black, startX, startY + offset)
+
+        ' เว้นระยะระหว่างส่วนหัวและเนื้อหา
         offset += 40
-        e.Graphics.DrawString("ใบจ่ายค่าใช้จ่ายอื่นๆ", boldFont, Brushes.Black, startX, startY + offset)
-        offset += 20
-        e.Graphics.DrawString("เลขที่: " & txtExpId.Text, font, Brushes.Black, startX, startY + offset) ' ดึงเลขที่ใบเสร็จจากฟอร์ม
-        offset += 20
-        e.Graphics.DrawString("วันที่: " & dtpBirth.Value.ToShortDateString(), font, Brushes.Black, startX, startY + offset) ' ดึงวันที่จาก dtpBirth
 
-        ' รายละเอียดการจ่าย
-        offset += 40
-        e.Graphics.DrawString("รายละเอียด:", boldFont, Brushes.Black, startX, startY + offset)
+        ' รายละเอียดการจ่าย (Details Section)
+        Dim detailsTitle As String = "รายละเอียด:"
+        startX = (pageWidth - e.Graphics.MeasureString(detailsTitle, boldFont).Width) / 2 ' Center the details title
+        e.Graphics.DrawString(detailsTitle, boldFont, Brushes.Black, startX, startY + offset)
         offset += 20
-        e.Graphics.DrawString(txtDetails.Text, font, Brushes.Black, startX, startY + offset) ' ดึงรายละเอียดจาก txtDetails
 
-        ' ข้อมูลการชำระเงิน
-        offset += 40
-        e.Graphics.DrawString("คำอธิบาย: " & txtDescrip.Text, font, Brushes.Black, startX, startY + offset) ' ดึงคำอธิบายจาก txtDescrip
+        Dim memberIdText As String = "รหัสสมาชิก: " & txtMemberID.Text
+        startX = (pageWidth - e.Graphics.MeasureString(memberIdText, font).Width) / 2 ' Center the member ID
+        e.Graphics.DrawString(memberIdText, font, Brushes.Black, startX, startY + offset)
         offset += 20
-        e.Graphics.DrawString("บัญชี: " & cboDepositType.Text, font, Brushes.Black, startX, startY + offset) ' ดึงชื่อบัญชีจาก cboDepositType
-        offset += 20
-        e.Graphics.DrawString("จำนวนเงิน: " & txtAmount.Text & " บาท", font, Brushes.Black, startX, startY + offset) ' ดึงจำนวนเงินจาก txtAmount
 
-        ' เส้นแบ่ง
-        offset += 40
+        ' รายการในตาราง (Table Header)
+        Dim noText As String = "No."
+        Dim itemText As String = "รายการจ่าย"
+        Dim amountText As String = "จำนวนเงิน"
+
+        startX = (pageWidth - 500) / 2 ' Start at the middle of the page minus half the table width (assuming table is 500 units wide)
+        e.Graphics.DrawString(noText, boldFont, Brushes.Black, startX, startY + offset)
+        e.Graphics.DrawString(itemText, boldFont, Brushes.Black, startX + 100, startY + offset)
+        e.Graphics.DrawString(amountText, boldFont, Brushes.Black, startX + 400, startY + offset)
+
+        ' เส้นใต้หัวข้อ (Underline Table Header)
+        offset += lineHeight
         e.Graphics.DrawLine(Pens.Black, startX, startY + offset, startX + 500, startY + offset)
 
-        ' รวมยอดเงิน
-        offset += 20
-        e.Graphics.DrawString("รวมเป็นเงิน: " & txtAmount.Text & " บาท", boldFont, Brushes.Black, startX + 300, startY + offset) ' ดึงยอดรวมจาก txtAmount
+        ' Loop through DataGridView rows and print them
+        Dim rowIndex As Integer = 1
+        For Each row As DataGridViewRow In dgvExpenseDetails.Rows
+            If Not row.IsNewRow Then
+                offset += 5
+                e.Graphics.DrawString(rowIndex.ToString(), font, Brushes.Black, startX, startY + offset)
+                e.Graphics.DrawString(row.Cells("ExpenseType").Value.ToString(), font, Brushes.Black, startX + 100, startY + offset)
+                e.Graphics.DrawString(Decimal.Parse(row.Cells("Amount").Value.ToString()).ToString("N2") & " บาท", font, Brushes.Black, startX + 400, startY + offset)
 
-        ' ข้อมูลลายเซ็น
+                ' Move to next row
+                rowIndex += 1
+                offset += lineHeight
+                e.Graphics.DrawLine(Pens.Black, startX, startY + offset, startX + 500, startY + offset) ' Line under the row
+            End If
+        Next
+
+        ' รวมยอดเงิน (Total Amount Section)
+        offset += 40
+        Dim totalText As String = "รวมเป็นเงิน: " & lblTotalAmount.Text & " บาท"
+        startX = (pageWidth - e.Graphics.MeasureString(totalText, boldFont).Width) / 2 ' Center the total amount text
+        e.Graphics.DrawString(totalText, boldFont, Brushes.Black, startX, startY + offset)
+
+        ' เส้นแบ่งลายเซ็น (Line for signature section)
         offset += 60
-        e.Graphics.DrawString("ผู้รับเงิน", font, Brushes.Black, startX, startY + offset)
+        Dim signatureText As String = "ผู้รับเงิน"
+        startX = (pageWidth - e.Graphics.MeasureString(signatureText, font).Width) / 2 ' Center the signature line
+        e.Graphics.DrawString(signatureText, font, Brushes.Black, startX, startY + offset)
         e.Graphics.DrawString("..........................................", font, Brushes.Black, startX + 100, startY + offset)
     End Sub
+
 
 
 

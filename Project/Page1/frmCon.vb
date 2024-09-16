@@ -57,70 +57,133 @@ Public Class frmCon
     ' ฟังก์ชันสำหรับค้นหาข้อมูลการชำระเงิน
     Private Sub SearchPayments(contractNumber As String)
         Try
-            ' นิยามคำสั่ง SQL เพื่อค้นหาข้อมูลการชำระเงินที่เกี่ยวข้องกับสัญญา
+            ' SQL query to retrieve payment data
             Dim strSQL As String = "SELECT p.payment_id, p.con_id, p.payment_date, p.payment_amount, s.status_name " &
-                           "FROM Payment p " &
-                           "INNER JOIN Status s ON p.status_id = s.status_id " &
-                           "WHERE p.con_id = @contractNumber"
+                               "FROM Payment p " &
+                               "INNER JOIN Status s ON p.status_id = s.status_id " &
+                               "WHERE p.con_id = @contractNumber"
             Dim cmd As New OleDbCommand(strSQL, Conn)
             cmd.Parameters.AddWithValue("@contractNumber", contractNumber)
 
-            ' เปิดการเชื่อมต่อฐานข้อมูลหากยังไม่เปิด
+            ' เปิดการเชื่อมต่อ
             If Conn.State = ConnectionState.Open Then Conn.Close()
             Conn.Open()
 
-            ' สร้าง DataTable เพื่อเก็บข้อมูลการชำระเงิน
+            ' Create DataTable to hold the payment data
             Dim dt As New DataTable()
             Dim adapter As New OleDbDataAdapter(cmd)
             adapter.Fill(dt)
 
-            ' แสดงข้อมูลการชำระเงินใน Guna2DataGridView
-            dgvPayments.DataSource = dt
+            ' Get loan details for calculating the principal and interest
+            Dim contractDetails As DataTable = GetContractDetails(contractNumber)
+            If contractDetails.Rows.Count > 0 Then
+                Dim loanAmount As Decimal = Decimal.Parse(contractDetails.Rows(0)("con_amount").ToString())
+                Dim interestRate As Decimal = Decimal.Parse(contractDetails.Rows(0)("con_interest").ToString()) / 100
+                Dim totalPayments As Integer = Integer.Parse(contractDetails.Rows(0)("con_permonth").ToString())
 
-            ' ลบคอลัมน์สถานะเดิมหากมีอยู่แล้ว
-            If dgvPayments.Columns.Contains("สถานะการชำระ") Then
-                dgvPayments.Columns.Remove("สถานะการชำระ")
+                ' คำนวณการผ่อนชำระแบบเงินต้นคงที่
+                Dim fixedPaymentData As DataTable = CalculateFixedPayment(loanAmount, interestRate, totalPayments)
+
+                ' เพิ่มคอลัมน์ที่จำเป็นสำหรับการคำนวณเงินต้นและดอกเบี้ย
+                If Not dt.Columns.Contains("Principal") Then
+                    dt.Columns.Add("Principal", GetType(Decimal))
+                End If
+                If Not dt.Columns.Contains("Interest") Then
+                    dt.Columns.Add("Interest", GetType(Decimal))
+                End If
+
+                ' แสดงข้อมูลการชำระเงินใน DataGridView
+                For i As Integer = 0 To fixedPaymentData.Rows.Count - 1
+                    dt.Rows(i)("Principal") = fixedPaymentData.Rows(i)("Principal")
+                    dt.Rows(i)("Interest") = fixedPaymentData.Rows(i)("Interest") ' แสดงดอกเบี้ยเป็นจำนวนเงิน
+                Next
+
+                ' แสดงผลใน DataGridView
+                dgvPayments.DataSource = dt
+
+                ' Configure DataGridView columns
+                If dgvPayments.Columns.Contains("สถานะการชำระ") Then
+                    dgvPayments.Columns.Remove("สถานะการชำระ")
+                End If
+
+                ' Add status combo box column
+                Dim statusColumn As New DataGridViewComboBoxColumn()
+                statusColumn.Name = "สถานะการชำระ"
+                statusColumn.HeaderText = "สถานะการชำระ"
+                statusColumn.DataPropertyName = "status_name"
+                statusColumn.DataSource = GetStatusList()
+                statusColumn.DisplayMember = "status_name"
+                statusColumn.ValueMember = "status_name"
+                dgvPayments.Columns.Add(statusColumn)
+
+                ' Hide the status_name column
+                dgvPayments.Columns("status_name").Visible = False
+
+                ' Set header text and format columns
+                dgvPayments.Columns("payment_id").HeaderText = "รหัสการชำระ"
+                dgvPayments.Columns("con_id").HeaderText = "รหัสสัญญา"
+                dgvPayments.Columns("payment_date").HeaderText = "วันที่ต้องชำระ"
+                dgvPayments.Columns("payment_amount").HeaderText = "จำนวนเงิน"
+                dgvPayments.Columns("Principal").HeaderText = "เงินต้น"
+                dgvPayments.Columns("Interest").HeaderText = "ดอกเบี้ย (บาท)" ' ปรับให้เป็นจำนวนเงิน
+
+                ' Format to show two decimal places
+                dgvPayments.Columns("payment_amount").DefaultCellStyle.Format = "N2"
+                dgvPayments.Columns("Principal").DefaultCellStyle.Format = "N2"
+                dgvPayments.Columns("Interest").DefaultCellStyle.Format = "N2" ' ดอกเบี้ยเป็นจำนวนเงิน
+            Else
+                MessageBox.Show("ไม่พบข้อมูลสัญญา", "ไม่พบข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
-
-            ' สร้าง Guna2ComboBoxColumn สำหรับสถานะการชำระเงิน
-            Dim statusColumn As New DataGridViewComboBoxColumn()
-            statusColumn.Name = "สถานะการชำระ"
-            statusColumn.HeaderText = "สถานะการชำระ"
-            statusColumn.DataPropertyName = "status_name"
-            statusColumn.DataSource = GetStatusList() ' ฟังก์ชันที่คืนค่า DataTable หรือ List ของสถานะการชำระเงิน
-            statusColumn.DisplayMember = "status_name"
-            statusColumn.ValueMember = "status_name"
-            dgvPayments.Columns.Add(statusColumn)
-
-            ' ซ่อนคอลัมน์ status_name
-            dgvPayments.Columns("status_name").Visible = False
-
-            ' เปลี่ยนหัวข้อคอลัมน์เป็นภาษาไทย
-            dgvPayments.Columns("payment_id").HeaderText = "รหัสการชำระ"
-            dgvPayments.Columns("con_id").HeaderText = "รหัสสัญญา"
-            dgvPayments.Columns("payment_date").HeaderText = "วันที่ต้องชำระ"
-            dgvPayments.Columns("payment_amount").HeaderText = "จำนวนเงิน"
-            dgvPayments.Columns("สถานะการชำระ").HeaderText = "สถานะการชำระ"
-
-            ' เพิ่มจุดทศนิยมสองตำแหน่งในคอลัมน์ "payment_amount"
-            dgvPayments.Columns("payment_amount").DefaultCellStyle.Format = "N2"
-
-            ' ตั้งค่าเพิ่มเติมสำหรับ Guna2DataGridView เช่น สีตัวอักษร สีพื้นหลัง ฯลฯ
-            dgvPayments.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Dark
-            dgvPayments.DefaultCellStyle.Font = New Font("Fc minimal", 15)
-            dgvPayments.DefaultCellStyle.BackColor = Color.White
-            dgvPayments.DefaultCellStyle.ForeColor = Color.Black
-            dgvPayments.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray
-            dgvPayments.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black
 
         Catch ex As Exception
             MessageBox.Show("เกิดข้อผิดพลาด: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            ' ปิดการเชื่อมต่อฐานข้อมูล
             Conn.Close()
         End Try
     End Sub
 
+    ' ฟังก์ชันคำนวณการผ่อนชำระแบบดอกเบี้ยคงที่ (Flat Rate)
+    Private Function CalculateFixedPayment(principal As Decimal, monthlyInterestRate As Decimal, totalPayments As Integer) As DataTable
+        Dim dt As New DataTable()
+        dt.Columns.Add("Principal", GetType(Decimal))
+        dt.Columns.Add("Interest", GetType(Decimal))
+
+        ' เงินต้นที่ต้องจ่ายต่อเดือน (เท่ากันทุกเดือน)
+        Dim fixedPrincipalPayment As Decimal = principal / totalPayments
+
+        ' คำนวณดอกเบี้ยเป็นจำนวนเงินในแต่ละงวด
+        For i As Integer = 1 To totalPayments
+            ' คำนวณดอกเบี้ยเป็นจำนวนเงิน (เงินต้น x อัตราดอกเบี้ย)
+            Dim fixedInterest As Decimal = principal * monthlyInterestRate
+
+            ' เพิ่มข้อมูลเงินต้นและดอกเบี้ย (เป็นจำนวนเงิน) ลงใน DataTable
+            dt.Rows.Add(fixedPrincipalPayment, fixedInterest)
+        Next
+
+        Return dt
+    End Function
+
+    ' ฟังก์ชันสำหรับดึงข้อมูลสัญญา
+    Private Function GetContractDetails(contractNumber As String) As DataTable
+        Dim dt As New DataTable()
+        Try
+            Dim strSQL As String = "SELECT con_amount, con_interest, con_permonth FROM Contract WHERE con_id = @contractNumber"
+            Dim cmd As New OleDbCommand(strSQL, Conn)
+            cmd.Parameters.AddWithValue("@contractNumber", contractNumber)
+
+            If Conn.State = ConnectionState.Open Then Conn.Close()
+            Conn.Open()
+
+            Dim adapter As New OleDbDataAdapter(cmd)
+            adapter.Fill(dt)
+
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาด: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Conn.Close()
+        End Try
+        Return dt
+    End Function
 
     ' ฟังก์ชันสำหรับดึงรายการสถานะการชำระจากฐานข้อมูล
     Private Function GetStatusList() As DataTable

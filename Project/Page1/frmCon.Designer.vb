@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmCon
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmCon
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -57,6 +57,7 @@ Partial Class frmCon
         '
         'dgvPayments
         '
+        Me.dgvPayments.AllowUserToAddRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
         Me.dgvPayments.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -81,7 +82,7 @@ Partial Class frmCon
         Me.dgvPayments.Location = New System.Drawing.Point(421, 87)
         Me.dgvPayments.Name = "dgvPayments"
         Me.dgvPayments.RowHeadersVisible = False
-        Me.dgvPayments.Size = New System.Drawing.Size(573, 319)
+        Me.dgvPayments.Size = New System.Drawing.Size(753, 319)
         Me.dgvPayments.TabIndex = 31
         Me.dgvPayments.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvPayments.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -112,9 +113,10 @@ Partial Class frmCon
         Me.btnClear.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnClear.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.btnClear.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnClear.FillColor = System.Drawing.Color.DarkSlateBlue
         Me.btnClear.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClear.ForeColor = System.Drawing.Color.White
-        Me.btnClear.Location = New System.Drawing.Point(514, 426)
+        Me.btnClear.Location = New System.Drawing.Point(600, 468)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(180, 45)
         Me.btnClear.TabIndex = 29
@@ -127,9 +129,10 @@ Partial Class frmCon
         Me.btnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnSave.FillColor = System.Drawing.Color.DarkSlateBlue
         Me.btnSave.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(318, 426)
+        Me.btnSave.Location = New System.Drawing.Point(404, 468)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(180, 45)
         Me.btnSave.TabIndex = 30
@@ -143,9 +146,10 @@ Partial Class frmCon
         Me.btnSearch.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.btnSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnSearch.FillColor = System.Drawing.Color.DarkSlateBlue
         Me.btnSearch.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSearch.ForeColor = System.Drawing.Color.White
-        Me.btnSearch.Location = New System.Drawing.Point(915, 45)
+        Me.btnSearch.Location = New System.Drawing.Point(1095, 45)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(79, 36)
         Me.btnSearch.TabIndex = 28
@@ -168,8 +172,9 @@ Partial Class frmCon
         Me.Guna2GroupBox1.Controls.Add(Me.Label3)
         Me.Guna2GroupBox1.Controls.Add(Me.Label5)
         Me.Guna2GroupBox1.Controls.Add(Me.Label4)
+        Me.Guna2GroupBox1.CustomBorderColor = System.Drawing.Color.DarkSlateBlue
         Me.Guna2GroupBox1.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2GroupBox1.ForeColor = System.Drawing.Color.Black
+        Me.Guna2GroupBox1.ForeColor = System.Drawing.Color.White
         Me.Guna2GroupBox1.Location = New System.Drawing.Point(16, 87)
         Me.Guna2GroupBox1.Name = "Guna2GroupBox1"
         Me.Guna2GroupBox1.Size = New System.Drawing.Size(384, 319)
@@ -180,6 +185,7 @@ Partial Class frmCon
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.Black
         Me.Label9.Location = New System.Drawing.Point(330, 234)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(44, 21)
@@ -211,6 +217,7 @@ Partial Class frmCon
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.Black
         Me.Label8.Location = New System.Drawing.Point(334, 192)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(37, 21)
@@ -327,6 +334,7 @@ Partial Class frmCon
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
         Me.Label1.Location = New System.Drawing.Point(22, 66)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(100, 21)
@@ -337,6 +345,7 @@ Partial Class frmCon
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
         Me.Label2.Location = New System.Drawing.Point(7, 108)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(113, 21)
@@ -347,6 +356,7 @@ Partial Class frmCon
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.Black
         Me.Label6.Location = New System.Drawing.Point(7, 276)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(118, 21)
@@ -357,6 +367,7 @@ Partial Class frmCon
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
         Me.Label3.Location = New System.Drawing.Point(28, 150)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(94, 21)
@@ -367,6 +378,7 @@ Partial Class frmCon
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Black
         Me.Label5.Location = New System.Drawing.Point(26, 234)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(99, 21)
@@ -377,6 +389,7 @@ Partial Class frmCon
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
         Me.Label4.Location = New System.Drawing.Point(35, 192)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(87, 21)
@@ -387,7 +400,7 @@ Partial Class frmCon
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(566, 53)
+        Me.Label7.Location = New System.Drawing.Point(746, 53)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(137, 21)
         Me.Label7.TabIndex = 26
@@ -405,7 +418,7 @@ Partial Class frmCon
         Me.txtSearchContractNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtSearchContractNumber.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtSearchContractNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearchContractNumber.Location = New System.Drawing.Point(709, 45)
+        Me.txtSearchContractNumber.Location = New System.Drawing.Point(889, 45)
         Me.txtSearchContractNumber.Name = "txtSearchContractNumber"
         Me.txtSearchContractNumber.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtSearchContractNumber.PlaceholderText = ""
@@ -420,12 +433,12 @@ Partial Class frmCon
         '
         'Guna2Panel1
         '
-        Me.Guna2Panel1.BackColor = System.Drawing.Color.Gainsboro
+        Me.Guna2Panel1.BackColor = System.Drawing.Color.DarkSlateBlue
         Me.Guna2Panel1.Controls.Add(Me.Guna2ControlBox1)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Guna2Panel1.Name = "Guna2Panel1"
-        Me.Guna2Panel1.Size = New System.Drawing.Size(1016, 33)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(1186, 33)
         Me.Guna2Panel1.TabIndex = 32
         '
         'Guna2ControlBox1
@@ -435,7 +448,7 @@ Partial Class frmCon
         Me.Guna2ControlBox1.CustomIconSize = 30.0!
         Me.Guna2ControlBox1.FillColor = System.Drawing.Color.LightGray
         Me.Guna2ControlBox1.IconColor = System.Drawing.Color.Red
-        Me.Guna2ControlBox1.Location = New System.Drawing.Point(966, 1)
+        Me.Guna2ControlBox1.Location = New System.Drawing.Point(1136, 1)
         Me.Guna2ControlBox1.Name = "Guna2ControlBox1"
         Me.Guna2ControlBox1.Size = New System.Drawing.Size(38, 29)
         Me.Guna2ControlBox1.TabIndex = 5
@@ -444,7 +457,7 @@ Partial Class frmCon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1016, 483)
+        Me.ClientSize = New System.Drawing.Size(1186, 525)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.dgvPayments)
         Me.Controls.Add(Me.btnClear)

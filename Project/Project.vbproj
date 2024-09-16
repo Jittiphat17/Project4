@@ -413,6 +413,9 @@
     <EmbeddedResource Include="Page2\frmEditIncome.resx">
       <DependentUpon>frmEditIncome.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Page2\frmIncome.resx">
+      <DependentUpon>frmIncome.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Page2\frmIncomePayment.resx">
       <DependentUpon>frmIncomePayment.vb</DependentUpon>
     </EmbeddedResource>

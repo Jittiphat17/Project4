@@ -127,6 +127,7 @@ Partial Class frmMemberResign
         Me.txtGuarantor.Name = "txtGuarantor"
         Me.txtGuarantor.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtGuarantor.PlaceholderText = ""
+        Me.txtGuarantor.ReadOnly = True
         Me.txtGuarantor.SelectedText = ""
         Me.txtGuarantor.Size = New System.Drawing.Size(242, 38)
         Me.txtGuarantor.TabIndex = 4
@@ -258,6 +259,7 @@ Partial Class frmMemberResign
         Me.txtTotalLoan.Name = "txtTotalLoan"
         Me.txtTotalLoan.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtTotalLoan.PlaceholderText = ""
+        Me.txtTotalLoan.ReadOnly = True
         Me.txtTotalLoan.SelectedText = ""
         Me.txtTotalLoan.Size = New System.Drawing.Size(242, 38)
         Me.txtTotalLoan.TabIndex = 4
@@ -279,6 +281,7 @@ Partial Class frmMemberResign
         Me.txtLoanPublic.Name = "txtLoanPublic"
         Me.txtLoanPublic.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtLoanPublic.PlaceholderText = ""
+        Me.txtLoanPublic.ReadOnly = True
         Me.txtLoanPublic.SelectedText = ""
         Me.txtLoanPublic.Size = New System.Drawing.Size(242, 38)
         Me.txtLoanPublic.TabIndex = 4
@@ -300,6 +303,7 @@ Partial Class frmMemberResign
         Me.txtLoanSaving.Name = "txtLoanSaving"
         Me.txtLoanSaving.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtLoanSaving.PlaceholderText = ""
+        Me.txtLoanSaving.ReadOnly = True
         Me.txtLoanSaving.SelectedText = ""
         Me.txtLoanSaving.Size = New System.Drawing.Size(242, 38)
         Me.txtLoanSaving.TabIndex = 4
@@ -321,6 +325,7 @@ Partial Class frmMemberResign
         Me.txtLoanAccount1.Name = "txtLoanAccount1"
         Me.txtLoanAccount1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtLoanAccount1.PlaceholderText = ""
+        Me.txtLoanAccount1.ReadOnly = True
         Me.txtLoanAccount1.SelectedText = ""
         Me.txtLoanAccount1.Size = New System.Drawing.Size(242, 38)
         Me.txtLoanAccount1.TabIndex = 4
@@ -390,6 +395,7 @@ Partial Class frmMemberResign
         Me.txtTotalSaving.Name = "txtTotalSaving"
         Me.txtTotalSaving.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtTotalSaving.PlaceholderText = ""
+        Me.txtTotalSaving.ReadOnly = True
         Me.txtTotalSaving.SelectedText = ""
         Me.txtTotalSaving.Size = New System.Drawing.Size(242, 38)
         Me.txtTotalSaving.TabIndex = 4
@@ -411,6 +417,7 @@ Partial Class frmMemberResign
         Me.txtBeforeTotalSaving.Name = "txtBeforeTotalSaving"
         Me.txtBeforeTotalSaving.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtBeforeTotalSaving.PlaceholderText = ""
+        Me.txtBeforeTotalSaving.ReadOnly = True
         Me.txtBeforeTotalSaving.SelectedText = ""
         Me.txtBeforeTotalSaving.Size = New System.Drawing.Size(242, 38)
         Me.txtBeforeTotalSaving.TabIndex = 4

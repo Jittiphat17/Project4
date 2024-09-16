@@ -24,6 +24,7 @@ Partial Class frmManageMembers
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtPost = New System.Windows.Forms.MaskedTextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -49,6 +50,7 @@ Partial Class frmManageMembers
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtJob = New System.Windows.Forms.TextBox()
         Me.txtnick = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.txtOutstanding = New System.Windows.Forms.TextBox()
         Me.txtBeginning = New System.Windows.Forms.TextBox()
         Me.txtAccountname = New System.Windows.Forms.TextBox()
@@ -59,8 +61,7 @@ Partial Class frmManageMembers
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.dgvMembers = New System.Windows.Forms.DataGridView()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvMembers, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -117,6 +118,16 @@ Partial Class frmManageMembers
         Me.txtPost.Name = "txtPost"
         Me.txtPost.Size = New System.Drawing.Size(169, 31)
         Me.txtPost.TabIndex = 7
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(443, 351)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(145, 24)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "จำนวนเงินที่ต้องการฝาก"
         '
         'Label16
         '
@@ -361,6 +372,14 @@ Partial Class frmManageMembers
         Me.txtnick.Size = New System.Drawing.Size(111, 31)
         Me.txtnick.TabIndex = 0
         '
+        'TextBox1
+        '
+        Me.TextBox1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(594, 348)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(169, 31)
+        Me.TextBox1.TabIndex = 0
+        '
         'txtOutstanding
         '
         Me.txtOutstanding.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -416,7 +435,7 @@ Partial Class frmManageMembers
         Me.btnSave.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnSave.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnSave.Location = New System.Drawing.Point(149, 713)
+        Me.btnSave.Location = New System.Drawing.Point(47, 713)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(200, 55)
         Me.btnSave.TabIndex = 5
@@ -428,7 +447,7 @@ Partial Class frmManageMembers
         Me.btnClear.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClear.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnClear.Location = New System.Drawing.Point(355, 713)
+        Me.btnClear.Location = New System.Drawing.Point(253, 713)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(200, 55)
         Me.btnClear.TabIndex = 5
@@ -440,7 +459,7 @@ Partial Class frmManageMembers
         Me.btnDelete.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnDelete.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDelete.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnDelete.Location = New System.Drawing.Point(561, 713)
+        Me.btnDelete.Location = New System.Drawing.Point(459, 713)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(200, 55)
         Me.btnDelete.TabIndex = 5
@@ -455,23 +474,17 @@ Partial Class frmManageMembers
         Me.dgvMembers.Size = New System.Drawing.Size(899, 288)
         Me.dgvMembers.TabIndex = 6
         '
-        'TextBox1
+        'Button1
         '
-        Me.TextBox1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(594, 348)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(169, 31)
-        Me.TextBox1.TabIndex = 0
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(443, 351)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(145, 24)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "จำนวนเงินที่ต้องการฝาก"
+        Me.Button1.BackColor = System.Drawing.SystemColors.Highlight
+        Me.Button1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.SystemColors.ControlLight
+        Me.Button1.Location = New System.Drawing.Point(665, 713)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(200, 55)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "อ่านบัตร"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'frmManageMembers
         '
@@ -479,6 +492,7 @@ Partial Class frmManageMembers
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(925, 780)
         Me.Controls.Add(Me.dgvMembers)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.btnSave)
@@ -531,4 +545,5 @@ Partial Class frmManageMembers
     Friend WithEvents dgvMembers As DataGridView
     Friend WithEvents Label1 As Label
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Button1 As Button
 End Class

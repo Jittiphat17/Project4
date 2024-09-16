@@ -19,6 +19,7 @@ Public Class frmBrrow
         LoadPerMData()
         LoadGuaranteeTypes() ' โหลดตัวเลือกการค้ำประกัน
     End Sub
+
     Private Sub LoadGuaranteeTypes()
         ' เพิ่มตัวเลือกลงใน ComboBox สำหรับการค้ำประกัน
         cbGuaranteeType.Items.Clear()
@@ -183,13 +184,14 @@ Public Class frmBrrow
 
         ' รับข้อมูลจากฟอร์ม
         Dim principal As Decimal = Decimal.Parse(txtMoney.Text)  ' จำนวนเงินกู้
+        Dim loanDate As DateTime = dtpBirth.Value ' Date of the loan
         Dim interestRate As Decimal = Decimal.Parse(txtPercen.Text)  ' อัตราดอกเบี้ยต่อปี
         Dim totalPayments As Integer = Integer.Parse(cbPerM.SelectedItem.ToString().Replace("เดือน", "").Trim())  ' จำนวนเดือน
 
         ' ตรวจสอบว่าเลือกประเภทการค้ำประกันอะไร
         If cbGuaranteeType.SelectedItem.ToString() = "เงินในบัญชี" Then
             ' ตรวจสอบเงินในบัญชีสัจจะของผู้กู้
-            Dim savingsBalance As Decimal = GetSavingsBalance(txtSearch.Text) ' ดึงข้อมูลเงินจากฐานข้อมูล
+            Dim savingsBalance As Decimal = GetSavingsBalance(txtSearch.Text, loanDate) ' ดึงข้อมูลเงินจากฐานข้อมูล
             If savingsBalance >= principal Then
                 MessageBox.Show("สามารถใช้เงินในบัญชีค้ำประกันได้", "การค้ำประกัน", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
@@ -231,14 +233,19 @@ Public Class frmBrrow
         Auto_id()
     End Sub
 
-    Private Function GetSavingsBalance(borrowerAccountID As String) As Decimal
-        ' ฟังก์ชันดึงข้อมูลยอดเงินจากตารางรายรับ (Income)
+    Private Function GetSavingsBalance(borrowerAccountID As String, loanDate As DateTime) As Decimal
+        ' ฟังก์ชันดึงข้อมูลยอดเงินจากตารางรายรับ (Income) เฉพาะบัญชีสัจจะ และตรวจสอบวันที่ฝากก่อนหรือเท่ากับวันที่กู้
         Dim savingsBalance As Decimal = 0
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
             conn.Open()
-            strSQL = "SELECT SUM(inc_amount) FROM Income WHERE acc_id = @acc_id"
+            ' Filter for 'บัญชีเงินสัจจะ' and only consider deposits before or on the loan date
+            strSQL = "SELECT SUM(inc_amount) FROM Income INNER JOIN Account ON Income.acc_id = Account.acc_id " &
+                 "WHERE Account.acc_name = 'บัญชีเงินสัจจะ' AND Income.inc_date <= @loanDate AND Income.acc_id = @acc_id"
             Using cmd As New OleDbCommand(strSQL, conn)
-                cmd.Parameters.AddWithValue("@acc_id", borrowerAccountID)
+                ' Ensure the borrowerAccountID is passed correctly as a String, and loanDate as a Date
+                cmd.Parameters.Add("@acc_id", OleDbType.VarChar).Value = borrowerAccountID
+                cmd.Parameters.Add("@loanDate", OleDbType.Date).Value = loanDate
+
                 Dim result As Object = cmd.ExecuteScalar()
                 If result IsNot DBNull.Value Then
                     savingsBalance = Convert.ToDecimal(result)
@@ -248,17 +255,25 @@ Public Class frmBrrow
         Return savingsBalance
     End Function
 
+
     Private Function IsDataComplete() As Boolean
+        ' Validate that all necessary fields are filled out and contain valid numbers
+        If Not Decimal.TryParse(txtMoney.Text, Nothing) Then
+            MessageBox.Show("กรุณากรอกจำนวนเงินที่ถูกต้อง", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return False
+        End If
+        If Not Decimal.TryParse(txtPercen.Text, Nothing) Then
+            MessageBox.Show("กรุณากรอกอัตราดอกเบี้ยที่ถูกต้อง", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return False
+        End If
+
         Return Not String.IsNullOrWhiteSpace(txtCid.Text) AndAlso
                Not String.IsNullOrWhiteSpace(txtSearch.Text) AndAlso
                Not String.IsNullOrWhiteSpace(txtDetail.Text) AndAlso
-               Not String.IsNullOrWhiteSpace(txtMoney.Text) AndAlso
                cbAccount.SelectedIndex > 0 AndAlso
                cbPerM.SelectedIndex > 0 AndAlso
-               Not String.IsNullOrWhiteSpace(txtPercen.Text) AndAlso
                (Not chkGuarantor.Checked OrElse
-                (Not String.IsNullOrWhiteSpace(txtSearch1.Text) AndAlso
-                 Not String.IsNullOrWhiteSpace(txtDetail1.Text)))
+                (Not String.IsNullOrWhiteSpace(txtSearch1.Text) AndAlso Not String.IsNullOrWhiteSpace(txtDetail1.Text)))
     End Function
 
     Private Sub chkGuarantor_CheckedChanged(sender As Object, e As EventArgs) Handles chkGuarantor.CheckedChanged
