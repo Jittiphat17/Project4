@@ -22,9 +22,9 @@ Partial Class frmExpense
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmExpense))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.dtpBirth = New System.Windows.Forms.DateTimePicker()
         Me.cboDepositType = New System.Windows.Forms.ComboBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.txtDetails = New System.Windows.Forms.TextBox()
@@ -47,6 +47,8 @@ Partial Class frmExpense
         Me.txtExpId = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.btnPrintReceipt = New System.Windows.Forms.Button()
+        Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
+        Me.dtpBirth = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.dgvExpenseDetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,8 +57,8 @@ Partial Class frmExpense
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Label13)
         Me.GroupBox1.Controls.Add(Me.dtpBirth)
+        Me.GroupBox1.Controls.Add(Me.Label13)
         Me.GroupBox1.Controls.Add(Me.cboDepositType)
         Me.GroupBox1.Controls.Add(Me.GroupBox3)
         Me.GroupBox1.Controls.Add(Me.txtDescrip)
@@ -84,17 +86,6 @@ Partial Class frmExpense
         Me.Label13.Size = New System.Drawing.Size(45, 24)
         Me.Label13.TabIndex = 9
         Me.Label13.Text = "วันที่ :"
-        '
-        'dtpBirth
-        '
-        Me.dtpBirth.CustomFormat = "dd/MM/yyyy"
-        Me.dtpBirth.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpBirth.Location = New System.Drawing.Point(116, 328)
-        Me.dtpBirth.Name = "dtpBirth"
-        Me.dtpBirth.Size = New System.Drawing.Size(197, 31)
-        Me.dtpBirth.TabIndex = 8
-        Me.dtpBirth.Value = New Date(2024, 5, 18, 20, 23, 12, 0)
         '
         'cboDepositType
         '
@@ -319,6 +310,31 @@ Partial Class frmExpense
         Me.btnPrintReceipt.Text = "ล้างข้อมูล"
         Me.btnPrintReceipt.UseVisualStyleBackColor = False
         '
+        'PrintPreviewDialog1
+        '
+        Me.PrintPreviewDialog1.AutoScrollMargin = New System.Drawing.Size(0, 0)
+        Me.PrintPreviewDialog1.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+        Me.PrintPreviewDialog1.ClientSize = New System.Drawing.Size(400, 300)
+        Me.PrintPreviewDialog1.Enabled = True
+        Me.PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), System.Drawing.Icon)
+        Me.PrintPreviewDialog1.Name = "PrintPreviewDialog1"
+        Me.PrintPreviewDialog1.Visible = False
+        '
+        'dtpBirth
+        '
+        Me.dtpBirth.BorderRadius = 10
+        Me.dtpBirth.Checked = True
+        Me.dtpBirth.FillColor = System.Drawing.Color.Silver
+        Me.dtpBirth.Font = New System.Drawing.Font("FC Minimal", 15.75!)
+        Me.dtpBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpBirth.Location = New System.Drawing.Point(116, 324)
+        Me.dtpBirth.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
+        Me.dtpBirth.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
+        Me.dtpBirth.Name = "dtpBirth"
+        Me.dtpBirth.Size = New System.Drawing.Size(162, 36)
+        Me.dtpBirth.TabIndex = 14
+        Me.dtpBirth.Value = New Date(2024, 9, 12, 15, 17, 18, 685)
+        '
         'frmExpense
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -351,7 +367,6 @@ Partial Class frmExpense
 
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label13 As Label
-    Friend WithEvents dtpBirth As DateTimePicker
     Friend WithEvents cboDepositType As ComboBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents txtDetails As TextBox
@@ -374,4 +389,6 @@ Partial Class frmExpense
     Friend WithEvents txtExpId As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents btnPrintReceipt As Button
+    Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
+    Friend WithEvents dtpBirth As Guna.UI2.WinForms.Guna2DateTimePicker
 End Class

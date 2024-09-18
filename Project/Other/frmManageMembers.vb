@@ -138,16 +138,49 @@ Public Class frmManageMembers
         End If
 
         Try
+            If conn.State = ConnectionState.Closed Then
+                conn.Open()
+            End If
+
+            Dim hasChanges As Boolean = False
             If isEditing Then
-                ' Update existing member
+                ' Check if there are any changes
+                Dim checkSql As String = "SELECT * FROM Member WHERE m_id = @m_id"
+                Using checkCmd As New OleDbCommand(checkSql, conn)
+                    checkCmd.Parameters.AddWithValue("@m_id", txtID.Text.Trim())
+                    Using reader As OleDbDataReader = checkCmd.ExecuteReader()
+                        If reader.Read() Then
+                            hasChanges = (reader("m_gender").ToString() <> cmbGender.SelectedItem.ToString()) OrElse
+                                     (reader("m_name").ToString() <> txtName.Text.Trim()) OrElse
+                                     (reader("m_nick").ToString() <> txtnick.Text.Trim()) OrElse
+                                     (CDate(reader("m_birth")).ToString("yyyy-MM-dd") <> dtpBirth.Value.ToString("yyyy-MM-dd")) OrElse
+                                     (reader("m_national").ToString() <> cmbNational.SelectedItem.ToString()) OrElse
+                                     (reader("m_thaiid").ToString() <> txtThaiid.Text.Trim()) OrElse
+                                     (reader("m_job").ToString() <> txtJob.Text.Trim()) OrElse
+                                     (reader("m_address").ToString() <> txtAddress.Text.Trim()) OrElse
+                                     (reader("m_post").ToString() <> txtPost.Text.Trim()) OrElse
+                                     (reader("m_tel").ToString() <> txtTel.Text.Trim()) OrElse
+                                     (reader("m_accountName").ToString() <> txtAccountname.Text.Trim()) OrElse
+                                     (reader("m_accountNum").ToString() <> txtAccountnum.Text.Trim()) OrElse
+                                     (If(reader("m_beginning") IsNot DBNull.Value, CDbl(reader("m_beginning")), 0) <> If(String.IsNullOrEmpty(txtBeginning.Text.Trim()), 0, CDbl(txtBeginning.Text.Trim()))) OrElse
+                                     (If(reader("m_outstanding") IsNot DBNull.Value, CDbl(reader("m_outstanding")), 0) <> If(String.IsNullOrEmpty(txtOutstanding.Text.Trim()), 0, CDbl(txtOutstanding.Text.Trim())))
+                        End If
+                    End Using
+                End Using
+
+                If Not hasChanges Then
+                    MessageBox.Show("ไม่มีการเปลี่ยนแปลงข้อมูล", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Return
+                End If
+
                 strSQL = "UPDATE Member SET m_gender = @m_gender, m_name = @m_name, m_nick = @m_nick, m_birth = @m_birth, m_national = @m_national, " &
-                         "m_thaiid = @m_thaiid, m_job = @m_job, m_address = @m_address, m_post = @m_post, m_tel = @m_tel, m_accountName = @m_accountName, " &
-                         "m_accountNum = @m_accountNum, m_beginning = @m_beginning, m_outstanding = @m_outstanding, m_age = @m_age WHERE m_id = @m_id"
+                     "m_thaiid = @m_thaiid, m_job = @m_job, m_address = @m_address, m_post = @m_post, m_tel = @m_tel, m_accountName = @m_accountName, " &
+                     "m_accountNum = @m_accountNum, m_beginning = @m_beginning, m_outstanding = @m_outstanding, m_age = @m_age WHERE m_id = @m_id"
             Else
                 ' Add new member
                 strSQL = "INSERT INTO Member (m_id, m_gender, m_name, m_nick, m_birth, m_national, m_thaiid, m_job, m_address, m_post, m_tel, m_accountName, " &
-                         "m_accountNum, m_beginning, m_outstanding, m_age) VALUES (@m_id, @m_gender, @m_name, @m_nick, @m_birth, @m_national, @m_thaiid, " &
-                         "@m_job, @m_address, @m_post, @m_tel, @m_accountName, @m_accountNum, @m_beginning, @m_outstanding, @m_age)"
+                     "m_accountNum, m_beginning, m_outstanding, m_age) VALUES (@m_id, @m_gender, @m_name, @m_nick, @m_birth, @m_national, @m_thaiid, " &
+                     "@m_job, @m_address, @m_post, @m_tel, @m_accountName, @m_accountNum, @m_beginning, @m_outstanding, @m_age)"
             End If
 
             Using cmd As New OleDbCommand(strSQL, conn)
@@ -179,20 +212,35 @@ Public Class frmManageMembers
 
                 cmd.Parameters.AddWithValue("@m_age", CalculateAge(dtpBirth.Value.ToString("dd/MM/yyyy")))
 
-                If conn.State = ConnectionState.Closed Then
-                    conn.Open()
+                ' Log the SQL query and parameter values
+                Dim logMessage As String = cmd.CommandText & vbNewLine
+                For Each p As OleDbParameter In cmd.Parameters
+                    logMessage &= p.ParameterName & " = " & p.Value.ToString() & vbNewLine
+                Next
+                System.Diagnostics.Debug.WriteLine(logMessage)
+
+                Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+                If rowsAffected > 0 Then
+                    MessageBox.Show("บันทึกข้อมูลสำเร็จ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Loadinfo()  ' Refresh the data in DataGridView
+                    If Not isEditing Then
+                        ClearAllData()
+                        Auto_id()
+                    End If
+                Else
+                    MessageBox.Show("ไม่มีการเปลี่ยนแปลงข้อมูล", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
-
-                cmd.ExecuteNonQuery()
-                MessageBox.Show("บันทึกข้อมูลสำเร็จ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                conn.Close()
             End Using
-
-            ClearAllData()
-            Loadinfo()
-            Auto_id()
+        Catch ex As OleDbException
+            MessageBox.Show("เกิดข้อผิดพลาดในการเชื่อมต่อหรือดำเนินการกับฐานข้อมูล: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Catch ex As FormatException
+            MessageBox.Show("เกิดข้อผิดพลาดในการแปลงข้อมูล: " & ex.Message, "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            MessageBox.Show("เกิดข้อผิดพลาดในการบันทึกข้อมูล: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("เกิดข้อผิดพลาดที่ไม่คาดคิด: " & ex.Message, "Unexpected Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            If conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
         End Try
     End Sub
 
@@ -255,7 +303,7 @@ Public Class frmManageMembers
         Auto_id() ' Set new ID for new entry
     End Sub
 
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click, Button1.Click
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         If String.IsNullOrEmpty(txtID.Text) Then
             MessageBox.Show("Please select a member to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return

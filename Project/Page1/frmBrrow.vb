@@ -190,14 +190,34 @@ Public Class frmBrrow
 
         ' ตรวจสอบว่าเลือกประเภทการค้ำประกันอะไร
         If cbGuaranteeType.SelectedItem.ToString() = "เงินในบัญชี" Then
-            ' ตรวจสอบเงินในบัญชีสัจจะของผู้กู้
-            Dim savingsBalance As Decimal = GetSavingsBalance(txtSearch.Text, loanDate) ' ดึงข้อมูลเงินจากฐานข้อมูล
-            If savingsBalance >= principal Then
-                MessageBox.Show("สามารถใช้เงินในบัญชีค้ำประกันได้", "การค้ำประกัน", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
-                MessageBox.Show("เงินในบัญชีไม่เพียงพอ ต้องใช้ผู้ค้ำ", "การค้ำประกัน", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Return
-            End If
+            Try
+                Dim loanAmount As Decimal
+                If Decimal.TryParse(txtMoney.Text, loanAmount) Then
+                    ' ดึง m_id ของผู้กู้
+                    Dim borrowerId As Integer = GetMemberIdByName(txtSearch.Text)
+                    If borrowerId = -1 Then
+                        MessageBox.Show("ไม่พบข้อมูลผู้กู้", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return
+                    End If
+
+                    ' ตรวจสอบเงินในบัญชีสัจจะของผู้กู้
+                    Dim savingsBalance As Decimal = GetSavingsBalance(borrowerId)
+
+                    If savingsBalance >= loanAmount Then
+                        MessageBox.Show("สามารถใช้เงินในบัญชีค้ำประกันได้ เนื่องจากมีเงินสะสม " & savingsBalance.ToString("N2") & " บาท ซึ่งมากกว่าหรือเท่ากับเงินที่จะกู้ " & loanAmount.ToString("N2") & " บาท", "การค้ำประกัน", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        ' ดำเนินการต่อไปสำหรับการใช้เงินในบัญชีค้ำประกัน
+                    Else
+                        MessageBox.Show("เงินในบัญชีไม่เพียงพอสำหรับการค้ำประกัน เนื่องจากมีเงินสะสมเพียง " & savingsBalance.ToString("N2") & " บาท ซึ่งน้อยกว่าเงินที่จะกู้ " & loanAmount.ToString("N2") & " บาท ต้องใช้ผู้ค้ำประกัน", "การค้ำประกัน", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        ' ดำเนินการต่อไปสำหรับกรณีที่ต้องใช้ผู้ค้ำประกัน
+                    End If
+                Else
+                    MessageBox.Show("กรุณากรอกจำนวนเงินที่ต้องการกู้ให้ถูกต้อง", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+            Catch ex As OleDbException
+                MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End If
 
         ' คำนวณการชำระเงินรายเดือน
@@ -233,27 +253,88 @@ Public Class frmBrrow
         Auto_id()
     End Sub
 
-    Private Function GetSavingsBalance(borrowerAccountID As String, loanDate As DateTime) As Decimal
-        ' ฟังก์ชันดึงข้อมูลยอดเงินจากตารางรายรับ (Income) เฉพาะบัญชีสัจจะ และตรวจสอบวันที่ฝากก่อนหรือเท่ากับวันที่กู้
+    ' ฟังก์ชันสำหรับดึงยอดเงินสะสมในบัญชีสัจจะ
+    Private Function GetSavingsBalance(memberId As Integer) As Decimal
         Dim savingsBalance As Decimal = 0
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
             conn.Open()
-            ' Filter for 'บัญชีเงินสัจจะ' and only consider deposits before or on the loan date
-            strSQL = "SELECT SUM(inc_amount) FROM Income INNER JOIN Account ON Income.acc_id = Account.acc_id " &
-                 "WHERE Account.acc_name = 'บัญชีเงินสัจจะ' AND Income.inc_date <= @loanDate AND Income.acc_id = @acc_id"
-            Using cmd As New OleDbCommand(strSQL, conn)
-                ' Ensure the borrowerAccountID is passed correctly as a String, and loanDate as a Date
-                cmd.Parameters.Add("@acc_id", OleDbType.VarChar).Value = borrowerAccountID
-                cmd.Parameters.Add("@loanDate", OleDbType.Date).Value = loanDate
 
+            ' ปรับคำสั่ง SQL เพื่อดึงข้อมูลจากตาราง Income_Details โดยตรง
+            Dim strSQL As String = "SELECT SUM(ind_amount) AS TotalSavings " &
+                               "FROM Income_Details " &
+                               "WHERE m_id = @memberId " &
+                               "AND ind_accname = 'เงินฝากสัจจะ'"
+
+            Using cmd As New OleDbCommand(strSQL, conn)
+                cmd.Parameters.AddWithValue("@memberId", memberId)
+
+                ' Debug message for SQL query
+                MessageBox.Show($"Debug: SQL Query = {strSQL}, memberId = {memberId}")
+
+                ' Execute the query and get the result
                 Dim result As Object = cmd.ExecuteScalar()
                 If result IsNot DBNull.Value Then
                     savingsBalance = Convert.ToDecimal(result)
                 End If
+
+                ' Debug message for the raw result and the converted balance
+                MessageBox.Show($"Debug: Raw result = {result}, Converted balance = {savingsBalance}")
             End Using
         End Using
         Return savingsBalance
     End Function
+
+
+    ' ส่วนของการตรวจสอบการค้ำประกันด้วยเงินในบัญชี
+    Private Sub CheckGuaranteeWithSavings()
+        If cbGuaranteeType.SelectedItem.ToString() = "เงินในบัญชี" Then
+            Try
+                Dim loanAmount As Decimal
+                If Decimal.TryParse(txtMoney.Text, loanAmount) Then
+                    ' ดึง m_id ของผู้กู้
+                    Dim borrowerId As Integer = GetMemberIdByName(txtSearch.Text)
+                    If borrowerId = -1 Then
+                        MessageBox.Show("ไม่พบข้อมูลผู้กู้", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return
+                    End If
+
+                    ' ตรวจสอบเงินในบัญชีสัจจะของผู้กู้
+                    Dim savingsBalance As Decimal = GetSavingsBalance(borrowerId)
+
+                    ' Debug message
+                    MessageBox.Show($"Debug: Loan Amount = {loanAmount}, Savings Balance = {savingsBalance}")
+
+                    If savingsBalance >= loanAmount Then
+                        MessageBox.Show("สามารถใช้เงินในบัญชีค้ำประกันได้ เนื่องจากมีเงินสะสม " &
+                                savingsBalance.ToString("N2") & " บาท ซึ่งมากกว่าหรือเท่ากับเงินที่จะกู้ " &
+                                loanAmount.ToString("N2") & " บาท", "การค้ำประกัน",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        ' ดำเนินการต่อไปสำหรับการใช้เงินในบัญชีค้ำประกัน
+                    Else
+                        MessageBox.Show("เงินในบัญชีไม่เพียงพอสำหรับการค้ำประกัน เนื่องจากมีเงินสะสมเพียง " &
+                                savingsBalance.ToString("N2") & " บาท ซึ่งน้อยกว่าเงินที่จะกู้ " &
+                                loanAmount.ToString("N2") & " บาท ต้องใช้ผู้ค้ำประกัน", "การค้ำประกัน",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        ' ดำเนินการต่อไปสำหรับกรณีที่ต้องใช้ผู้ค้ำประกัน
+                    End If
+                Else
+                    MessageBox.Show("กรุณากรอกจำนวนเงินที่ต้องการกู้ให้ถูกต้อง", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+            Catch ex As OleDbException
+                MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
+
+    ' เรียกใช้ฟังก์ชันตรวจสอบเมื่อต้องการ เช่น เมื่อกดปุ่มหรือเลือกประเภทการค้ำประกัน
+    Private Sub cbGuaranteeType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbGuaranteeType.SelectedIndexChanged
+        If cbGuaranteeType.SelectedItem.ToString() = "เงินในบัญชี" Then
+            CheckGuaranteeWithSavings()
+        End If
+    End Sub
+
 
 
     Private Function IsDataComplete() As Boolean

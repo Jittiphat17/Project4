@@ -27,7 +27,6 @@ Partial Class frmIncome
         Me.btnSave = New System.Windows.Forms.Button()
         Me.dgvIncomeDetails = New System.Windows.Forms.DataGridView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.btnSearchContract = New Guna.UI2.WinForms.Guna2Button()
         Me.dtpBirth = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.cboDepositType = New System.Windows.Forms.ComboBox()
@@ -99,7 +98,6 @@ Partial Class frmIncome
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.btnSearchContract)
         Me.GroupBox1.Controls.Add(Me.dtpBirth)
         Me.GroupBox1.Controls.Add(Me.Label13)
         Me.GroupBox1.Controls.Add(Me.cboDepositType)
@@ -119,21 +117,6 @@ Partial Class frmIncome
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "สมาชิก"
-        '
-        'btnSearchContract
-        '
-        Me.btnSearchContract.BorderRadius = 10
-        Me.btnSearchContract.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnSearchContract.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnSearchContract.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnSearchContract.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnSearchContract.Font = New System.Drawing.Font("FC Minimal", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearchContract.ForeColor = System.Drawing.Color.White
-        Me.btnSearchContract.Location = New System.Drawing.Point(319, 30)
-        Me.btnSearchContract.Name = "btnSearchContract"
-        Me.btnSearchContract.Size = New System.Drawing.Size(120, 35)
-        Me.btnSearchContract.TabIndex = 11
-        Me.btnSearchContract.Text = "ค้นหาสัญญา"
         '
         'dtpBirth
         '
@@ -382,5 +365,4 @@ Partial Class frmIncome
     Friend WithEvents txtInid As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents dtpBirth As Guna.UI2.WinForms.Guna2DateTimePicker
-    Friend WithEvents btnSearchContract As Guna.UI2.WinForms.Guna2Button
 End Class
