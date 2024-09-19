@@ -313,8 +313,9 @@ Public Class frmCard
                 Dim fullAddress As String = $" {txtHouseNo.Text}  {txtVillageNo.Text} ตรอก/ซอย {txtLane.Text} ถนน {txtRoad.Text}  {txtTambol.Text}  {txtAmphur.Text}  {txtProvince.Text}"
 
                 ' คำสั่ง SQL สำหรับบันทึกข้อมูลลงในตาราง Member
-                Dim query As String = "INSERT INTO Member (m_gender, m_name, m_nick, m_job, m_tel, m_post m_birth, m_national, m_thaiid, m_address, m_age) " &
-                              "VALUES (@Gender, @Name, @Nick, @Jobs, @Tel,@Post , @Birth, @National, @ThaiID, @Address, @Age)"
+                Dim query As String = "INSERT INTO Member (m_gender, m_name, m_nick, m_job, m_tel, m_post, m_birth, m_national, m_thaiid, m_address, m_age) " &
+                      "VALUES (@Gender, @Name, @Nick, @Jobs, @Tel, @Post, @Birth, @National, @ThaiID, @Address, @Age)"
+
 
                 Using command As New OleDbCommand(query, connection)
                     ' เพิ่มพารามิเตอร์ข้อมูล

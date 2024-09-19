@@ -11,6 +11,13 @@ Public Class frmIncome
         LoadMemberData()
         LoadAccountData()
         GenerateNextIncomeId() ' เรียกฟังก์ชันนี้เมื่อฟอร์มโหลด
+        SetupDateTimePicker()
+    End Sub
+
+    Private Sub SetupDateTimePicker()
+        dtpBirth.Format = DateTimePickerFormat.Custom
+        dtpBirth.CustomFormat = "dd/MM/yyyy"
+        dtpBirth.Value = DateTime.Now
     End Sub
 
     Private Sub GenerateNextIncomeId()
@@ -49,21 +56,19 @@ Public Class frmIncome
         colAmount.ValueType = GetType(Decimal)
         dgvIncomeDetails.Columns.Add(colAmount)
 
-        ' เพิ่มคอลัมน์สำหรับยอดเงินคงเหลือ
-        Dim colBalance As New DataGridViewTextBoxColumn()
-        colBalance.HeaderText = "ยอดเงินคงเหลือ"
-        colBalance.Name = "Balance"
-        colBalance.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        colBalance.DefaultCellStyle.Format = "N2"
-        colBalance.ValueType = GetType(Decimal)
-        dgvIncomeDetails.Columns.Add(colBalance)
-
         ' เพิ่มคอลัมน์ ComboBox สำหรับเลขที่สัญญา
         Dim colContractNumber As New DataGridViewComboBoxColumn()
         colContractNumber.HeaderText = "เลขที่สัญญา"
         colContractNumber.Name = "ContractNumber"
         colContractNumber.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
         dgvIncomeDetails.Columns.Add(colContractNumber)
+
+        ' เพิ่มคอลัมน์ ComboBox สำหรับงวดการชำระ
+        Dim colInstallments As New DataGridViewComboBoxColumn()
+        colInstallments.HeaderText = "งวดการชำระ"
+        colInstallments.Name = "Installment"
+        colInstallments.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+        dgvIncomeDetails.Columns.Add(colInstallments)
 
         ' ตั้งค่าเพิ่มเติมให้ DataGridView
         dgvIncomeDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
@@ -161,12 +166,44 @@ Public Class frmIncome
                     While reader.Read()
                         contractNumberColumn.Items.Add(reader("con_id").ToString())
                     End While
+
+                    ' โหลดงวดการชำระตามเลขที่สัญญา
+                    If dgvIncomeDetails.CurrentRow IsNot Nothing AndAlso dgvIncomeDetails.CurrentRow.Cells("ContractNumber").Value IsNot Nothing Then
+                        LoadInstallmentsForContract(dgvIncomeDetails.CurrentRow.Cells("ContractNumber").Value.ToString())
+                    End If
                 End If
             End Using
         Catch ex As Exception
             MessageBox.Show("เกิดข้อผิดพลาดในการโหลดเลขที่สัญญาของสมาชิก: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Private Sub LoadInstallmentsForContract(contractNumber As String)
+        Try
+            Using Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
+                Conn.Open()
+                Dim installmentColumn As DataGridViewComboBoxColumn = CType(dgvIncomeDetails.Columns("Installment"), DataGridViewComboBoxColumn)
+                installmentColumn.Items.Clear()
+
+                If Not String.IsNullOrEmpty(contractNumber) Then
+                    ' เปลี่ยน query เพื่อดึงข้อมูลจาก payment_date
+                    Dim query As String = "SELECT payment_date FROM Payment WHERE con_id = @contractNumber"
+                    Dim cmd As New OleDbCommand(query, Conn)
+                    cmd.Parameters.AddWithValue("@contractNumber", contractNumber)
+                    Dim reader As OleDbDataReader = cmd.ExecuteReader()
+
+                    While reader.Read()
+                        ' แปลงวันที่เป็นรูปแบบที่ต้องการก่อนเพิ่มลงใน ComboBox
+                        Dim paymentDate As String = Convert.ToDateTime(reader("payment_date")).ToString("dd/MM/yyyy")
+                        installmentColumn.Items.Add(paymentDate)
+                    End While
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาดในการโหลดข้อมูลงวดชำระเงิน: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 
     Private Sub DisplayMemberDetails(memberName As String)
         If String.IsNullOrEmpty(memberName) Then
@@ -281,6 +318,7 @@ Public Class frmIncome
                         If Not row.IsNewRow Then
                             Dim incomeType As String = If(row.Cells("IncomeType").Value, "").ToString()
                             Dim contractNumber As String = If(row.Cells("ContractNumber").Value, DBNull.Value).ToString()
+                            Dim installment As String = If(row.Cells("Installment").Value, DBNull.Value).ToString()
                             Dim amount As Decimal = Decimal.Parse(If(row.Cells("Amount").Value, 0).ToString())
 
                             If Not String.IsNullOrEmpty(incomeType) Then
@@ -289,14 +327,15 @@ Public Class frmIncome
                                 End If
 
                                 ' เพิ่มคอลัมน์ m_id ลงในคำสั่ง INSERT INTO
-                                Dim queryDetails As String = "INSERT INTO Income_Details (ind_accname, con_id, ind_amount, inc_id, m_id) VALUES (@ind_accname, @con_id, @ind_amount, @inc_id, @m_id)"
+                                Dim queryDetails As String = "INSERT INTO Income_Details (ind_accname, con_id, ind_amount, inc_id, m_id, installment) VALUES (@ind_accname, @con_id, @ind_amount, @inc_id, @m_id, @installment)"
                                 Using cmdDetails As New OleDbCommand(queryDetails, Conn)
                                     cmdDetails.Parameters.AddWithValue("@ind_accname", incomeType)
                                     cmdDetails.Parameters.AddWithValue("@con_id", If(String.IsNullOrEmpty(contractNumber), DBNull.Value, contractNumber))
                                     cmdDetails.Parameters.AddWithValue("@ind_amount", amount)
                                     cmdDetails.Parameters.AddWithValue("@inc_id", incId)
-                                    ' เพิ่มพารามิเตอร์ m_id
+                                    ' เพิ่มพารามิเตอร์ m_id และ installment
                                     cmdDetails.Parameters.AddWithValue("@m_id", memberId)
+                                    cmdDetails.Parameters.AddWithValue("@installment", installment)
 
                                     cmdDetails.ExecuteNonQuery()
                                 End Using
@@ -399,6 +438,14 @@ Public Class frmIncome
             End If
         End If
     End Sub
+
+    Private Sub dgvIncomeDetails_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles dgvIncomeDetails.CellValueChanged
+        If e.ColumnIndex = dgvIncomeDetails.Columns("ContractNumber").Index Then
+            Dim contractNumber As String = dgvIncomeDetails.Rows(e.RowIndex).Cells("ContractNumber").Value.ToString()
+            LoadInstallmentsForContract(contractNumber)
+        End If
+    End Sub
+
 
     Private Sub dgvIncomeDetails_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles dgvIncomeDetails.RowsAdded
         btnSave.Enabled = True ' เปิดการใช้งานปุ่ม "บันทึก" เมื่อมีการเพิ่มรายการใหม่

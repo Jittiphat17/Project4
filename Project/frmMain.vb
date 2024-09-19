@@ -182,8 +182,6 @@ Public Class frmMain
         frm.ShowDialog()
     End Sub
 
-
-
     Private Sub รายงานสญญาเงนกToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles รายงานสญญาเงนกToolStripMenuItem.Click
         Dim frm As New frmSearch
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
@@ -273,4 +271,9 @@ Public Class frmMain
         frm.ShowDialog()
     End Sub
 
+    Private Sub รายงานดอกเบยสจจะToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles รายงานดอกเบยสจจะToolStripMenuItem.Click
+        Dim frm As New frmInterestReport
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
 End Class

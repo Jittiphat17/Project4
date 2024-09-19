@@ -12,13 +12,34 @@ Public Class frmBrrow
         SetupEventHandlers()
         Auto_id()
         ClearAllData()
-        SetupDataGridView()
+        SetupGuna2DataGridView()
         SetupDateTimePicker()
         LoadAutoCompleteData()
         LoadAccountData()
         LoadPerMData()
         LoadGuaranteeTypes() ' โหลดตัวเลือกการค้ำประกัน
     End Sub
+    Private Sub txtMoney_TextChanged(sender As Object, e As EventArgs) Handles txtMoney.TextChanged
+        ' ตรวจสอบว่าไม่ใช่การลบข้อมูลทั้งหมด
+        If txtMoney.Text.Length > 0 Then
+            ' เก็บตำแหน่งเคอร์เซอร์ปัจจุบัน
+            Dim cursorPosition As Integer = txtMoney.SelectionStart
+
+            ' ลบคอมม่าออกก่อนการจัดรูปแบบใหม่
+            Dim valueWithoutComma As String = txtMoney.Text.Replace(",", "")
+
+            ' ตรวจสอบว่าเป็นจำนวนเงินที่ถูกต้องหรือไม่
+            Dim value As Decimal
+            If Decimal.TryParse(valueWithoutComma, value) Then
+                ' จัดรูปแบบและใส่คอมม่า
+                txtMoney.Text = String.Format("{0:N0}", value)
+
+                ' กำหนดตำแหน่งเคอร์เซอร์กลับไปที่ตำแหน่งเดิม
+                txtMoney.SelectionStart = cursorPosition + (txtMoney.Text.Length - valueWithoutComma.Length)
+            End If
+        End If
+    End Sub
+
 
     Private Sub LoadGuaranteeTypes()
         ' เพิ่มตัวเลือกลงใน ComboBox สำหรับการค้ำประกัน
@@ -30,15 +51,34 @@ Public Class frmBrrow
         cbGuaranteeType.SelectedIndex = 0 ' ตั้งค่าเป็นค่าเริ่มต้น
     End Sub
 
-    Private Sub SetupDataGridView()
-        dgvConn.Columns.Clear()
+    Private Sub SetupGuna2DataGridView()
+        ' ตั้งค่าฟอนต์และลักษณะของ Guna2DataGridView
+        guna2DataGridView1.Font = New Font("FC Minimal", 12, FontStyle.Bold)
+
+        ' เคลียร์คอลัมน์เก่าหากมี
+        guna2DataGridView1.Columns.Clear()
+
+        ' ชื่อคอลัมน์ที่ต้องการเพิ่ม
         Dim columnNames As String() = {"เลขที่สัญญา", "ผู้กู้", "รายละเอียดผู้กู้", "จำนวนเงินกู้", "แหล่งจ่าย",
-                                       "จำนวนเดือน", "ดอกเบี้ย", "วันที่ทำรายการ", "ผู้ค้ำที่ 1", "ผู้ค้ำที่ 2",
-                                       "ผู้ค้ำที่ 3", "ผ่อนชำระต่อเดือน"}
+                                   "จำนวนเดือน", "ดอกเบี้ย", "วันที่ทำรายการ", "ผู้ค้ำที่ 1", "ผู้ค้ำที่ 2",
+                                   "ผู้ค้ำที่ 3", "ผ่อนชำระต่อเดือน"}
+
+        ' เพิ่มคอลัมน์ใหม่ลงใน Guna2DataGridView
         For Each colName As String In columnNames
-            dgvConn.Columns.Add(colName, colName)
+            Dim column As New DataGridViewTextBoxColumn()
+            column.HeaderText = colName
+            column.Name = colName  ' เพิ่มบรรทัดนี้เพื่อกำหนดชื่อคอลัมน์
+
+            ' ถ้าคอลัมน์เป็น "จำนวนเงินกู้" หรือ "ผ่อนชำระต่อเดือน" ให้จัดเรียงชิดขวาและเพิ่มคอมม่า
+            If colName = "จำนวนเงินกู้" OrElse colName = "ผ่อนชำระต่อเดือน" Then
+                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                column.DefaultCellStyle.Format = "N2" ' แสดงจำนวนเงินด้วยคอมม่า
+            End If
+
+            guna2DataGridView1.Columns.Add(column)
         Next
     End Sub
+
 
     Private Sub SetupEventHandlers()
         AddHandler txtSearch.TextChanged, AddressOf txtSearch_TextChanged
@@ -104,7 +144,12 @@ Public Class frmBrrow
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs)
         Dim tb As Guna2TextBox = CType(sender, Guna2TextBox)
-        If String.IsNullOrWhiteSpace(tb.Text) Then Exit Sub
+        If String.IsNullOrWhiteSpace(tb.Text) Then
+            Dim detailTextBox As Guna2TextBox = FindDetailTextBoxForSearchBox(tb)
+            If detailTextBox IsNot Nothing Then detailTextBox.Text = String.Empty
+            UpdateGuarantorStatus()  ' เพิ่มบรรทัดนี้
+            Exit Sub
+        End If
 
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
             conn.Open()
@@ -113,7 +158,7 @@ Public Class frmBrrow
                 Using reader As OleDbDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
                         Dim detail As String = String.Format("รหัสสมาชิก: {0}, ชื่อ-นามสกุล: {1}, ที่อยู่: {2}, เบอร์โทรติดต่อ: {3}",
-                                                             reader("m_id"), reader("m_name"), reader("m_address"), reader("m_tel"))
+                                                         reader("m_id"), reader("m_name"), reader("m_address"), reader("m_tel"))
                         Dim detailTextBox As Guna2TextBox = FindDetailTextBoxForSearchBox(tb)
                         If detailTextBox IsNot Nothing Then detailTextBox.Text = detail
                     Else
@@ -123,6 +168,8 @@ Public Class frmBrrow
                 End Using
             End Using
         End Using
+
+        UpdateGuarantorStatus()  ' เพิ่มบรรทัดนี้
     End Sub
 
     Private Function FindDetailTextBoxForSearchBox(searchBox As Guna2TextBox) As Guna2TextBox
@@ -143,114 +190,49 @@ Public Class frmBrrow
     Private Sub Auto_id()
         Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
             conn.Open()
+            ' ใช้ SELECT MAX(con_id) เพื่อดึงค่า con_id สูงสุดจากฐานข้อมูล
             Using cmd As New OleDbCommand("SELECT MAX(con_id) FROM Contract", conn)
                 Dim result As Object = cmd.ExecuteScalar()
-                Dim newId As Integer = If(IsDBNull(result), 1, Convert.ToInt32(result) + 1)
-                txtCid.Text = newId.ToString("D4")
+
+                ' ตรวจสอบว่าผลลัพธ์เป็นค่าว่างหรือไม่ (กรณีไม่มีข้อมูลในตาราง)
+                If IsDBNull(result) OrElse result Is Nothing Then
+                    txtCid.Text = "0001"  ' หากไม่มีค่าในตาราง ให้เริ่มที่ 0001
+                Else
+                    ' ดำเนินการเพิ่มค่า con_id ใหม่โดยเพิ่ม 1 และจัดรูปแบบเป็นเลข 4 หลัก
+                    Dim newId As Integer = Convert.ToInt32(result) + 1
+                    txtCid.Text = newId.ToString("D4")  ' จัดรูปแบบเป็นเลข 4 หลัก
+                End If
             End Using
         End Using
     End Sub
 
     Private Sub ClearAllData()
-        txtSearch.Clear()
-        txtSearch1.Clear()
-        txtSearch2.Clear()
-        txtSearch3.Clear()
-        txtDetail.Clear()
-        txtDetail1.Clear()
-        txtDetail2.Clear()
-        txtDetail3.Clear()
-        txtMoney.Clear()
+        ' ล้างข้อมูลในช่องกรอกทั้งหมด
+        Dim textBoxesToClear As Guna2TextBox() = {txtSearch, txtSearch1, txtSearch2, txtSearch3, txtDetail, txtDetail1, txtDetail2, txtDetail3, txtMoney}
+        For Each tb As Guna2TextBox In textBoxesToClear
+            tb.Clear()
+        Next
 
+        ' รีเซ็ตค่าอื่นๆ
         If cbAccount.Items.Count > 0 Then cbAccount.SelectedIndex = 0
         LoadPerMData()
-
         dtpBirth.Value = DateTime.Today
-        chkGuarantor.Checked = False
+
+        ' อัปเดตสถานะของ CheckBox และควบคุมการเปิด/ปิดช่องกรอกข้อมูลผู้ค้ำประกัน
+        Dim hasGuarantor As Boolean = False ' เนื่องจากเราเพิ่งล้างข้อมูลทั้งหมด จึงไม่มีผู้ค้ำประกันแน่นอน
+        chkGuarantor.Checked = hasGuarantor
+
+        ' เปิด/ปิดการใช้งานช่องกรอกข้อมูลผู้ค้ำประกัน
+        Dim guarantorFields As Guna2TextBox() = {txtSearch1, txtSearch2, txtSearch3, txtDetail1, txtDetail2, txtDetail3}
+        For Each field As Guna2TextBox In guarantorFields
+            field.Enabled = hasGuarantor
+        Next
     End Sub
 
     Private Sub SetupDateTimePicker()
         dtpBirth.Format = DateTimePickerFormat.Custom
         dtpBirth.CustomFormat = "dd/MM/yyyy"
         dtpBirth.Value = DateTime.Now
-    End Sub
-
-    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-        ' ตรวจสอบว่าข้อมูลที่จำเป็นได้รับการกรอกครบถ้วนหรือไม่
-        If Not IsDataComplete() Then
-            MessageBox.Show("กรุณากรอกข้อมูลให้ครบถ้วน", "ข้อมูลไม่ครบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        ' รับข้อมูลจากฟอร์ม
-        Dim principal As Decimal = Decimal.Parse(txtMoney.Text)  ' จำนวนเงินกู้
-        Dim loanDate As DateTime = dtpBirth.Value ' Date of the loan
-        Dim interestRate As Decimal = Decimal.Parse(txtPercen.Text)  ' อัตราดอกเบี้ยต่อปี
-        Dim totalPayments As Integer = Integer.Parse(cbPerM.SelectedItem.ToString().Replace("เดือน", "").Trim())  ' จำนวนเดือน
-
-        ' ตรวจสอบว่าเลือกประเภทการค้ำประกันอะไร
-        If cbGuaranteeType.SelectedItem.ToString() = "เงินในบัญชี" Then
-            Try
-                Dim loanAmount As Decimal
-                If Decimal.TryParse(txtMoney.Text, loanAmount) Then
-                    ' ดึง m_id ของผู้กู้
-                    Dim borrowerId As Integer = GetMemberIdByName(txtSearch.Text)
-                    If borrowerId = -1 Then
-                        MessageBox.Show("ไม่พบข้อมูลผู้กู้", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Return
-                    End If
-
-                    ' ตรวจสอบเงินในบัญชีสัจจะของผู้กู้
-                    Dim savingsBalance As Decimal = GetSavingsBalance(borrowerId)
-
-                    If savingsBalance >= loanAmount Then
-                        MessageBox.Show("สามารถใช้เงินในบัญชีค้ำประกันได้ เนื่องจากมีเงินสะสม " & savingsBalance.ToString("N2") & " บาท ซึ่งมากกว่าหรือเท่ากับเงินที่จะกู้ " & loanAmount.ToString("N2") & " บาท", "การค้ำประกัน", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        ' ดำเนินการต่อไปสำหรับการใช้เงินในบัญชีค้ำประกัน
-                    Else
-                        MessageBox.Show("เงินในบัญชีไม่เพียงพอสำหรับการค้ำประกัน เนื่องจากมีเงินสะสมเพียง " & savingsBalance.ToString("N2") & " บาท ซึ่งน้อยกว่าเงินที่จะกู้ " & loanAmount.ToString("N2") & " บาท ต้องใช้ผู้ค้ำประกัน", "การค้ำประกัน", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        ' ดำเนินการต่อไปสำหรับกรณีที่ต้องใช้ผู้ค้ำประกัน
-                    End If
-                Else
-                    MessageBox.Show("กรุณากรอกจำนวนเงินที่ต้องการกู้ให้ถูกต้อง", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End If
-            Catch ex As OleDbException
-                MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Catch ex As Exception
-                MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
-        End If
-
-        ' คำนวณการชำระเงินรายเดือน
-        Dim monthlyPayment As Decimal = CalculateMonthlyPayment(principal, interestRate, totalPayments)
-
-        ' ดึง acc_id จากชื่อบัญชีที่เลือกใน ComboBox
-        Dim accountDict As Dictionary(Of String, String) = CType(cbAccount.Tag, Dictionary(Of String, String))
-        Dim acc_id As String = accountDict.FirstOrDefault(Function(x) x.Value = cbAccount.SelectedItem.ToString()).Key
-
-        ' สร้างอาร์เรย์สตริงที่มีข้อมูลจากฟอร์ม
-        Dim rowData As String() = New String() {
-        txtCid.Text,
-        txtSearch.Text,  ' สมมติว่านี่คือชื่อผู้กู้
-        txtDetail.Text,  ' รายละเอียดผู้กู้
-        String.Format("{0:n0} บาท", principal),   ' จำนวนเงินกู้
-        cbAccount.SelectedItem.ToString(),  ' แหล่งจ่าย
-        cbPerM.SelectedItem.ToString(),     ' จำนวนเดือน
-        txtPercen.Text,   ' ดอกเบี้ย
-        dtpBirth.Value.ToString("dd/MM/yyyy"),  ' วันที่ทำรายการ
-        If(chkGuarantor.Checked, txtSearch1.Text, ""), ' ผู้ค้ำที่ 1
-        If(chkGuarantor.Checked, txtSearch2.Text, ""), ' ผู้ค้ำที่ 2
-        If(chkGuarantor.Checked, txtSearch3.Text, ""), ' ผู้ค้ำที่ 3
-        monthlyPayment.ToString("F2")  ' ผ่อนชำระต่อเดือน
-    }
-
-        ' เพิ่มข้อมูลเป็นแถวใหม่ใน DataGridView
-        dgvConn.Rows.Add(rowData)
-
-        ' เคลียร์ข้อมูลในฟอร์มหลังจากเพิ่มข้อมูล
-        ClearAllData()
-
-        ' อัปเดต ID สัญญาใหม่
-        Auto_id()
     End Sub
 
     ' ฟังก์ชันสำหรับดึงยอดเงินสะสมในบัญชีสัจจะ
@@ -268,22 +250,15 @@ Public Class frmBrrow
             Using cmd As New OleDbCommand(strSQL, conn)
                 cmd.Parameters.AddWithValue("@memberId", memberId)
 
-                ' Debug message for SQL query
-                MessageBox.Show($"Debug: SQL Query = {strSQL}, memberId = {memberId}")
-
                 ' Execute the query and get the result
                 Dim result As Object = cmd.ExecuteScalar()
                 If result IsNot DBNull.Value Then
                     savingsBalance = Convert.ToDecimal(result)
                 End If
-
-                ' Debug message for the raw result and the converted balance
-                MessageBox.Show($"Debug: Raw result = {result}, Converted balance = {savingsBalance}")
             End Using
         End Using
         Return savingsBalance
     End Function
-
 
     ' ส่วนของการตรวจสอบการค้ำประกันด้วยเงินในบัญชี
     Private Sub CheckGuaranteeWithSavings()
@@ -300,9 +275,6 @@ Public Class frmBrrow
 
                     ' ตรวจสอบเงินในบัญชีสัจจะของผู้กู้
                     Dim savingsBalance As Decimal = GetSavingsBalance(borrowerId)
-
-                    ' Debug message
-                    MessageBox.Show($"Debug: Loan Amount = {loanAmount}, Savings Balance = {savingsBalance}")
 
                     If savingsBalance >= loanAmount Then
                         MessageBox.Show("สามารถใช้เงินในบัญชีค้ำประกันได้ เนื่องจากมีเงินสะสม " &
@@ -328,42 +300,211 @@ Public Class frmBrrow
         End If
     End Sub
 
-    ' เรียกใช้ฟังก์ชันตรวจสอบเมื่อต้องการ เช่น เมื่อกดปุ่มหรือเลือกประเภทการค้ำประกัน
     Private Sub cbGuaranteeType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbGuaranteeType.SelectedIndexChanged
+        ' ตรวจสอบว่าผู้ใช้เลือกการค้ำประกันเป็น "เงินในบัญชี" หรือไม่
         If cbGuaranteeType.SelectedItem.ToString() = "เงินในบัญชี" Then
-            CheckGuaranteeWithSavings()
+            ' ตรวจสอบและเลือก "บัญชีเงินสัจจะ" ใน cbAccount
+            cbAccount.SelectedItem = "บัญชีเงินสัจจะ"
+
+            ' ปิดการใช้งาน ComboBox ไม่ให้ผู้ใช้เปลี่ยนแหล่งจ่าย
+            cbAccount.Enabled = False
+
+            ' ปิดการใช้งานช่องกรอกข้อมูลผู้ค้ำ เนื่องจากไม่เกี่ยวข้องในกรณีนี้
+            txtSearch1.Enabled = False
+            txtSearch2.Enabled = False
+            txtSearch3.Enabled = False
+
+            ' ล้างข้อมูลผู้ค้ำประกันออก
+            txtSearch1.Clear()
+            txtSearch2.Clear()
+            txtSearch3.Clear()
+
+        ElseIf cbGuaranteeType.SelectedItem.ToString() = "ผู้ค้ำประกัน" Then
+            ' เปิดใช้งานฟิลด์กรอกข้อมูลผู้ค้ำประกัน เมื่อเลือกการค้ำประกันเป็น "ผู้ค้ำประกัน"
+            txtSearch1.Enabled = True
+            txtSearch2.Enabled = True
+            txtSearch3.Enabled = True
+
+            ' เปิดการใช้งาน ComboBox แหล่งจ่ายให้ผู้ใช้เลือกได้
+            cbAccount.Enabled = True
+
+            ' ตรวจสอบว่าผู้ค้ำประกันไม่ใช่คนกู้
+            If txtSearch1.Text = txtSearch.Text OrElse txtSearch2.Text = txtSearch.Text OrElse txtSearch3.Text = txtSearch.Text Then
+                MessageBox.Show("ผู้ค้ำประกันไม่สามารถเป็นคนเดียวกับคนกู้ได้", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                ' ล้างข้อมูลผู้ค้ำที่ซ้ำกับคนกู้
+                If txtSearch1.Text = txtSearch.Text Then txtSearch1.Clear()
+                If txtSearch2.Text = txtSearch.Text Then txtSearch2.Clear()
+                If txtSearch3.Text = txtSearch.Text Then txtSearch3.Clear()
+            End If
+
+        Else
+            ' เปิดให้เลือกแหล่งจ่ายใหม่ได้หากไม่ได้เลือกการค้ำประกันเป็น "เงินในบัญชี"
+            cbAccount.Enabled = True
+
+            ' ปิดการใช้งานฟิลด์ผู้ค้ำประกัน หากไม่เลือก "ผู้ค้ำประกัน"
+            txtSearch1.Enabled = False
+            txtSearch2.Enabled = False
+            txtSearch3.Enabled = False
+
+            ' ล้างข้อมูลผู้ค้ำประกัน
+            txtSearch1.Clear()
+            txtSearch2.Clear()
+            txtSearch3.Clear()
         End If
     End Sub
 
-
-
     Private Function IsDataComplete() As Boolean
-        ' Validate that all necessary fields are filled out and contain valid numbers
-        If Not Decimal.TryParse(txtMoney.Text, Nothing) Then
-            MessageBox.Show("กรุณากรอกจำนวนเงินที่ถูกต้อง", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return False
-        End If
-        If Not Decimal.TryParse(txtPercen.Text, Nothing) Then
-            MessageBox.Show("กรุณากรอกอัตราดอกเบี้ยที่ถูกต้อง", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        ' ตรวจสอบว่าช่อง txtSearch (ชื่อผู้กู้) ไม่ว่าง
+        If String.IsNullOrWhiteSpace(txtSearch.Text) Then
+            MessageBox.Show("กรุณากรอกชื่อผู้กู้", "ข้อมูลไม่ครบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtSearch.Focus()
             Return False
         End If
 
-        Return Not String.IsNullOrWhiteSpace(txtCid.Text) AndAlso
-               Not String.IsNullOrWhiteSpace(txtSearch.Text) AndAlso
-               Not String.IsNullOrWhiteSpace(txtDetail.Text) AndAlso
-               cbAccount.SelectedIndex > 0 AndAlso
-               cbPerM.SelectedIndex > 0 AndAlso
-               (Not chkGuarantor.Checked OrElse
-                (Not String.IsNullOrWhiteSpace(txtSearch1.Text) AndAlso Not String.IsNullOrWhiteSpace(txtDetail1.Text)))
+        ' ตรวจสอบว่าช่อง txtMoney (จำนวนเงินกู้) เป็นตัวเลขและไม่ว่าง
+        Dim loanAmount As Decimal
+        If Not Decimal.TryParse(txtMoney.Text.Replace(",", ""), loanAmount) OrElse loanAmount <= 0 Then
+            MessageBox.Show("กรุณากรอกจำนวนเงินกู้ที่ถูกต้อง", "ข้อมูลไม่ครบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtMoney.Focus()
+            Return False
+        End If
+
+        ' ตรวจสอบว่าช่อง cbGuaranteeType (การค้ำประกัน) ถูกเลือกหรือไม่
+        If cbGuaranteeType.SelectedIndex = 0 Then
+            MessageBox.Show("กรุณาเลือกการค้ำประกัน", "ข้อมูลไม่ครบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            cbGuaranteeType.Focus()
+            Return False
+        End If
+
+        ' ตรวจสอบว่าจำนวนเดือนถูกเลือกใน cbPerM หรือไม่
+        If cbPerM.SelectedIndex = 0 Then
+            MessageBox.Show("กรุณาเลือกจำนวนเดือน", "ข้อมูลไม่ครบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            cbPerM.Focus()
+            Return False
+        End If
+
+        ' ตรวจสอบว่าดอกเบี้ยเป็นตัวเลขที่ถูกต้อง
+        Dim interestRate As Decimal
+        If Not Decimal.TryParse(txtPercen.Text, interestRate) OrElse interestRate <= 0 Then
+            MessageBox.Show("กรุณากรอกอัตราดอกเบี้ยที่ถูกต้อง", "ข้อมูลไม่ครบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtPercen.Focus()
+            Return False
+        End If
+
+        ' ตรวจสอบข้อมูลผู้ค้ำประกันเฉพาะเมื่อ chkGuarantor ถูกเลือก
+        If chkGuarantor.Checked Then
+            If String.IsNullOrWhiteSpace(txtSearch1.Text) Then
+                MessageBox.Show("กรุณากรอกชื่อผู้ค้ำประกันอย่างน้อย 1 คน", "ข้อมูลไม่ครบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtSearch1.Focus()
+                Return False
+            End If
+        End If
+
+        ' ถ้าข้อมูลทุกช่องถูกต้อง ให้คืนค่า True เพื่อดำเนินการต่อ
+        Return True
     End Function
+    Private Sub UpdateGuarantorStatus()
+        Dim hasGuarantor As Boolean = Not String.IsNullOrWhiteSpace(txtSearch1.Text) OrElse
+                                   Not String.IsNullOrWhiteSpace(txtSearch2.Text) OrElse
+                                   Not String.IsNullOrWhiteSpace(txtSearch3.Text)
 
-    Private Sub chkGuarantor_CheckedChanged(sender As Object, e As EventArgs) Handles chkGuarantor.CheckedChanged
+        chkGuarantor.Checked = hasGuarantor
+
+        ' เปิด/ปิดการใช้งานช่องกรอกข้อมูลผู้ค้ำประกัน
+        txtSearch1.Enabled = hasGuarantor
+        txtSearch2.Enabled = hasGuarantor
+        txtSearch3.Enabled = hasGuarantor
+        txtDetail1.Enabled = hasGuarantor
+        txtDetail2.Enabled = hasGuarantor
+        txtDetail3.Enabled = hasGuarantor
+    End Sub
+
+    Private Sub chkGuarantor_CheckedChanged(sender As Object, e As EventArgs)
         txtSearch1.Enabled = chkGuarantor.Checked
         txtSearch2.Enabled = chkGuarantor.Checked
         txtSearch3.Enabled = chkGuarantor.Checked
         txtDetail1.Enabled = chkGuarantor.Checked
         txtDetail2.Enabled = chkGuarantor.Checked
         txtDetail3.Enabled = chkGuarantor.Checked
+
+        If Not chkGuarantor.Checked Then
+            txtSearch1.Clear()
+            txtSearch2.Clear()
+            txtSearch3.Clear()
+            txtDetail1.Clear()
+            txtDetail2.Clear()
+            txtDetail3.Clear()
+        End If
+    End Sub
+
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+        Try
+            ' ตรวจสอบว่าข้อมูลที่จำเป็นได้รับการกรอกครบถ้วนหรือไม่
+            If Not IsDataComplete() Then
+                MessageBox.Show("กรุณากรอกข้อมูลให้ครบถ้วน", "ข้อมูลไม่ครบ", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            ' รับข้อมูลจากฟอร์ม
+            Dim principal As Decimal = Decimal.Parse(txtMoney.Text.Replace(",", ""))  ' จำนวนเงินกู้
+            Dim loanDate As DateTime = dtpBirth.Value ' วันที่กู้เงิน
+            Dim interestRate As Decimal = Decimal.Parse(txtPercen.Text)  ' อัตราดอกเบี้ยต่อปี
+            Dim totalPayments As Integer = Integer.Parse(cbPerM.SelectedItem.ToString().Replace("เดือน", "").Trim())  ' จำนวนเดือน
+
+            ' ตรวจสอบประเภทการค้ำประกัน
+            If cbGuaranteeType.SelectedItem.ToString() = "เงินในบัญชี" Then
+                Dim borrowerId As Integer = GetMemberIdByName(txtSearch.Text)
+                If borrowerId = -1 Then
+                    MessageBox.Show("ไม่พบข้อมูลผู้กู้", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+                End If
+
+                ' ตรวจสอบยอดเงินในบัญชีสัจจะของผู้กู้
+                Dim savingsBalance As Decimal = GetSavingsBalance(borrowerId)
+                If savingsBalance < principal Then
+                    MessageBox.Show("เงินในบัญชีไม่เพียงพอสำหรับการค้ำประกัน เนื่องจากมีเงินสะสมเพียง " &
+                                savingsBalance.ToString("N2") & " บาท ซึ่งน้อยกว่าเงินที่จะกู้ " &
+                                principal.ToString("N2") & " บาท ต้องใช้ผู้ค้ำประกัน", "การค้ำประกัน",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+            End If
+
+            ' คำนวณการชำระเงินรายเดือน
+            Dim monthlyPayment As Decimal = CalculateMonthlyPayment(principal, interestRate, totalPayments)
+
+            ' ดึง acc_id จากชื่อบัญชีที่เลือกใน ComboBox
+            Dim accountDict As Dictionary(Of String, String) = CType(cbAccount.Tag, Dictionary(Of String, String))
+            Dim acc_id As String = accountDict.FirstOrDefault(Function(x) x.Value = cbAccount.SelectedItem.ToString()).Key
+
+            ' สร้างอาร์เรย์สตริงที่มีข้อมูลจากฟอร์ม
+            Dim rowData As Object() = New Object() {
+            txtCid.Text,
+            txtSearch.Text,  ' ชื่อผู้กู้
+            txtDetail.Text,  ' รายละเอียดผู้กู้
+            principal.ToString("N2"),   ' จำนวนเงินกู้
+            cbAccount.SelectedItem.ToString(),  ' แหล่งจ่าย
+            cbPerM.SelectedItem.ToString(),     ' จำนวนเดือน
+            txtPercen.Text,   ' อัตราดอกเบี้ย
+            dtpBirth.Value.ToString("dd/MM/yyyy"),  ' วันที่ทำรายการ
+            If(chkGuarantor.Checked, txtSearch1.Text, ""), ' ผู้ค้ำที่ 1
+            If(chkGuarantor.Checked, txtSearch2.Text, ""), ' ผู้ค้ำที่ 2
+            If(chkGuarantor.Checked, txtSearch3.Text, ""), ' ผู้ค้ำที่ 3
+            monthlyPayment.ToString("N2")  ' ผ่อนชำระต่อเดือน
+        }
+
+            ' เพิ่มข้อมูลเป็นแถวใหม่ใน Guna2DataGridView
+            guna2DataGridView1.Rows.Add(rowData)
+
+            ' เคลียร์ข้อมูลในฟอร์มหลังจากเพิ่มข้อมูล
+            ClearAllData()
+
+            ' อัปเดต ID สัญญาใหม่
+            Auto_id()
+
+        Catch ex As Exception
+            MessageBox.Show("เกิดข้อผิดพลาด: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -372,7 +513,7 @@ Public Class frmBrrow
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 conn.Open()
 
-                For Each row As DataGridViewRow In dgvConn.Rows
+                For Each row As DataGridViewRow In guna2DataGridView1.Rows
                     If Not row.IsNewRow Then
                         Dim borrowerName As String = row.Cells("ผู้กู้").Value.ToString()
                         Dim loanAmount As Decimal = Decimal.Parse(row.Cells("จำนวนเงินกู้").Value.ToString().Replace(" บาท", "").Replace(",", ""))
@@ -490,7 +631,7 @@ Public Class frmBrrow
 
                 MessageBox.Show("บันทึกข้อมูลสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                dgvConn.Rows.Clear()
+                guna2DataGridView1.Rows.Clear()
 
             End Using
 

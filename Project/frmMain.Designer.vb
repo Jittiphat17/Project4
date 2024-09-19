@@ -44,6 +44,7 @@ Partial Class frmMain
         Me.รายรบToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_report = New System.Windows.Forms.ToolStripMenuItem()
         Me.รายงานสญญาเงนกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.รายงานดอกเบยสจจะToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_other = New System.Windows.Forms.ToolStripMenuItem()
         Me.สมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.จดการสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -66,7 +67,6 @@ Partial Class frmMain
         Me.Guna2GroupBox2 = New Guna.UI2.WinForms.Guna2GroupBox()
         Me.lbContractCount = New System.Windows.Forms.Label()
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
-        Me.รายงานดอกเบยสจจะToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Guna2Panel1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.Guna2GroupBox4.SuspendLayout()
@@ -226,6 +226,12 @@ Partial Class frmMain
         Me.รายงานสญญาเงนกToolStripMenuItem.Name = "รายงานสญญาเงนกToolStripMenuItem"
         Me.รายงานสญญาเงนกToolStripMenuItem.Size = New System.Drawing.Size(262, 32)
         Me.รายงานสญญาเงนกToolStripMenuItem.Text = "รายงานสัญญาเงินกู้"
+        '
+        'รายงานดอกเบยสจจะToolStripMenuItem
+        '
+        Me.รายงานดอกเบยสจจะToolStripMenuItem.Name = "รายงานดอกเบยสจจะToolStripMenuItem"
+        Me.รายงานดอกเบยสจจะToolStripMenuItem.Size = New System.Drawing.Size(262, 32)
+        Me.รายงานดอกเบยสจจะToolStripMenuItem.Text = "รายงานดอกเบี้ยสัจจะ"
         '
         'tsm_other
         '
@@ -433,12 +439,6 @@ Partial Class frmMain
         Me.Guna2ControlBox1.Name = "Guna2ControlBox1"
         Me.Guna2ControlBox1.Size = New System.Drawing.Size(38, 29)
         Me.Guna2ControlBox1.TabIndex = 5
-        '
-        'รายงานดอกเบยสจจะToolStripMenuItem
-        '
-        Me.รายงานดอกเบยสจจะToolStripMenuItem.Name = "รายงานดอกเบยสจจะToolStripMenuItem"
-        Me.รายงานดอกเบยสจจะToolStripMenuItem.Size = New System.Drawing.Size(262, 32)
-        Me.รายงานดอกเบยสจจะToolStripMenuItem.Text = "รายงานดอกเบี้ยสัจจะ"
         '
         'frmMain
         '
