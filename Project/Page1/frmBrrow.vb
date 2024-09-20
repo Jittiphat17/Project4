@@ -580,17 +580,36 @@ Public Class frmBrrow
                                     End If
                                 End If
                             Next
-
-                            ' Insert into Payment table
+                            ' ใช้ฟังก์ชัน CalculateMonthlyPayment ที่มีอยู่
                             Dim monthlyPayment As Decimal = CalculateMonthlyPayment(loanAmount, interest, period)
 
+                            ' คำนวณดอกเบี้ยทั้งหมด
+                            Dim totalInterest As Decimal = loanAmount * (interest / 100) * period
+
+                            ' คำนวณเงินต้นและดอกเบี้ยต่องวด
+                            Dim monthlyPrincipal As Decimal = Math.Round(loanAmount / period, 2)
+                            Dim monthlyInterest As Decimal = Math.Round(totalInterest / period, 2)
+
+                            ' Insert into Payment table
                             For i As Integer = 1 To period
                                 Dim paymentDate As DateTime = transactionDate.AddMonths(i)
-                                strSQL = "INSERT INTO Payment (con_id, payment_date, payment_amount, status_id) VALUES (@con_id, @payment_date, @payment_amount, 1)"
+
+                                ' สำหรับงวดสุดท้าย ปรับเงินต้นและดอกเบี้ยให้ตรงกับยอดรวม
+                                If i = period Then
+                                    monthlyPrincipal = loanAmount - (monthlyPrincipal * (period - 1))
+                                    monthlyInterest = totalInterest - (monthlyInterest * (period - 1))
+                                    monthlyPayment = monthlyPrincipal + monthlyInterest
+                                End If
+
+                                strSQL = "INSERT INTO Payment (con_id, payment_date, payment_amount, payment_prin, payment_interest, status_id, m_id) VALUES (@con_id, @payment_date, @payment_amount, @payment_prin, @payment_interest, @status_id, @m_id)"
                                 Using paymentCmd As New OleDbCommand(strSQL, conn)
                                     paymentCmd.Parameters.AddWithValue("@con_id", con_id)
                                     paymentCmd.Parameters.AddWithValue("@payment_date", paymentDate)
                                     paymentCmd.Parameters.AddWithValue("@payment_amount", monthlyPayment)
+                                    paymentCmd.Parameters.AddWithValue("@payment_prin", monthlyPrincipal)
+                                    paymentCmd.Parameters.AddWithValue("@payment_interest", monthlyInterest)
+                                    paymentCmd.Parameters.AddWithValue("@status_id", 1)  ' Assuming 1 is for unpaid status
+                                    paymentCmd.Parameters.AddWithValue("@m_id", borrowerId)
                                     paymentCmd.ExecuteNonQuery()
                                 End Using
                             Next

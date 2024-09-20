@@ -121,11 +121,6 @@ Public Class frmMain
                 totalPublicLoan = 0
             End If
 
-            ' แสดงยอดเงินใน Label หรือ TextBox
-            lblTotalSaving.Text = "ยอดเงินสัจจะ: " & Convert.ToDecimal(totalSaving).ToString("N2") & " บาท"
-            lblTotalLoan.Text = "ยอดเงินกู้: " & Convert.ToDecimal(totalLoan).ToString("N2") & " บาท"
-            lblTotalPublicLoan.Text = "ยอดเงินกู้สาธารณะ: " & Convert.ToDecimal(totalPublicLoan).ToString("N2") & " บาท"
-
         Catch ex As Exception
             MessageBox.Show("เกิดข้อผิดพลาดในการดึงข้อมูลยอดเงิน: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally

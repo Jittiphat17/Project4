@@ -1,8 +1,11 @@
 ﻿Imports System.Data.OleDb
+Imports System.Drawing.Printing
 
 Public Class frmEditExpense
     Dim conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
     Private expenseID As String = "" ' เก็บค่า ex_id ของรายจ่ายที่ถูกเลือก
+    Private printDocument As New PrintDocument()
+    Private printPreviewDialog As New PrintPreviewDialog()
 
     Private Sub frmEditExpense_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadAccounts() ' โหลดข้อมูลบัญชี
@@ -13,6 +16,12 @@ Public Class frmEditExpense
         ' ตั้งค่า TextAlign ของ TextBox ที่แสดงจำนวนเงินให้ชิดขวา
         txtExpenseAmount.TextAlign = HorizontalAlignment.Right
         txtDetailAmount.TextAlign = HorizontalAlignment.Right
+
+        ' เพิ่ม event handler สำหรับการพิมพ์
+        AddHandler printDocument.PrintPage, AddressOf PrintDocument_PrintPage
+
+        ' ตั้งค่า PrintPreviewDialog
+        printPreviewDialog.Document = printDocument
     End Sub
 
     Private Sub LoadAccounts()
@@ -116,7 +125,6 @@ Public Class frmEditExpense
         End If
     End Sub
 
-
     Private Sub LoadExpenses()
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
@@ -184,10 +192,9 @@ Public Class frmEditExpense
             txtExpenseAmount.Text = row.Cells("ex_amount").Value.ToString()
             dtpExpenseDate.Value = Convert.ToDateTime(row.Cells("ex_date").Value)
             cmbAccount.SelectedValue = row.Cells("acc_id").Value.ToString()
-            txtExpenseDescription.Text = row.Cells("ex_description").Value.ToString() ' เพิ่มส่วนนี้
+            txtExpenseDescription.Text = row.Cells("ex_description").Value.ToString()
         End If
     End Sub
-
 
     Private Sub dgvExpenseDetails_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvExpenseDetails.CellClick
         If e.RowIndex >= 0 Then
@@ -244,7 +251,7 @@ Public Class frmEditExpense
 
             ' รีเฟรชข้อมูลใน DataGridView หลังจากบันทึกข้อมูล
             LoadExpenses()
-            LoadExpenseDetails() ' เพิ่มการรีเฟรชรายละเอียดรายจ่ายที่นี่
+            LoadExpenseDetails()
 
         Catch ex As Exception
             MessageBox.Show("Error saving expense and details: " & ex.Message)
@@ -252,8 +259,6 @@ Public Class frmEditExpense
             conn.Close()
         End Try
     End Sub
-
-
 
     Private Sub UpdateExpenseDetails()
         Try
@@ -302,10 +307,6 @@ Public Class frmEditExpense
         End Try
     End Sub
 
-
-
-
-
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         If String.IsNullOrEmpty(expenseID) Then
             MessageBox.Show("Please select an expense to delete.")
@@ -344,4 +345,122 @@ Public Class frmEditExpense
             End Try
         End If
     End Sub
+
+    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
+        If String.IsNullOrEmpty(expenseID) Then
+            MessageBox.Show("กรุณาเลือกรายการค่าใช้จ่ายก่อนพิมพ์", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' แสดง PrintPreviewDialog
+        printPreviewDialog.ShowDialog()
+    End Sub
+
+    Private Sub PrintDocument_PrintPage(sender As Object, e As PrintPageEventArgs)
+        Dim font As New Font("Arial", 10)
+        Dim boldFont As New Font("Arial", 12, FontStyle.Bold)
+        Dim headerFont As New Font("Arial", 14, FontStyle.Bold)
+        Dim startX As Integer
+        Dim startY As Integer = 10
+        Dim offset As Integer = 40
+        Dim lineHeight As Integer = 25 ' Standard line height for rows
+
+        ' Get the page width
+        Dim pageWidth As Integer = e.PageBounds.Width
+
+        ' ส่วนหัว (Header Section)
+        Dim headerText As String = "กองทุนหมู่บ้าน บ้านใหม่หลังมอ"
+        startX = (pageWidth - e.Graphics.MeasureString(headerText, headerFont).Width) / 2 ' Center the header text
+        e.Graphics.DrawString(headerText, headerFont, Brushes.Black, startX, startY)
+        offset += 30
+
+        Dim addressLine1 As String = "หมู่ที่ 14 ตำบลสุเทพ อำเภอเมืองเชียงใหม่ จังหวัดเชียงใหม่"
+        startX = (pageWidth - e.Graphics.MeasureString(addressLine1, font).Width) / 2 ' Center the address line
+        e.Graphics.DrawString(addressLine1, font, Brushes.Black, startX, startY + offset)
+        offset += 20
+
+        Dim phoneText As String = "โทรศัพท์: 053-219535"
+        startX = (pageWidth - e.Graphics.MeasureString(phoneText, font).Width) / 2 ' Center the phone number
+        e.Graphics.DrawString(phoneText, font, Brushes.Black, startX, startY + offset)
+        offset += 20
+
+        Dim addressLine2 As String = "66/2 หมู่ 14 ต.สุเทพ อ.เมืองเชียงใหม่ จ.เชียงใหม่ 50200"
+        startX = (pageWidth - e.Graphics.MeasureString(addressLine2, font).Width) / 2 ' Center the second address line
+        e.Graphics.DrawString(addressLine2, font, Brushes.Black, startX, startY + offset)
+
+        ' เว้นระยะระหว่างส่วนหัวและเนื้อหา
+        offset += 40
+
+        ' รายละเอียดการจ่าย (Details Section)
+        Dim detailsTitle As String = "รายละเอียด:"
+        startX = (pageWidth - e.Graphics.MeasureString(detailsTitle, boldFont).Width) / 2 ' Center the details title
+        e.Graphics.DrawString(detailsTitle, boldFont, Brushes.Black, startX, startY + offset)
+        offset += 20
+
+        Dim expenseIdText As String = "รหัสรายจ่าย: " & txtExpenseID.Text
+        startX = (pageWidth - e.Graphics.MeasureString(expenseIdText, font).Width) / 2 ' Center the expense ID
+        e.Graphics.DrawString(expenseIdText, font, Brushes.Black, startX, startY + offset)
+        offset += 20
+
+        ' รายการในตาราง (Table Header)
+        Dim noText As String = "No."
+        Dim itemText As String = "รายการจ่าย"
+        Dim amountText As String = "จำนวนเงิน"
+
+        startX = (pageWidth - 500) / 2 ' Start at the middle of the page minus half the table width (assuming table is 500 units wide)
+        e.Graphics.DrawString(noText, boldFont, Brushes.Black, startX, startY + offset)
+        e.Graphics.DrawString(itemText, boldFont, Brushes.Black, startX + 100, startY + offset)
+        e.Graphics.DrawString(amountText, boldFont, Brushes.Black, startX + 400, startY + offset)
+
+        ' เส้นใต้หัวข้อ (Underline Table Header)
+        offset += lineHeight
+        e.Graphics.DrawLine(Pens.Black, startX, startY + offset, startX + 500, startY + offset)
+
+        ' Loop through DataGridView rows and print them
+        Dim rowIndex As Integer = 1
+        For Each row As DataGridViewRow In dgvExpenseDetails.Rows
+            If Not row.IsNewRow Then
+                offset += 5
+                e.Graphics.DrawString(rowIndex.ToString(), font, Brushes.Black, startX, startY + offset)
+                e.Graphics.DrawString(row.Cells("exd_nameacc").Value.ToString(), font, Brushes.Black, startX + 100, startY + offset)
+
+                ' Format the amount with thousand separators
+                Dim amount As Decimal
+                If Decimal.TryParse(row.Cells("exd_amount").Value.ToString(), amount) Then
+                    Dim formattedAmount As String = String.Format("{0:N2}", amount)
+                    e.Graphics.DrawString(formattedAmount & " บาท", font, Brushes.Black, startX + 400, startY + offset)
+                Else
+                    e.Graphics.DrawString(row.Cells("exd_amount").Value.ToString() & " บาท", font, Brushes.Black, startX + 400, startY + offset)
+                End If
+
+                ' Move to next row
+                rowIndex += 1
+                offset += lineHeight
+                e.Graphics.DrawLine(Pens.Black, startX, startY + offset, startX + 500, startY + offset) ' Line under the row
+            End If
+        Next
+
+        ' รวมยอดเงิน (Total Amount Section)
+        offset += 40
+        Dim totalAmount As Decimal
+        If Decimal.TryParse(txtExpenseAmount.Text, totalAmount) Then
+            Dim formattedTotal As String = String.Format("{0:N2}", totalAmount) ' This will format the number with thousand separators and 2 decimal places
+            Dim totalText As String = "รวมเป็นเงิน: " & formattedTotal & " บาท"
+            startX = (pageWidth - e.Graphics.MeasureString(totalText, boldFont).Width) / 2 ' Center the total amount text
+            e.Graphics.DrawString(totalText, boldFont, Brushes.Black, startX, startY + offset)
+        Else
+            ' Handle the case where parsing fails (e.g., invalid input)
+            Dim totalText As String = "รวมเป็นเงิน: " & txtExpenseAmount.Text & " บาท"
+            startX = (pageWidth - e.Graphics.MeasureString(totalText, boldFont).Width) / 2 ' Center the total amount text
+            e.Graphics.DrawString(totalText, boldFont, Brushes.Black, startX, startY + offset)
+        End If
+
+        ' เส้นแบ่งลายเซ็น (Line for signature section)
+        offset += 60
+        Dim signatureText As String = "ผู้รับเงิน"
+        startX = (pageWidth - e.Graphics.MeasureString(signatureText, font).Width) / 2 ' Center the signature line
+        e.Graphics.DrawString(signatureText, font, Brushes.Black, startX, startY + offset)
+        e.Graphics.DrawString("..........................................", font, Brushes.Black, startX + 100, startY + offset)
+    End Sub
+
 End Class

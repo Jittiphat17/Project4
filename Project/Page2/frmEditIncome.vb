@@ -103,15 +103,23 @@ Public Class frmEditIncome
     Private Sub dgvIncome_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvIncome.CellClick
         If e.RowIndex >= 0 Then
             Dim row As DataGridViewRow = dgvIncome.Rows(e.RowIndex)
-            txtIncomeID.Text = row.Cells("inc_id").Value.ToString()
-            txtIncomeName.Text = row.Cells("inc_name").Value.ToString()
-            txtIncomeAmount.Text = row.Cells("inc_amount").Value.ToString()
-            dtpIncomeDate.Value = Convert.ToDateTime(row.Cells("inc_date").Value)
-            cmbAccount.SelectedValue = Convert.ToInt32(row.Cells("acc_id").Value.ToString())
+            Try
+                txtIncomeID.Text = row.Cells("inc_id").Value?.ToString()
+                txtIncomeName.Text = row.Cells("inc_name").Value?.ToString()
+                txtIncomeAmount.Text = row.Cells("inc_amount").Value?.ToString()
+                If DateTime.TryParse(row.Cells("inc_date").Value?.ToString(), Nothing) Then
+                    dtpIncomeDate.Value = Convert.ToDateTime(row.Cells("inc_date").Value)
+                End If
+                If row.Cells("acc_id").Value IsNot Nothing Then
+                    cmbAccount.SelectedValue = Convert.ToInt32(row.Cells("acc_id").Value)
+                End If
 
-            ' กำหนดค่า incomeID
-            incomeID = row.Cells("inc_id").Value.ToString()
-            LoadIncomeDetails() ' โหลดรายละเอียดรายรับตาม inc_id ที่ถูกเลือก
+                ' กำหนดค่า incomeID
+                incomeID = row.Cells("inc_id").Value?.ToString()
+                LoadIncomeDetails() ' โหลดรายละเอียดรายรับตาม inc_id ที่ถูกเลือก
+            Catch ex As Exception
+                MessageBox.Show("เกิดข้อผิดพลาดในการโหลดข้อมูล: " & ex.Message)
+            End Try
         End If
     End Sub
 

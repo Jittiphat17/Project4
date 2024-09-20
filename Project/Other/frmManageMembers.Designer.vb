@@ -24,7 +24,6 @@ Partial Class frmManageMembers
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.txtPost = New System.Windows.Forms.MaskedTextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -50,7 +49,6 @@ Partial Class frmManageMembers
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtJob = New System.Windows.Forms.TextBox()
         Me.txtnick = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.txtOutstanding = New System.Windows.Forms.TextBox()
         Me.txtBeginning = New System.Windows.Forms.TextBox()
         Me.txtAccountname = New System.Windows.Forms.TextBox()
@@ -68,7 +66,6 @@ Partial Class frmManageMembers
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.txtPost)
-        Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.Label16)
         Me.GroupBox1.Controls.Add(Me.Label15)
         Me.GroupBox1.Controls.Add(Me.Label14)
@@ -94,7 +91,6 @@ Partial Class frmManageMembers
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.txtJob)
         Me.GroupBox1.Controls.Add(Me.txtnick)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.txtOutstanding)
         Me.GroupBox1.Controls.Add(Me.txtBeginning)
         Me.GroupBox1.Controls.Add(Me.txtAccountname)
@@ -117,16 +113,6 @@ Partial Class frmManageMembers
         Me.txtPost.Name = "txtPost"
         Me.txtPost.Size = New System.Drawing.Size(169, 31)
         Me.txtPost.TabIndex = 7
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(443, 351)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(145, 24)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "จำนวนเงินที่ต้องการฝาก"
         '
         'Label16
         '
@@ -371,14 +357,6 @@ Partial Class frmManageMembers
         Me.txtnick.Size = New System.Drawing.Size(111, 31)
         Me.txtnick.TabIndex = 0
         '
-        'TextBox1
-        '
-        Me.TextBox1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(594, 348)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(169, 31)
-        Me.TextBox1.TabIndex = 0
-        '
         'txtOutstanding
         '
         Me.txtOutstanding.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -529,6 +507,4 @@ Partial Class frmManageMembers
     Friend WithEvents btnClear As Button
     Friend WithEvents btnDelete As Button
     Friend WithEvents dgvMembers As DataGridView
-    Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox1 As TextBox
 End Class
