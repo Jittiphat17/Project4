@@ -265,12 +265,12 @@ Public Class frmIncome
                 ' บันทึกข้อมูลลงในตาราง Income
                 Dim queryIncome As String = "INSERT INTO Income (m_id, inc_detail, inc_description, inc_date, inc_amount, acc_id) VALUES (@m_id, @inc_detail, @inc_description, @inc_date, @inc_amount, @acc_id)"
                 Using cmdIncome As New OleDbCommand(queryIncome, Conn)
-                    cmdIncome.Parameters.AddWithValue("@m_id", memberId)
+                    cmdIncome.Parameters.AddWithValue("@m_id", CInt(memberId))
                     cmdIncome.Parameters.AddWithValue("@inc_detail", txtDetails.Text)
                     cmdIncome.Parameters.AddWithValue("@inc_description", txtDescrip.Text)
                     cmdIncome.Parameters.AddWithValue("@inc_date", dtpBirth.Value)
-                    cmdIncome.Parameters.AddWithValue("@inc_amount", Decimal.Parse(lblTotalAmount.Text))
-                    cmdIncome.Parameters.AddWithValue("@acc_id", cboDepositType.SelectedValue)
+                    cmdIncome.Parameters.AddWithValue("@inc_amount", CDec(lblTotalAmount.Text))
+                    cmdIncome.Parameters.AddWithValue("@acc_id", cboDepositType.SelectedValue.ToString())
 
                     cmdIncome.ExecuteNonQuery()
 
@@ -283,29 +283,26 @@ Public Class frmIncome
                         If Not row.IsNewRow Then
                             Dim incomeType As String = If(row.Cells("IncomeType").Value, "").ToString()
                             Dim contractNumber As String = If(row.Cells("ContractNumber").Value, DBNull.Value).ToString()
-                            Dim amount As Decimal = Decimal.Parse(If(row.Cells("Amount").Value, 0).ToString())
+                            Dim amount As Decimal = CDec(If(row.Cells("Amount").Value, 0))
 
                             If Not String.IsNullOrEmpty(incomeType) Then
                                 If Not String.IsNullOrEmpty(contractNumber) Then
                                     DeductBalance(contractNumber, amount)
                                 End If
 
-                                ' เพิ่มคอลัมน์ m_id ลงในคำสั่ง INSERT INTO
                                 Dim queryDetails As String = "INSERT INTO Income_Details (ind_accname, con_id, ind_amount, inc_id, m_id) VALUES (@ind_accname, @con_id, @ind_amount, @inc_id, @m_id)"
                                 Using cmdDetails As New OleDbCommand(queryDetails, Conn)
                                     cmdDetails.Parameters.AddWithValue("@ind_accname", incomeType)
                                     cmdDetails.Parameters.AddWithValue("@con_id", If(String.IsNullOrEmpty(contractNumber), DBNull.Value, contractNumber))
                                     cmdDetails.Parameters.AddWithValue("@ind_amount", amount)
                                     cmdDetails.Parameters.AddWithValue("@inc_id", incId)
-                                    ' เพิ่มพารามิเตอร์ m_id
-                                    cmdDetails.Parameters.AddWithValue("@m_id", memberId)
+                                    cmdDetails.Parameters.AddWithValue("@m_id", CInt(memberId))
 
                                     cmdDetails.ExecuteNonQuery()
                                 End Using
                             End If
                         End If
                     Next
-
                 End Using
             End Using
 
@@ -416,5 +413,20 @@ Public Class frmIncome
     Private Sub dgvIncomeDetails_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles dgvIncomeDetails.RowsAdded
         btnSave.Enabled = True ' เปิดการใช้งานปุ่ม "บันทึก" เมื่อมีการเพิ่มรายการใหม่
         btnCalculate.Enabled = True ' เปิดการใช้งานปุ่ม "คำนวณ" เมื่อมีการเพิ่มรายการใหม่
+    End Sub
+
+    Private Sub cmbCon_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCon.SelectedIndexChanged
+        ' ตรวจสอบว่ามีการเลือกสัญญาหรือไม่
+        If cmbCon.SelectedIndex <> -1 Then
+            Dim selectedContractId As String = cmbCon.SelectedValue.ToString()
+
+            ' แสดงเลขที่สัญญาใน Label หรือ TextBox ตามที่คุณต้องการ
+            lblContractNumber.Text = "เลขที่สัญญา: " & selectedContractId
+        End If
+    End Sub
+
+
+    Private Sub btnCon_Click(sender As Object, e As EventArgs) Handles btnCon.Click
+
     End Sub
 End Class

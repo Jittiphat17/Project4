@@ -556,6 +556,14 @@ Public Class frmBrrow
                             cmd.CommandText = "SELECT @@IDENTITY"
                             Dim con_id As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
+                            ' Insert con_id into Member table
+                            strSQL = "UPDATE Member SET con_id = @con_id WHERE m_id = @m_id"
+                            Using cmdMember As New OleDbCommand(strSQL, conn)
+                                cmdMember.Parameters.AddWithValue("@con_id", con_id)
+                                cmdMember.Parameters.AddWithValue("@m_id", borrowerId)
+                                cmdMember.ExecuteNonQuery()
+                            End Using
+
                             ' Insert into Guarantor table
                             Dim guarantorNames As String() = {guarantorName1, guarantorName2, guarantorName3}
 
@@ -639,6 +647,7 @@ Public Class frmBrrow
             MessageBox.Show(ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 
     Private Function GetMemberIdByName(name As String) As Integer
         strSQL = "SELECT m_id FROM Member WHERE m_name = @m_name"

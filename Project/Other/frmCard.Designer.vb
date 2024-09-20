@@ -322,7 +322,7 @@ Partial Class frmCard
         '
         Me.txtIDCard.Font = New System.Drawing.Font("TH SarabunPSK", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIDCard.Location = New System.Drawing.Point(137, 38)
-        Me.txtIDCard.Mask = "000-0000000000"
+        Me.txtIDCard.Mask = "0-0000-00000-00-0"
         Me.txtIDCard.Name = "txtIDCard"
         Me.txtIDCard.Size = New System.Drawing.Size(335, 29)
         Me.txtIDCard.TabIndex = 7

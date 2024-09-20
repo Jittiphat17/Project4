@@ -338,10 +338,10 @@
     <Compile Include="Page1\frmExpense.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="report\frmInterestReport.Designer.vb">
-      <DependentUpon>frmInterestReport.vb</DependentUpon>
+    <Compile Include="report\frmInter.Designer.vb">
+      <DependentUpon>frmInter.vb</DependentUpon>
     </Compile>
-    <Compile Include="report\frmInterestReport.vb">
+    <Compile Include="report\frmInter.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="report\frmSearch.Designer.vb">
@@ -418,8 +418,8 @@
     <EmbeddedResource Include="Page1\frmExpense.resx">
       <DependentUpon>frmExpense.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="report\frmInterestReport.resx">
-      <DependentUpon>frmInterestReport.vb</DependentUpon>
+    <EmbeddedResource Include="report\frmInter.resx">
+      <DependentUpon>frmInter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="report\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>
@@ -435,8 +435,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="report\GuarantorReport.rdlc" />
     <EmbeddedResource Include="report\GuarantorReport1.rdlc" />
+    <EmbeddedResource Include="report\IncomeReport.rdlc" />
     <EmbeddedResource Include="report\LoanReport1.rdlc" />
-    <EmbeddedResource Include="report\ReportInterest.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="db_banmai1DataSet.xsc">

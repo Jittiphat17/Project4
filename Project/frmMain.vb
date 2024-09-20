@@ -272,7 +272,7 @@ Public Class frmMain
     End Sub
 
     Private Sub รายงานดอกเบยสจจะToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles รายงานดอกเบยสจจะToolStripMenuItem.Click
-        Dim frm As New frmInterestReport
+        Dim frm As New frmInter
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub

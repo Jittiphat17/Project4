@@ -44,11 +44,12 @@ Partial Class frmIncome
         Me.Label13 = New System.Windows.Forms.Label()
         Me.dtpBirth = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.Guna2GroupBox2 = New Guna.UI2.WinForms.Guna2GroupBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.btnScontract = New Guna.UI2.WinForms.Guna2Button()
-        Me.Guna2ComboBox1 = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.Guna2GroupBox1 = New Guna.UI2.WinForms.Guna2GroupBox()
         Me.txtMemberID = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.btnCon = New Guna.UI2.WinForms.Guna2Button()
+        Me.cmbCon = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.Guna2GroupBox1 = New Guna.UI2.WinForms.Guna2GroupBox()
+        Me.lblContractNumber = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvIncomeDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
@@ -297,6 +298,14 @@ Partial Class frmIncome
         Me.Guna2GroupBox2.TabIndex = 15
         Me.Guna2GroupBox2.Text = "Guna2GroupBox2"
         '
+        'txtMemberID
+        '
+        Me.txtMemberID.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtMemberID.Location = New System.Drawing.Point(153, 64)
+        Me.txtMemberID.Name = "txtMemberID"
+        Me.txtMemberID.Size = New System.Drawing.Size(197, 31)
+        Me.txtMemberID.TabIndex = 1
+        '
         'Label8
         '
         Me.Label8.AutoSize = True
@@ -307,41 +316,41 @@ Partial Class frmIncome
         Me.Label8.TabIndex = 0
         Me.Label8.Text = "เลขที่สัญญา :"
         '
-        'btnScontract
+        'btnCon
         '
-        Me.btnScontract.BorderRadius = 10
-        Me.btnScontract.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnScontract.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnScontract.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnScontract.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnScontract.FillColor = System.Drawing.Color.ForestGreen
-        Me.btnScontract.Font = New System.Drawing.Font("FC Minimal", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.btnScontract.ForeColor = System.Drawing.Color.White
-        Me.btnScontract.Location = New System.Drawing.Point(329, 50)
-        Me.btnScontract.Name = "btnScontract"
-        Me.btnScontract.Size = New System.Drawing.Size(103, 45)
-        Me.btnScontract.TabIndex = 16
-        Me.btnScontract.Text = "ค้นหา"
+        Me.btnCon.BorderRadius = 10
+        Me.btnCon.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnCon.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnCon.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnCon.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnCon.FillColor = System.Drawing.Color.ForestGreen
+        Me.btnCon.Font = New System.Drawing.Font("FC Minimal", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.btnCon.ForeColor = System.Drawing.Color.White
+        Me.btnCon.Location = New System.Drawing.Point(329, 50)
+        Me.btnCon.Name = "btnCon"
+        Me.btnCon.Size = New System.Drawing.Size(103, 45)
+        Me.btnCon.TabIndex = 16
+        Me.btnCon.Text = "ค้นหา"
         '
-        'Guna2ComboBox1
+        'cmbCon
         '
-        Me.Guna2ComboBox1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2ComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.Guna2ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.Guna2ComboBox1.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Guna2ComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Guna2ComboBox1.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.Guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.Guna2ComboBox1.ItemHeight = 30
-        Me.Guna2ComboBox1.Location = New System.Drawing.Point(107, 54)
-        Me.Guna2ComboBox1.Name = "Guna2ComboBox1"
-        Me.Guna2ComboBox1.Size = New System.Drawing.Size(216, 36)
-        Me.Guna2ComboBox1.TabIndex = 16
+        Me.cmbCon.BackColor = System.Drawing.Color.Transparent
+        Me.cmbCon.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbCon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCon.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cmbCon.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cmbCon.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cmbCon.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cmbCon.ItemHeight = 30
+        Me.cmbCon.Location = New System.Drawing.Point(107, 54)
+        Me.cmbCon.Name = "cmbCon"
+        Me.cmbCon.Size = New System.Drawing.Size(216, 36)
+        Me.cmbCon.TabIndex = 16
         '
         'Guna2GroupBox1
         '
-        Me.Guna2GroupBox1.Controls.Add(Me.Guna2ComboBox1)
-        Me.Guna2GroupBox1.Controls.Add(Me.btnScontract)
+        Me.Guna2GroupBox1.Controls.Add(Me.cmbCon)
+        Me.Guna2GroupBox1.Controls.Add(Me.btnCon)
         Me.Guna2GroupBox1.Controls.Add(Me.Label8)
         Me.Guna2GroupBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.Guna2GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
@@ -351,19 +360,21 @@ Partial Class frmIncome
         Me.Guna2GroupBox1.TabIndex = 14
         Me.Guna2GroupBox1.Text = "Guna2GroupBox1"
         '
-        'txtMemberID
+        'lblContractNumber
         '
-        Me.txtMemberID.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtMemberID.Location = New System.Drawing.Point(153, 64)
-        Me.txtMemberID.Name = "txtMemberID"
-        Me.txtMemberID.Size = New System.Drawing.Size(197, 31)
-        Me.txtMemberID.TabIndex = 1
+        Me.lblContractNumber.BackColor = System.Drawing.Color.Transparent
+        Me.lblContractNumber.Location = New System.Drawing.Point(566, 54)
+        Me.lblContractNumber.Name = "lblContractNumber"
+        Me.lblContractNumber.Size = New System.Drawing.Size(88, 15)
+        Me.lblContractNumber.TabIndex = 16
+        Me.lblContractNumber.Text = "Guna2HtmlLabel1"
         '
         'frmIncome
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1126, 606)
+        Me.Controls.Add(Me.lblContractNumber)
         Me.Controls.Add(Me.Guna2GroupBox2)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.txtInid)
@@ -413,8 +424,9 @@ Partial Class frmIncome
     Friend WithEvents dtpBirth As Guna.UI2.WinForms.Guna2DateTimePicker
     Friend WithEvents Guna2GroupBox2 As Guna.UI2.WinForms.Guna2GroupBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents btnScontract As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Guna2ComboBox1 As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents btnCon As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents cmbCon As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents Guna2GroupBox1 As Guna.UI2.WinForms.Guna2GroupBox
     Friend WithEvents txtMemberID As TextBox
+    Friend WithEvents lblContractNumber As Guna.UI2.WinForms.Guna2HtmlLabel
 End Class

@@ -1,10 +1,23 @@
 ﻿Imports System.Data.OleDb
 
 Public Class frmCon
+    ' เพิ่ม Property สำหรับเก็บค่าเลขที่สัญญาที่ถูกส่งมาจาก frmIncome
+    Public Property SelectedContractId As String
+
     ' เพิ่มตัวเชื่อมต่อฐานข้อมูล
     Private Conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
     ' Dictionary สำหรับเก็บการเปลี่ยนแปลงสถานะการชำระ
     Private statusChanges As New Dictionary(Of Integer, Integer)
+
+    ' เมื่อฟอร์มโหลด
+    Private Sub frmCon_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' ใช้ค่า SelectedContractId ที่ถูกส่งมาจาก frmIncome
+        If Not String.IsNullOrEmpty(SelectedContractId) Then
+            ' ค้นหาและแสดงข้อมูลสัญญาและการชำระเงินตาม SelectedContractId
+            SearchContract(SelectedContractId)
+            SearchPayments(SelectedContractId)
+        End If
+    End Sub
 
     ' เมื่อคลิกปุ่มค้นหา
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
