@@ -45,16 +45,12 @@ Partial Class frmIncome
         Me.dtpBirth = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.Guna2GroupBox2 = New Guna.UI2.WinForms.Guna2GroupBox()
         Me.txtMemberID = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.btnCon = New Guna.UI2.WinForms.Guna2Button()
-        Me.cmbCon = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.Guna2GroupBox1 = New Guna.UI2.WinForms.Guna2GroupBox()
-        Me.lblContractNumber = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.dgvPaymentDetails = New System.Windows.Forms.DataGridView()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvIncomeDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.Guna2GroupBox2.SuspendLayout()
-        Me.Guna2GroupBox1.SuspendLayout()
+        CType(Me.dgvPaymentDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnSave
@@ -62,7 +58,7 @@ Partial Class frmIncome
         Me.btnSave.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnSave.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnSave.Location = New System.Drawing.Point(276, 511)
+        Me.btnSave.Location = New System.Drawing.Point(8, 489)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(150, 75)
         Me.btnSave.TabIndex = 7
@@ -74,7 +70,7 @@ Partial Class frmIncome
         Me.btnDelete.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnDelete.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnDelete.Location = New System.Drawing.Point(432, 511)
+        Me.btnDelete.Location = New System.Drawing.Point(164, 489)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(150, 75)
         Me.btnDelete.TabIndex = 8
@@ -86,7 +82,7 @@ Partial Class frmIncome
         Me.btnCalculate.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnCalculate.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCalculate.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnCalculate.Location = New System.Drawing.Point(592, 511)
+        Me.btnCalculate.Location = New System.Drawing.Point(324, 489)
         Me.btnCalculate.Name = "btnCalculate"
         Me.btnCalculate.Size = New System.Drawing.Size(150, 75)
         Me.btnCalculate.TabIndex = 6
@@ -98,7 +94,7 @@ Partial Class frmIncome
         Me.btnClear.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClear.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnClear.Location = New System.Drawing.Point(748, 511)
+        Me.btnClear.Location = New System.Drawing.Point(480, 489)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(150, 75)
         Me.btnClear.TabIndex = 5
@@ -110,7 +106,7 @@ Partial Class frmIncome
         Me.lblTotalAmount.AutoSize = True
         Me.lblTotalAmount.Font = New System.Drawing.Font("TH SarabunPSK", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalAmount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblTotalAmount.Location = New System.Drawing.Point(3, 6)
+        Me.lblTotalAmount.Location = New System.Drawing.Point(19, 6)
         Me.lblTotalAmount.Name = "lblTotalAmount"
         Me.lblTotalAmount.Size = New System.Drawing.Size(62, 39)
         Me.lblTotalAmount.TabIndex = 10
@@ -120,9 +116,9 @@ Partial Class frmIncome
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Panel1.Controls.Add(Me.lblTotalAmount)
-        Me.Panel1.Location = New System.Drawing.Point(1014, 438)
+        Me.Panel1.Location = New System.Drawing.Point(1011, 519)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(100, 45)
+        Me.Panel1.Size = New System.Drawing.Size(145, 45)
         Me.Panel1.TabIndex = 11
         '
         'Label7
@@ -149,9 +145,9 @@ Partial Class frmIncome
         'dgvIncomeDetails
         '
         Me.dgvIncomeDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvIncomeDetails.Location = New System.Drawing.Point(566, 197)
+        Me.dgvIncomeDetails.Location = New System.Drawing.Point(566, 82)
         Me.dgvIncomeDetails.Name = "dgvIncomeDetails"
-        Me.dgvIncomeDetails.Size = New System.Drawing.Size(548, 235)
+        Me.dgvIncomeDetails.Size = New System.Drawing.Size(657, 191)
         Me.dgvIncomeDetails.TabIndex = 4
         '
         'Label1
@@ -306,75 +302,20 @@ Partial Class frmIncome
         Me.txtMemberID.Size = New System.Drawing.Size(197, 31)
         Me.txtMemberID.TabIndex = 1
         '
-        'Label8
+        'dgvPaymentDetails
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(15, 60)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(86, 24)
-        Me.Label8.TabIndex = 0
-        Me.Label8.Text = "เลขที่สัญญา :"
-        '
-        'btnCon
-        '
-        Me.btnCon.BorderRadius = 10
-        Me.btnCon.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnCon.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnCon.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnCon.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnCon.FillColor = System.Drawing.Color.ForestGreen
-        Me.btnCon.Font = New System.Drawing.Font("FC Minimal", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.btnCon.ForeColor = System.Drawing.Color.White
-        Me.btnCon.Location = New System.Drawing.Point(329, 50)
-        Me.btnCon.Name = "btnCon"
-        Me.btnCon.Size = New System.Drawing.Size(103, 45)
-        Me.btnCon.TabIndex = 16
-        Me.btnCon.Text = "ค้นหา"
-        '
-        'cmbCon
-        '
-        Me.cmbCon.BackColor = System.Drawing.Color.Transparent
-        Me.cmbCon.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbCon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCon.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cmbCon.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cmbCon.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cmbCon.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.cmbCon.ItemHeight = 30
-        Me.cmbCon.Location = New System.Drawing.Point(107, 54)
-        Me.cmbCon.Name = "cmbCon"
-        Me.cmbCon.Size = New System.Drawing.Size(216, 36)
-        Me.cmbCon.TabIndex = 16
-        '
-        'Guna2GroupBox1
-        '
-        Me.Guna2GroupBox1.Controls.Add(Me.cmbCon)
-        Me.Guna2GroupBox1.Controls.Add(Me.btnCon)
-        Me.Guna2GroupBox1.Controls.Add(Me.Label8)
-        Me.Guna2GroupBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.Guna2GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
-        Me.Guna2GroupBox1.Location = New System.Drawing.Point(566, 82)
-        Me.Guna2GroupBox1.Name = "Guna2GroupBox1"
-        Me.Guna2GroupBox1.Size = New System.Drawing.Size(548, 109)
-        Me.Guna2GroupBox1.TabIndex = 14
-        Me.Guna2GroupBox1.Text = "Guna2GroupBox1"
-        '
-        'lblContractNumber
-        '
-        Me.lblContractNumber.BackColor = System.Drawing.Color.Transparent
-        Me.lblContractNumber.Location = New System.Drawing.Point(566, 54)
-        Me.lblContractNumber.Name = "lblContractNumber"
-        Me.lblContractNumber.Size = New System.Drawing.Size(88, 15)
-        Me.lblContractNumber.TabIndex = 16
-        Me.lblContractNumber.Text = "Guna2HtmlLabel1"
+        Me.dgvPaymentDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvPaymentDetails.Location = New System.Drawing.Point(566, 279)
+        Me.dgvPaymentDetails.Name = "dgvPaymentDetails"
+        Me.dgvPaymentDetails.Size = New System.Drawing.Size(657, 204)
+        Me.dgvPaymentDetails.TabIndex = 17
         '
         'frmIncome
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1126, 606)
-        Me.Controls.Add(Me.lblContractNumber)
+        Me.ClientSize = New System.Drawing.Size(1235, 606)
+        Me.Controls.Add(Me.dgvPaymentDetails)
         Me.Controls.Add(Me.Guna2GroupBox2)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.txtInid)
@@ -384,7 +325,6 @@ Partial Class frmIncome
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.dgvIncomeDetails)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Guna2GroupBox1)
         Me.Name = "frmIncome"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "S"
@@ -395,8 +335,7 @@ Partial Class frmIncome
         Me.GroupBox3.PerformLayout()
         Me.Guna2GroupBox2.ResumeLayout(False)
         Me.Guna2GroupBox2.PerformLayout()
-        Me.Guna2GroupBox1.ResumeLayout(False)
-        Me.Guna2GroupBox1.PerformLayout()
+        CType(Me.dgvPaymentDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -423,10 +362,6 @@ Partial Class frmIncome
     Friend WithEvents Label13 As Label
     Friend WithEvents dtpBirth As Guna.UI2.WinForms.Guna2DateTimePicker
     Friend WithEvents Guna2GroupBox2 As Guna.UI2.WinForms.Guna2GroupBox
-    Friend WithEvents Label8 As Label
-    Friend WithEvents btnCon As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents cmbCon As Guna.UI2.WinForms.Guna2ComboBox
-    Friend WithEvents Guna2GroupBox1 As Guna.UI2.WinForms.Guna2GroupBox
     Friend WithEvents txtMemberID As TextBox
-    Friend WithEvents lblContractNumber As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents dgvPaymentDetails As DataGridView
 End Class

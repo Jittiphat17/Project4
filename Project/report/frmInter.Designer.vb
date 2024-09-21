@@ -34,7 +34,7 @@ Partial Class frmInter
         Me.ReportViewer1.Location = New System.Drawing.Point(12, 80)
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(776, 358)
+        Me.ReportViewer1.Size = New System.Drawing.Size(1183, 554)
         Me.ReportViewer1.TabIndex = 0
         '
         'btnViewReport
@@ -47,7 +47,7 @@ Partial Class frmInter
         Me.btnViewReport.FillColor = System.Drawing.Color.ForestGreen
         Me.btnViewReport.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold)
         Me.btnViewReport.ForeColor = System.Drawing.Color.White
-        Me.btnViewReport.Location = New System.Drawing.Point(608, 25)
+        Me.btnViewReport.Location = New System.Drawing.Point(1015, 29)
         Me.btnViewReport.Name = "btnViewReport"
         Me.btnViewReport.Size = New System.Drawing.Size(180, 45)
         Me.btnViewReport.TabIndex = 1
@@ -64,16 +64,16 @@ Partial Class frmInter
         Me.ComboBox1.Font = New System.Drawing.Font("FC Minimal", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.ComboBox1.ItemHeight = 30
-        Me.ComboBox1.Location = New System.Drawing.Point(462, 29)
+        Me.ComboBox1.Location = New System.Drawing.Point(791, 33)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(140, 36)
+        Me.ComboBox1.Size = New System.Drawing.Size(218, 36)
         Me.ComboBox1.TabIndex = 2
         '
         'frmInter
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1207, 646)
         Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.btnViewReport)
         Me.Controls.Add(Me.ReportViewer1)

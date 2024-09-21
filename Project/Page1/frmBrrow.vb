@@ -515,6 +515,7 @@ Public Class frmBrrow
 
                 For Each row As DataGridViewRow In guna2DataGridView1.Rows
                     If Not row.IsNewRow Then
+                        ' ดึงข้อมูลจาก DataGridView
                         Dim borrowerName As String = row.Cells("ผู้กู้").Value.ToString()
                         Dim loanAmount As Decimal = Decimal.Parse(row.Cells("จำนวนเงินกู้").Value.ToString().Replace(" บาท", "").Replace(",", ""))
                         Dim accountDict As Dictionary(Of String, String) = CType(cbAccount.Tag, Dictionary(Of String, String))
@@ -556,7 +557,7 @@ Public Class frmBrrow
                             cmd.CommandText = "SELECT @@IDENTITY"
                             Dim con_id As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
-                            ' Insert con_id into Member table
+                            ' Update Member table with con_id
                             strSQL = "UPDATE Member SET con_id = @con_id WHERE m_id = @m_id"
                             Using cmdMember As New OleDbCommand(strSQL, conn)
                                 cmdMember.Parameters.AddWithValue("@con_id", con_id)
@@ -564,9 +565,8 @@ Public Class frmBrrow
                                 cmdMember.ExecuteNonQuery()
                             End Using
 
-                            ' Insert into Guarantor table
+                            ' Insert guarantors
                             Dim guarantorNames As String() = {guarantorName1, guarantorName2, guarantorName3}
-
                             For Each guarantorName As String In guarantorNames
                                 If Not String.IsNullOrEmpty(guarantorName) Then
                                     Dim guarantorId As Integer = GetMemberIdByName(guarantorName)
@@ -580,13 +580,10 @@ Public Class frmBrrow
                                     End If
                                 End If
                             Next
-                            ' ใช้ฟังก์ชัน CalculateMonthlyPayment ที่มีอยู่
+
+                            ' คำนวณการชำระเงิน
                             Dim monthlyPayment As Decimal = CalculateMonthlyPayment(loanAmount, interest, period)
-
-                            ' คำนวณดอกเบี้ยทั้งหมด
                             Dim totalInterest As Decimal = loanAmount * (interest / 100) * period
-
-                            ' คำนวณเงินต้นและดอกเบี้ยต่องวด
                             Dim monthlyPrincipal As Decimal = Math.Round(loanAmount / period, 2)
                             Dim monthlyInterest As Decimal = Math.Round(totalInterest / period, 2)
 
@@ -594,14 +591,14 @@ Public Class frmBrrow
                             For i As Integer = 1 To period
                                 Dim paymentDate As DateTime = transactionDate.AddMonths(i)
 
-                                ' สำหรับงวดสุดท้าย ปรับเงินต้นและดอกเบี้ยให้ตรงกับยอดรวม
+                                ' ปรับเงินต้นและดอกเบี้ยสำหรับงวดสุดท้าย
                                 If i = period Then
                                     monthlyPrincipal = loanAmount - (monthlyPrincipal * (period - 1))
                                     monthlyInterest = totalInterest - (monthlyInterest * (period - 1))
                                     monthlyPayment = monthlyPrincipal + monthlyInterest
                                 End If
 
-                                strSQL = "INSERT INTO Payment (con_id, payment_date, payment_amount, payment_prin, payment_interest, status_id, m_id) VALUES (@con_id, @payment_date, @payment_amount, @payment_prin, @payment_interest, @status_id, @m_id)"
+                                strSQL = "INSERT INTO Payment (con_id, payment_date, payment_amount, payment_prin, payment_interest, status_id, m_id, payment_period) VALUES (@con_id, @payment_date, @payment_amount, @payment_prin, @payment_interest, @status_id, @m_id, @payment_period)"
                                 Using paymentCmd As New OleDbCommand(strSQL, conn)
                                     paymentCmd.Parameters.AddWithValue("@con_id", con_id)
                                     paymentCmd.Parameters.AddWithValue("@payment_date", paymentDate)
@@ -610,6 +607,7 @@ Public Class frmBrrow
                                     paymentCmd.Parameters.AddWithValue("@payment_interest", monthlyInterest)
                                     paymentCmd.Parameters.AddWithValue("@status_id", 1)  ' Assuming 1 is for unpaid status
                                     paymentCmd.Parameters.AddWithValue("@m_id", borrowerId)
+                                    paymentCmd.Parameters.AddWithValue("@payment_period", i)  ' เพิ่มพารามิเตอร์สำหรับงวดที่
                                     paymentCmd.ExecuteNonQuery()
                                 End Using
                             Next
@@ -625,41 +623,34 @@ Public Class frmBrrow
                             ' Insert into Expense table
                             strSQL = "INSERT INTO Expense (ex_name, ex_detail, ex_description, ex_date, ex_amount, acc_id) VALUES (@ex_name, @ex_detail, @ex_description, @ex_date, @ex_amount, @acc_id)"
                             Using cmdExpense As New OleDbCommand(strSQL, conn)
-                                cmdExpense.Parameters.AddWithValue("@ex_name", borrowerName)  ' ชื่อผู้กู้
-                                cmdExpense.Parameters.AddWithValue("@ex_detail", row.Cells("รายละเอียดผู้กู้").Value.ToString())  ' รายละเอียดผู้กู้
-                                cmdExpense.Parameters.AddWithValue("@ex_description", "เงินกู้ยืมสำหรับ " & borrowerName)  ' คำอธิบาย
-                                cmdExpense.Parameters.AddWithValue("@ex_date", transactionDate)  ' วันที่ทำรายการ
-                                cmdExpense.Parameters.AddWithValue("@ex_amount", loanAmount)  ' จำนวนเงินที่กู้
-                                cmdExpense.Parameters.AddWithValue("@acc_id", acc_id)  ' รหัสบัญชี
+                                cmdExpense.Parameters.AddWithValue("@ex_name", borrowerName)
+                                cmdExpense.Parameters.AddWithValue("@ex_detail", row.Cells("รายละเอียดผู้กู้").Value.ToString())
+                                cmdExpense.Parameters.AddWithValue("@ex_description", "เงินกู้ยืมสำหรับ " & borrowerName)
+                                cmdExpense.Parameters.AddWithValue("@ex_date", transactionDate)
+                                cmdExpense.Parameters.AddWithValue("@ex_amount", loanAmount)
+                                cmdExpense.Parameters.AddWithValue("@acc_id", acc_id)
 
                                 cmdExpense.ExecuteNonQuery()
 
-                                ' ดึง ex_id จากตาราง Expense
                                 cmdExpense.CommandText = "SELECT @@IDENTITY"
                                 Dim ex_id As Integer = Convert.ToInt32(cmdExpense.ExecuteScalar())
 
-                                ' ดึงชื่อบัญชีจาก DataGridView แทน ComboBox
-                                Dim accountNameFromGrid As String = row.Cells("แหล่งจ่าย").Value.ToString() ' ดึงค่าชื่อบัญชีจาก DataGridView
-
                                 ' Insert into Expense_Details table
+                                Dim accountNameFromGrid As String = row.Cells("แหล่งจ่าย").Value.ToString()
                                 strSQL = "INSERT INTO Expense_Details (exd_nameacc, exd_amount, ex_id) VALUES (@exd_nameacc, @exd_amount, @ex_id)"
                                 Using cmdExpenseDetails As New OleDbCommand(strSQL, conn)
-                                    cmdExpenseDetails.Parameters.AddWithValue("@exd_nameacc", accountNameFromGrid)  ' ชื่อบัญชีจาก DataGridView
-                                    cmdExpenseDetails.Parameters.AddWithValue("@exd_amount", loanAmount)  ' จำนวนเงิน
-                                    cmdExpenseDetails.Parameters.AddWithValue("@ex_id", ex_id)  ' รหัส ex_id จากตาราง Expense
-
+                                    cmdExpenseDetails.Parameters.AddWithValue("@exd_nameacc", accountNameFromGrid)
+                                    cmdExpenseDetails.Parameters.AddWithValue("@exd_amount", loanAmount)
+                                    cmdExpenseDetails.Parameters.AddWithValue("@ex_id", ex_id)
                                     cmdExpenseDetails.ExecuteNonQuery()
                                 End Using
                             End Using
-
                         End Using
                     End If
                 Next
 
                 MessageBox.Show("บันทึกข้อมูลสำเร็จ", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
                 guna2DataGridView1.Rows.Clear()
-
             End Using
 
         Catch ex As Exception
