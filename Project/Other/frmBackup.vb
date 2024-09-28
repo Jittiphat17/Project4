@@ -4,16 +4,26 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Public Class frmBackup
     Private Sub btnBackup_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBackup.Click
         Dim ThisDB As String = Application.StartupPath & "\db_banmai1.accdb" ' เปลี่ยนเป็น .accdb
-        Dim BackupFolderPath As String = Application.StartupPath & "\Backups\"
+        Dim BackupFolderPath As String = String.Empty
+
+        ' ใช้ FolderBrowserDialog ให้ผู้ใช้เลือกโฟลเดอร์
+        Using folderDialog As New FolderBrowserDialog()
+            folderDialog.Description = "เลือกโฟลเดอร์ที่จะเก็บไฟล์สำรองข้อมูล"
+            folderDialog.RootFolder = Environment.SpecialFolder.MyComputer
+            folderDialog.ShowNewFolderButton = True
+
+            If folderDialog.ShowDialog() = DialogResult.OK Then
+                BackupFolderPath = folderDialog.SelectedPath
+            Else
+                ' หากผู้ใช้กดยกเลิก ให้หยุดการทำงาน
+                MessageBox.Show("การสำรองข้อมูลถูกยกเลิก", "ยกเลิก", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+        End Using
 
         Try
-            ' สร้างโฟลเดอร์สำหรับเก็บไฟล์ Backup หากยังไม่มี
-            If Not Directory.Exists(BackupFolderPath) Then
-                Directory.CreateDirectory(BackupFolderPath)
-            End If
-
             ' สร้างชื่อไฟล์ Backup พร้อมกับ Timestamp
-            Dim BackupFileName As String = BackupFolderPath & DateTime.Now.ToString("yyyy-MM-dd_HHmmss") & ".accdb" ' เปลี่ยนเป็น .accdb
+            Dim BackupFileName As String = Path.Combine(BackupFolderPath, DateTime.Now.ToString("yyyy-MM-dd_HHmmss") & ".accdb")
 
             ' ตรวจสอบว่าไฟล์กำลังถูกใช้งานอยู่หรือไม่
             If IsFileInUse(ThisDB) Then
@@ -33,7 +43,7 @@ Public Class frmBackup
             ' อัปเดต ProgressBar เป็น 100% เมื่อสำรองข้อมูลเสร็จสิ้น
             ProgressBar1.Value = 100
 
-            MessageBox.Show("สำเร็จ!", "การสำรองข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("สำเร็จ! ข้อมูลถูกสำรองไว้ที่: " & BackupFileName, "การสำรองข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             MessageBox.Show("เกิดข้อผิดพลาดในการสำรองข้อมูล: " & ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
@@ -52,7 +62,4 @@ Public Class frmBackup
         End Try
     End Function
 
-    Private Sub ProgressBar1_Click(sender As Object, e As EventArgs) Handles ProgressBar1.Click
-        ' ไม่มีการดำเนินการในที่นี้ แต่คุณสามารถใช้ ProgressBar ในการอัปเดตสถานะได้
-    End Sub
 End Class

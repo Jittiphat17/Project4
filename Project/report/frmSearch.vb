@@ -23,17 +23,15 @@ Public Class frmSearch
     End Sub
 
     Private Sub FormatDataGridView()
-        ' ตั้งค่าการแสดงจำนวนเงินด้วยเครื่องหมายคั่นหลักพัน
+        ' Format the DataGridView as before, and include the new column
         dgvResults.Columns("con_amount").DefaultCellStyle.Format = "N0"
-        ' ตั้งค่าการจัดชิดด้านขวา
         dgvResults.Columns("con_amount").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         dgvResults.Columns("con_interest").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         dgvResults.Columns("con_permonth").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
-        ' ปรับความกว้างของคอลัมน์ con_details
-        dgvResults.Columns("con_details").Width = 400 ' ปรับค่าตามที่ต้องการ
+        dgvResults.Columns("con_details").Width = 400 ' Adjust width as needed
 
-        ' เปลี่ยนชื่อหัวข้อคอลัมน์เป็นภาษาไทย
+        ' Set column headers
         dgvResults.Columns("con_id").HeaderText = "รหัสสัญญา"
         dgvResults.Columns("m_id").HeaderText = "รหัสสมาชิก"
         dgvResults.Columns("con_details").HeaderText = "รายละเอียดสัญญา"
@@ -42,8 +40,10 @@ Public Class frmSearch
         dgvResults.Columns("con_permonth").HeaderText = "จำนวนงวดต่อเดือน"
         dgvResults.Columns("con_date").HeaderText = "วันที่ทำสัญญา"
         dgvResults.Columns("acc_id").HeaderText = "บัญชี"
-        dgvResults.Columns("guarantor_names").HeaderText = "ชื่อผู้ค้ำประกัน" ' เพิ่มคอลัมน์ชื่อผู้ค้ำประกัน
+        dgvResults.Columns("guarantor_names").HeaderText = "ชื่อผู้ค้ำประกัน"
+        dgvResults.Columns("con_GuaranteeType").HeaderText = "ประเภทการค้ำประกัน" ' Add the header for the new column
     End Sub
+
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         If String.IsNullOrWhiteSpace(txtSearch.Text) Then
@@ -57,14 +57,14 @@ Public Class frmSearch
         Try
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 conn.Open()
-                Dim query As String = "SELECT con_id, m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id FROM Contract"
+                Dim query As String = "SELECT con_id, m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id, con_GuaranteeType FROM Contract"
                 Dim cmd As New OleDbCommand(query, conn)
                 Dim adapter As New OleDbDataAdapter(cmd)
                 Dim table As New DataTable()
                 adapter.Fill(table)
 
-                ' เพิ่มการดึงข้อมูลผู้ค้ำประกัน
-                table.Columns.Add("guarantor_names", GetType(String)) ' เพิ่มคอลัมน์ใหม่สำหรับชื่อผู้ค้ำประกัน
+                ' Add the guarantor names as before
+                table.Columns.Add("guarantor_names", GetType(String)) ' Add new column for guarantor names
 
                 For Each row As DataRow In table.Rows
                     Dim con_id As Integer = row("con_id")
@@ -75,13 +75,13 @@ Public Class frmSearch
                     Dim guarantorTable As New DataTable()
                     guarantorAdapter.Fill(guarantorTable)
 
-                    ' รวบรวมชื่อผู้ค้ำประกัน
+                    ' Collect guarantor names
                     Dim guarantorNames As String = String.Join(", ", guarantorTable.AsEnumerable().[Select](Function(r) r.Field(Of String)("m_name")).ToArray())
                     row("guarantor_names") = guarantorNames
                 Next
 
                 dgvResults.DataSource = table
-                ' เรียกใช้ฟังก์ชันการจัดรูปแบบ DataGridView
+                ' Call the format function to setup DataGridView
                 FormatDataGridView()
             End Using
         Catch ex As Exception
@@ -93,15 +93,15 @@ Public Class frmSearch
         Try
             Using conn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & Application.StartupPath & "\db_banmai1.accdb")
                 conn.Open()
-                Dim query As String = "SELECT con_id, m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id FROM Contract WHERE con_id LIKE @keyword OR m_id IN (SELECT m_id FROM Member WHERE m_name LIKE @keyword)"
+                Dim query As String = "SELECT con_id, m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id, con_GuaranteeType FROM Contract WHERE con_id LIKE @keyword OR m_id IN (SELECT m_id FROM Member WHERE m_name LIKE @keyword)"
                 Dim cmd As New OleDbCommand(query, conn)
                 cmd.Parameters.AddWithValue("@keyword", "%" & keyword & "%")
                 Dim adapter As New OleDbDataAdapter(cmd)
                 Dim table As New DataTable()
                 adapter.Fill(table)
 
-                ' เพิ่มการดึงข้อมูลผู้ค้ำประกัน
-                table.Columns.Add("guarantor_names", GetType(String)) ' เพิ่มคอลัมน์ใหม่สำหรับชื่อผู้ค้ำประกัน
+                ' Add the guarantor names as before
+                table.Columns.Add("guarantor_names", GetType(String)) ' Add new column for guarantor names
 
                 For Each row As DataRow In table.Rows
                     Dim con_id As Integer = row("con_id")
@@ -112,7 +112,7 @@ Public Class frmSearch
                     Dim guarantorTable As New DataTable()
                     guarantorAdapter.Fill(guarantorTable)
 
-                    ' รวบรวมชื่อผู้ค้ำประกัน
+                    ' Collect guarantor names
                     Dim guarantorNames As String = String.Join(", ", guarantorTable.AsEnumerable().[Select](Function(r) r.Field(Of String)("m_name")).ToArray())
                     row("guarantor_names") = guarantorNames
                 Next
@@ -213,7 +213,7 @@ Public Class frmSearch
                 conn.Open()
 
                 ' ดึงข้อมูลสำหรับ DataSet1 จากตาราง Contract
-                Dim query1 As String = "SELECT con_id, m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id FROM Contract WHERE con_id = @con_id"
+                Dim query1 As String = "SELECT con_id, m_id, con_details, con_amount, con_interest, con_permonth, con_date, acc_id, con_GuaranteeType FROM Contract WHERE con_id = @con_id"
                 Dim cmd1 As New OleDbCommand(query1, conn)
                 cmd1.Parameters.AddWithValue("@con_id", selectedConId)
                 Dim adapter1 As New OleDbDataAdapter(cmd1)

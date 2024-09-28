@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmViewmember
+Partial Class frmViewMember
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,289 +22,242 @@ Partial Class frmViewmember
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.btnSearchByName = New System.Windows.Forms.Button()
-        Me.txtSearch = New System.Windows.Forms.TextBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.cboAccountType = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.dgvConn = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btnSearchByAccount = New System.Windows.Forms.Button()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.Guna2GroupBox2 = New Guna.UI2.WinForms.Guna2GroupBox()
+        Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.btnSearchByName = New Guna.UI2.WinForms.Guna2Button()
+        Me.Guna2GroupBox1 = New Guna.UI2.WinForms.Guna2GroupBox()
+        Me.btnSearchByAccount = New Guna.UI2.WinForms.Guna2Button()
+        Me.cboAccountType = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.dgvConn = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
+        Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
+        Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2GroupBox2.SuspendLayout()
+        Me.Guna2GroupBox1.SuspendLayout()
         CType(Me.dgvConn, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Guna2Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox2
+        'Guna2GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.Label3)
-        Me.GroupBox2.Controls.Add(Me.btnSearchByName)
-        Me.GroupBox2.Controls.Add(Me.txtSearch)
-        Me.GroupBox2.Location = New System.Drawing.Point(799, 72)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(454, 64)
-        Me.GroupBox2.TabIndex = 12
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "ค้นหาตามรายชื่อ"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(6, 16)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(118, 30)
-        Me.Label3.TabIndex = 1
-        Me.Label3.Text = "ค้นหารายชื่อ :"
-        '
-        'btnSearchByName
-        '
-        Me.btnSearchByName.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearchByName.Location = New System.Drawing.Point(356, 16)
-        Me.btnSearchByName.Name = "btnSearchByName"
-        Me.btnSearchByName.Size = New System.Drawing.Size(92, 33)
-        Me.btnSearchByName.TabIndex = 3
-        Me.btnSearchByName.Text = "ค้นหา"
-        Me.btnSearchByName.UseVisualStyleBackColor = True
+        Me.Guna2GroupBox2.Controls.Add(Me.txtSearch)
+        Me.Guna2GroupBox2.Controls.Add(Me.btnSearchByName)
+        Me.Guna2GroupBox2.CustomBorderColor = System.Drawing.Color.DarkSlateBlue
+        Me.Guna2GroupBox2.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2GroupBox2.ForeColor = System.Drawing.Color.White
+        Me.Guna2GroupBox2.Location = New System.Drawing.Point(769, 103)
+        Me.Guna2GroupBox2.Name = "Guna2GroupBox2"
+        Me.Guna2GroupBox2.Size = New System.Drawing.Size(341, 84)
+        Me.Guna2GroupBox2.TabIndex = 5
+        Me.Guna2GroupBox2.Text = "ค้นหาตามรายชื่อ"
         '
         'txtSearch
         '
-        Me.txtSearch.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSearch.Location = New System.Drawing.Point(130, 18)
+        Me.txtSearch.BorderRadius = 5
+        Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSearch.DefaultText = ""
+        Me.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearch.Font = New System.Drawing.Font("FC Minimal", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearch.Location = New System.Drawing.Point(14, 43)
+        Me.txtSearch.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(220, 31)
-        Me.txtSearch.TabIndex = 6
+        Me.txtSearch.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.txtSearch.PlaceholderText = ""
+        Me.txtSearch.SelectedText = ""
+        Me.txtSearch.Size = New System.Drawing.Size(225, 36)
+        Me.txtSearch.TabIndex = 3
         '
-        'GroupBox1
+        'btnSearchByName
         '
-        Me.GroupBox1.Controls.Add(Me.cboAccountType)
-        Me.GroupBox1.Controls.Add(Me.btnSearchByAccount)
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 72)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(438, 64)
-        Me.GroupBox1.TabIndex = 11
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "ค้นหาตามประเภทบัญชี"
+        Me.btnSearchByName.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnSearchByName.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnSearchByName.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnSearchByName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnSearchByName.FillColor = System.Drawing.Color.ForestGreen
+        Me.btnSearchByName.Font = New System.Drawing.Font("FC Minimal", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearchByName.ForeColor = System.Drawing.Color.White
+        Me.btnSearchByName.Location = New System.Drawing.Point(245, 43)
+        Me.btnSearchByName.Name = "btnSearchByName"
+        Me.btnSearchByName.Size = New System.Drawing.Size(93, 36)
+        Me.btnSearchByName.TabIndex = 3
+        Me.btnSearchByName.Text = "ค้นหา"
         '
-        'cboAccountType
+        'Guna2GroupBox1
         '
-        Me.cboAccountType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboAccountType.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboAccountType.FormattingEnabled = True
-        Me.cboAccountType.Location = New System.Drawing.Point(118, 19)
-        Me.cboAccountType.Name = "cboAccountType"
-        Me.cboAccountType.Size = New System.Drawing.Size(244, 32)
-        Me.cboAccountType.TabIndex = 5
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("TH SarabunPSK", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(44, 18)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(68, 30)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "ค้นหา :"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("TH SarabunPSK", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(559, 11)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(143, 36)
-        Me.Label2.TabIndex = 10
-        Me.Label2.Text = "ดูข้อมูลสมาชิก"
-        '
-        'dgvConn
-        '
-        Me.dgvConn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvConn.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column12, Me.Column13, Me.Column14, Me.Column15, Me.Column16, Me.Column7, Me.Column17})
-        Me.dgvConn.Location = New System.Drawing.Point(12, 142)
-        Me.dgvConn.Name = "dgvConn"
-        Me.dgvConn.ReadOnly = True
-        Me.dgvConn.Size = New System.Drawing.Size(1241, 295)
-        Me.dgvConn.TabIndex = 11
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "รหัสสมาชิก"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "คำนำหน้า"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "ชื่อ-นามสกุล"
-        Me.Column3.Name = "Column3"
-        Me.Column3.ReadOnly = True
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "ชื่อเล่น"
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "วัน/เดือน/ปีเกิด"
-        Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "อายุ"
-        Me.Column6.Name = "Column6"
-        Me.Column6.ReadOnly = True
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "รหัสบัตรประชาชน"
-        Me.Column8.Name = "Column8"
-        Me.Column8.ReadOnly = True
-        '
-        'Column9
-        '
-        Me.Column9.HeaderText = "อาชีพ"
-        Me.Column9.Name = "Column9"
-        Me.Column9.ReadOnly = True
-        '
-        'Column10
-        '
-        Me.Column10.HeaderText = "ที่อยู่"
-        Me.Column10.Name = "Column10"
-        Me.Column10.ReadOnly = True
-        '
-        'Column11
-        '
-        Me.Column11.HeaderText = "รหัสไปรษณีย์"
-        Me.Column11.Name = "Column11"
-        Me.Column11.ReadOnly = True
-        '
-        'Column12
-        '
-        Me.Column12.HeaderText = "เบอร์โทรติดต่อ"
-        Me.Column12.Name = "Column12"
-        Me.Column12.ReadOnly = True
-        '
-        'Column13
-        '
-        Me.Column13.HeaderText = "ชื่อบัญชี"
-        Me.Column13.Name = "Column13"
-        Me.Column13.ReadOnly = True
-        '
-        'Column14
-        '
-        Me.Column14.HeaderText = "เลขบัญชี"
-        Me.Column14.Name = "Column14"
-        Me.Column14.ReadOnly = True
-        '
-        'Column15
-        '
-        Me.Column15.HeaderText = "ยอดยกมา"
-        Me.Column15.Name = "Column15"
-        Me.Column15.ReadOnly = True
-        '
-        'Column16
-        '
-        Me.Column16.HeaderText = "ลูกหนี้คงค้าง"
-        Me.Column16.Name = "Column16"
-        Me.Column16.ReadOnly = True
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "สัญชาติ"
-        Me.Column7.Name = "Column7"
-        Me.Column7.ReadOnly = True
-        '
-        'Column17
-        '
-        Me.Column17.HeaderText = "ประเภทบัญชี"
-        Me.Column17.Name = "Column17"
-        Me.Column17.ReadOnly = True
+        Me.Guna2GroupBox1.Controls.Add(Me.btnSearchByAccount)
+        Me.Guna2GroupBox1.Controls.Add(Me.cboAccountType)
+        Me.Guna2GroupBox1.CustomBorderColor = System.Drawing.Color.DarkSlateBlue
+        Me.Guna2GroupBox1.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2GroupBox1.ForeColor = System.Drawing.Color.White
+        Me.Guna2GroupBox1.Location = New System.Drawing.Point(12, 103)
+        Me.Guna2GroupBox1.Name = "Guna2GroupBox1"
+        Me.Guna2GroupBox1.Size = New System.Drawing.Size(341, 84)
+        Me.Guna2GroupBox1.TabIndex = 4
+        Me.Guna2GroupBox1.Text = "ตามประเภทบัญชี"
         '
         'btnSearchByAccount
         '
-        Me.btnSearchByAccount.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearchByAccount.Location = New System.Drawing.Point(368, 19)
+        Me.btnSearchByAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnSearchByAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnSearchByAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnSearchByAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnSearchByAccount.FillColor = System.Drawing.Color.ForestGreen
+        Me.btnSearchByAccount.Font = New System.Drawing.Font("FC Minimal", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearchByAccount.ForeColor = System.Drawing.Color.White
+        Me.btnSearchByAccount.Location = New System.Drawing.Point(245, 43)
         Me.btnSearchByAccount.Name = "btnSearchByAccount"
-        Me.btnSearchByAccount.Size = New System.Drawing.Size(64, 33)
+        Me.btnSearchByAccount.Size = New System.Drawing.Size(93, 36)
         Me.btnSearchByAccount.TabIndex = 3
         Me.btnSearchByAccount.Text = "ค้นหา"
-        Me.btnSearchByAccount.UseVisualStyleBackColor = True
         '
-        'frmViewmember
+        'cboAccountType
+        '
+        Me.cboAccountType.BackColor = System.Drawing.Color.Transparent
+        Me.cboAccountType.BorderRadius = 5
+        Me.cboAccountType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cboAccountType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboAccountType.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cboAccountType.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cboAccountType.Font = New System.Drawing.Font("FC Minimal", 14.25!)
+        Me.cboAccountType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cboAccountType.ItemHeight = 30
+        Me.cboAccountType.Location = New System.Drawing.Point(14, 43)
+        Me.cboAccountType.Name = "cboAccountType"
+        Me.cboAccountType.Size = New System.Drawing.Size(225, 36)
+        Me.cboAccountType.TabIndex = 3
+        '
+        'dgvConn
+        '
+        Me.dgvConn.AllowUserToAddRows = False
+        Me.dgvConn.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.dgvConn.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgvConn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvConn.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvConn.ColumnHeadersHeight = 50
+        Me.dgvConn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvConn.DefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvConn.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvConn.Location = New System.Drawing.Point(12, 193)
+        Me.dgvConn.Name = "dgvConn"
+        Me.dgvConn.ReadOnly = True
+        Me.dgvConn.RowHeadersVisible = False
+        Me.dgvConn.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.dgvConn.Size = New System.Drawing.Size(1098, 245)
+        Me.dgvConn.TabIndex = 3
+        Me.dgvConn.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
+        Me.dgvConn.ThemeStyle.AlternatingRowsStyle.Font = Nothing
+        Me.dgvConn.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
+        Me.dgvConn.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
+        Me.dgvConn.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
+        Me.dgvConn.ThemeStyle.BackColor = System.Drawing.Color.White
+        Me.dgvConn.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvConn.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvConn.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.dgvConn.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvConn.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White
+        Me.dgvConn.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.dgvConn.ThemeStyle.HeaderStyle.Height = 50
+        Me.dgvConn.ThemeStyle.ReadOnly = True
+        Me.dgvConn.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White
+        Me.dgvConn.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.dgvConn.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvConn.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        Me.dgvConn.ThemeStyle.RowsStyle.Height = 22
+        Me.dgvConn.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvConn.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        '
+        'Guna2Elipse1
+        '
+        Me.Guna2Elipse1.TargetControl = Me
+        '
+        'Guna2Panel1
+        '
+        Me.Guna2Panel1.BackColor = System.Drawing.Color.DarkSlateBlue
+        Me.Guna2Panel1.Controls.Add(Me.Guna2ControlBox1)
+        Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2Panel1.Name = "Guna2Panel1"
+        Me.Guna2Panel1.Size = New System.Drawing.Size(1122, 33)
+        Me.Guna2Panel1.TabIndex = 6
+        '
+        'Guna2ControlBox1
+        '
+        Me.Guna2ControlBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2ControlBox1.BackColor = System.Drawing.Color.Red
+        Me.Guna2ControlBox1.CustomIconSize = 30.0!
+        Me.Guna2ControlBox1.FillColor = System.Drawing.Color.LightGray
+        Me.Guna2ControlBox1.IconColor = System.Drawing.Color.Red
+        Me.Guna2ControlBox1.Location = New System.Drawing.Point(1072, 1)
+        Me.Guna2ControlBox1.Name = "Guna2ControlBox1"
+        Me.Guna2ControlBox1.Size = New System.Drawing.Size(38, 29)
+        Me.Guna2ControlBox1.TabIndex = 5
+        '
+        'Guna2HtmlLabel1
+        '
+        Me.Guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("FC Minimal", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(460, 116)
+        Me.Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
+        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(208, 50)
+        Me.Guna2HtmlLabel1.TabIndex = 7
+        Me.Guna2HtmlLabel1.Text = "รายชื่อสมาชิก"
+        '
+        'frmViewMember
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1264, 456)
+        Me.ClientSize = New System.Drawing.Size(1122, 450)
+        Me.Controls.Add(Me.Guna2HtmlLabel1)
+        Me.Controls.Add(Me.Guna2Panel1)
+        Me.Controls.Add(Me.Guna2GroupBox2)
+        Me.Controls.Add(Me.Guna2GroupBox1)
         Me.Controls.Add(Me.dgvConn)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Label2)
-        Me.Name = "frmViewmember"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "frmViewmember"
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Name = "frmViewMember"
+        Me.Text = "frmViewMember"
+        Me.Guna2GroupBox2.ResumeLayout(False)
+        Me.Guna2GroupBox1.ResumeLayout(False)
         CType(Me.dgvConn, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Guna2Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents txtSearch As TextBox
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents cboAccountType As ComboBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents btnSearchByName As Button
-    Friend WithEvents dgvConn As DataGridView
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents Column8 As DataGridViewTextBoxColumn
-    Friend WithEvents Column9 As DataGridViewTextBoxColumn
-    Friend WithEvents Column10 As DataGridViewTextBoxColumn
-    Friend WithEvents Column11 As DataGridViewTextBoxColumn
-    Friend WithEvents Column12 As DataGridViewTextBoxColumn
-    Friend WithEvents Column13 As DataGridViewTextBoxColumn
-    Friend WithEvents Column14 As DataGridViewTextBoxColumn
-    Friend WithEvents Column15 As DataGridViewTextBoxColumn
-    Friend WithEvents Column16 As DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents Column17 As DataGridViewTextBoxColumn
-    Friend WithEvents btnSearchByAccount As Button
+    Friend WithEvents Guna2GroupBox2 As Guna.UI2.WinForms.Guna2GroupBox
+    Friend WithEvents txtSearch As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents btnSearchByName As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2GroupBox1 As Guna.UI2.WinForms.Guna2GroupBox
+    Friend WithEvents btnSearchByAccount As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents cboAccountType As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents dgvConn As Guna.UI2.WinForms.Guna2DataGridView
+    Friend WithEvents Guna2Elipse1 As Guna.UI2.WinForms.Guna2Elipse
+    Friend WithEvents Guna2HtmlLabel1 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
+    Friend WithEvents Guna2ControlBox1 As Guna.UI2.WinForms.Guna2ControlBox
 End Class

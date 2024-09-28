@@ -232,10 +232,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="db_banmai1DataSet.Designer.vb">
+    <Compile Include="db_banmai1DataSet1.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>db_banmai1DataSet.xsd</DependentUpon>
+      <DependentUpon>db_banmai1DataSet1.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Form1.Designer.vb">
       <DependentUpon>Form1.vb</DependentUpon>
@@ -278,6 +279,12 @@
     <Compile Include="Other\frmCard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Other\frmFundManagement.Designer.vb">
+      <DependentUpon>frmFundManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Other\frmFundManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Other\frmImport.Designer.vb">
       <DependentUpon>frmImport.vb</DependentUpon>
     </Compile>
@@ -302,10 +309,10 @@
     <Compile Include="Other\frmMemberResign.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Other\frmViewmember.Designer.vb">
-      <DependentUpon>frmViewmember.vb</DependentUpon>
+    <Compile Include="Other\frmViewMember.Designer.vb">
+      <DependentUpon>frmViewMember.vb</DependentUpon>
     </Compile>
-    <Compile Include="Other\frmViewmember.vb">
+    <Compile Include="Other\frmViewMember.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Page1\frmBrrow.Designer.vb">
@@ -338,10 +345,10 @@
     <Compile Include="Page1\frmExpense.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="report\frmInter.Designer.vb">
-      <DependentUpon>frmInter.vb</DependentUpon>
+    <Compile Include="report\AccountSajjaForm.Designer.vb">
+      <DependentUpon>AccountSajjaForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="report\frmInter.vb">
+    <Compile Include="report\AccountSajjaForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="report\frmSearch.Designer.vb">
@@ -362,10 +369,10 @@
     <Compile Include="Page2\frmIncome.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Page2\frmIncomePayment.Designer.vb">
-      <DependentUpon>frmIncomePayment.vb</DependentUpon>
+    <Compile Include="report\ReportForm.Designer.vb">
+      <DependentUpon>ReportForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Page2\frmIncomePayment.vb">
+    <Compile Include="report\ReportForm.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -388,6 +395,9 @@
     <EmbeddedResource Include="Other\frmCard.resx">
       <DependentUpon>frmCard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Other\frmFundManagement.resx">
+      <DependentUpon>frmFundManagement.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Other\frmImport.resx">
       <DependentUpon>frmImport.vb</DependentUpon>
     </EmbeddedResource>
@@ -400,8 +410,8 @@
     <EmbeddedResource Include="Other\frmMemberResign.resx">
       <DependentUpon>frmMemberResign.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Other\frmViewmember.resx">
-      <DependentUpon>frmViewmember.vb</DependentUpon>
+    <EmbeddedResource Include="Other\frmViewMember.resx">
+      <DependentUpon>frmViewMember.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Page1\frmBrrow.resx">
       <DependentUpon>frmBrrow.vb</DependentUpon>
@@ -418,8 +428,8 @@
     <EmbeddedResource Include="Page1\frmExpense.resx">
       <DependentUpon>frmExpense.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="report\frmInter.resx">
-      <DependentUpon>frmInter.vb</DependentUpon>
+    <EmbeddedResource Include="report\AccountSajjaForm.resx">
+      <DependentUpon>AccountSajjaForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="report\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>
@@ -430,31 +440,393 @@
     <EmbeddedResource Include="Page2\frmIncome.resx">
       <DependentUpon>frmIncome.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Page2\frmIncomePayment.resx">
-      <DependentUpon>frmIncomePayment.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="report\GuarantorReport.rdlc" />
-    <EmbeddedResource Include="report\GuarantorReport1.rdlc" />
-    <EmbeddedResource Include="report\IncomeReport.rdlc" />
+    <EmbeddedResource Include="report\Income.rdlc" />
     <EmbeddedResource Include="report\LoanReport1.rdlc" />
+    <EmbeddedResource Include="report\MemberReport.rdlc" />
+    <EmbeddedResource Include="report\ReportForm.resx">
+      <DependentUpon>ReportForm.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="db_banmai1DataSet.xsc">
-      <DependentUpon>db_banmai1DataSet.xsd</DependentUpon>
+    <None Include="db_banmai1DataSet1.xsc">
+      <DependentUpon>db_banmai1DataSet1.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="db_banmai1DataSet.xsd">
+    <None Include="db_banmai1DataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>db_banmai1DataSet.Designer.vb</LastGenOutput>
+      <LastGenOutput>db_banmai1DataSet1.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="db_banmai1DataSet.xss">
-      <DependentUpon>db_banmai1DataSet.xsd</DependentUpon>
+    <None Include="db_banmai1DataSet1.xss">
+      <DependentUpon>db_banmai1DataSet1.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\AccountSajjaForm.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.AccountDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.AccountRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.AccountRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.AccountRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Account_DetailsDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Account_DetailsRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Account_DetailsRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Account_DetailsRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.ContractDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.ContractRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.ContractRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.ContractRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.DirectorDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.DirectorRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.DirectorRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.DirectorRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.ExpenseDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.ExpenseRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.ExpenseRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.ExpenseRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Expense_DetailsDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Expense_DetailsRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Expense_DetailsRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Expense_DetailsRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.FundDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.FundRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.FundRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.FundRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.GuarantorDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.GuarantorRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.GuarantorRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.GuarantorRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.IncomeDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.IncomeRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.IncomeRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.IncomeRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Income_DetailsDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Income_DetailsRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Income_DetailsRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.Income_DetailsRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.MemberDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.MemberRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.MemberRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.MemberRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.PaymentDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.PaymentRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.PaymentRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.PaymentRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.StatusDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.StatusRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.StatusRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.StatusRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.UsersDataTable.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.UsersRow.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.UsersRowChangeEvent.datasource" />
+    <None Include="My Project\DataSources\db_banmai1DataSet1.UsersRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\Form1.datasource" />
+    <None Include="My Project\DataSources\frmBackup.datasource" />
+    <None Include="My Project\DataSources\frmBrrow.datasource" />
+    <None Include="My Project\DataSources\frmCard.datasource" />
+    <None Include="My Project\DataSources\frmCon.datasource" />
+    <None Include="My Project\DataSources\frmEditContract.datasource" />
+    <None Include="My Project\DataSources\frmEditExpense.datasource" />
+    <None Include="My Project\DataSources\frmEditIncome.datasource" />
+    <None Include="My Project\DataSources\frmExpense.datasource" />
+    <None Include="My Project\DataSources\frmFundManagement.datasource" />
+    <None Include="My Project\DataSources\frmFundManagement.MemberItem.datasource" />
+    <None Include="My Project\DataSources\frmImport.datasource" />
+    <None Include="My Project\DataSources\frmIncome.datasource" />
+    <None Include="My Project\DataSources\frmMain.datasource" />
+    <None Include="My Project\DataSources\frmManageMembers.datasource" />
+    <None Include="My Project\DataSources\frmManageUser.datasource" />
+    <None Include="My Project\DataSources\frmMemberResign.datasource" />
+    <None Include="My Project\DataSources\frmSearch.datasource" />
+    <None Include="My Project\DataSources\frmViewMember.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.IBinarySerialize.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.InvalidUdtException.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlContext.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlDataRecord.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlFacetAttribute.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlFunctionAttribute.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlMetaData.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlMethodAttribute.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlPipe.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlProcedureAttribute.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlTriggerAttribute.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlTriggerContext.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlUserDefinedAggregateAttribute.datasource" />
+    <None Include="My Project\DataSources\Microsoft.SqlServer.Server.SqlUserDefinedTypeAttribute.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.AccountTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.Account_DetailsTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.ContractTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.DirectorTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.ExpenseTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.Expense_DetailsTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.FundTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.GuarantorTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.IncomeTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.Income_DetailsTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.MemberTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.PaymentTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.StatusTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.TableAdapterManager+UpdateOrderOption.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.TableAdapterManager.datasource" />
+    <None Include="My Project\DataSources\Project.db_banmai1DataSet1TableAdapters.UsersTableAdapter.datasource" />
+    <None Include="My Project\DataSources\Project.My.MyApplication.datasource" />
+    <None Include="My Project\DataSources\Project.My.MySettings.datasource" />
+    <None Include="My Project\DataSources\ReportForm.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DataAdapter.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DataColumnMapping.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DataColumnMappingCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DataTableMapping.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DataTableMappingCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbColumn.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbCommand.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbCommandBuilder.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbConnection.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbConnectionStringBuilder.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbDataAdapter.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DBDataPermission.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DBDataPermissionAttribute.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbDataReader.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbDataReaderExtensions.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbDataRecord.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbDataSourceEnumerator.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbEnumerator.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbException.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbMetaDataCollectionNames.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbMetaDataColumnNames.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbParameter.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbParameterCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbProviderConfigurationHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbProviderFactories.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbProviderFactoriesConfigurationHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbProviderFactory.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbProviderSpecificTypePropertyAttribute.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.DbTransaction.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.IDbColumnSchemaGenerator.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.RowUpdatedEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.RowUpdatingEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.SchemaTableColumn.datasource" />
+    <None Include="My Project\DataSources\System.Data.Common.SchemaTableOptionalColumn.datasource" />
+    <None Include="My Project\DataSources\System.Data.Constraint.datasource" />
+    <None Include="My Project\DataSources\System.Data.ConstraintCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.ConstraintException.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataColumn.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataColumnChangeEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataColumnChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataColumnCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataException.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataRelation.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataRelationCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataRow.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataRowBuilder.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataRowChangeEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataRowChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataRowCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataRowView.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataSet.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataSetSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataSysDescriptionAttribute.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataTable.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataTableClearEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataTableClearEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataTableCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataTableNewRowEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataTableNewRowEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataTableReader.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataView.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataViewManager.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataViewSetting.datasource" />
+    <None Include="My Project\DataSources\System.Data.DataViewSettingCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.DBConcurrencyException.datasource" />
+    <None Include="My Project\DataSources\System.Data.DeletedRowInaccessibleException.datasource" />
+    <None Include="My Project\DataSources\System.Data.DuplicateNameException.datasource" />
+    <None Include="My Project\DataSources\System.Data.EvaluateException.datasource" />
+    <None Include="My Project\DataSources\System.Data.FillErrorEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.FillErrorEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.ForeignKeyConstraint.datasource" />
+    <None Include="My Project\DataSources\System.Data.IColumnMapping.datasource" />
+    <None Include="My Project\DataSources\System.Data.IColumnMappingCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.IDataAdapter.datasource" />
+    <None Include="My Project\DataSources\System.Data.IDataParameter.datasource" />
+    <None Include="My Project\DataSources\System.Data.IDataParameterCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.IDataReader.datasource" />
+    <None Include="My Project\DataSources\System.Data.IDataRecord.datasource" />
+    <None Include="My Project\DataSources\System.Data.IDbCommand.datasource" />
+    <None Include="My Project\DataSources\System.Data.IDbConnection.datasource" />
+    <None Include="My Project\DataSources\System.Data.IDbDataAdapter.datasource" />
+    <None Include="My Project\DataSources\System.Data.IDbDataParameter.datasource" />
+    <None Include="My Project\DataSources\System.Data.IDbTransaction.datasource" />
+    <None Include="My Project\DataSources\System.Data.InRowChangingEventException.datasource" />
+    <None Include="My Project\DataSources\System.Data.InternalDataCollectionBase.datasource" />
+    <None Include="My Project\DataSources\System.Data.InvalidConstraintException.datasource" />
+    <None Include="My Project\DataSources\System.Data.InvalidExpressionException.datasource" />
+    <None Include="My Project\DataSources\System.Data.ITableMapping.datasource" />
+    <None Include="My Project\DataSources\System.Data.ITableMappingCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.MergeFailedEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.MergeFailedEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.MissingPrimaryKeyException.datasource" />
+    <None Include="My Project\DataSources\System.Data.NoNullAllowedException.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcCommand.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcCommandBuilder.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcConnection.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcConnectionStringBuilder.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcDataAdapter.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcDataReader.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcError.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcErrorCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcException.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcFactory.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcInfoMessageEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcInfoMessageEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcMetaDataCollectionNames.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcMetaDataColumnNames.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcParameter.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcParameterCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcPermission.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcPermissionAttribute.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcRowUpdatedEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcRowUpdatedEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcRowUpdatingEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcRowUpdatingEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.Odbc.OdbcTransaction.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbCommand.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbCommandBuilder.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbConnection.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbConnectionStringBuilder.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbDataAdapter.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbDataReader.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbEnumerator.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbError.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbErrorCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbException.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbFactory.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbInfoMessageEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbInfoMessageEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbMetaDataCollectionNames.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbMetaDataColumnNames.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbParameter.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbParameterCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbPermission.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbPermissionAttribute.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbRowUpdatedEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbRowUpdatedEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbRowUpdatingEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbRowUpdatingEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbSchemaGuid.datasource" />
+    <None Include="My Project\DataSources\System.Data.OleDb.OleDbTransaction.datasource" />
+    <None Include="My Project\DataSources\System.Data.OperationAbortedException.datasource" />
+    <None Include="My Project\DataSources\System.Data.PropertyCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.ReadOnlyException.datasource" />
+    <None Include="My Project\DataSources\System.Data.RowNotInTableException.datasource" />
+    <None Include="My Project\DataSources\System.Data.Sql.SqlDataSourceEnumerator.datasource" />
+    <None Include="My Project\DataSources\System.Data.Sql.SqlNotificationRequest.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.OnChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlAuthenticationInitializer.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlAuthenticationParameters.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlAuthenticationProvider.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlAuthenticationToken.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlBulkCopy.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlBulkCopyColumnMapping.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlClientFactory.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlClientLogger.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlClientMetaDataCollectionNames.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlClientPermission.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlClientPermissionAttribute.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlColumnEncryptionCertificateStoreProvider.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlColumnEncryptionCngProvider.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlColumnEncryptionCspProvider.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlColumnEncryptionEnclaveProvider.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlColumnEncryptionKeyStoreProvider.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlCommand.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlCommandBuilder.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlConnection.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlConnectionStringBuilder.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlCredential.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlDataAdapter.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlDataReader.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SQLDebugging.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlDependency.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlEnclaveAttestationParameters.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlEnclaveSession.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlError.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlErrorCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlException.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlInfoMessageEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlInfoMessageEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlNotificationEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlParameter.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlParameterCollection.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlRowsCopiedEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlRowsCopiedEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlRowUpdatedEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlRowUpdatedEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlRowUpdatingEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlRowUpdatingEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlClient.SqlTransaction.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.INullable.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlAlreadyFilledException.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlBinary.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlBoolean.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlByte.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlBytes.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlChars.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlDateTime.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlDecimal.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlDouble.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlFileStream.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlGuid.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlInt16.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlInt32.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlInt64.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlMoney.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlNotFilledException.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlNullValueException.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlSingle.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlString.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlTruncateException.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlTypeException.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlTypesSchemaImporterExtensionHelper.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.SqlXml.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeBigIntSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeBinarySchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeBitSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeCharSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeDateTimeSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeDecimalSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeFloatSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeIntSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeMoneySchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeNCharSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeNTextSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeNumericSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeNVarCharSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeRealSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeSmallDateTimeSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeSmallIntSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeSmallMoneySchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeTextSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeTinyIntSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeUniqueIdentifierSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeVarBinarySchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeVarCharSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.SqlTypes.TypeVarImageSchemaImporterExtension.datasource" />
+    <None Include="My Project\DataSources\System.Data.StateChangeEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.StateChangeEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.StatementCompletedEventArgs.datasource" />
+    <None Include="My Project\DataSources\System.Data.StatementCompletedEventHandler.datasource" />
+    <None Include="My Project\DataSources\System.Data.StrongTypingException.datasource" />
+    <None Include="My Project\DataSources\System.Data.SyntaxErrorException.datasource" />
+    <None Include="My Project\DataSources\System.Data.TypedDataSetGenerator.datasource" />
+    <None Include="My Project\DataSources\System.Data.TypedDataSetGeneratorException.datasource" />
+    <None Include="My Project\DataSources\System.Data.UniqueConstraint.datasource" />
+    <None Include="My Project\DataSources\System.Data.VersionNotFoundException.datasource" />
+    <None Include="My Project\DataSources\System.Xml.XmlDataDocument.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
@@ -474,11 +846,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="db_banmai1.accdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

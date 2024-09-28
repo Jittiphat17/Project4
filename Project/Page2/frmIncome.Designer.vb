@@ -46,6 +46,7 @@ Partial Class frmIncome
         Me.Guna2GroupBox2 = New Guna.UI2.WinForms.Guna2GroupBox()
         Me.txtMemberID = New System.Windows.Forms.TextBox()
         Me.dgvPaymentDetails = New System.Windows.Forms.DataGridView()
+        Me.Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
         Me.Panel1.SuspendLayout()
         CType(Me.dgvIncomeDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
@@ -58,7 +59,7 @@ Partial Class frmIncome
         Me.btnSave.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnSave.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnSave.Location = New System.Drawing.Point(8, 489)
+        Me.btnSave.Location = New System.Drawing.Point(12, 519)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(150, 75)
         Me.btnSave.TabIndex = 7
@@ -70,7 +71,7 @@ Partial Class frmIncome
         Me.btnDelete.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnDelete.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnDelete.Location = New System.Drawing.Point(164, 489)
+        Me.btnDelete.Location = New System.Drawing.Point(168, 519)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(150, 75)
         Me.btnDelete.TabIndex = 8
@@ -82,7 +83,7 @@ Partial Class frmIncome
         Me.btnCalculate.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnCalculate.Font = New System.Drawing.Font("TH SarabunPSK", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCalculate.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnCalculate.Location = New System.Drawing.Point(324, 489)
+        Me.btnCalculate.Location = New System.Drawing.Point(328, 519)
         Me.btnCalculate.Name = "btnCalculate"
         Me.btnCalculate.Size = New System.Drawing.Size(150, 75)
         Me.btnCalculate.TabIndex = 6
@@ -94,7 +95,7 @@ Partial Class frmIncome
         Me.btnClear.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClear.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnClear.Location = New System.Drawing.Point(480, 489)
+        Me.btnClear.Location = New System.Drawing.Point(484, 519)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(150, 75)
         Me.btnClear.TabIndex = 5
@@ -116,9 +117,9 @@ Partial Class frmIncome
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Panel1.Controls.Add(Me.lblTotalAmount)
-        Me.Panel1.Location = New System.Drawing.Point(1011, 519)
+        Me.Panel1.Location = New System.Drawing.Point(1063, 500)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(145, 45)
+        Me.Panel1.Size = New System.Drawing.Size(160, 45)
         Me.Panel1.TabIndex = 11
         '
         'Label7
@@ -207,6 +208,7 @@ Partial Class frmIncome
         Me.txtAmount.Name = "txtAmount"
         Me.txtAmount.Size = New System.Drawing.Size(197, 31)
         Me.txtAmount.TabIndex = 1
+        Me.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtDescrip
         '
@@ -310,11 +312,27 @@ Partial Class frmIncome
         Me.dgvPaymentDetails.Size = New System.Drawing.Size(657, 204)
         Me.dgvPaymentDetails.TabIndex = 17
         '
+        'Guna2Button1
+        '
+        Me.Guna2Button1.BorderRadius = 5
+        Me.Guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.Guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.Guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.Guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.Guna2Button1.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.Guna2Button1.ForeColor = System.Drawing.Color.White
+        Me.Guna2Button1.Location = New System.Drawing.Point(640, 519)
+        Me.Guna2Button1.Name = "Guna2Button1"
+        Me.Guna2Button1.Size = New System.Drawing.Size(193, 75)
+        Me.Guna2Button1.TabIndex = 18
+        Me.Guna2Button1.Text = "ไปยังหน้าตารางเงินกู้"
+        '
         'frmIncome
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1235, 606)
+        Me.Controls.Add(Me.Guna2Button1)
         Me.Controls.Add(Me.dgvPaymentDetails)
         Me.Controls.Add(Me.Guna2GroupBox2)
         Me.Controls.Add(Me.Label7)
@@ -364,4 +382,5 @@ Partial Class frmIncome
     Friend WithEvents Guna2GroupBox2 As Guna.UI2.WinForms.Guna2GroupBox
     Friend WithEvents txtMemberID As TextBox
     Friend WithEvents dgvPaymentDetails As DataGridView
+    Friend WithEvents Guna2Button1 As Guna.UI2.WinForms.Guna2Button
 End Class

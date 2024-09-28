@@ -587,5 +587,4 @@ Public Class frmEditContract
         End If
     End Sub
 
-
 End Class

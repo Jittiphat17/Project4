@@ -27,8 +27,6 @@ Partial Class frmCon
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dgvPayments = New Guna.UI2.WinForms.Guna2DataGridView()
-        Me.btnClear = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnSave = New Guna.UI2.WinForms.Guna2Button()
         Me.btnSearch = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2GroupBox1 = New Guna.UI2.WinForms.Guna2GroupBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -105,38 +103,6 @@ Partial Class frmCon
         Me.dgvPayments.ThemeStyle.RowsStyle.Height = 22
         Me.dgvPayments.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvPayments.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        '
-        'btnClear
-        '
-        Me.btnClear.BorderRadius = 10
-        Me.btnClear.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnClear.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnClear.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnClear.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnClear.FillColor = System.Drawing.Color.DarkSlateBlue
-        Me.btnClear.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClear.ForeColor = System.Drawing.Color.White
-        Me.btnClear.Location = New System.Drawing.Point(600, 468)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(180, 45)
-        Me.btnClear.TabIndex = 29
-        Me.btnClear.Text = "ล้างข้อมูล"
-        '
-        'btnSave
-        '
-        Me.btnSave.BorderRadius = 10
-        Me.btnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnSave.FillColor = System.Drawing.Color.DarkSlateBlue
-        Me.btnSave.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(404, 468)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(180, 45)
-        Me.btnSave.TabIndex = 30
-        Me.btnSave.Text = "บันทึก"
         '
         'btnSearch
         '
@@ -457,11 +423,9 @@ Partial Class frmCon
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1186, 525)
+        Me.ClientSize = New System.Drawing.Size(1186, 431)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.dgvPayments)
-        Me.Controls.Add(Me.btnClear)
-        Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.Guna2GroupBox1)
         Me.Controls.Add(Me.Label7)
@@ -480,8 +444,6 @@ Partial Class frmCon
     End Sub
 
     Friend WithEvents dgvPayments As Guna.UI2.WinForms.Guna2DataGridView
-    Friend WithEvents btnClear As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents btnSave As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnSearch As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2GroupBox1 As Guna.UI2.WinForms.Guna2GroupBox
     Friend WithEvents Label9 As Label

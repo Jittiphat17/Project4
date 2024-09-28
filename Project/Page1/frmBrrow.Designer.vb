@@ -23,9 +23,9 @@ Partial Class frmBrrow
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Guna2GroupBox1 = New Guna.UI2.WinForms.Guna2GroupBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -46,6 +46,7 @@ Partial Class frmBrrow
         Me.txtDetail = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Guna2GroupBox2 = New Guna.UI2.WinForms.Guna2GroupBox()
+        Me.chkGuarantor = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtSearch3 = New Guna.UI2.WinForms.Guna2TextBox()
@@ -64,7 +65,6 @@ Partial Class frmBrrow
         Me.txtCid = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.guna2DataGridView1 = New Guna.UI2.WinForms.Guna2DataGridView()
-        Me.chkGuarantor = New System.Windows.Forms.CheckBox()
         Me.Guna2GroupBox1.SuspendLayout()
         Me.Guna2GroupBox2.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
@@ -152,6 +152,7 @@ Partial Class frmBrrow
         Me.dtpBirth.Name = "dtpBirth"
         Me.dtpBirth.Size = New System.Drawing.Size(162, 36)
         Me.dtpBirth.TabIndex = 13
+        Me.dtpBirth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.dtpBirth.Value = New Date(2024, 9, 12, 15, 17, 18, 685)
         '
         'Label12
@@ -393,6 +394,18 @@ Partial Class frmBrrow
         Me.Guna2GroupBox2.TabIndex = 2
         Me.Guna2GroupBox2.Text = "ผู้ค้ำ"
         Me.Guna2GroupBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'chkGuarantor
+        '
+        Me.chkGuarantor.AutoSize = True
+        Me.chkGuarantor.BackColor = System.Drawing.Color.White
+        Me.chkGuarantor.ForeColor = System.Drawing.Color.Black
+        Me.chkGuarantor.Location = New System.Drawing.Point(32, 56)
+        Me.chkGuarantor.Name = "chkGuarantor"
+        Me.chkGuarantor.Size = New System.Drawing.Size(117, 25)
+        Me.chkGuarantor.TabIndex = 15
+        Me.chkGuarantor.Text = "เลือก/ไม่เลือก"
+        Me.chkGuarantor.UseVisualStyleBackColor = False
         '
         'Label3
         '
@@ -695,27 +708,27 @@ Partial Class frmBrrow
         '
         'guna2DataGridView1
         '
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        Me.guna2DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.guna2DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.guna2DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.guna2DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.guna2DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.guna2DataGridView1.ColumnHeadersHeight = 50
         Me.guna2DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.guna2DataGridView1.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.guna2DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
         Me.guna2DataGridView1.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.guna2DataGridView1.Location = New System.Drawing.Point(12, 539)
         Me.guna2DataGridView1.Name = "guna2DataGridView1"
@@ -744,16 +757,6 @@ Partial Class frmBrrow
         Me.guna2DataGridView1.ThemeStyle.RowsStyle.Height = 22
         Me.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        '
-        'chkGuarantor
-        '
-        Me.chkGuarantor.AutoSize = True
-        Me.chkGuarantor.Location = New System.Drawing.Point(32, 56)
-        Me.chkGuarantor.Name = "chkGuarantor"
-        Me.chkGuarantor.Size = New System.Drawing.Size(112, 25)
-        Me.chkGuarantor.TabIndex = 15
-        Me.chkGuarantor.Text = "CheckBox2"
-        Me.chkGuarantor.UseVisualStyleBackColor = True
         '
         'frmBrrow
         '

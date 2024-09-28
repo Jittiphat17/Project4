@@ -319,6 +319,9 @@ Public Class frmBrrow
             txtSearch2.Clear()
             txtSearch3.Clear()
 
+            ' เช็คเครื่องหมายถูกใน chkGuarantor
+            chkGuarantor.Checked = False
+
         ElseIf cbGuaranteeType.SelectedItem.ToString() = "ผู้ค้ำประกัน" Then
             ' เปิดใช้งานฟิลด์กรอกข้อมูลผู้ค้ำประกัน เมื่อเลือกการค้ำประกันเป็น "ผู้ค้ำประกัน"
             txtSearch1.Enabled = True
@@ -327,6 +330,9 @@ Public Class frmBrrow
 
             ' เปิดการใช้งาน ComboBox แหล่งจ่ายให้ผู้ใช้เลือกได้
             cbAccount.Enabled = True
+
+            ' เช็คเครื่องหมายถูกใน chkGuarantor
+            chkGuarantor.Checked = True
 
             ' ตรวจสอบว่าผู้ค้ำประกันไม่ใช่คนกู้
             If txtSearch1.Text = txtSearch.Text OrElse txtSearch2.Text = txtSearch.Text OrElse txtSearch3.Text = txtSearch.Text Then
@@ -350,8 +356,12 @@ Public Class frmBrrow
             txtSearch1.Clear()
             txtSearch2.Clear()
             txtSearch3.Clear()
+
+            ' ยกเลิกการเช็คเครื่องหมายถูกใน chkGuarantor
+            chkGuarantor.Checked = False
         End If
     End Sub
+
 
     Private Function IsDataComplete() As Boolean
         ' ตรวจสอบว่าช่อง txtSearch (ชื่อผู้กู้) ไม่ว่าง
@@ -598,7 +608,7 @@ Public Class frmBrrow
                                     monthlyPayment = monthlyPrincipal + monthlyInterest
                                 End If
 
-                                strSQL = "INSERT INTO Payment (con_id, payment_date, payment_amount, payment_prin, payment_interest, status_id, m_id, payment_period) VALUES (@con_id, @payment_date, @payment_amount, @payment_prin, @payment_interest, @status_id, @m_id, @payment_period)"
+                                strSQL = "INSERT INTO Payment (con_id, payment_date, payment_amount, payment_prin, payment_interest, status_id, payment_period) VALUES (@con_id, @payment_date, @payment_amount, @payment_prin, @payment_interest, @status_id,  @payment_period)"
                                 Using paymentCmd As New OleDbCommand(strSQL, conn)
                                     paymentCmd.Parameters.AddWithValue("@con_id", con_id)
                                     paymentCmd.Parameters.AddWithValue("@payment_date", paymentDate)
@@ -606,7 +616,6 @@ Public Class frmBrrow
                                     paymentCmd.Parameters.AddWithValue("@payment_prin", monthlyPrincipal)
                                     paymentCmd.Parameters.AddWithValue("@payment_interest", monthlyInterest)
                                     paymentCmd.Parameters.AddWithValue("@status_id", 1)  ' Assuming 1 is for unpaid status
-                                    paymentCmd.Parameters.AddWithValue("@m_id", borrowerId)
                                     paymentCmd.Parameters.AddWithValue("@payment_period", i)  ' เพิ่มพารามิเตอร์สำหรับงวดที่
                                     paymentCmd.ExecuteNonQuery()
                                 End Using

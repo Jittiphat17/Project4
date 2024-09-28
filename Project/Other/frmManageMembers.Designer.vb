@@ -100,7 +100,7 @@ Partial Class frmManageMembers
         Me.GroupBox1.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(12, 306)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(899, 401)
+        Me.GroupBox1.Size = New System.Drawing.Size(899, 359)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ข้อมูลสมาชิก"
@@ -412,7 +412,7 @@ Partial Class frmManageMembers
         Me.btnSave.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnSave.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnSave.Location = New System.Drawing.Point(47, 713)
+        Me.btnSave.Location = New System.Drawing.Point(149, 671)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(200, 55)
         Me.btnSave.TabIndex = 5
@@ -424,7 +424,7 @@ Partial Class frmManageMembers
         Me.btnClear.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnClear.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnClear.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnClear.Location = New System.Drawing.Point(253, 713)
+        Me.btnClear.Location = New System.Drawing.Point(355, 671)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(200, 55)
         Me.btnClear.TabIndex = 5
@@ -436,7 +436,7 @@ Partial Class frmManageMembers
         Me.btnDelete.BackColor = System.Drawing.SystemColors.Highlight
         Me.btnDelete.Font = New System.Drawing.Font("TH SarabunPSK", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDelete.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.btnDelete.Location = New System.Drawing.Point(459, 713)
+        Me.btnDelete.Location = New System.Drawing.Point(561, 671)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(200, 55)
         Me.btnDelete.TabIndex = 5
@@ -455,7 +455,7 @@ Partial Class frmManageMembers
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(925, 780)
+        Me.ClientSize = New System.Drawing.Size(925, 741)
         Me.Controls.Add(Me.dgvMembers)
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnClear)

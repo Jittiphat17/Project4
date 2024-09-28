@@ -14,7 +14,14 @@ Public Class frmExpense
         LoadMemberData()
         LoadAccountData()
         GenerateNextExpenseId() ' เรียกฟังก์ชันนี้เมื่อฟอร์มโหลด
+        SetupDateTimePicker()
     End Sub
+    Private Sub SetupDateTimePicker()
+        dtpBirth.Format = DateTimePickerFormat.Custom
+        dtpBirth.CustomFormat = "dd/MM/yyyy"
+        dtpBirth.Value = DateTime.Now
+    End Sub
+
 
     Private Sub GenerateNextExpenseId()
         Try
@@ -175,28 +182,6 @@ Public Class frmExpense
         lblTotalAmount.Text = totalAmount.ToString("N2")
     End Sub
 
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        ' แปลงค่าใน lblTotalAmount และ txtAmount ให้เป็น Decimal ก่อนเปรียบเทียบ
-        Dim totalAmount As Decimal
-        Dim inputAmount As Decimal
-
-        ' ลองแปลงค่าจาก lblTotalAmount และ txtAmount
-        If Decimal.TryParse(lblTotalAmount.Text, totalAmount) AndAlso Decimal.TryParse(txtAmount.Text, inputAmount) Then
-            ' ตรวจสอบว่าค่าทั้งสองเท่ากันหรือไม่
-            If totalAmount = inputAmount Then
-                ' บันทึกข้อมูล
-                SaveData()
-
-                ' ปิดการใช้งานปุ่ม "บันทึก" จนกว่าจะมีการเพิ่มรายการใหม่
-                btnSave.Enabled = False
-            Else
-                MessageBox.Show("จำนวนเงินรวมไม่ตรงกับจำนวนเงินที่ระบุ", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
-        Else
-            MessageBox.Show("กรุณากรอกจำนวนเงินที่ถูกต้อง", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
-    End Sub
-
     Private Sub SaveData()
         Try
             If cboDepositType.SelectedValue Is Nothing Then
@@ -279,10 +264,6 @@ Public Class frmExpense
         DisplayMemberDetails(txtMemberID.Text)
     End Sub
 
-    Private Sub btnCalculate_Click(sender As Object, e As EventArgs) Handles btnCalculate.Click
-        CalculateTotalAmount()
-    End Sub
-
     Private Sub dgvExpenseDetails_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles dgvExpenseDetails.DataError
         MessageBox.Show("มีข้อผิดพลาดในการกรอกข้อมูลในเซลล์ กรุณาตรวจสอบค่าที่คุณกรอกให้ตรงกับรายการที่มีใน ComboBox", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         e.ThrowException = False
@@ -301,13 +282,6 @@ Public Class frmExpense
     Private Sub dgvExpenseDetails_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles dgvExpenseDetails.RowsAdded
         btnSave.Enabled = True
         btnCalculate.Enabled = True
-    End Sub
-
-    ' ฟังก์ชันการพิมพ์ใบเสร็จ
-    Private Sub btnPrintReceipt_Click(sender As Object, e As EventArgs) Handles btnPrintReceipt.Click
-        Dim printPreview As New PrintPreviewDialog()
-        printPreview.Document = printDoc
-        printPreview.ShowDialog()
     End Sub
 
     Private Sub printDoc_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printDoc.PrintPage
@@ -400,7 +374,35 @@ Public Class frmExpense
         e.Graphics.DrawString("..........................................", font, Brushes.Black, startX + 100, startY + offset)
     End Sub
 
+    Private Sub btnSave_Click_1(sender As Object, e As EventArgs) Handles btnSave.Click
+        ' แปลงค่าใน lblTotalAmount และ txtAmount ให้เป็น Decimal ก่อนเปรียบเทียบ
+        Dim totalAmount As Decimal
+        Dim inputAmount As Decimal
 
+        ' ลองแปลงค่าจาก lblTotalAmount และ txtAmount
+        If Decimal.TryParse(lblTotalAmount.Text, totalAmount) AndAlso Decimal.TryParse(txtAmount.Text, inputAmount) Then
+            ' ตรวจสอบว่าค่าทั้งสองเท่ากันหรือไม่
+            If totalAmount = inputAmount Then
+                ' บันทึกข้อมูล
+                SaveData()
 
+                ' ปิดการใช้งานปุ่ม "บันทึก" จนกว่าจะมีการเพิ่มรายการใหม่
+                btnSave.Enabled = False
+            Else
+                MessageBox.Show("จำนวนเงินรวมไม่ตรงกับจำนวนเงินที่ระบุ", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+        Else
+            MessageBox.Show("กรุณากรอกจำนวนเงินที่ถูกต้อง", "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
 
+    Private Sub btnCalculate_Click_1(sender As Object, e As EventArgs) Handles btnCalculate.Click
+        CalculateTotalAmount()
+    End Sub
+
+    Private Sub btnPrintReceipt_Click_1(sender As Object, e As EventArgs) Handles btnPrintReceipt.Click
+        Dim printPreview As New PrintPreviewDialog()
+        printPreview.Document = printDoc
+        printPreview.ShowDialog()
+    End Sub
 End Class

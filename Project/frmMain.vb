@@ -248,12 +248,6 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub บนทกรายรบToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles บนทกรายรบToolStripMenuItem.Click
-        Dim frm As New frmIncomePayment
-        AddHandler frm.FormClosed, AddressOf RefreshMainForm
-        frm.ShowDialog()
-    End Sub
-
     Private Sub รายรบToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles รายรบToolStripMenuItem.Click
         Dim frm As New frmIncome
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
@@ -267,7 +261,19 @@ Public Class frmMain
     End Sub
 
     Private Sub รายงานดอกเบยสจจะToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles รายงานดอกเบยสจจะToolStripMenuItem.Click
-        Dim frm As New frmInter
+        Dim frm As New AccountSajjaForm
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub จดการกองทนToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles จดการกองทนToolStripMenuItem.Click
+        Dim frm As New frmFundManagement
+        AddHandler frm.FormClosed, AddressOf RefreshMainForm
+        frm.ShowDialog()
+    End Sub
+
+    Private Sub ดอกเบยสจจะToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ดอกเบยสจจะToolStripMenuItem.Click
+        Dim frm As New ReportForm
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub

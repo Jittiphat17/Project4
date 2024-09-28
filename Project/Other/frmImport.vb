@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 
 Public Class frmImport
-    Private Sub btnImport_Click(sender As Object, e As EventArgs) Handles btnImport.Click
+    Private Sub btnImport_Click(sender As Object, e As EventArgs)
         Dim RestoreLocation As String = Application.StartupPath & "\db_banmai1.accdb"
 
         Dim OFD As New OpenFileDialog

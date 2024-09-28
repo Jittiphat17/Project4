@@ -91,8 +91,9 @@ Partial Class frmMemberResign
         '
         Me.Guna2GroupBox3.Controls.Add(Me.Label14)
         Me.Guna2GroupBox3.Controls.Add(Me.txtGuarantor)
+        Me.Guna2GroupBox3.CustomBorderColor = System.Drawing.Color.DarkSlateBlue
         Me.Guna2GroupBox3.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2GroupBox3.ForeColor = System.Drawing.Color.Black
+        Me.Guna2GroupBox3.ForeColor = System.Drawing.Color.White
         Me.Guna2GroupBox3.Location = New System.Drawing.Point(12, 458)
         Me.Guna2GroupBox3.Name = "Guna2GroupBox3"
         Me.Guna2GroupBox3.Size = New System.Drawing.Size(816, 105)
@@ -104,6 +105,7 @@ Partial Class frmMemberResign
         Me.Label14.AutoSize = True
         Me.Label14.BackColor = System.Drawing.Color.White
         Me.Label14.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.Black
         Me.Label14.Location = New System.Drawing.Point(26, 61)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(112, 21)
@@ -146,8 +148,9 @@ Partial Class frmMemberResign
         Me.Guna2GroupBox2.Controls.Add(Me.txtLoanPublic)
         Me.Guna2GroupBox2.Controls.Add(Me.txtLoanSaving)
         Me.Guna2GroupBox2.Controls.Add(Me.txtLoanAccount1)
+        Me.Guna2GroupBox2.CustomBorderColor = System.Drawing.Color.DarkSlateBlue
         Me.Guna2GroupBox2.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2GroupBox2.ForeColor = System.Drawing.Color.Black
+        Me.Guna2GroupBox2.ForeColor = System.Drawing.Color.White
         Me.Guna2GroupBox2.Location = New System.Drawing.Point(12, 251)
         Me.Guna2GroupBox2.Name = "Guna2GroupBox2"
         Me.Guna2GroupBox2.Size = New System.Drawing.Size(816, 201)
@@ -170,6 +173,7 @@ Partial Class frmMemberResign
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.White
         Me.Label9.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.Black
         Me.Label9.Location = New System.Drawing.Point(427, 168)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(84, 21)
@@ -181,6 +185,7 @@ Partial Class frmMemberResign
         Me.Label8.AutoSize = True
         Me.Label8.BackColor = System.Drawing.Color.White
         Me.Label8.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.Black
         Me.Label8.Location = New System.Drawing.Point(375, 149)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(37, 21)
@@ -192,6 +197,7 @@ Partial Class frmMemberResign
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.White
         Me.Label7.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Black
         Me.Label7.Location = New System.Drawing.Point(375, 103)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(37, 21)
@@ -203,6 +209,7 @@ Partial Class frmMemberResign
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.White
         Me.Label6.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.Black
         Me.Label6.Location = New System.Drawing.Point(375, 57)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(37, 21)
@@ -214,6 +221,7 @@ Partial Class frmMemberResign
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.White
         Me.Label4.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
         Me.Label4.Location = New System.Drawing.Point(21, 149)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(100, 21)
@@ -225,6 +233,7 @@ Partial Class frmMemberResign
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.White
         Me.Label3.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
         Me.Label3.Location = New System.Drawing.Point(46, 103)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(75, 21)
@@ -236,6 +245,7 @@ Partial Class frmMemberResign
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.White
         Me.Label2.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
         Me.Label2.Location = New System.Drawing.Point(60, 57)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(61, 21)
@@ -337,8 +347,9 @@ Partial Class frmMemberResign
         Me.Guna2GroupBox1.Controls.Add(Me.Label1)
         Me.Guna2GroupBox1.Controls.Add(Me.txtTotalSaving)
         Me.Guna2GroupBox1.Controls.Add(Me.txtBeforeTotalSaving)
+        Me.Guna2GroupBox1.CustomBorderColor = System.Drawing.Color.DarkSlateBlue
         Me.Guna2GroupBox1.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2GroupBox1.ForeColor = System.Drawing.Color.Black
+        Me.Guna2GroupBox1.ForeColor = System.Drawing.Color.White
         Me.Guna2GroupBox1.Location = New System.Drawing.Point(12, 83)
         Me.Guna2GroupBox1.Name = "Guna2GroupBox1"
         Me.Guna2GroupBox1.Size = New System.Drawing.Size(816, 162)
@@ -350,6 +361,7 @@ Partial Class frmMemberResign
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.White
         Me.Label11.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.Black
         Me.Label11.Location = New System.Drawing.Point(765, 129)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(37, 21)
@@ -361,6 +373,7 @@ Partial Class frmMemberResign
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.White
         Me.Label5.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Black
         Me.Label5.Location = New System.Drawing.Point(427, 129)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(84, 21)
@@ -372,6 +385,7 @@ Partial Class frmMemberResign
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.White
         Me.Label1.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
         Me.Label1.Location = New System.Drawing.Point(21, 89)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(75, 21)
@@ -429,7 +443,7 @@ Partial Class frmMemberResign
         '
         'Guna2Panel1
         '
-        Me.Guna2Panel1.BackColor = System.Drawing.Color.Gainsboro
+        Me.Guna2Panel1.BackColor = System.Drawing.Color.DarkSlateBlue
         Me.Guna2Panel1.Controls.Add(Me.Guna2ControlBox1)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)

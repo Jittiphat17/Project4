@@ -52,7 +52,7 @@ Public Class frmMemberResign
             Conn.Open()
 
             ' ดึงข้อมูลเงินฝากจากบัญชีสัจจะ
-            Dim queryIncome As String = "SELECT SUM(inc_amount) FROM Income WHERE inc_name = @memberName AND acc_id = 'ACC002'"
+            Dim queryIncome As String = "SELECT SUM(inc_amount) FROM Income WHERE m_id = (SELECT m_id FROM Member WHERE m_name = @memberName) AND acc_id = 'ACC002'"
             Dim cmdIncome As New OleDbCommand(queryIncome, Conn)
             cmdIncome.Parameters.AddWithValue("@memberName", memberName)
             Dim incomeResult As Object = cmdIncome.ExecuteScalar()

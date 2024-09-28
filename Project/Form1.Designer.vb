@@ -39,7 +39,7 @@ Partial Class Form1
         '
         'txtPass
         '
-        Me.txtPass.BorderRadius = 10
+        Me.txtPass.BorderRadius = 20
         Me.txtPass.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtPass.DefaultText = ""
         Me.txtPass.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -48,10 +48,10 @@ Partial Class Form1
         Me.txtPass.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
         Me.txtPass.FillColor = System.Drawing.Color.LightGray
         Me.txtPass.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPass.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPass.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold)
         Me.txtPass.ForeColor = System.Drawing.Color.Black
         Me.txtPass.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPass.Location = New System.Drawing.Point(194, 241)
+        Me.txtPass.Location = New System.Drawing.Point(195, 260)
         Me.txtPass.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.txtPass.Name = "txtPass"
         Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
@@ -63,7 +63,7 @@ Partial Class Form1
         'txtUser
         '
         Me.txtUser.Animated = True
-        Me.txtUser.BorderRadius = 10
+        Me.txtUser.BorderRadius = 20
         Me.txtUser.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom
         Me.txtUser.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtUser.DefaultText = ""
@@ -73,10 +73,10 @@ Partial Class Form1
         Me.txtUser.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
         Me.txtUser.FillColor = System.Drawing.Color.LightGray
         Me.txtUser.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtUser.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUser.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold)
         Me.txtUser.ForeColor = System.Drawing.Color.Black
         Me.txtUser.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtUser.Location = New System.Drawing.Point(194, 137)
+        Me.txtUser.Location = New System.Drawing.Point(195, 156)
         Me.txtUser.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.txtUser.Name = "txtUser"
         Me.txtUser.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
@@ -105,7 +105,7 @@ Partial Class Form1
         '
         Me.Guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
         Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(194, 105)
+        Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(195, 124)
         Me.Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
         Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(81, 23)
         Me.Guna2HtmlLabel1.TabIndex = 3
@@ -115,7 +115,7 @@ Partial Class Form1
         '
         Me.Guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent
         Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(194, 209)
+        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(195, 228)
         Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
         Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(84, 23)
         Me.Guna2HtmlLabel2.TabIndex = 3
@@ -137,7 +137,7 @@ Partial Class Form1
         '
         Me.Guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent
         Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("FC Minimal", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(194, 56)
+        Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(195, 75)
         Me.Guna2HtmlLabel3.Name = "Guna2HtmlLabel3"
         Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(101, 29)
         Me.Guna2HtmlLabel3.TabIndex = 5
@@ -154,9 +154,9 @@ Partial Class Form1
         Me.btn_login.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btn_login.FillColor = System.Drawing.Color.Navy
         Me.btn_login.FillColor2 = System.Drawing.Color.Fuchsia
-        Me.btn_login.Font = New System.Drawing.Font("FC Minimal", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_login.Font = New System.Drawing.Font("FC Minimal", 20.25!, System.Drawing.FontStyle.Bold)
         Me.btn_login.ForeColor = System.Drawing.Color.White
-        Me.btn_login.Location = New System.Drawing.Point(194, 313)
+        Me.btn_login.Location = New System.Drawing.Point(195, 332)
         Me.btn_login.Name = "btn_login"
         Me.btn_login.Size = New System.Drawing.Size(261, 45)
         Me.btn_login.TabIndex = 7

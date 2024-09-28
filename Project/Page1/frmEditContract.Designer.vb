@@ -30,7 +30,18 @@ Partial Class frmEditContract
         Me.btnDelete = New Guna.UI2.WinForms.Guna2Button()
         Me.btnSave = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2GroupBox1 = New Guna.UI2.WinForms.Guna2GroupBox()
+        Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel9 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel5 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel8 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel7 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel6 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.cmbGuarantor3 = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.cmbGuarantor2 = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -40,8 +51,6 @@ Partial Class frmEditContract
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpContractDate = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.cmbGuarantor1 = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.cmbGuarantor2 = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.cmbGuarantor3 = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.cmbAccount = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.txtContractInterest = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtContractAmount = New Guna.UI2.WinForms.Guna2TextBox()
@@ -87,7 +96,7 @@ Partial Class frmEditContract
         Me.dgvContracts.ReadOnly = True
         Me.dgvContracts.RowHeadersVisible = False
         Me.dgvContracts.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
-        Me.dgvContracts.Size = New System.Drawing.Size(776, 205)
+        Me.dgvContracts.Size = New System.Drawing.Size(867, 205)
         Me.dgvContracts.TabIndex = 23
         Me.dgvContracts.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvContracts.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -148,7 +157,18 @@ Partial Class frmEditContract
         'Guna2GroupBox1
         '
         Me.Guna2GroupBox1.BackColor = System.Drawing.Color.White
+        Me.Guna2GroupBox1.Controls.Add(Me.Guna2HtmlLabel4)
+        Me.Guna2GroupBox1.Controls.Add(Me.Guna2HtmlLabel9)
+        Me.Guna2GroupBox1.Controls.Add(Me.Guna2HtmlLabel3)
+        Me.Guna2GroupBox1.Controls.Add(Me.Guna2HtmlLabel5)
+        Me.Guna2GroupBox1.Controls.Add(Me.Guna2HtmlLabel8)
+        Me.Guna2GroupBox1.Controls.Add(Me.Guna2HtmlLabel7)
+        Me.Guna2GroupBox1.Controls.Add(Me.Guna2HtmlLabel6)
+        Me.Guna2GroupBox1.Controls.Add(Me.Guna2HtmlLabel2)
+        Me.Guna2GroupBox1.Controls.Add(Me.Guna2HtmlLabel1)
+        Me.Guna2GroupBox1.Controls.Add(Me.cmbGuarantor3)
         Me.Guna2GroupBox1.Controls.Add(Me.Label1)
+        Me.Guna2GroupBox1.Controls.Add(Me.cmbGuarantor2)
         Me.Guna2GroupBox1.Controls.Add(Me.Label10)
         Me.Guna2GroupBox1.Controls.Add(Me.Label7)
         Me.Guna2GroupBox1.Controls.Add(Me.Label4)
@@ -158,8 +178,6 @@ Partial Class frmEditContract
         Me.Guna2GroupBox1.Controls.Add(Me.Label2)
         Me.Guna2GroupBox1.Controls.Add(Me.dtpContractDate)
         Me.Guna2GroupBox1.Controls.Add(Me.cmbGuarantor1)
-        Me.Guna2GroupBox1.Controls.Add(Me.cmbGuarantor2)
-        Me.Guna2GroupBox1.Controls.Add(Me.cmbGuarantor3)
         Me.Guna2GroupBox1.Controls.Add(Me.cmbAccount)
         Me.Guna2GroupBox1.Controls.Add(Me.txtContractInterest)
         Me.Guna2GroupBox1.Controls.Add(Me.txtContractAmount)
@@ -169,9 +187,124 @@ Partial Class frmEditContract
         Me.Guna2GroupBox1.ForeColor = System.Drawing.Color.White
         Me.Guna2GroupBox1.Location = New System.Drawing.Point(12, 309)
         Me.Guna2GroupBox1.Name = "Guna2GroupBox1"
-        Me.Guna2GroupBox1.Size = New System.Drawing.Size(776, 222)
+        Me.Guna2GroupBox1.Size = New System.Drawing.Size(867, 222)
         Me.Guna2GroupBox1.TabIndex = 20
         Me.Guna2GroupBox1.Text = "แก้ไขข้อมูล"
+        '
+        'Guna2HtmlLabel4
+        '
+        Me.Guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel4.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel4.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel4.Location = New System.Drawing.Point(73, 119)
+        Me.Guna2HtmlLabel4.Name = "Guna2HtmlLabel4"
+        Me.Guna2HtmlLabel4.Size = New System.Drawing.Size(32, 23)
+        Me.Guna2HtmlLabel4.TabIndex = 26
+        Me.Guna2HtmlLabel4.Text = "วันที่"
+        '
+        'Guna2HtmlLabel9
+        '
+        Me.Guna2HtmlLabel9.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel9.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel9.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel9.Location = New System.Drawing.Point(510, 62)
+        Me.Guna2HtmlLabel9.Name = "Guna2HtmlLabel9"
+        Me.Guna2HtmlLabel9.Size = New System.Drawing.Size(30, 23)
+        Me.Guna2HtmlLabel9.TabIndex = 26
+        Me.Guna2HtmlLabel9.Text = "บาท"
+        '
+        'Guna2HtmlLabel3
+        '
+        Me.Guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel3.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(573, 62)
+        Me.Guna2HtmlLabel3.Name = "Guna2HtmlLabel3"
+        Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(57, 23)
+        Me.Guna2HtmlLabel3.TabIndex = 26
+        Me.Guna2HtmlLabel3.Text = "ดอกเบี้ย"
+        '
+        'Guna2HtmlLabel5
+        '
+        Me.Guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel5.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel5.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel5.Location = New System.Drawing.Point(288, 62)
+        Me.Guna2HtmlLabel5.Name = "Guna2HtmlLabel5"
+        Me.Guna2HtmlLabel5.Size = New System.Drawing.Size(70, 23)
+        Me.Guna2HtmlLabel5.TabIndex = 26
+        Me.Guna2HtmlLabel5.Text = "จำนวนเงิน"
+        '
+        'Guna2HtmlLabel8
+        '
+        Me.Guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel8.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel8.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel8.Location = New System.Drawing.Point(581, 180)
+        Me.Guna2HtmlLabel8.Name = "Guna2HtmlLabel8"
+        Me.Guna2HtmlLabel8.Size = New System.Drawing.Size(49, 23)
+        Me.Guna2HtmlLabel8.TabIndex = 26
+        Me.Guna2HtmlLabel8.Text = "ผู้ค้ำที่3"
+        '
+        'Guna2HtmlLabel7
+        '
+        Me.Guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel7.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel7.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel7.Location = New System.Drawing.Point(300, 180)
+        Me.Guna2HtmlLabel7.Name = "Guna2HtmlLabel7"
+        Me.Guna2HtmlLabel7.Size = New System.Drawing.Size(49, 23)
+        Me.Guna2HtmlLabel7.TabIndex = 26
+        Me.Guna2HtmlLabel7.Text = "ผู้ค้ำที่2"
+        '
+        'Guna2HtmlLabel6
+        '
+        Me.Guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel6.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel6.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel6.Location = New System.Drawing.Point(58, 178)
+        Me.Guna2HtmlLabel6.Name = "Guna2HtmlLabel6"
+        Me.Guna2HtmlLabel6.Size = New System.Drawing.Size(47, 23)
+        Me.Guna2HtmlLabel6.TabIndex = 26
+        Me.Guna2HtmlLabel6.Text = "ผู้ค้ำที่1"
+        '
+        'Guna2HtmlLabel2
+        '
+        Me.Guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel2.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(593, 119)
+        Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
+        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(37, 23)
+        Me.Guna2HtmlLabel2.TabIndex = 26
+        Me.Guna2HtmlLabel2.Text = "บัญชี"
+        '
+        'Guna2HtmlLabel1
+        '
+        Me.Guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(23, 62)
+        Me.Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
+        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(83, 23)
+        Me.Guna2HtmlLabel1.TabIndex = 26
+        Me.Guna2HtmlLabel1.Text = "เลขที่สัญญา"
+        '
+        'cmbGuarantor3
+        '
+        Me.cmbGuarantor3.BackColor = System.Drawing.Color.Transparent
+        Me.cmbGuarantor3.BorderRadius = 10
+        Me.cmbGuarantor3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbGuarantor3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbGuarantor3.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cmbGuarantor3.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cmbGuarantor3.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbGuarantor3.ForeColor = System.Drawing.Color.Black
+        Me.cmbGuarantor3.ItemHeight = 30
+        Me.cmbGuarantor3.Location = New System.Drawing.Point(636, 172)
+        Me.cmbGuarantor3.Name = "cmbGuarantor3"
+        Me.cmbGuarantor3.Size = New System.Drawing.Size(186, 36)
+        Me.cmbGuarantor3.TabIndex = 4
         '
         'Label1
         '
@@ -182,6 +315,22 @@ Partial Class frmEditContract
         Me.Label1.Size = New System.Drawing.Size(46, 21)
         Me.Label1.TabIndex = 17
         Me.Label1.Text = "ผู้ค้ำ :"
+        '
+        'cmbGuarantor2
+        '
+        Me.cmbGuarantor2.BackColor = System.Drawing.Color.Transparent
+        Me.cmbGuarantor2.BorderRadius = 10
+        Me.cmbGuarantor2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbGuarantor2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbGuarantor2.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cmbGuarantor2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cmbGuarantor2.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbGuarantor2.ForeColor = System.Drawing.Color.Black
+        Me.cmbGuarantor2.ItemHeight = 30
+        Me.cmbGuarantor2.Location = New System.Drawing.Point(355, 172)
+        Me.cmbGuarantor2.Name = "cmbGuarantor2"
+        Me.cmbGuarantor2.Size = New System.Drawing.Size(186, 36)
+        Me.cmbGuarantor2.TabIndex = 5
         '
         'Label10
         '
@@ -256,16 +405,17 @@ Partial Class frmEditContract
         'dtpContractDate
         '
         Me.dtpContractDate.Animated = True
+        Me.dtpContractDate.BorderRadius = 10
         Me.dtpContractDate.Checked = True
         Me.dtpContractDate.FillColor = System.Drawing.Color.White
-        Me.dtpContractDate.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpContractDate.Font = New System.Drawing.Font("FC Minimal", 15.75!)
         Me.dtpContractDate.ForeColor = System.Drawing.Color.Black
-        Me.dtpContractDate.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
-        Me.dtpContractDate.Location = New System.Drawing.Point(119, 112)
+        Me.dtpContractDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpContractDate.Location = New System.Drawing.Point(111, 112)
         Me.dtpContractDate.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
         Me.dtpContractDate.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
         Me.dtpContractDate.Name = "dtpContractDate"
-        Me.dtpContractDate.Size = New System.Drawing.Size(271, 36)
+        Me.dtpContractDate.Size = New System.Drawing.Size(140, 36)
         Me.dtpContractDate.TabIndex = 4
         Me.dtpContractDate.Value = New Date(2024, 9, 7, 22, 10, 28, 596)
         '
@@ -282,40 +432,8 @@ Partial Class frmEditContract
         Me.cmbGuarantor1.ItemHeight = 30
         Me.cmbGuarantor1.Location = New System.Drawing.Point(111, 172)
         Me.cmbGuarantor1.Name = "cmbGuarantor1"
-        Me.cmbGuarantor1.Size = New System.Drawing.Size(140, 36)
+        Me.cmbGuarantor1.Size = New System.Drawing.Size(186, 36)
         Me.cmbGuarantor1.TabIndex = 6
-        '
-        'cmbGuarantor2
-        '
-        Me.cmbGuarantor2.BackColor = System.Drawing.Color.Transparent
-        Me.cmbGuarantor2.BorderRadius = 10
-        Me.cmbGuarantor2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbGuarantor2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbGuarantor2.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cmbGuarantor2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cmbGuarantor2.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbGuarantor2.ForeColor = System.Drawing.Color.Black
-        Me.cmbGuarantor2.ItemHeight = 30
-        Me.cmbGuarantor2.Location = New System.Drawing.Point(364, 172)
-        Me.cmbGuarantor2.Name = "cmbGuarantor2"
-        Me.cmbGuarantor2.Size = New System.Drawing.Size(140, 36)
-        Me.cmbGuarantor2.TabIndex = 5
-        '
-        'cmbGuarantor3
-        '
-        Me.cmbGuarantor3.BackColor = System.Drawing.Color.Transparent
-        Me.cmbGuarantor3.BorderRadius = 10
-        Me.cmbGuarantor3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cmbGuarantor3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbGuarantor3.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cmbGuarantor3.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cmbGuarantor3.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbGuarantor3.ForeColor = System.Drawing.Color.Black
-        Me.cmbGuarantor3.ItemHeight = 30
-        Me.cmbGuarantor3.Location = New System.Drawing.Point(603, 172)
-        Me.cmbGuarantor3.Name = "cmbGuarantor3"
-        Me.cmbGuarantor3.Size = New System.Drawing.Size(140, 36)
-        Me.cmbGuarantor3.TabIndex = 4
         '
         'cmbAccount
         '
@@ -328,7 +446,7 @@ Partial Class frmEditContract
         Me.cmbAccount.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbAccount.ForeColor = System.Drawing.Color.Black
         Me.cmbAccount.ItemHeight = 30
-        Me.cmbAccount.Location = New System.Drawing.Point(603, 112)
+        Me.cmbAccount.Location = New System.Drawing.Point(636, 112)
         Me.cmbAccount.Name = "cmbAccount"
         Me.cmbAccount.Size = New System.Drawing.Size(140, 36)
         Me.cmbAccount.TabIndex = 3
@@ -346,7 +464,7 @@ Partial Class frmEditContract
         Me.txtContractInterest.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtContractInterest.ForeColor = System.Drawing.Color.Black
         Me.txtContractInterest.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtContractInterest.Location = New System.Drawing.Point(603, 54)
+        Me.txtContractInterest.Location = New System.Drawing.Point(636, 54)
         Me.txtContractInterest.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.txtContractInterest.Name = "txtContractInterest"
         Me.txtContractInterest.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
@@ -378,6 +496,7 @@ Partial Class frmEditContract
         Me.txtContractAmount.SelectedText = ""
         Me.txtContractAmount.Size = New System.Drawing.Size(140, 36)
         Me.txtContractAmount.TabIndex = 1
+        Me.txtContractAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtContractID
         '
@@ -415,7 +534,7 @@ Partial Class frmEditContract
         Me.txtSearch.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSearch.ForeColor = System.Drawing.Color.Black
         Me.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearch.Location = New System.Drawing.Point(648, 45)
+        Me.txtSearch.Location = New System.Drawing.Point(739, 45)
         Me.txtSearch.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
@@ -428,10 +547,10 @@ Partial Class frmEditContract
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(548, 53)
+        Me.Label8.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(629, 53)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(98, 21)
+        Me.Label8.Size = New System.Drawing.Size(104, 21)
         Me.Label8.TabIndex = 24
         Me.Label8.Text = "ค้นหาสัญญา :"
         '
@@ -442,12 +561,12 @@ Partial Class frmEditContract
         '
         'Guna2Panel1
         '
-        Me.Guna2Panel1.BackColor = System.Drawing.Color.Gainsboro
+        Me.Guna2Panel1.BackColor = System.Drawing.Color.DarkSlateBlue
         Me.Guna2Panel1.Controls.Add(Me.Guna2ControlBox1)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Guna2Panel1.Name = "Guna2Panel1"
-        Me.Guna2Panel1.Size = New System.Drawing.Size(800, 33)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(891, 33)
         Me.Guna2Panel1.TabIndex = 25
         '
         'Guna2ControlBox1
@@ -457,7 +576,7 @@ Partial Class frmEditContract
         Me.Guna2ControlBox1.CustomIconSize = 30.0!
         Me.Guna2ControlBox1.FillColor = System.Drawing.Color.LightGray
         Me.Guna2ControlBox1.IconColor = System.Drawing.Color.Red
-        Me.Guna2ControlBox1.Location = New System.Drawing.Point(750, 1)
+        Me.Guna2ControlBox1.Location = New System.Drawing.Point(841, 1)
         Me.Guna2ControlBox1.Name = "Guna2ControlBox1"
         Me.Guna2ControlBox1.Size = New System.Drawing.Size(38, 29)
         Me.Guna2ControlBox1.TabIndex = 5
@@ -466,7 +585,7 @@ Partial Class frmEditContract
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 606)
+        Me.ClientSize = New System.Drawing.Size(891, 606)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.dgvContracts)
         Me.Controls.Add(Me.btnDelete)
@@ -512,4 +631,13 @@ Partial Class frmEditContract
     Friend WithEvents Guna2Elipse1 As Guna.UI2.WinForms.Guna2Elipse
     Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Guna2ControlBox1 As Guna.UI2.WinForms.Guna2ControlBox
+    Friend WithEvents Guna2HtmlLabel1 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel3 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel2 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel4 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel5 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel6 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel7 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel8 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel9 As Guna.UI2.WinForms.Guna2HtmlLabel
 End Class

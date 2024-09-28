@@ -23,12 +23,12 @@ Partial Class frmEditExpense
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEditExpense))
         Me.btnDelete = New Guna.UI2.WinForms.Guna2Button()
         Me.btnSave = New Guna.UI2.WinForms.Guna2Button()
@@ -61,6 +61,7 @@ Partial Class frmEditExpense
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.btnPrint = New Guna.UI2.WinForms.Guna2Button()
         Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Guna2GroupBox2.SuspendLayout()
         CType(Me.dgvExpenses, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2GroupBox1.SuspendLayout()
@@ -104,6 +105,7 @@ Partial Class frmEditExpense
         '
         'Guna2GroupBox2
         '
+        Me.Guna2GroupBox2.Controls.Add(Me.Label4)
         Me.Guna2GroupBox2.Controls.Add(Me.Label13)
         Me.Guna2GroupBox2.Controls.Add(Me.Label9)
         Me.Guna2GroupBox2.Controls.Add(Me.Label10)
@@ -111,8 +113,9 @@ Partial Class frmEditExpense
         Me.Guna2GroupBox2.Controls.Add(Me.txtDetailAmount)
         Me.Guna2GroupBox2.Controls.Add(Me.txtDetailName)
         Me.Guna2GroupBox2.Controls.Add(Me.txtDetailID)
+        Me.Guna2GroupBox2.CustomBorderColor = System.Drawing.Color.DarkSlateBlue
         Me.Guna2GroupBox2.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2GroupBox2.ForeColor = System.Drawing.Color.Black
+        Me.Guna2GroupBox2.ForeColor = System.Drawing.Color.White
         Me.Guna2GroupBox2.Location = New System.Drawing.Point(12, 523)
         Me.Guna2GroupBox2.Name = "Guna2GroupBox2"
         Me.Guna2GroupBox2.Size = New System.Drawing.Size(1110, 157)
@@ -133,8 +136,9 @@ Partial Class frmEditExpense
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.White
+        Me.Label9.BackColor = System.Drawing.SystemColors.Window
         Me.Label9.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.Black
         Me.Label9.Location = New System.Drawing.Point(389, 59)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(87, 21)
@@ -146,6 +150,7 @@ Partial Class frmEditExpense
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.White
         Me.Label10.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.Black
         Me.Label10.Location = New System.Drawing.Point(63, 110)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(72, 21)
@@ -157,6 +162,7 @@ Partial Class frmEditExpense
         Me.Label8.AutoSize = True
         Me.Label8.BackColor = System.Drawing.Color.White
         Me.Label8.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.Black
         Me.Label8.Location = New System.Drawing.Point(6, 66)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(127, 21)
@@ -185,6 +191,7 @@ Partial Class frmEditExpense
         Me.txtDetailAmount.SelectedText = ""
         Me.txtDetailAmount.Size = New System.Drawing.Size(177, 36)
         Me.txtDetailAmount.TabIndex = 1
+        Me.txtDetailAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtDetailName
         '
@@ -236,26 +243,26 @@ Partial Class frmEditExpense
         '
         Me.dgvExpenses.AllowUserToAddRows = False
         Me.dgvExpenses.AllowUserToDeleteRows = False
-        DataGridViewCellStyle25.BackColor = System.Drawing.Color.White
-        Me.dgvExpenses.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle25
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle26.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvExpenses.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
+        Me.dgvExpenses.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvExpenses.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.dgvExpenses.ColumnHeadersHeight = 50
         Me.dgvExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle27.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvExpenses.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvExpenses.DefaultCellStyle = DataGridViewCellStyle9
         Me.dgvExpenses.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvExpenses.Location = New System.Drawing.Point(12, 64)
         Me.dgvExpenses.Name = "dgvExpenses"
@@ -287,6 +294,7 @@ Partial Class frmEditExpense
         '
         'Guna2GroupBox1
         '
+        Me.Guna2GroupBox1.BackColor = System.Drawing.Color.White
         Me.Guna2GroupBox1.Controls.Add(Me.Label12)
         Me.Guna2GroupBox1.Controls.Add(Me.Label3)
         Me.Guna2GroupBox1.Controls.Add(Me.Label7)
@@ -300,8 +308,9 @@ Partial Class frmEditExpense
         Me.Guna2GroupBox1.Controls.Add(Me.txtExpenseDescription)
         Me.Guna2GroupBox1.Controls.Add(Me.txtExpenseAmount)
         Me.Guna2GroupBox1.Controls.Add(Me.txtExpenseName)
+        Me.Guna2GroupBox1.CustomBorderColor = System.Drawing.Color.DarkSlateBlue
         Me.Guna2GroupBox1.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2GroupBox1.ForeColor = System.Drawing.Color.Black
+        Me.Guna2GroupBox1.ForeColor = System.Drawing.Color.White
         Me.Guna2GroupBox1.Location = New System.Drawing.Point(12, 360)
         Me.Guna2GroupBox1.Name = "Guna2GroupBox1"
         Me.Guna2GroupBox1.Size = New System.Drawing.Size(1110, 157)
@@ -313,6 +322,7 @@ Partial Class frmEditExpense
         Me.Label12.AutoSize = True
         Me.Label12.BackColor = System.Drawing.Color.White
         Me.Label12.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ForeColor = System.Drawing.Color.Black
         Me.Label12.Location = New System.Drawing.Point(908, 66)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(37, 21)
@@ -324,6 +334,7 @@ Partial Class frmEditExpense
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.White
         Me.Label3.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
         Me.Label3.Location = New System.Drawing.Point(671, 110)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(83, 21)
@@ -335,6 +346,7 @@ Partial Class frmEditExpense
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.White
         Me.Label7.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Black
         Me.Label7.Location = New System.Drawing.Point(667, 66)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(87, 21)
@@ -346,6 +358,7 @@ Partial Class frmEditExpense
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.White
         Me.Label6.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.Black
         Me.Label6.Location = New System.Drawing.Point(413, 110)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(54, 21)
@@ -357,6 +370,7 @@ Partial Class frmEditExpense
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.White
         Me.Label1.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
         Me.Label1.Location = New System.Drawing.Point(401, 66)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(68, 21)
@@ -368,6 +382,7 @@ Partial Class frmEditExpense
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.White
         Me.Label5.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Black
         Me.Label5.Location = New System.Drawing.Point(17, 110)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(118, 21)
@@ -379,6 +394,7 @@ Partial Class frmEditExpense
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.White
         Me.Label2.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
         Me.Label2.Location = New System.Drawing.Point(28, 66)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(105, 21)
@@ -404,16 +420,18 @@ Partial Class frmEditExpense
         'dtpExpenseDate
         '
         Me.dtpExpenseDate.Animated = True
+        Me.dtpExpenseDate.BackColor = System.Drawing.Color.White
+        Me.dtpExpenseDate.BorderRadius = 5
         Me.dtpExpenseDate.Checked = True
         Me.dtpExpenseDate.FillColor = System.Drawing.Color.White
-        Me.dtpExpenseDate.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpExpenseDate.Font = New System.Drawing.Font("FC Minimal", 15.75!)
         Me.dtpExpenseDate.ForeColor = System.Drawing.Color.Black
-        Me.dtpExpenseDate.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.dtpExpenseDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpExpenseDate.Location = New System.Drawing.Point(140, 103)
         Me.dtpExpenseDate.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
         Me.dtpExpenseDate.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
         Me.dtpExpenseDate.Name = "dtpExpenseDate"
-        Me.dtpExpenseDate.Size = New System.Drawing.Size(265, 36)
+        Me.dtpExpenseDate.Size = New System.Drawing.Size(140, 36)
         Me.dtpExpenseDate.TabIndex = 5
         Me.dtpExpenseDate.Value = New Date(2024, 9, 7, 22, 10, 28, 596)
         '
@@ -485,6 +503,7 @@ Partial Class frmEditExpense
         Me.txtExpenseAmount.SelectedText = ""
         Me.txtExpenseAmount.Size = New System.Drawing.Size(140, 36)
         Me.txtExpenseAmount.TabIndex = 0
+        Me.txtExpenseAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtExpenseName
         '
@@ -513,26 +532,26 @@ Partial Class frmEditExpense
         '
         Me.dgvExpenseDetails.AllowUserToAddRows = False
         Me.dgvExpenseDetails.AllowUserToDeleteRows = False
-        DataGridViewCellStyle28.BackColor = System.Drawing.Color.White
-        Me.dgvExpenseDetails.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle28
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvExpenseDetails.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
+        Me.dgvExpenseDetails.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvExpenseDetails.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.dgvExpenseDetails.ColumnHeadersHeight = 50
         Me.dgvExpenseDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle30.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle30.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvExpenseDetails.DefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvExpenseDetails.DefaultCellStyle = DataGridViewCellStyle12
         Me.dgvExpenseDetails.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvExpenseDetails.Location = New System.Drawing.Point(572, 64)
         Me.dgvExpenseDetails.Name = "dgvExpenseDetails"
@@ -569,7 +588,7 @@ Partial Class frmEditExpense
         '
         'Guna2Panel1
         '
-        Me.Guna2Panel1.BackColor = System.Drawing.Color.Gainsboro
+        Me.Guna2Panel1.BackColor = System.Drawing.Color.DarkSlateBlue
         Me.Guna2Panel1.Controls.Add(Me.Guna2ControlBox1)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)
@@ -615,6 +634,18 @@ Partial Class frmEditExpense
         Me.PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), System.Drawing.Icon)
         Me.PrintPreviewDialog1.Name = "PrintPreviewDialog1"
         Me.PrintPreviewDialog1.Visible = False
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.White
+        Me.Label4.Font = New System.Drawing.Font("FC Minimal", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(660, 59)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(37, 21)
+        Me.Label4.TabIndex = 22
+        Me.Label4.Text = "บาท"
         '
         'frmEditExpense
         '
@@ -675,4 +706,5 @@ Partial Class frmEditExpense
     Friend WithEvents Guna2ControlBox1 As Guna.UI2.WinForms.Guna2ControlBox
     Friend WithEvents btnPrint As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
+    Friend WithEvents Label4 As Label
 End Class
