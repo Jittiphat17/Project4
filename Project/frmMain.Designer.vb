@@ -44,6 +44,7 @@ Partial Class frmMain
         Me.tsm_report = New System.Windows.Forms.ToolStripMenuItem()
         Me.รายงานสญญาเงนกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.รายงานดอกเบยสจจะToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.หนToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsm_other = New System.Windows.Forms.ToolStripMenuItem()
         Me.สมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.จดการสมาชกToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -61,7 +62,6 @@ Partial Class frmMain
         Me.Guna2GroupBox2 = New Guna.UI2.WinForms.Guna2GroupBox()
         Me.lbContractCount = New System.Windows.Forms.Label()
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
-        Me.ดอกเบยสจจะToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Guna2Panel1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.Guna2GroupBox1.SuspendLayout()
@@ -202,7 +202,7 @@ Partial Class frmMain
         'tsm_report
         '
         Me.tsm_report.AutoSize = False
-        Me.tsm_report.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.รายงานสญญาเงนกToolStripMenuItem, Me.รายงานดอกเบยสจจะToolStripMenuItem, Me.ดอกเบยสจจะToolStripMenuItem})
+        Me.tsm_report.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.รายงานสญญาเงนกToolStripMenuItem, Me.รายงานดอกเบยสจจะToolStripMenuItem, Me.หนToolStripMenuItem})
         Me.tsm_report.Name = "tsm_report"
         Me.tsm_report.Size = New System.Drawing.Size(150, 50)
         Me.tsm_report.Text = "รายงาน"
@@ -218,6 +218,12 @@ Partial Class frmMain
         Me.รายงานดอกเบยสจจะToolStripMenuItem.Name = "รายงานดอกเบยสจจะToolStripMenuItem"
         Me.รายงานดอกเบยสจจะToolStripMenuItem.Size = New System.Drawing.Size(262, 32)
         Me.รายงานดอกเบยสจจะToolStripMenuItem.Text = "รายงานดอกเบี้ยสัจจะ"
+        '
+        'หนToolStripMenuItem
+        '
+        Me.หนToolStripMenuItem.Name = "หนToolStripMenuItem"
+        Me.หนToolStripMenuItem.Size = New System.Drawing.Size(262, 32)
+        Me.หนToolStripMenuItem.Text = "หุ้น"
         '
         'tsm_other
         '
@@ -360,12 +366,6 @@ Partial Class frmMain
         Me.Guna2ControlBox1.Size = New System.Drawing.Size(38, 29)
         Me.Guna2ControlBox1.TabIndex = 5
         '
-        'ดอกเบยสจจะToolStripMenuItem
-        '
-        Me.ดอกเบยสจจะToolStripMenuItem.Name = "ดอกเบยสจจะToolStripMenuItem"
-        Me.ดอกเบยสจจะToolStripMenuItem.Size = New System.Drawing.Size(262, 32)
-        Me.ดอกเบยสจจะToolStripMenuItem.Text = "ดอกเบี้ยสัจจะ"
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -432,5 +432,5 @@ Partial Class frmMain
     Friend WithEvents ออกจากระบบToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents รายงานดอกเบยสจจะToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents จดการกองทนToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ดอกเบยสจจะToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents หนToolStripMenuItem As ToolStripMenuItem
 End Class

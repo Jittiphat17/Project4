@@ -394,41 +394,44 @@ Public Class frmIncome
                         If Not row.IsNewRow Then
                             Dim incomeType As String = If(row.Cells("IncomeType").Value, "").ToString()
                             Dim amount As Decimal = CDec(If(row.Cells("Amount").Value, 0))
+                            Dim incDate As Date = dtpBirth.Value ' ใช้วันที่จาก DateTimePicker หรือเปลี่ยนตามวันที่ที่ต้องการ
 
                             If Not String.IsNullOrEmpty(incomeType) Then
-                                Dim queryDetails As String = "INSERT INTO Income_Details (ind_accname, con_id, ind_amount, inc_id, m_id) VALUES (@ind_accname, @con_id, @ind_amount, @inc_id, @m_id)"
+                                Dim queryDetails As String = "INSERT INTO Income_Details (ind_accname, con_id, ind_amount, inc_id, m_id, ind_date) VALUES (@ind_accname, @con_id, @ind_amount, @inc_id, @m_id, @ind_date)"
                                 Using cmdDetails As New OleDbCommand(queryDetails, Conn)
                                     cmdDetails.Parameters.AddWithValue("@ind_accname", incomeType)
                                     cmdDetails.Parameters.AddWithValue("@con_id", DBNull.Value) ' ไม่มี con_id ในกรณีนี้
                                     cmdDetails.Parameters.AddWithValue("@ind_amount", amount)
                                     cmdDetails.Parameters.AddWithValue("@inc_id", incId)
                                     cmdDetails.Parameters.AddWithValue("@m_id", CInt(memberId))
+                                    cmdDetails.Parameters.AddWithValue("@ind_date", incDate)
 
                                     cmdDetails.ExecuteNonQuery()
                                 End Using
                             End If
                         End If
                     Next
-
                     ' บันทึกข้อมูลจาก dgvPaymentDetails ลงในตาราง Income_Details
                     For Each row As DataGridViewRow In dgvPaymentDetails.Rows
                         If Not row.IsNewRow Then
                             Dim paymentType As String = If(row.Cells("PaymentType").Value, "").ToString()
                             Dim paymentContractNumber As String = If(row.Cells("PaymentContractNumber").Value, "").ToString()
                             Dim amount As Decimal = CDec(If(row.Cells("PaymentAmount").Value, 0))
+                            Dim incDate As Date = dtpBirth.Value ' ใช้วันที่จาก DateTimePicker หรือเปลี่ยนตามวันที่ที่ต้องการ
 
                             If Not String.IsNullOrEmpty(paymentType) Then
                                 If Not String.IsNullOrEmpty(paymentContractNumber) Then
                                     DeductBalance(paymentContractNumber, amount)
                                 End If
 
-                                Dim queryDetails As String = "INSERT INTO Income_Details (ind_accname, con_id, ind_amount, inc_id, m_id) VALUES (@ind_accname, @con_id, @ind_amount, @inc_id, @m_id)"
+                                Dim queryDetails As String = "INSERT INTO Income_Details (ind_accname, con_id, ind_amount, inc_id, m_id, ind_date) VALUES (@ind_accname, @con_id, @ind_amount, @inc_id, @m_id, @ind_date)"
                                 Using cmdDetails As New OleDbCommand(queryDetails, Conn)
                                     cmdDetails.Parameters.AddWithValue("@ind_accname", paymentType)
                                     cmdDetails.Parameters.AddWithValue("@con_id", If(String.IsNullOrEmpty(paymentContractNumber), DBNull.Value, paymentContractNumber))
                                     cmdDetails.Parameters.AddWithValue("@ind_amount", amount)
                                     cmdDetails.Parameters.AddWithValue("@inc_id", incId)
                                     cmdDetails.Parameters.AddWithValue("@m_id", CInt(memberId))
+                                    cmdDetails.Parameters.AddWithValue("@ind_date", incDate)
 
                                     cmdDetails.ExecuteNonQuery()
                                 End Using

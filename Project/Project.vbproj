@@ -345,10 +345,10 @@
     <Compile Include="Page1\frmExpense.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="report\AccountSajjaForm.Designer.vb">
-      <DependentUpon>AccountSajjaForm.vb</DependentUpon>
+    <Compile Include="report\frmSajja.Designer.vb">
+      <DependentUpon>frmSajja.vb</DependentUpon>
     </Compile>
-    <Compile Include="report\AccountSajjaForm.vb">
+    <Compile Include="report\frmSajja.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="report\frmSearch.Designer.vb">
@@ -369,10 +369,10 @@
     <Compile Include="Page2\frmIncome.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="report\ReportForm.Designer.vb">
-      <DependentUpon>ReportForm.vb</DependentUpon>
+    <Compile Include="report\frmShare.Designer.vb">
+      <DependentUpon>frmShare.vb</DependentUpon>
     </Compile>
-    <Compile Include="report\ReportForm.vb">
+    <Compile Include="report\frmShare.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -428,8 +428,8 @@
     <EmbeddedResource Include="Page1\frmExpense.resx">
       <DependentUpon>frmExpense.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="report\AccountSajjaForm.resx">
-      <DependentUpon>AccountSajjaForm.vb</DependentUpon>
+    <EmbeddedResource Include="report\frmSajja.resx">
+      <DependentUpon>frmSajja.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="report\frmSearch.resx">
       <DependentUpon>frmSearch.vb</DependentUpon>
@@ -440,13 +440,13 @@
     <EmbeddedResource Include="Page2\frmIncome.resx">
       <DependentUpon>frmIncome.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="report\GuarantorReport.rdlc" />
-    <EmbeddedResource Include="report\Income.rdlc" />
-    <EmbeddedResource Include="report\LoanReport1.rdlc" />
-    <EmbeddedResource Include="report\MemberReport.rdlc" />
-    <EmbeddedResource Include="report\ReportForm.resx">
-      <DependentUpon>ReportForm.vb</DependentUpon>
+    <EmbeddedResource Include="report\frmShare.resx">
+      <DependentUpon>frmShare.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="report\GuarantorReport.rdlc" />
+    <EmbeddedResource Include="report\LoanReport1.rdlc" />
+    <EmbeddedResource Include="report\SajjaReport.rdlc" />
+    <EmbeddedResource Include="report\shareReport.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="db_banmai1DataSet1.xsc">

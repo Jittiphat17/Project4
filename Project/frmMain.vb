@@ -261,7 +261,7 @@ Public Class frmMain
     End Sub
 
     Private Sub รายงานดอกเบยสจจะToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles รายงานดอกเบยสจจะToolStripMenuItem.Click
-        Dim frm As New AccountSajjaForm
+        Dim frm As New frmSajja
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub
@@ -272,8 +272,9 @@ Public Class frmMain
         frm.ShowDialog()
     End Sub
 
-    Private Sub ดอกเบยสจจะToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ดอกเบยสจจะToolStripMenuItem.Click
-        Dim frm As New ReportForm
+    Private Sub หนToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles หนToolStripMenuItem.Click
+        Dim frm As New frmShare
+
         AddHandler frm.FormClosed, AddressOf RefreshMainForm
         frm.ShowDialog()
     End Sub
